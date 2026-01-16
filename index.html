@@ -2,13 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Studio</title>
+  <title>Eva Margon – Studio</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .scene img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Hello</h1>
-  <p>If you see this, the website works.</p>
-<img src="galerija.jpg" alt="My studio illustration">
+  <div class="scene">
+    <img src="galerija.jpg" alt="Illustrated studio">
+  </div>
 
 </body>
 </html>
