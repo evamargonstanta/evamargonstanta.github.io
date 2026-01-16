@@ -35,40 +35,19 @@
         .hotspot {
             position: absolute;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 3px solid transparent;
+            transition: all 0.4s ease;
+            background: transparent;
         }
 
         .hotspot:hover {
-            border: 4px solid#000000 !important;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 100),
-                        inset 0 0 20px rgba(255, 255, 255, 0.2) !important;
-            background: rgba(255, 255, 255, 0.15) !important;
-            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.25) !important;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6),
+                        inset 0 0 20px rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(2px);
             z-index: 20;
         }
 
-        .hotspot-label {
-            position: absolute;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .hotspot:hover .hotspot-label {
-            opacity: 1;
-        }
-
-        /* TOČNE POZICIJE ZA VAŠO ILUSTRACIJO */
+        /* TOČNE POZICIJE */
         .hotspot-casopis {
             left: 180px; top: 780px; width: 240px; height: 200px;
         }
@@ -109,57 +88,21 @@
             .container {
                 transform: scale(0.6);
             }
-            .hotspot-label {
-                font-size: 12px;
-                padding: 6px 10px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- VAŠA ILUSTRACIJA - shranite kot galerija.jpg v isto mapo -->
-        <img src="galerija.jpg" alt="Atelje Galerija" class="ilustracija" usemap="#atelje">
+        <img src="galerija.jpg" alt="Atelje Galerija" class="ilustracija">
 
-        <!-- HOTSPOTI ZA HOVER EFEKTE -->
-        <a href="o-meni.html" class="hotspot hotspot-casopis" title="Časopis - O meni">
-            <span class="hotspot-label">Časopis - O meni</span>
-        </a>
-
-        <a href="znamke.html" class="hotspot hotspot-pismo" title="Pismo - Oblikovanje znamk">
-            <span class="hotspot-label">Pismo - Znamke</span>
-        </a>
-
-        <a href="knjige.html" class="hotspot hotspot-knjige" title="Knjige - Knjižni projekti">
-            <span class="hotspot-label">Knjige</span>
-        </a>
-
-        <a href="slike.html" class="hotspot hotspot-copici" title="Čopiči - Slike">
-            <span class="hotspot-label">Čopiči & Slike</span>
-        </a>
-
-        <a href="risbe.html" class="hotspot hotspot-kovcek" title="Kovček - Risbe">
-            <span class="hotspot-label">Risbe</span>
-        </a>
-
-        <a href="animacije.html" class="hotspot hotspot-ekran" title="Ekran - Animacije">
-            <span class="hotspot-label">Animacije</span>
-        </a>
-
-        <a href="grafike.html" class="hotspot hotspot-presa" title="Preša - Grafike">
-            <span class="hotspot-label">Grafike</span>
-        </a>
-
-        <!-- IMAGE MAP KOT Fallback (za starejše brskalnike) -->
-        <map name="atelje">
-            <area shape="rect" coords="180,780,420,980" href="o-meni.html" alt="Časopis">
-            <area shape="rect" coords="80,380,280,580" href="znamke.html" alt="Pismo">
-            <area shape="rect" coords="1520,580,1820,780" href="knjige.html" alt="Knjige">
-            <area shape="rect" coords="1580,720,1880,920" href="slike.html" alt="Čopiči">
-            <area shape="rect" coords="1120,620,1320,780" href="risbe.html" alt="Kovček">
-            <area shape="rect" coords="1280,480,1620,680" href="animacije.html" alt="Ekran">
-            <area shape="rect" coords="120,80,620,480" href="grafike.html" alt="Preša">
-        </map>
+        <!-- HOTSPOTI - SAMO OSVETLITEV BREZ RUMENE IN OBROBE -->
+        <a href="o-meni.html" class="hotspot hotspot-casopis"></a>
+        <a href="znamke.html" class="hotspot hotspot-pismo"></a>
+        <a href="knjige.html" class="hotspot hotspot-knjige"></a>
+        <a href="slike.html" class="hotspot hotspot-copici"></a>
+        <a href="risbe.html" class="hotspot hotspot-kovcek"></a>
+        <a href="animacije.html" class="hotspot hotspot-ekran"></a>
+        <a href="grafike.html" class="hotspot hotspot-presa"></a>
     </div>
 </body>
 </html>
