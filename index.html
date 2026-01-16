@@ -39,8 +39,11 @@
       background: rgba(255, 255, 255, 0.03);
     }
 
-    /* HOTSPOTI – prilagodi številke svoji ilustraciji */
+    /* =========================
+       HOTSPOTI – prilagodi % 
+       ========================= */
 
+    /* MOKRE TEHNIKE – čopiči */
     .brushes {
       top: 18%;
       left: 14%;
@@ -48,6 +51,7 @@
       height: 28%;
     }
 
+    /* KNJIGE */
     .book {
       bottom: 24%;
       left: 34%;
@@ -55,6 +59,7 @@
       height: 10%;
     }
 
+    /* GRAFIKA / PREŠA */
     .press {
       right: 8%;
       bottom: 12%;
@@ -62,6 +67,7 @@
       height: 42%;
     }
 
+    /* ANIMACIJA – ekran */
     .screen {
       top: 48%;
       right: 28%;
@@ -69,6 +75,7 @@
       height: 14%;
     }
 
+    /* SUHE TEHNIKE – barvice */
     .crayons {
       bottom: 20%;
       left: 18%;
@@ -76,6 +83,7 @@
       height: 10%;
     }
 
+    /* O MENI – časopis */
     .newspaper {
       bottom: 8%;
       left: 52%;
@@ -83,6 +91,7 @@
       height: 9%;
     }
 
+    /* ZNAMKE – kuverta */
     .envelope {
       top: 22%;
       right: 22%;
@@ -95,28 +104,44 @@
 <body>
 
   <div class="scene">
-    <img src="studio.jpg" alt="Illustrated studio">
+    <img src="galerija.jpg" alt="Illustrated studio workspace">
 
-    <!-- RISBE / ILUSTRACIJE -->
-    <a href="illustrations.html" class="hotspot brushes" aria-label="Illustrations"></a>
+    <!-- MOKRE TEHNIKE -->
+    <a href="wet-techniques.html"
+       class="hotspot brushes"
+       aria-label="Wet techniques illustrations"
+       title="Wet techniques"></a>
+
+    <!-- SUHE TEHNIKE -->
+    <a href="dry-techniques.html"
+       class="hotspot crayons"
+       aria-label="Dry techniques drawings"
+       title="Dry techniques"></a>
 
     <!-- KNJIGE -->
-    <a href="books.html" class="hotspot book" aria-label="Books"></a>
+    <a href="books.html"
+       class="hotspot book"
+       aria-label="Books and publishing projects"></a>
 
     <!-- GRAFIKA -->
-    <a href="printmaking.html" class="hotspot press" aria-label="Printmaking"></a>
+    <a href="printmaking.html"
+       class="hotspot press"
+       aria-label="Printmaking and graphic works"></a>
 
     <!-- ANIMACIJA -->
-    <a href="animation.html" class="hotspot screen" aria-label="Animation"></a>
-
-    <!-- PROJEKTI / BARVICE -->
-    <a href="projects.html" class="hotspot crayons" aria-label="Projects"></a>
+    <a href="animation.html"
+       class="hotspot screen"
+       aria-label="Animation projects"></a>
 
     <!-- O MENI -->
-    <a href="about.html" class="hotspot newspaper" aria-label="About"></a>
+    <a href="about.html"
+       class="hotspot newspaper"
+       aria-label="About the artist"></a>
 
-    <!-- ZNAMKE / KUVERTE -->
-    <a href="stamps.html" class="hotspot envelope" aria-label="Stamps"></a>
+    <!-- ZNAMKE -->
+    <a href="stamps.html"
+       class="hotspot envelope"
+       aria-label="Stamp designs"></a>
   </div>
 
 </body>
