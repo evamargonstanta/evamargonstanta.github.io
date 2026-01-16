@@ -28,120 +28,75 @@
       display: block;
     }
 
-    .hotspot {
-      position: absolute;
-      display: block;
-      outline: 2px solid rgba(255, 0, 0, 0.4); /* odstrani kasneje */
-    }
+    ./* CSS hotspoti za ilustracijo */
 
-    .hotspot:hover {
-      cursor: pointer;
-      background: rgba(255, 255, 255, 0.03);
-    }
+.hotspot {
+    position: absolute;
+    border: 2px solid transparent; /* Osnovna obroba */
+    transition: border-color 0.3s; /* Prehod pri hoverju */
+}
 
-    /* =========================
-       HOTSPOTI – prilagodi % 
-       ========================= */
+/* Časopis (o meni) */
+.newspaper {
+    top: 300px; /* Prilagodite */
+    left: 250px; /* Prilagodite */
+    width: 100px; /* Prilagodite */
+    height: 50px; /* Prilagodite */
+}
 
-    /* MOKRE TEHNIKE – čopiči */
-    .brushes {
-      top: 18%;
-      left: 14%;
-      width: 12%;
-      height: 28%;
-    }
+/* Pismo (oblikovanje znamk) */
+.letter {
+    top: 400px; /* Prilagodite */
+    left: 300px; /* Prilagodite */
+    width: 80px; /* Prilagodite */
+    height: 40px; /* Prilagodite */
+}
 
-    /* KNJIGE */
-    .book {
-      bottom: 24%;
-      left: 34%;
-      width: 14%;
-      height: 10%;
-    }
+/* Knjige (knjižni projekti) */
+.books {
+    top: 150px; /* Prilagodite */
+    left: 600px; /* Prilagodite */
+    width: 100px; /* Prilagodite */
+    height: 100px; /* Prilagodite */
+}
 
-    /* GRAFIKA / PREŠA */
-    .press {
-      right: 8%;
-      bottom: 12%;
-      width: 30%;
-      height: 42%;
-    }
+/* Čopiči in paleta (slike) */
+.brushes {
+    top: 350px; /* Prilagodite */
+    left: 650px; /* Prilagodite */
+    width: 50px; /* Prilagodite */
+    height: 50px; /* Prilagodite */
+}
 
-    /* ANIMACIJA – ekran */
-    .screen {
-      top: 48%;
-      right: 28%;
-      width: 18%;
-      height: 14%;
-    }
+/* Kovček z barvicami (risbe) */
+.pencil-case {
+    top: 400px; /* Prilagodite */
+    left: 700px; /* Prilagodite */
+    width: 60px; /* Prilagodite */
+    height: 30px; /* Prilagodite */
+}
 
-    /* SUHE TEHNIKE – barvice */
-    .crayons {
-      bottom: 20%;
-      left: 18%;
-      width: 16%;
-      height: 10%;
-    }
+/* Ekran (animacije) */
+.screen {
+    top: 200px; /* Prilagodite */
+    left: 550px; /* Prilagodite */
+    width: 120px; /* Prilagodite */
+    height: 80px; /* Prilagodite */
+}
 
-    /* O MENI – časopis */
-    .newspaper {
-      bottom: 8%;
-      left: 52%;
-      width: 12%;
-      height: 9%;
-    }
+/* Preša (grafike) */
+.press {
+    top: 100px; /* Prilagodite */
+    left: 400px; /* Prilagodite */
+    width: 100px; /* Prilagodite */
+    height: 80px; /* Prilagodite */
+}
 
-    /* ZNAMKE – kuverta */
-    .envelope {
-      top: 22%;
-      right: 22%;
-      width: 10%;
-      height: 8%;
-    }
-  </style>
-</head>
+/* Hover efekt */
+.hotspot:hover {
+    border-color: yellow; /* Barva obrobe pri hoverju */
+}
 
-<body>
-
-  <div class="scene">
-    <img src="galerija.jpg" alt="Illustrated studio workspace">
-
-    <!-- MOKRE TEHNIKE -->
-    <a href="wet-techniques.html"
-       class="hotspot brushes"
-       aria-label="Wet techniques illustrations"
-       title="Wet techniques"></a>
-
-    <!-- SUHE TEHNIKE -->
-    <a href="dry-techniques.html"
-       class="hotspot crayons"
-       aria-label="Dry techniques drawings"
-       title="Dry techniques"></a>
-
-    <!-- KNJIGE -->
-    <a href="books.html"
-       class="hotspot book"
-       aria-label="Books and publishing projects"></a>
-
-    <!-- GRAFIKA -->
-    <a href="printmaking.html"
-       class="hotspot press"
-       aria-label="Printmaking and graphic works"></a>
-
-    <!-- ANIMACIJA -->
-    <a href="animation.html"
-       class="hotspot screen"
-       aria-label="Animation projects"></a>
-
-    <!-- O MENI -->
-    <a href="about.html"
-       class="hotspot newspaper"
-       aria-label="About the artist"></a>
-
-    <!-- ZNAMKE -->
-    <a href="stamps.html"
-       class="hotspot envelope"
-       aria-label="Stamp designs"></a>
   </div>
 
 </body>
