@@ -1,154 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sl">
 <head>
-  <meta charset="UTF-8">
-  <title>Eva Margon – Studio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelje Galerija</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            overflow-x: hidden;
+        }
 
-    body {
-      overflow: hidden;
-    }
+        .container {
+            position: relative;
+            max-width: 1920px;
+            margin: 0 auto;
+            height: 100vh;
+            max-height: 1080px;
+        }
 
-    .scene {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-    }
+        .ilustracija {
+            display: block;
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
 
-    .scene img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+        .hotspot {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 3px solid transparent;
+        }
 
-    .hotspot {
-      position: absolute;
-      display: block;
-      outline: 2px solid rgba(255, 0, 0, 0.4); /* odstrani kasneje */;
-    }
+        .hotspot:hover {
+            border: 4px solid #ffd700 !important;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7),
+                        inset 0 0 20px rgba(255, 255, 255, 0.2) !important;
+            background: rgba(255, 255, 255, 0.15) !important;
+            transform: scale(1.02);
+            z-index: 20;
+        }
 
-    .hotspot:hover {
-      cursor: pointer;
-      background: rgba(255, 255, 255, 0.03);
-    }
+        .hotspot-label {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-    /* =========================
-       HOTSPOTI – prilagodi % 
-       ========================= */
+        .hotspot:hover .hotspot-label {
+            opacity: 1;
+        }
 
-    /* MOKRE TEHNIKE – čopiči */
-    .brushes {
-      top: 1580%;
-      left: 720%;
-      width: 1880%;
-      height: 920%;
-    }
+        /* TOČNE POZICIJE ZA VAŠO ILUSTRACIJO */
+        .hotspot-casopis {
+            left: 180px; top: 780px; width: 240px; height: 200px;
+        }
 
-    /* KNJIGE */
-    .book {
-      bottom: 1520%;
-      left: 580%;
-      width: 1820%;
-      height: 780%;
-    }
+        .hotspot-pismo {
+            left: 80px; top: 380px; width: 200px; height: 200px;
+        }
 
-    /* GRAFIKA / PREŠA */
-    .press {
-      right: 120%;
-      bottom: 80%;
-      width: 620%;
-      height: 480%;
-    }
+        .hotspot-knjige {
+            left: 1520px; top: 580px; width: 300px; height: 200px;
+        }
 
-    /* ANIMACIJA – ekran */
-    .screen {
-      top: 1280%;
-      right: 480%;
-      width: 1620%;
-      height: 680%;
-    }
+        .hotspot-copici {
+            left: 1580px; top: 720px; width: 300px; height: 200px;
+        }
 
-    /* SUHE TEHNIKE – barvice */
-    .crayons {
-      bottom: 1120%;
-      left: 620%;
-      width: 1320%;
-      height: 780%;
-    }
+        .hotspot-kovcek {
+            left: 1120px; top: 620px; width: 200px; height: 160px;
+        }
 
-    /* O MENI – časopis */
-    .newspaper {
-      bottom: 180%;
-      left: 780%;
-      width: 420%;
-      height: 980%;
-  
-#hotspot-casopis:hover {
-  border: 4px solid #ffff00; box-shadow: 0 0 20px #ffff00;
-  background: rgba(255,255,0,0.1); /* Osvetlitev */
-}
+        .hotspot-ekran {
+            left: 1280px; top: 480px; width: 340px; height: 200px;
+        }
 
-    }
+        .hotspot-presa {
+            left: 120px; top: 80px; width: 500px; height: 400px;
+        }
 
-    /* ZNAMKE – kuverta */
-    .envelope {
-      top: 80%;
-      right: 380%;
-      width: 280%;
-      height: 580%;
-    }
-  </style>
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .container {
+                transform: scale(0.8);
+                transform-origin: top left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                transform: scale(0.6);
+            }
+            .hotspot-label {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <!-- VAŠA ILUSTRACIJA - shranite kot galerija.jpg v isto mapo -->
+        <img src="galerija.jpg" alt="Atelje Galerija" class="ilustracija" usemap="#atelje">
 
-  <div class="scene">
-    <img src="galerija.jpg" alt="Illustrated studio workspace">
+        <!-- HOTSPOTI ZA HOVER EFEKTE -->
+        <a href="o-meni.html" class="hotspot hotspot-casopis" title="Časopis - O meni">
+            <span class="hotspot-label">Časopis - O meni</span>
+        </a>
 
-    <!-- MOKRE TEHNIKE -->
-    <a href="wet-techniques.html"
-       class="hotspot brushes"
-       aria-label="Wet techniques illustrations"
-       title="Wet techniques"></a>
+        <a href="znamke.html" class="hotspot hotspot-pismo" title="Pismo - Oblikovanje znamk">
+            <span class="hotspot-label">Pismo - Znamke</span>
+        </a>
 
-    <!-- SUHE TEHNIKE -->
-    <a href="dry-techniques.html"
-       class="hotspot crayons"
-       aria-label="Dry techniques drawings"
-       title="Dry techniques"></a>
+        <a href="knjige.html" class="hotspot hotspot-knjige" title="Knjige - Knjižni projekti">
+            <span class="hotspot-label">Knjige</span>
+        </a>
 
-    <!-- KNJIGE -->
-    <a href="books.html"
-       class="hotspot book"
-       aria-label="Books and publishing projects"></a>
+        <a href="slike.html" class="hotspot hotspot-copici" title="Čopiči - Slike">
+            <span class="hotspot-label">Čopiči & Slike</span>
+        </a>
 
-    <!-- GRAFIKA -->
-    <a href="printmaking.html"
-       class="hotspot press"
-       aria-label="Printmaking and graphic works"></a>
+        <a href="risbe.html" class="hotspot hotspot-kovcek" title="Kovček - Risbe">
+            <span class="hotspot-label">Risbe</span>
+        </a>
 
-    <!-- ANIMACIJA -->
-    <a href="animation.html"
-       class="hotspot screen"
-       aria-label="Animation projects"></a>
+        <a href="animacije.html" class="hotspot hotspot-ekran" title="Ekran - Animacije">
+            <span class="hotspot-label">Animacije</span>
+        </a>
 
-    <!-- O MENI -->
-    <a href="about.html"
-       class="hotspot newspaper"
-       aria-label="About the artist"></a>
+        <a href="grafike.html" class="hotspot hotspot-presa" title="Preša - Grafike">
+            <span class="hotspot-label">Grafike</span>
+        </a>
 
-    <!-- ZNAMKE -->
-    <a href="stamps.html"
-       class="hotspot envelope"
-       aria-label="Stamp designs"></a>
-  </div>
-
+        <!-- IMAGE MAP KOT Fallback (za starejše brskalnike) -->
+        <map name="atelje">
+            <area shape="rect" coords="180,780,420,980" href="o-meni.html" alt="Časopis">
+            <area shape="rect" coords="80,380,280,580" href="znamke.html" alt="Pismo">
+            <area shape="rect" coords="1520,580,1820,780" href="knjige.html" alt="Knjige">
+            <area shape="rect" coords="1580,720,1880,920" href="slike.html" alt="Čopiči">
+            <area shape="rect" coords="1120,620,1320,780" href="risbe.html" alt="Kovček">
+            <area shape="rect" coords="1280,480,1620,680" href="animacije.html" alt="Ekran">
+            <area shape="rect" coords="120,80,620,480" href="grafike.html" alt="Preša">
+        </map>
+    </div>
 </body>
 </html>
