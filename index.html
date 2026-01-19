@@ -12,7 +12,7 @@
     }
 
     body {
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .scene {
@@ -125,8 +125,17 @@
 
 @media (max-width: 768px) {
 
-  .gallery {
+  body {
+    overflow-y: auto;
+  }
+
+  .scene {
     pointer-events: none;
+    height: auto;
+  }
+
+  .scene img {
+    height: auto;
   }
 
   .hotspot {
@@ -137,6 +146,7 @@
     display: block;
   }
 }
+
 
   </style>
 </head>
