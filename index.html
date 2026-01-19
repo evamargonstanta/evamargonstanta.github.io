@@ -107,6 +107,37 @@
   height: 10%;
 }
 
+    .mobile-menu {
+  display: none;
+  padding: 20px;
+  background: #f6f5f3;
+  font-family: sans-serif;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 14px 0;
+  font-size: 18px;
+  color: #222;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+
+  .gallery {
+    pointer-events: none;
+  }
+
+  .hotspot {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+}
+
   </style>
 </head>
 
