@@ -16,6 +16,10 @@
     body {
       overflow-x: hidden;
     }
+    <div class="language-switch">
+  <a href="sl/index.html">SL</a> / <a href="en/index.html">EN</a>
+</div>
+
 
     .scene {
       position: relative;
@@ -159,6 +163,24 @@
   }
 }
 
+.language-switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: sans-serif;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.language-switch a {
+  text-decoration: none;
+  color: #222;
+  opacity: 0.7;
+}
+
+.language-switch a:hover {
+  opacity: 1;
+}
 
   </style>
 </head>
