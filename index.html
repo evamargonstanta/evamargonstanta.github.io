@@ -8,15 +8,14 @@
   <style>
     /* RESET IN OSNOVNO */
     html, body {
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      font-family: sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  margin: 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  /* centrirano po vertikali */
+  min-height: 100vh;       /* vsaj cel zaslon */
+}
 
     /* LANGUAGE SWITCH: nad ilustracijo, desno */
     .language-switch {
@@ -38,19 +37,20 @@
 
     /* SCENE / ilustracija */
     .scene {
-      width: 100%;
-      max-width: calc(100% - 4cm); /* 2cm beline levo in desno */
-      margin: 20px auto 0 auto;    /* centrirana in malo spodaj */
-      position: relative;
-    }
+  position: relative;
+  width: 100%;
+  max-width: calc(100% - 4cm); /* 2cm levo/desno */
+}
 
     .scene img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: contain;
-    }
-
+  width: 100%;
+  height: auto;             /* avtomatska višina, ohrani proporce */
+  max-height: calc(100vh - 60px - 20px); 
+  /* 60px: okvir / SL/EN, 20px: top margin, prilagodi po potrebi */
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;      /* ohrani celotno ilustracijo */
+}
     /* HOTSPOTI */
     .hotspot {
       position: absolute;
