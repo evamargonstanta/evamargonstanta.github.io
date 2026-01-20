@@ -53,15 +53,15 @@
     }
 
 /* =========================
-   DOOR ICON – HOTSPOT STYLE
+   DOOR ICON – LARGE HOTSPOT
    ========================= */
 
 .door-hotspot {
   position: fixed;
-  bottom: 20px;
-  right: 24px;
-  width: 42px;   /* prilagodi velikosti ikon */
-  height: 42px;
+  bottom: 28px;
+  right: 32px;
+  width: 64px;   /* VEČJA IKONA */
+  height: 64px;
   background-image: url("icon-door.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -69,21 +69,24 @@
   z-index: 20;
 }
 
-/* ISTI HOVER KOT HOTSPOTI */
-.door-hotspot:hover {
-  cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.09);
+/* ISTI HOVER KOT HOTSPOTI (desktop) */
+@media (hover: hover) {
+  .door-hotspot:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.09);
+  }
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
   .door-hotspot {
-    width: 34px;
-    height: 34px;
-    bottom: 16px;
-    right: 16px;
+    width: 48px;
+    height: 48px;
+    bottom: 20px;
+    right: 20px;
   }
 }
+
 
 
   </style>
