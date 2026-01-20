@@ -16,12 +16,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center; /* vertikalno centrirano */
+      justify-content: flex-start; /* vsebina bližje vrhu */
+      padding-top: 20px; /* prostor nad vsebino */
+      box-sizing: border-box;
     }
 
     /* LANGUAGE SWITCH nad ilustracijo */
     .language-switch {
-      margin: 40px 2cm 20px 2cm; /* več top margin za razmik od ilustracije */
+      margin: 20px 0 10px 0; /* višje proti vrhu */
       align-self: flex-end;
       font-size: 14px;
     }
@@ -41,16 +43,18 @@
     .scene {
       position: relative;
       width: 100%;
-      max-width: calc(100% - 4cm); /* 2cm levo/desno */
+      max-width: 1200px; /* omeji širino za ultra široke zaslone */
+      padding: 0 2cm; /* enaka levo/desno belina */
+      box-sizing: border-box;
     }
 
     .scene img {
       width: 100%;
       height: auto;
-      max-height: calc(100vh - 80px); /* 80px za SL/EN in top margin */
+      max-height: calc(100vh - 80px); /* SL/EN + top padding */
       display: block;
       margin: 0 auto;
-      object-fit: contain; /* ohrani celotno ilustracijo */
+      object-fit: contain; /* celotna ilustracija */
     }
 
     /* HOTSPOTI */
@@ -106,6 +110,7 @@
         max-width: 90%;
         pointer-events: none;
         height: auto;
+        padding: 0 10px;
       }
 
       .scene img {
@@ -123,7 +128,7 @@
 
       .language-switch {
         font-size: 12px;
-        margin: 20px 10px 10px 10px; /* prilagojeno za mobilni prikaz */
+        margin: 20px 10px 10px 10px;
         align-self: flex-end;
       }
     }
