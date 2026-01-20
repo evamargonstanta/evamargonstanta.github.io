@@ -9,60 +9,60 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #fff;
-      font-family: sans-serif;
-      width: 100%;
       height: 100%;
-      overflow-x: hidden;
     }
 
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      background: #fff;
+      overflow-x: hidden;
+      font-family: sans-serif;
     }
+
+    /* =========================
+       SCENE + ILUSTRACIJA
+       ========================= */
 
     .scene {
       position: relative;
       width: 100%;
-      height: 100vh; /* zasede cel zaslon */
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      height: 100vh;
     }
 
     .scene img {
-      width: auto;
-      height: 90vh; /* skoraj cel zaslon po višini */
-      max-width: 95vw; /* skoraj cel zaslon po širini */
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       display: block;
+      margin: 0 auto;
     }
 
-    /* LANGUAGE SWITCH nad ilustracijo */
+    /* =========================
+       LANGUAGE SWITCH
+       ========================= */
+
     .language-switch {
       position: absolute;
-      top: 20px;  /* višina nad ilustracijo */
-      right: 20px;
+      top: 20px;
+      right: 24px;
       font-size: 14px;
-      background: rgba(255,255,255,0.7);
-      padding: 4px 8px;
-      border-radius: 4px;
+      z-index: 10;
     }
 
     .language-switch a {
       text-decoration: none;
       color: #222;
-      opacity: 0.8;
-      margin-left: 6px;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
     }
 
     .language-switch a:hover {
       opacity: 1;
     }
 
-    /* HOTSPOTI */
+    /* =========================
+       HOTSPOTI
+       ========================= */
+
     .hotspot {
       position: absolute;
       display: block;
@@ -74,23 +74,70 @@
       background: rgba(255, 255, 255, 0.09);
     }
 
-    /* HOTSPOTI – prilagodi % */
-    .brushes { top: 54%; left: 67%; width: 8%; height: 23%; }
-    .book { top: 26.3%; left: 77.1%; width: 9.6%; height: 15.4%; }
-    .press { top: 26.1%; left: 34.1%; width: 9.1%; height: 25.2%; }
-    .screen { top: 34%; right: 36.8%; width: 3%; height: 17%; }
-    .crayons { bottom: 53%; left: 50%; width: 7%; height: 10%; }
-    .newspaper { bottom: 9.5%; left: 29%; width: 11.6%; height: 13.6%; }
-    .envelope { top: 48.9%; right: 67.6%; width: 3.4%; height: 3.1%; }
-    .bag { bottom: 14%; right: 43%; width: 4%; height: 10%; }
+    .brushes {
+      top: 54%;
+      left: 67%;
+      width: 8%;
+      height: 23%;
+    }
 
-    /* MOBILE MENU */
+    .book {
+      top: 26.3%;
+      left: 77.1%;
+      width: 9.6%;
+      height: 15.4%;
+    }
+
+    .press {
+      top: 26.1%;
+      left: 34.1%;
+      width: 9.1%;
+      height: 25.2%;
+    }
+
+    .screen {
+      top: 34%;
+      right: 36.8%;
+      width: 3%;
+      height: 17%;
+    }
+
+    .crayons {
+      bottom: 53%;
+      left: 50%;
+      width: 7%;
+      height: 10%;
+    }
+
+    .newspaper {
+      bottom: 9.5%;
+      left: 29%;
+      width: 11.6%;
+      height: 13.6%;
+    }
+
+    .envelope {
+      top: 48.9%;
+      right: 67.6%;
+      width: 3.4%;
+      height: 3.1%;
+    }
+
+    .bag {
+      bottom: 14%;
+      right: 43%;
+      width: 4%;
+      height: 10%;
+    }
+
+    /* =========================
+       MOBILE MENU
+       ========================= */
+
     .mobile-menu {
       display: none;
       padding: 20px;
       background: #fff;
-      width: 100%;
-      box-sizing: border-box;
     }
 
     .mobile-menu a {
@@ -111,17 +158,22 @@
       flex-shrink: 0;
     }
 
-    /* RESPONSIVE */
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
     @media (max-width: 768px) {
+      body {
+        overflow-y: auto;
+      }
+
       .scene {
         height: auto;
-        padding: 10px;
+        pointer-events: none;
       }
 
       .scene img {
-        width: 100%;
         height: auto;
-        max-height: none;
       }
 
       .hotspot {
@@ -131,46 +183,47 @@
       .mobile-menu {
         display: block;
       }
-
-      .language-switch {
-        position: static;
-        margin: 10px 0;
-        text-align: right;
-      }
     }
   </style>
 </head>
 
-<body>
+<body class="index">
 
-  <!-- SCENE / ILUSTRACIJA -->
+  <!-- LANGUAGE SWITCH -->
+  <div class="language-switch">
+    <a href="sl/index.html">SL</a> / <a href="en/index.html">EN</a>
+  </div>
+
   <div class="scene">
-    <div class="language-switch">
-      <a href="sl/index.html">SL</a> / <a href="en/index.html">EN</a>
-    </div>
-
     <img src="galerija.jpg" alt="Illustrated studio workspace">
 
-    <!-- HOTSPOTI -->
-    <a href="wet-techniques.html" class="hotspot brushes" aria-label="Wet techniques illustrations" title="Wet techniques"></a>
-    <a href="dry-techniques.html" class="hotspot crayons" aria-label="Dry techniques drawings" title="Dry techniques"></a>
-    <a href="books.html" class="hotspot book" aria-label="Books and publishing projects"></a>
-    <a href="printmaking.html" class="hotspot press" aria-label="Printmaking and graphic works"></a>
-    <a href="animation.html" class="hotspot screen" aria-label="Animation and design projects" title="Animation & Design"></a>
-    <a href="about.html" class="hotspot newspaper" aria-label="About the artist"></a>
-    <a class="hotspot envelope" aria-label="Envelope temporarily inactive"></a>
-    <a href="https://evamargon.sumupstore.com" class="hotspot bag" aria-label="Shop" target="_blank" rel="noopener noreferrer"></a>
+    <a href="wet-techniques.html" class="hotspot brushes"></a>
+    <a href="dry-techniques.html" class="hotspot crayons"></a>
+    <a href="books.html" class="hotspot book"></a>
+    <a href="printmaking.html" class="hotspot press"></a>
+    <a href="animation.html" class="hotspot screen"></a>
+    <a href="about.html" class="hotspot newspaper"></a>
+
+    <!-- ENVELOPE – trenutno neaktivna -->
+    <a class="hotspot envelope" aria-label="Inactive"></a>
+
+    <a href="https://evamargon.sumupstore.com"
+       class="hotspot bag"
+       target="_blank"
+       rel="noopener noreferrer"></a>
   </div>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu">
-    <a href="about.html"><img src="icon-newspaper.png" class="menu-icon"> About / CV</a>
-    <a href="wet-techniques.html"><img src="icon-brush.png" class="menu-icon"> Wet techniques</a>
-    <a href="dry-techniques.html"><img src="icon-crayon.png" class="menu-icon"> Dry techniques</a>
-    <a href="books.html"><img src="icon-books.png" class="menu-icon"> Books</a>
-    <a href="printmaking.html"><img src="icon-press.png" class="menu-icon"> Prints</a>
-    <a href="animation.html"><img src="icon-screen.png" class="menu-icon"> Animation & Design</a>
-    <a href="https://evamargon.sumupstore.com" target="_blank" rel="noopener noreferrer"><img src="icon-bag.png" class="menu-icon"> Shop</a>
+    <a href="about.html"><img src="icon-newspaper.png" class="menu-icon">About / CV</a>
+    <a href="wet-techniques.html"><img src="icon-brush.png" class="menu-icon">Wet techniques</a>
+    <a href="dry-techniques.html"><img src="icon-crayon.png" class="menu-icon">Dry techniques</a>
+    <a href="books.html"><img src="icon-books.png" class="menu-icon">Books</a>
+    <a href="printmaking.html"><img src="icon-press.png" class="menu-icon">Prints</a>
+    <a href="animation.html"><img src="icon-screen.png" class="menu-icon">Animation & Design</a>
+    <a href="https://evamargon.sumupstore.com" target="_blank">
+      <img src="icon-bag.png" class="menu-icon">Shop
+    </a>
   </div>
 
 </body>
