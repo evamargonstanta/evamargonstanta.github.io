@@ -49,13 +49,14 @@
     }
 
     .scene img {
-      width: 100%;
-      height: auto;
-      max-height: calc(100vh - 80px); /* SL/EN + top padding */
-      display: block;
-      margin: 0 auto;
-      object-fit: contain; /* celotna ilustracija */
-    }
+  width: 100%;
+  height: auto;           /* ohranja razmerje */
+  max-height: 90vh;       /* večja višina, še vedno vidi celotno ilustracijo na zaslonu */
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
 
     /* HOTSPOTI */
     .hotspot {
