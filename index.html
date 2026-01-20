@@ -6,7 +6,7 @@
   <title>Eva Margon – Studio</title>
 
   <style>
-    /* RESET IN OSNOVNO */
+    /* OSNOVNI RESET */
     html, body {
       margin: 0;
       padding: 0;
@@ -17,16 +17,16 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding-top: 20px; /* prostor nad SL/EN */
       box-sizing: border-box;
     }
 
-    /* LANGUAGE SWITCH nad ilustracijo */
+    /* LANGUAGE SWITCH */
     .language-switch {
-      margin: 0 0 10px 0; /* SL/EN malo višje */
-      align-self: flex-end;
+      margin: 20px 0 10px 0; /* prostor nad in pod */
       font-size: 14px;
       z-index: 10;
+      align-self: flex-end;
+      padding-right: 2cm; /* da je od leve/desne simetrično */
     }
 
     .language-switch a {
@@ -44,18 +44,18 @@
     .scene {
       position: relative;
       width: 100%;
-      max-width: 1200px; /* omejimo širino za ultra široke zaslone */
-      padding: 0; /* odstrani vertikalni padding */
+      max-width: 1200px; /* omejimo širino */
+      padding: 0 2cm;     /* horizontalno belino za simetrijo */
       box-sizing: border-box;
     }
 
     .scene img {
       width: 100%;
       height: auto;
-      max-height: calc(100vh - 60px); /* odštejemo prostor za SL/EN */
+      max-height: calc(100vh - 80px); /* upoštevamo SL/EN + malo vrha */
       display: block;
       margin: 0 auto;
-      object-fit: contain; /* celotna ilustracija */
+      object-fit: contain;
     }
 
     /* HOTSPOTI */
@@ -85,6 +85,9 @@
       display: none;
       padding: 20px;
       background: #fff;
+      width: 100%;
+      max-width: 1200px;
+      box-sizing: border-box;
     }
 
     .mobile-menu a {
@@ -130,6 +133,7 @@
       .language-switch {
         font-size: 12px;
         margin: 10px;
+        padding-right: 10px;
         align-self: flex-end;
       }
     }
