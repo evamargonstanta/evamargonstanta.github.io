@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eva Margon – Studio</title>
+
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .scene img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hotspot {
+      position: absolute;
+      display: block;
+      outline: 2px solid rgba(255, 0, 0, 0.4); /* odstrani kasneje */
+    }
+
+    .hotspot:hover {
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    /* =========================
+       HOTSPOTI – prilagodi % 
+       ========================= */
+
+    /* MOKRE TEHNIKE – čopiči */
+    .brushes {
+      top: 54%;
+      left: 67%;
+      width: 8%;
+      height: 23%;
+    }
+
+    /* KNJIGE */
+    .book {
+      top: 26.3%;
+      left: 77.1%;
+      width: 9.6%;
+      height: 15.4%;
+    }
+
+    /* GRAFIKA / PREŠA */
+    .press {
+      top: 26.1%;
+      left: 34.1%;
+      width: 9.1%;
+      height: 25.2%;
+    }
+
+    /* ANIMACIJA – ekran */
+    .screen {
+      top: 34%;
+      right: 36.8%;
+      width: 3%;
+      height: 17%;
+    }
+
+    /* SUHE TEHNIKE – barvice */
+    .crayons {
+      bottom: 53%;
+      left: 50%;
+      width: 7%;
+      height: 10%;
+    }
+
+    /* O MENI – časopis */
+    .newspaper {
+      bottom: 9.5%;
+      left: 29%;
+      width: 11.6%;
+      height: 13.6%;
+    }
+
+    /* ZNAMKE – kuverta */
+    .envelope {
+      top: 48.9%;
+      right: 67.6%;
+      width: 3.4%;
+      height: 3.1%;
+    }
+
+    /* TRGOVINA – TORBA NA TLEH */
+.bag {
+  bottom: 14%;
+  right: 43%;
+  width: 4%;
+  height: 10%;
+}
+
+    .mobile-menu {
+  display: none;
+  padding: 20px;
+  background: #fff;
+  font-family: sans-serif;
+}
+
+.mobile-menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  font-size: 18px;
+  color: #222;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.mobile-menu img.menu-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+
+@media (max-width: 768px) {
+
+  body {
+    overflow-y: auto;
+  }
+
+  .scene {
+    pointer-events: none;
+    height: auto;
+  }
+
+  .scene img {
+    height: auto;
+  }
+
+  .hotspot {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="scene">
+    <img src="galerija.jpg" alt="Illustrated studio workspace">
+
+    <!-- MOKRE TEHNIKE -->
+    <a href="wet-techniques.html"
+       class="hotspot brushes"
+       aria-label="Wet techniques illustrations"
+       title="Wet techniques"></a>
+
+    <!-- SUHE TEHNIKE -->
+    <a href="dry-techniques.html"
+       class="hotspot crayons"
+       aria-label="Dry techniques drawings"
+       title="Dry techniques"></a>
+
+    <!-- KNJIGE -->
+    <a href="books.html"
+       class="hotspot book"
+       aria-label="Books and publishing projects"></a>
+
+    <!-- GRAFIKA -->
+    <a href="printmaking.html"
+       class="hotspot press"
+       aria-label="Printmaking and graphic works"></a>
+
+    <!-- ANIMACIJA IN OBLIKOVANJE -->
+    <a href="animation.html"
+   class="hotspot screen"
+   aria-label="Animation and design projects"
+   title="Animation & Design"></a>
+
+
+    <!-- O MENI -->
+    <a href="about.html"
+       class="hotspot newspaper"
+       aria-label="About the artist"></a>
+
+    <!-- ZNAMKE -->
+    <a class="hotspot envelope"
+   aria-label="Envelope temporarily inactive"></a>
+
+
+    <!-- TRGOVINA – TORBA -->
+<a href="https://evamargon.sumupstore.com"
+   class="hotspot bag"
+   aria-label="Shop"
+   target="_blank"
+   rel="noopener noreferrer"></a>
+
+
+    
+
+  </div>
+
+  <div class="mobile-menu">
+  <a href="about.html">
+    <img src="icon-newspaper.png" alt="" class="menu-icon">
+    About / CV
+  </a>
+  <a href="wet-techniques.html">
+    <img src="icon-brush.png" alt="" class="menu-icon">
+    Wet techniques
+  </a>
+  <a href="dry-techniques.html">
+    <img src="icon-crayon.png" alt="" class="menu-icon">
+    Dry techniques
+  </a>
+  <a href="books.html">
+    <img src="icon-books.png" alt="" class="menu-icon">
+    Books
+  </a>
+ <a href="printmaking.html">
+    <img src="icon-press.png" alt="" class="menu-icon">
+    Prints
+  </a>
+
+  <a href="animation.html">
+    <img src="icon-screen.png" alt="" class="menu-icon">
+    Animation & Design
+  </a>
+  <a href="https://evamargon.sumupstore.com" target="_blank" rel="noopener noreferrer">
+     <img src="icon-bag.png" alt="" class="menu-icon">
+    Shop
+  </a>
+</div>
+
+
+</body>
+</html>
