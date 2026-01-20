@@ -9,13 +9,36 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
     }
 
     body {
       background: #fff;
-      overflow-x: hidden;
       font-family: sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       TOP BAR – SL / EN (nad vsem)
+       ========================= */
+
+    .top-bar {
+      width: 100%;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: flex-end;
+      box-sizing: border-box;
+    }
+
+    .language-switch a {
+      text-decoration: none;
+      color: #222;
+      font-size: 14px;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
+
+    .language-switch a:hover {
+      opacity: 1;
     }
 
     /* =========================
@@ -25,7 +48,7 @@
     .scene {
       position: relative;
       width: 100%;
-      height: 100vh;
+      height: calc(100vh - 56px); /* prostor za SL/EN */
     }
 
     .scene img {
@@ -34,29 +57,6 @@
       object-fit: contain;
       display: block;
       margin: 0 auto;
-    }
-
-    /* =========================
-       LANGUAGE SWITCH
-       ========================= */
-
-    .language-switch {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      font-size: 14px;
-      z-index: 10;
-    }
-
-    .language-switch a {
-      text-decoration: none;
-      color: #222;
-      opacity: 0.6;
-      transition: opacity 0.2s ease;
-    }
-
-    .language-switch a:hover {
-      opacity: 1;
     }
 
     /* =========================
@@ -163,10 +163,6 @@
        ========================= */
 
     @media (max-width: 768px) {
-      body {
-        overflow-y: auto;
-      }
-
       .scene {
         height: auto;
         pointer-events: none;
@@ -187,13 +183,16 @@
   </style>
 </head>
 
-<body class="index">
+<body>
 
-  <!-- LANGUAGE SWITCH -->
-  <div class="language-switch">
-    <a href="sl/index.html">SL</a> / <a href="en/index.html">EN</a>
+  <!-- SL / EN NAD ILUSTRACIJO -->
+  <div class="top-bar">
+    <div class="language-switch">
+      <a href="sl/index.html">SL</a> / <a href="en/index.html">EN</a>
+    </div>
   </div>
 
+  <!-- ILUSTRACIJA + HOTSPOTI -->
   <div class="scene">
     <img src="galerija.jpg" alt="Illustrated studio workspace">
 
@@ -204,7 +203,7 @@
     <a href="animation.html" class="hotspot screen"></a>
     <a href="about.html" class="hotspot newspaper"></a>
 
-    <!-- ENVELOPE – trenutno neaktivna -->
+    <!-- kuverta – neaktivna -->
     <a class="hotspot envelope" aria-label="Inactive"></a>
 
     <a href="https://evamargon.sumupstore.com"
