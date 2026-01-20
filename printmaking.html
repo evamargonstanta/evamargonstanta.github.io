@@ -50,6 +50,53 @@
     .gallery img:hover {
       transform: scale(1.05);
     }
+    /* =========================
+   DOOR ICON – HOTSPOT STYLE
+   ========================= */
+
+.door-hotspot {
+  position: fixed;
+  bottom: 28px;
+  right: 32px;
+  width: 64px;
+  height: 64px;
+
+  background-image: url("icon-door.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 20;
+}
+
+/* hover overlay (kot hotspoti) */
+.door-hotspot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* desktop hover */
+@media (hover: hover) {
+  .door-hotspot:hover::after {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .door-hotspot {
+    width: 48px;
+    height: 48px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
   </style>
 </head>
 
@@ -68,6 +115,8 @@
     <img src="project3.jpg" alt="Project 3">
     <!-- Dodaj več slik po potrebi -->
   </div>
+
+  <a href="index.html" class="door-hotspot" aria-label="Back to home"></a>
 
 </body>
 </html>
