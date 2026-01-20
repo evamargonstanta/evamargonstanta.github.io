@@ -148,4 +148,90 @@
       font-size: 18px;
       color: #222;
       text-decoration: none;
-      border-bottom: 1px solid
+      border-bottom: 1px solid #ddd;
+    }
+
+    .mobile-menu img.menu-icon {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto;
+      }
+
+      .scene {
+        height: auto;
+        pointer-events: none;
+      }
+
+      .scene img {
+        height: auto;
+      }
+
+      .hotspot {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      .language-switch {
+        bottom: 16px;
+        right: 16px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LANGUAGE SWITCH -->
+  <div class="language-switch">
+    <a href="sl/index.html">SL</a> / <a href="en/index.html">EN</a>
+  </div>
+
+  <!-- ILUSTRACIJA + HOTSPOTI -->
+  <div class="scene">
+    <img src="galerija.jpg" alt="Illustrated studio workspace">
+
+    <a href="wet-techniques.html" class="hotspot brushes"></a>
+    <a href="dry-techniques.html" class="hotspot crayons"></a>
+    <a href="books.html" class="hotspot book"></a>
+    <a href="printmaking.html" class="hotspot press"></a>
+    <a href="animation.html" class="hotspot screen"></a>
+    <a href="about.html" class="hotspot newspaper"></a>
+
+    <!-- kuverta – neaktivna -->
+    <a class="hotspot envelope" aria-label="Inactive"></a>
+
+    <a href="https://evamargon.sumupstore.com"
+       class="hotspot bag"
+       target="_blank"
+       rel="noopener noreferrer"></a>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu">
+    <a href="about.html"><img src="icon-newspaper.png" class="menu-icon">About / CV</a>
+    <a href="wet-techniques.html"><img src="icon-brush.png" class="menu-icon">Wet techniques</a>
+    <a href="dry-techniques.html"><img src="icon-crayon.png" class="menu-icon">Dry techniques</a>
+    <a href="books.html"><img src="icon-books.png" class="menu-icon">Books</a>
+    <a href="printmaking.html"><img src="icon-press.png" class="menu-icon">Prints</a>
+    <a href="animation.html"><img src="icon-screen.png" class="menu-icon">Animation & Design</a>
+    <a href="https://evamargon.sumupstore.com" target="_blank">
+      <img src="icon-bag.png" class="menu-icon">Shop
+    </a>
+  </div>
+
+</body>
+</html>
