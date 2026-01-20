@@ -20,13 +20,31 @@
       box-sizing: border-box;
     }
 
+    /* SCENE / ILUSTRACIJA */
+    .scene {
+      position: relative;
+      width: 100%;
+      max-width: 1400px; /* za velike zaslone */
+      padding: 0 2cm;     /* horizontalna simetrija */
+      box-sizing: border-box;
+      margin-top: 40px;   /* nekoliko spodaj od vrha */
+    }
+
+    .scene img {
+      width: 100%;
+      height: auto; /* ohrani razmerje */
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+      max-height: 95vh; /* maksimalno skoraj cel zaslon */
+    }
+
     /* LANGUAGE SWITCH */
     .language-switch {
-      margin: 20px 0 10px 0; /* prostor nad in pod */
+      position: absolute;
+      top: -40px; /* nad ilustracijo, prilagodi po potrebi */
+      right: 0;
       font-size: 14px;
-      z-index: 10;
-      align-self: flex-end;
-      padding-right: 2cm; /* da je od leve/desne simetrično */
     }
 
     .language-switch a {
@@ -38,24 +56,6 @@
 
     .language-switch a:hover {
       opacity: 1;
-    }
-
-    /* SCENE / ILUSTRACIJA */
-    .scene {
-      position: relative;
-      width: 100%;
-      max-width: 1200px; /* omejimo širino */
-      padding: 0 2cm;     /* horizontalno belino za simetrijo */
-      box-sizing: border-box;
-    }
-
-    .scene img {
-      width: 100%;
-      height: auto;
-      max-height: calc(100vh - 80px); /* upoštevamo SL/EN + malo vrha */
-      display: block;
-      margin: 0 auto;
-      object-fit: contain;
     }
 
     /* HOTSPOTI */
@@ -86,7 +86,7 @@
       padding: 20px;
       background: #fff;
       width: 100%;
-      max-width: 1200px;
+      max-width: 1400px;
       box-sizing: border-box;
     }
 
@@ -115,11 +115,13 @@
         pointer-events: none;
         height: auto;
         padding: 0 10px;
+        margin-top: 20px;
       }
 
       .scene img {
         width: 100%;
         height: auto;
+        max-height: none;
       }
 
       .hotspot {
@@ -131,10 +133,9 @@
       }
 
       .language-switch {
-        font-size: 12px;
-        margin: 10px;
-        padding-right: 10px;
-        align-self: flex-end;
+        position: static;
+        margin: 10px 0;
+        text-align: right;
       }
     }
   </style>
@@ -142,13 +143,13 @@
 
 <body>
 
-  <!-- LANGUAGE SWITCH -->
-  <div class="language-switch">
-    <a href="sl/index.html">SL</a> / <a href="en/index.html">EN</a>
-  </div>
-
   <!-- SCENE / ILUSTRACIJA -->
   <div class="scene">
+    <!-- LANGUAGE SWITCH nad ilustracijo -->
+    <div class="language-switch">
+      <a href="sl/index.html">SL</a> / <a href="en/index.html">EN</a>
+    </div>
+
     <img src="galerija.jpg" alt="Illustrated studio workspace">
 
     <!-- HOTSPOTI -->
