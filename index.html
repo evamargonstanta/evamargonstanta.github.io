@@ -8,19 +8,21 @@
   <style>
     /* RESET IN OSNOVNO */
     html, body {
-  margin: 0;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;  /* centrirano po vertikali */
-  min-height: 100vh;       /* vsaj cel zaslon */
-}
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      font-family: sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; /* vertikalno centrirano */
+    }
 
-    /* LANGUAGE SWITCH: nad ilustracijo, desno */
+    /* LANGUAGE SWITCH nad ilustracijo */
     .language-switch {
-      margin: 20px 2cm 0 2cm; /* top in horizontalni robovi */
-      align-self: flex-end;   /* desno */
+      margin: 40px 2cm 20px 2cm; /* več top margin za razmik od ilustracije */
+      align-self: flex-end;
       font-size: 14px;
     }
 
@@ -35,22 +37,22 @@
       opacity: 1;
     }
 
-    /* SCENE / ilustracija */
+    /* SCENE / ILUSTRACIJA */
     .scene {
-  position: relative;
-  width: 100%;
-  max-width: calc(100% - 4cm); /* 2cm levo/desno */
-}
+      position: relative;
+      width: 100%;
+      max-width: calc(100% - 4cm); /* 2cm levo/desno */
+    }
 
     .scene img {
-  width: 100%;
-  height: auto;             /* avtomatska višina, ohrani proporce */
-  max-height: calc(100vh - 60px - 20px); 
-  /* 60px: okvir / SL/EN, 20px: top margin, prilagodi po potrebi */
-  display: block;
-  margin: 0 auto;
-  object-fit: contain;      /* ohrani celotno ilustracijo */
-}
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 80px); /* 80px za SL/EN in top margin */
+      display: block;
+      margin: 0 auto;
+      object-fit: contain; /* ohrani celotno ilustracijo */
+    }
+
     /* HOTSPOTI */
     .hotspot {
       position: absolute;
@@ -100,7 +102,6 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-
       .scene {
         max-width: 90%;
         pointer-events: none;
@@ -122,7 +123,8 @@
 
       .language-switch {
         font-size: 12px;
-        margin: 10px 10px 0 10px;
+        margin: 20px 10px 10px 10px; /* prilagojeno za mobilni prikaz */
+        align-self: flex-end;
       }
     }
   </style>
@@ -139,60 +141,39 @@
   <div class="scene">
     <img src="galerija.jpg" alt="Illustrated studio workspace">
 
-    <!-- MOKRE TEHNIKE -->
+    <!-- HOTSPOTI -->
     <a href="wet-techniques.html" class="hotspot brushes" aria-label="Wet techniques illustrations" title="Wet techniques"></a>
-
-    <!-- SUHE TEHNIKE -->
     <a href="dry-techniques.html" class="hotspot crayons" aria-label="Dry techniques drawings" title="Dry techniques"></a>
-
-    <!-- KNJIGE -->
     <a href="books.html" class="hotspot book" aria-label="Books and publishing projects"></a>
-
-    <!-- GRAFIKA / PREŠA -->
     <a href="printmaking.html" class="hotspot press" aria-label="Printmaking and graphic works"></a>
-
-    <!-- ANIMACIJA IN OBLIKOVANJE -->
     <a href="animation.html" class="hotspot screen" aria-label="Animation and design projects" title="Animation & Design"></a>
-
-    <!-- O MENI -->
     <a href="about.html" class="hotspot newspaper" aria-label="About the artist"></a>
-
-    <!-- ZNAMKE -->
     <a class="hotspot envelope" aria-label="Envelope temporarily inactive"></a>
-
-    <!-- TRGOVINA – TORBA -->
     <a href="https://evamargon.sumupstore.com" class="hotspot bag" aria-label="Shop" target="_blank" rel="noopener noreferrer"></a>
   </div>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu">
     <a href="about.html">
-      <img src="icon-newspaper.png" alt="" class="menu-icon">
-      About / CV
+      <img src="icon-newspaper.png" alt="" class="menu-icon"> About / CV
     </a>
     <a href="wet-techniques.html">
-      <img src="icon-brush.png" alt="" class="menu-icon">
-      Wet techniques
+      <img src="icon-brush.png" alt="" class="menu-icon"> Wet techniques
     </a>
     <a href="dry-techniques.html">
-      <img src="icon-crayon.png" alt="" class="menu-icon">
-      Dry techniques
+      <img src="icon-crayon.png" alt="" class="menu-icon"> Dry techniques
     </a>
     <a href="books.html">
-      <img src="icon-books.png" alt="" class="menu-icon">
-      Books
+      <img src="icon-books.png" alt="" class="menu-icon"> Books
     </a>
     <a href="printmaking.html">
-      <img src="icon-press.png" alt="" class="menu-icon">
-      Prints
+      <img src="icon-press.png" alt="" class="menu-icon"> Prints
     </a>
     <a href="animation.html">
-      <img src="icon-screen.png" alt="" class="menu-icon">
-      Animation & Design
+      <img src="icon-screen.png" alt="" class="menu-icon"> Animation & Design
     </a>
     <a href="https://evamargon.sumupstore.com" target="_blank" rel="noopener noreferrer">
-      <img src="icon-bag.png" alt="" class="menu-icon">
-      Shop
+      <img src="icon-bag.png" alt="" class="menu-icon"> Shop
     </a>
   </div>
 
