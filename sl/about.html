@@ -59,61 +59,8 @@
       position: fixed;
       bottom: 28px;
       right: 32px;
-      width: 64px;
-      height: 64px;
+      width: 76px;   /* povečano iz 64px na 76px */
+      height: 76px;  /* povečano iz 64px na 76px */
       background-image: url("../assets/images/icon-door.png");
       background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      z-index: 20;
-    }
-
-    .door-hotspot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.12);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    @media (hover: hover) {
-      .door-hotspot:hover::after {
-        opacity: 1;
-        cursor: pointer;
-      }
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .door-hotspot {
-        width: 48px;
-        height: 48px;
-        bottom: 20px;
-        right: 20px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- HEADER -->
-  <header>
-    <img src="../assets/images/icon-newspaper.png" alt="newspaper icon" class="icon">
-    <h1>O meni / CV</h1>
-  </header>
-
-  <!-- GALERIJA -->
-  <div class="gallery">
-    <img src="../assets/images/project1.jpg" alt="Project 1">
-    <img src="../assets/images/project2.jpg" alt="Project 2">
-    <img src="../assets/images/project3.jpg" alt="Project 3">
-    <!-- Dodaj več slik po potrebi -->
-  </div>
-
-  <!-- BACK TO HOME – door hotspot -->
-  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
-
-</body>
-</html>
+      background-repeat: no
