@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><!-- Naslov strani, npr. Brushes / Painting --></title>
+  
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #fff;
+      color: #222;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+  header img.icon {
+      width: 60px;
+      height: 60px;
+      margin-right: 15px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* =========================
+   DOOR ICON – HOTSPOT STYLE
+   ========================= */
+
+.door-hotspot {
+  position: fixed;
+  bottom: 28px;
+  right: 32px;
+  width: 64px;
+  height: 64px;
+
+  background-image: url("icon-door.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 20;
+}
+
+/* hover overlay (kot hotspoti) */
+.door-hotspot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* desktop hover */
+@media (hover: hover) {
+  .door-hotspot:hover::after {
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .door-hotspot {
+    width: 48px;
+    height: 48px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER: ikona + naslov -->
+  <header>
+    <img src="icon-books.png" alt="books icon" class="icon">
+    <h1>Books</h1>
+  </header>
+
+  <!-- GALERIJA -->
+  <div class="gallery">
+    <img src="project1.jpg" alt="Project 1">
+    <img src="project2.jpg" alt="Project 2">
+    <img src="project3.jpg" alt="Project 3">
+    <!-- Dodaj več slik po potrebi -->
+  </div>
+
+  <a href="index.html" class="door-hotspot" aria-label="Back to home"></a>
+
+</body>
+</html>
