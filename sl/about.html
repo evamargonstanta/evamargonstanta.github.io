@@ -29,14 +29,51 @@
     }
 
     header h1 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  margin: 0;
-}
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin: 0;
+    }
 
+    /* =========================
+       BESedilo / CV CONTAINER
+       ========================= */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
 
-    /* GALERIJA */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+    }
+
+    .section p {
+      margin-bottom: 14px;
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    .section ul {
+      margin: 0 0 16px 20px;
+      line-height: 1.55;
+    }
+
+    .section li {
+      margin-bottom: 8px;
+    }
+
+    /* =========================
+       GALERIJA
+       ========================= */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -64,8 +101,8 @@
       position: fixed;
       bottom: 28px;
       right: 32px;
-      width: 76px;   /* povečano iz 64px na 76px */
-      height: 76px;  /* povečano iz 64px na 76px */
+      width: 76px;
+      height: 76px;
       background-image: url("../assets/images/icon-door.png");
       background-size: contain;
       background-repeat: no-repeat;
@@ -89,10 +126,21 @@
       }
     }
 
-    /* MOBILE */
+    /* =========================
+       RESPONSIVE
+       ========================= */
     @media (max-width: 768px) {
+      .container {
+        margin: 20px auto;
+        padding: 0 12px;
+      }
+
+      .section h2 {
+        font-size: 1.2rem;
+      }
+
       .door-hotspot {
-        width: 60px;   /* mobile size proporcionalno povečano */
+        width: 60px;
         height: 60px;
         bottom: 20px;
         right: 20px;
@@ -109,12 +157,42 @@
     <h1>O meni / CV</h1>
   </header>
 
+  <!-- BESedilo / CV -->
+  <div class="container">
+
+    <!-- ŽIVLJENJEPIS -->
+    <div class="section" id="zivljenjepis">
+      <h2>Življenjepis</h2>
+      <p>Eva Margon Štanta je magistrica ilustracije, ki se ukvarja z ilustracijo in animacijo. Na ALUO v Ljubljani je leta 2015 diplomirala s samostojnim animiranim filmom Jazon in Argonavti, leta 2019 pa magistrirala s projektom Slikovni zemljevid planinskih poti v Logarski dolini, za katerega je prejela Priznanje z odliko na iJungle Illustration Awards (2020). Njena dela, najpogosteje zaznamovana z znanstveno in naravoslovno ilustracijo, postajajo prepoznavna po številnih linijah in natančnih barvnih potezah, medtem ko v svojem grafičnem ateljeju komplementarno raziskuje in se poigrava z redukcijskim linorezom. V svojih projektih najraje prepleta živalske in rastlinske motive. Med drugim je ustvarila sklop poštnih znamk za Pošto Slovenije (2022), njene ilustracije in animacije so del knjižnih projektov in sodelovanj z institucijami, kot sta Prirodoslovni muzej Slovenije in Gozdarski inštitut Slovenije..</p>
+    </div>
+
+    <!-- RAZSTAVE -->
+    <div class="section" id="razstave">
+      <h2>Razstave</h2>
+      <ul>
+        <li>2025 – Razstava "Modri svet", Galerija XYZ, Ljubljana</li>
+        <li>2024 – "Barve in linije", Kulturni center ABC, Maribor</li>
+        <li>2023 – Skupinska razstava ilustracij, Galleria Italiana, Milano</li>
+      </ul>
+    </div>
+
+    <!-- NAGRADE -->
+    <div class="section" id="nagrade">
+      <h2>Nagrade</h2>
+      <ul>
+        <li>2025 – Prva nagrada, Mednarodni festival ilustracije</li>
+        <li>2024 – Nagrada za inovativno grafično oblikovanje, ABC Awards</li>
+        <li>2023 – Najboljši mlad ilustrator, XYZ priznanje</li>
+      </ul>
+    </div>
+
+  </div>
+
   <!-- GALERIJA -->
   <div class="gallery">
     <img src="../assets/images/project1.jpg" alt="Project 1">
     <img src="../assets/images/project2.jpg" alt="Project 2">
     <img src="../assets/images/project3.jpg" alt="Project 3">
-    <!-- Dodaj več slik po potrebi -->
   </div>
 
   <!-- BACK TO HOME – door hotspot -->
