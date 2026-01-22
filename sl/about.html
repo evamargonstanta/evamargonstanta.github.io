@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>O meni / CV – Eva Margon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   
   <style>
     body {
@@ -13,8 +12,10 @@
       font-family: 'Rubik', sans-serif;
       background: #fff;
       color: #222;
+      line-height: 1.6;
     }
 
+    /* HEADER */
     header {
       display: flex;
       align-items: center;
@@ -35,9 +36,7 @@
       margin: 0;
     }
 
-    /* =========================
-       BESedilo / CV CONTAINER
-       ========================= */
+    /* CV CONTAINER */
     .container {
       max-width: 900px;
       margin: 40px auto;
@@ -58,22 +57,20 @@
 
     .section p {
       margin-bottom: 14px;
-      line-height: 1.65;
       font-size: 1rem;
     }
 
     .section ul {
       margin: 0 0 16px 20px;
-      line-height: 1.55;
+      padding: 0;
+      list-style-type: disc;
     }
 
     .section li {
       margin-bottom: 8px;
     }
 
-    /* =========================
-       GALERIJA
-       ========================= */
+    /* GALERIJA */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -94,9 +91,7 @@
       transform: scale(1.05);
     }
 
-    /* =========================
-       DOOR ICON – HOME BUTTON
-       ========================= */
+    /* DOOR ICON – HOME BUTTON */
     .door-hotspot {
       position: fixed;
       bottom: 28px;
@@ -126,9 +121,7 @@
       }
     }
 
-    /* =========================
-       RESPONSIVE
-       ========================= */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       .container {
         margin: 20px auto;
@@ -157,13 +150,13 @@
     <h1>O meni / CV</h1>
   </header>
 
-  <!-- BESedilo / CV -->
+  <!-- CV CONTENT -->
   <div class="container">
 
     <!-- ŽIVLJENJEPIS -->
     <div class="section" id="zivljenjepis">
       <h2>Življenjepis</h2>
-      <p>Eva Margon Štanta je magistrica ilustracije. Na ALUO v Ljubljani je leta 2015 diplomirala s samostojnim animiranim filmom Jazon in Argonavti, ki je bil predvajan istega dne v Cankarjevem domu v Ljubljani v sklopu predstave Emona, Emona, leta 2019 pa magistrirala s projektom Slikovni zemljevid planinskih poti v Logarski dolini, s katerim je prejela Priznanje z odliko na Ijungle Illustration Awards (2020). Poleg knjižne ilustracije, kateri v zadnjem času posveča večino svojega časa, se ukvarja predvsem z znanstveno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi. Njene ilustracije in animacije lahko najdete v Prirodoslovnem muzeju, na poštnih znamkah Slovenije, v učbenikih Gozdarskega inštituta, na Centru Ilustracije in verjetno na steni kakšnega domovanja.</p>
+      <p>Eva Margon Štanta je magistrica ilustracije. Na ALUO v Ljubljani je leta 2015 diplomirala s samostojnim animiranim filmom <em>Jazon in Argonavti</em>, ki je bil predvajan istega dne v Cankarjevem domu v Ljubljani v sklopu predstave <em>Emona, Emona</em>. Leta 2019 je magistrirala s projektom <em>Slikovni zemljevid planinskih poti v Logarski dolini</em>, s katerim je prejela Priznanje z odliko na Ijungle Illustration Awards (2020). Poleg knjižne ilustracije, kateri v zadnjem času posveča večino svojega časa, se ukvarja predvsem z znanstveno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi. Njene ilustracije in animacije lahko najdete v Prirodoslovnem muzeju, na poštnih znamkah Slovenije, v učbenikih Gozdarskega inštituta, na Centru Ilustracije in verjetno na steni kakšnega domovanja.</p>
     </div>
 
     <!-- RAZSTAVE -->
