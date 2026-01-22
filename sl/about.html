@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>O meni / CV – Eva Margon</title>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-  
+
   <style>
     body {
       margin: 0;
       font-family: 'Rubik', sans-serif;
       background: #fff;
       color: #222;
-      line-height: 1.6;
     }
 
     /* HEADER */
@@ -36,7 +35,7 @@
       margin: 0;
     }
 
-    /* CV CONTAINER */
+    /* CONTAINER */
     .container {
       max-width: 900px;
       margin: 40px auto;
@@ -57,17 +56,33 @@
 
     .section p {
       margin-bottom: 14px;
+      line-height: 1.5;
       font-size: 1rem;
     }
 
-    .section ul {
-      margin: 0 0 16px 20px;
-      padding: 0;
-      list-style-type: disc;
+    /* RAZSTAVE – bullet in letnica */
+    .year {
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+      color: #222;
+      font-weight: 600;
     }
 
-    .section li {
-      margin-bottom: 8px;
+    .exhibit {
+      position: relative;
+      margin-left: 20px; /* prostor za bullet */
+      margin-bottom: 6px;
+      line-height: 1.45;
+      font-size: 0.95rem;
+    }
+
+    .exhibit::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #222;
+      font-weight: bold;
     }
 
     /* GALERIJA */
@@ -138,6 +153,10 @@
         bottom: 20px;
         right: 20px;
       }
+
+      .exhibit {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -150,81 +169,80 @@
     <h1>O meni / CV</h1>
   </header>
 
-  <!-- CV CONTENT -->
+  <!-- BESedilo / CV -->
   <div class="container">
 
     <!-- ŽIVLJENJEPIS -->
     <div class="section" id="zivljenjepis">
       <h2>Življenjepis</h2>
-      <p>Eva Margon Štanta je magistrica ilustracije. Na ALUO v Ljubljani je leta 2015 diplomirala s samostojnim animiranim filmom <em>Jazon in Argonavti</em>, ki je bil predvajan istega dne v Cankarjevem domu v Ljubljani v sklopu predstave <em>Emona, Emona</em>. Leta 2019 je magistrirala s projektom <em>Slikovni zemljevid planinskih poti v Logarski dolini</em>, s katerim je prejela Priznanje z odliko na Ijungle Illustration Awards (2020). Poleg knjižne ilustracije, kateri v zadnjem času posveča večino svojega časa, se ukvarja predvsem z znanstveno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi. Njene ilustracije in animacije lahko najdete v Prirodoslovnem muzeju, na poštnih znamkah Slovenije, v učbenikih Gozdarskega inštituta, na Centru Ilustracije in verjetno na steni kakšnega domovanja.</p>
+      <p>Eva Margon Štanta je magistrica ilustracije. Na ALUO v Ljubljani je leta 2015 diplomirala s samostojnim animiranim filmom Jazon in Argonavti, ki je bil predvajan istega dne v Cankarjevem domu v Ljubljani v sklopu predstave Emona, Emona, leta 2019 pa magistrirala s projektom Slikovni zemljevid planinskih poti v Logarski dolini, s katerim je prejela Priznanje z odliko na Ijungle Illustration Awards (2020). Poleg knjižne ilustracije, kateri v zadnjem času posveča večino svojega časa, se ukvarja predvsem z znanstveno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi. Njene ilustracije in animacije lahko najdete v Prirodoslovnem muzeju, na poštnih znamkah Slovenije, v učbenikih Gozdarskega inštituta, na Centru Ilustracije in verjetno na steni kakšnega domovanja.</p>
     </div>
 
     <!-- RAZSTAVE -->
-<div class="section" id="razstave">
-  <h2>Razstave</h2>
+    <div class="section" id="razstave">
+      <h2>Razstave</h2>
 
-  <p><strong>2025</strong></p>
-  <p>Skupna razstava grafik, Lokarjeva galerija, Ajdovščina</p>
-  <p>Samostojna razstava "Naravoslovje v znanstveni in poljudnoznanstveni ilustraciji", Galerija TIR, Nova Gorica</p>
-  <p>Izid slikanice "Dogodivščine Rdečega Jabolka" (založba Mozaik znanja), avtorica Karmen Kukovič, Celje</p>
-  <p>Izid slikanice "Gora v temi" (založba ISPO d.o.o.), avtor Jakob J. Kenda, Ljubljana</p>
-  <p>Razstava treh avtoric (z Zvonka T. Simčič in Ana Rogel) "Neopazne korenine", Galerija Alkatraz, Ljubljana</p>
+      <p class="year">2025</p>
+      <p class="exhibit">Skupna razstava grafik, Lokarjeva galerija, Ajdovščina</p>
+      <p class="exhibit">Samostojna razstava "Naravoslovje v znanstveni in poljudnoznanstveni ilustraciji", Galerija TIR, Nova Gorica</p>
+      <p class="exhibit">Izid slikanice "Dogodivščine Rdečega Jabolka" (založba Mozaik znanja), avtorica Karmen Kukovič, Celje</p>
+      <p class="exhibit">Izid slikanice "Gora v temi" (založba ISPO d.o.o.), avtor Jakob J. Kenda, Ljubljana</p>
+      <p class="exhibit">Razstava treh avtoric (z Zvonka T. Simčič in Ana Rogel) "Neopazne korenine", Galerija Alkatraz, Ljubljana</p>
 
-  <p><strong>2024</strong></p>
-  <p>Izid knjige "Pravljična dežela" (Mohorjeva založba), avtor Matija Nared, Ljubljana</p>
-  <p>Izid knjige "Trije Modreci in zvezda" (Mohorjeva založba), avtorica Stanka Devjak, Ljubljana</p>
-  <p>Oblikovanje logotipa ter glavnega lika za Veseli kotiček, Ljubljana</p>
-  <p>Skupna razstava v projektu "Hiša na hribu", Žlebe, Medvode</p>
-  <p>Skupna prodajna razstava X. decembrski sejem ilustracije, Vodnikova domačija Šiška, Ljubljana</p>
+      <p class="year">2024</p>
+      <p class="exhibit">Izid knjige "Pravljična dežela" (Mohorjeva založba), avtor Matija Nared, Ljubljana</p>
+      <p class="exhibit">Izid knjige "Trije Modreci in zvezda" (Mohorjeva založba), avtorica Stanka Devjak, Ljubljana</p>
+      <p class="exhibit">Oblikovanje logotipa ter glavnega lika za Veseli kotiček, Ljubljana</p>
+      <p class="exhibit">Skupna razstava v projektu "Hiša na hribu", Žlebe, Medvode</p>
+      <p class="exhibit">Skupna prodajna razstava X. decembrski sejem ilustracije, Vodnikova domačija Šiška, Ljubljana</p>
 
-  <p><strong>2023</strong></p>
-  <p>Skupna razstava, Božično-novoletna prodajna razstava, Lokarjeva galerija, Ajdovščina</p>
-  <p>Skupna razstava, Umetniška promenada, Galerija Velenje, Velenje</p>
-  <p>Redukcijski linorez "Lilije", Podnanos</p>
+      <p class="year">2023</p>
+      <p class="exhibit">Skupna razstava, Božično-novoletna prodajna razstava, Lokarjeva galerija, Ajdovščina</p>
+      <p class="exhibit">Skupna razstava, Umetniška promenada, Galerija Velenje, Velenje</p>
+      <p class="exhibit">Redukcijski linorez "Lilije", Podnanos</p>
 
-  <p><strong>2022</strong></p>
-  <p>Oblikovanje in ilustriranje poštnih znamk, ovitkov prvega dne ter poštnega žiga, Pošta Slovenije, Radomlje</p>
+      <p class="year">2022</p>
+      <p class="exhibit">Oblikovanje in ilustriranje poštnih znamk, ovitkov prvega dne ter poštnega žiga, Pošta Slovenije, Radomlje</p>
 
-  <p><strong>2020</strong></p>
-  <p>Priznanje z odliko na Ijungle Illustration Awards</p>
-  <p>Skupna razstava ilustracij iz projekta LIFEGENMON: Ilustracije drevesnih vrst, Gozdarski inštitut Slovenije, Ljubljana</p>
-  <p>Skupna razstava "Izbor zaključnih del študentov smeri Ilustracija", UL ALUO, galerija Vodnikove domačije Šiška, Ljubljana</p>
+      <p class="year">2020</p>
+      <p class="exhibit">Priznanje z odliko na Ijungle Illustration Awards</p>
+      <p class="exhibit">Skupna razstava ilustracij iz projekta LIFEGENMON: Ilustracije drevesnih vrst, Gozdarski inštitut Slovenije, Ljubljana (maj)</p>
+      <p class="exhibit">Skupna razstava Izbor zaključnih del študentov smeri Ilustracija na UL ALUO, Galerija Vodnikove domačije Šiška, Ljubljana (marec)</p>
 
-  <p><strong>2019</strong></p>
-  <p>Skupna razstava ilustracij, Miklavžev sejem unikatnih izdelkov priznanih lokalnih umetnikov, Kulturni dom Nova Gorica, Nova Gorica</p>
-  <p>Skupna razstava ilustracij, Umetniška promenada, Galerija Velenje, Velenje</p>
-  <p>Skupna razstava "Flora sreča favno", Arboretum Volčji potok, Radomlje</p>
-  <p>Predstavitev projekta "Slikovni zemljevid planinskih poti v Logarski dolini" na tekmovanju v znanstveni ilustraciji Illustraciencia</p>
-  <p>Predstavitev projekta "Slikovni zemljevid planinskih poti v Logarski dolini" na ilustratorskem tekmovanju Ijungle Illustration Awards</p>
+      <p class="year">2019</p>
+      <p class="exhibit">Skupna razstava ilustracij, Miklavžev sejem unikatnih izdelkov priznanih lokalnih umetnikov, Kulturni dom Nova Gorica, Nova Gorica</p>
+      <p class="exhibit">Skupna razstava ilustracij, Umetniška promenada, Galerija Velenje, Velenje</p>
+      <p class="exhibit">Skupna razstava "Flora sreča favno", Arboretum Volčji potok, Radomlje</p>
+      <p class="exhibit">Predstavitev projekta "Slikovni zemljevid planinskih poti v Logarski dolini" na tekmovanju v znanstveni ilustraciji Illustraciencia</p>
+      <p class="exhibit">Predstavitev projekta "Slikovni zemljevid planinskih poti v Logarski dolini" na ilustratorskem tekmovanju Ijungle Illustration Awards</p>
 
-  <p><strong>2018</strong></p>
-  <p>Skupna razstava ilustracij iz projekta "Likovna in vsebinska dopolnitev predstavitve gozdnih živali", Prirodoslovni muzej Slovenije</p>
-  <p>Razstava znanstvenih ilustracij, projekt "Likovna in vsebinska dopolnitev predstavitve gozdnih živali", ALUO, Ljubljana</p>
-  <p>Skupna razstava poštnih znamk, poštnih žigov in ovojnic prvega dne, Prirodoslovni muzej Slovenije</p>
-  <p>Predvajanje filma "Vrzi kovanec", 3. Mednarodni filmski festival, Kranjska Gora</p>
-  <p>Predvajanje filma "Vrzi kovanec", Otroški program, Festival slovenskega filma, Portorož</p>
-  <p>Predvajanje filma "Vrzi kovanec", Slovenska kinoteka, Ljubljana</p>
-  <p>Skupna prodajna razstava ilustracij, Vodnikova domačija Šiška, Ljubljana</p>
-  <p>Skupna razstava ilustracij, Umetniška promenada, Galerija Velenje, Velenje</p>
+      <p class="year">2018</p>
+      <p class="exhibit">Skupna razstava ilustracij iz projekta "Likovna in vsebinska dopolnitev predstavitve gozdnih živali", Prirodoslovni muzej Slovenije</p>
+      <p class="exhibit">Razstava znanstvenih ilustracij, narejenih v projektu "Likovna in vsebinska dopolnitev predstavitve gozdnih živali", ALUO, Ljubljana</p>
+      <p class="exhibit">Skupna razstava poštnih znamk, poštnih žigov in ovojnic prvega dne, Prirodoslovni muzej Slovenije</p>
+      <p class="exhibit">Predvajanje filma "Vrzi kovanec" na 3. Mednarodnem filmskem festivalu v Kranjski Gori, Kranjska Gora</p>
+      <p class="exhibit">Predvajanje filma "Vrzi kovanec" na Otroški program na Festivalu slovenskega filma, Portorož</p>
+      <p class="exhibit">Predvajanje filma "Vrzi kovanec" v Slovenski kinoteki, Ljubljana</p>
+      <p class="exhibit">Skupna prodajna razstava ilustracij, Vodnikova domačija Šiška, Ljubljana</p>
+      <p class="exhibit">Skupna razstava ilustracij, Umetniška promenada, Galerija Velenje, Velenje</p>
 
-  <p><strong>2017</strong></p>
-  <p>Skupna razstava študentov prvega polletja, ALUO, Ljubljana</p>
-  <p>Skupna razstava študentov drugega polletja, ALUO, Ljubljana</p>
-  <p>Znanstvene ilustracije živali, projekt "Likovna in vsebinska dopolnitev predstavitve gozdnih živali", Prirodoslovni muzej Slovenije, Ljubljana</p>
-  <p>Skupni kratek animirani film "Vrzi kovanec", Ljubljana</p>
-  <p>Skupni projekt: Interaktivni projekt "Včasih je ena kaplja dovolj", EUROPLAKAT Billboard, Ljubljana</p>
-  <p>Oblikovanje poštne znamke, poštnega žiga in ovojnice prvega dne, Ljubljana</p>
-  <p>Razstava del študentov grafičnega oblikovanja, Rektorat Univerze v Ljubljani, Ljubljana</p>
+      <p class="year">2017</p>
+      <p class="exhibit">Skupna razstava študentov prvega polletja, ALUO, Ljubljana</p>
+      <p class="exhibit">Skupna razstava študentov drugega polletja, ALUO, Ljubljana</p>
+      <p class="exhibit">Znanstvene ilustracije živali: sodelovanje v projektu "Likovna in vsebinska dopolnitev predstavitve gozdnih živali", Prirodoslovni muzej Slovenije, Ljubljana</p>
+      <p class="exhibit">Skupni kratek animirani film "Vrzi kovanec", Ljubljana</p>
+      <p class="exhibit">Skupni projekt: Interaktivni projekt "Včasih je ena kaplja dovolj", EUROPLAKAT Billboard, Ljubljana</p>
+      <p class="exhibit">Oblikovanje poštne znamke, poštnega žiga in ovojnice prvega dne, Ljubljana</p>
+      <p class="exhibit">Razstava del študentov grafičnega oblikovanja, Rektorat Univerze v Ljubljani, Ljubljana</p>
 
-  <p><strong>2014</strong></p>
-  <p>Skupna razstava "We don't speak dutch but we speak art", Minerva Academy, Groningen</p>
-  <p>Skupna razstava del študentov, Minerva Academy, Groningen</p>
-  <p>Samostojna razstava ilustracij, ALUO, Ljubljana</p>
-  <p>Predvajanje filma "Jazon in Argonavti", delavnica Ustvari film, Socialna akademija</p>
-  <p>Samostojni kratek animirani film: "Jazon in Argonavti", multivizijska predstava "Emona, Emona", Cankarjev dom, Ljubljana</p>
+      <p class="year">2014</p>
+      <p class="exhibit">Skupna razstava "We don't speak dutch but we speak art", Minerva Academy, Groningen</p>
+      <p class="exhibit">Skupna razstava del študentov, Minerva Academy, Groningen</p>
+      <p class="exhibit">Samostojna razstava ilustracij, ALUO, Ljubljana</p>
+      <p class="exhibit">Predvajanje filma "Jazon in Argonavti" v sklopu predstavitve projektov delavnice Ustvari film, Socialna akademija</p>
+      <p class="exhibit">Samostojni kratek animirani film: "Jazon in Argonavti" (predvajan v okviru multivizijske predstave "Emona, Emona"), Cankarjev dom, Ljubljana</p>
 
-</div>
-
+    </div>
 
     <!-- NAGRADE -->
     <div class="section" id="nagrade">
