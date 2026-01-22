@@ -27,13 +27,13 @@
     .hero {
       width: 100%;
       text-align: center;
-      padding-top: 40px;
+      padding-top: 20px; /* manj prostora zgoraj */
     }
 
     .signature {
-      max-width: 420px;
-      width: 80%;
-      margin: 0 auto 24px;
+      max-width: 320px;   /* manjši logo na desktop */
+      width: 70%;
+      margin: 0 auto 12px; /* manj prostora spodaj */
       display: block;
       opacity: 0.95;
       filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
@@ -46,7 +46,7 @@
     .scene {
       position: relative;
       width: 100%;
-      height: calc(100vh - 160px);
+      height: calc(100vh - 120px); /* manj “požre” višine */
     }
 
     .scene img {
@@ -58,7 +58,7 @@
     }
 
     /* =========================
-       LANGUAGE SWITCH – spodaj desno
+       LANGUAGE SWITCH
        ========================= */
 
     .language-switch {
@@ -95,61 +95,14 @@
       background: rgba(255, 255, 255, 0.09);
     }
 
-    .brushes {
-      top: 54%;
-      left: 67%;
-      width: 8%;
-      height: 23%;
-    }
-
-    .book {
-      top: 26.3%;
-      left: 77.1%;
-      width: 9.6%;
-      height: 15.4%;
-    }
-
-    .press {
-      top: 26.1%;
-      left: 34.1%;
-      width: 9.1%;
-      height: 25.2%;
-    }
-
-    .screen {
-      top: 34%;
-      right: 36.8%;
-      width: 3%;
-      height: 17%;
-    }
-
-    .crayons {
-      bottom: 53%;
-      left: 50%;
-      width: 7%;
-      height: 10%;
-    }
-
-    .newspaper {
-      bottom: 9.5%;
-      left: 29%;
-      width: 11.6%;
-      height: 13.6%;
-    }
-
-    .envelope {
-      top: 48.9%;
-      right: 67.6%;
-      width: 3.4%;
-      height: 3.1%;
-    }
-
-    .bag {
-      bottom: 14%;
-      right: 43%;
-      width: 4%;
-      height: 10%;
-    }
+    .brushes { top: 54%; left: 67%; width: 8%; height: 23%; }
+    .book { top: 26.3%; left: 77.1%; width: 9.6%; height: 15.4%; }
+    .press { top: 26.1%; left: 34.1%; width: 9.1%; height: 25.2%; }
+    .screen { top: 34%; right: 36.8%; width: 3%; height: 17%; }
+    .crayons { bottom: 53%; left: 50%; width: 7%; height: 10%; }
+    .newspaper { bottom: 9.5%; left: 29%; width: 11.6%; height: 13.6%; }
+    .envelope { top: 48.9%; right: 67.6%; width: 3.4%; height: 3.1%; }
+    .bag { bottom: 14%; right: 43%; width: 4%; height: 10%; }
 
     /* =========================
        MOBILE MENU
@@ -189,12 +142,13 @@
       }
 
       .hero {
-        padding-top: 24px;
+        padding-top: 12px;
       }
 
       .signature {
-        max-width: 300px;
-        margin-bottom: 16px;
+        max-width: 200px;   /* precej manjši logo na mobile */
+        width: 60%;
+        margin-bottom: 10px;
       }
 
       .scene {
@@ -230,7 +184,7 @@
     <span>SL</span> / <a href="../en/">EN</a>
   </div>
 
-  <!-- HERO: LOGO + ILUSTRACIJA -->
+  <!-- HERO -->
   <div class="hero">
 
     <img
@@ -249,7 +203,6 @@
       <a href="animation.html" class="hotspot screen"></a>
       <a href="about.html" class="hotspot newspaper"></a>
 
-      <!-- kuverta – neaktivna -->
       <a class="hotspot envelope" aria-label="Inactive"></a>
 
       <a href="https://evamargon.sumupstore.com"
