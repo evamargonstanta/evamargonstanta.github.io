@@ -21,13 +21,32 @@
     }
 
     /* =========================
+       HERO (LOGO + SCENA)
+       ========================= */
+
+    .hero {
+      width: 100%;
+      text-align: center;
+      padding-top: 40px;
+    }
+
+    .signature {
+      max-width: 420px;
+      width: 80%;
+      margin: 0 auto 24px;
+      display: block;
+      opacity: 0.95;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+    }
+
+    /* =========================
        SCENE + ILUSTRACIJA
        ========================= */
 
     .scene {
       position: relative;
       width: 100%;
-      height: 100vh;
+      height: calc(100vh - 160px);
     }
 
     .scene img {
@@ -169,6 +188,15 @@
         overflow-y: auto;
       }
 
+      .hero {
+        padding-top: 24px;
+      }
+
+      .signature {
+        max-width: 300px;
+        margin-bottom: 16px;
+      }
+
       .scene {
         height: auto;
         pointer-events: none;
@@ -202,24 +230,34 @@
     <span>SL</span> / <a href="../en/">EN</a>
   </div>
 
-  <!-- ILUSTRACIJA + HOTSPOTI -->
-  <div class="scene">
-    <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
+  <!-- HERO: LOGO + ILUSTRACIJA -->
+  <div class="hero">
 
-    <a href="wet-techniques.html" class="hotspot brushes"></a>
-    <a href="dry-techniques.html" class="hotspot crayons"></a>
-    <a href="books.html" class="hotspot book"></a>
-    <a href="printmaking.html" class="hotspot press"></a>
-    <a href="animation.html" class="hotspot screen"></a>
-    <a href="about.html" class="hotspot newspaper"></a>
+    <img
+      src="../assets/images/logo.png"
+      alt="Eva Margon"
+      class="signature"
+    >
 
-    <!-- kuverta – neaktivna -->
-    <a class="hotspot envelope" aria-label="Inactive"></a>
+    <div class="scene">
+      <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
 
-    <a href="https://evamargon.sumupstore.com"
-       class="hotspot bag"
-       target="_blank"
-       rel="noopener noreferrer"></a>
+      <a href="wet-techniques.html" class="hotspot brushes"></a>
+      <a href="dry-techniques.html" class="hotspot crayons"></a>
+      <a href="books.html" class="hotspot book"></a>
+      <a href="printmaking.html" class="hotspot press"></a>
+      <a href="animation.html" class="hotspot screen"></a>
+      <a href="about.html" class="hotspot newspaper"></a>
+
+      <!-- kuverta – neaktivna -->
+      <a class="hotspot envelope" aria-label="Inactive"></a>
+
+      <a href="https://evamargon.sumupstore.com"
+         class="hotspot bag"
+         target="_blank"
+         rel="noopener noreferrer"></a>
+    </div>
+
   </div>
 
   <!-- MOBILE MENU -->
