@@ -21,7 +21,7 @@
     body {
       background: #fff;
       font-family: 'Rubik', sans-serif;
-      overflow: hidden; /* prepreči scroll na desktopu */
+      overflow: hidden;
     }
 
     /* =========================
@@ -57,10 +57,40 @@
       object-fit: contain;
       display: block;
       margin: 0 auto;
+      position: relative;
+      z-index: 1; /* slika spodaj */
     }
 
     /* =========================
-       LANGUAGE SWITCH (SL/EN)
+       SVG HOTSPOTI
+       ========================= */
+    #hotspots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5; /* SVG NAD sliko */
+    }
+
+    /* osnovno stanje hotspotov */
+    #hotspots path {
+      pointer-events: all;
+      cursor: pointer;
+      fill: rgba(255,255,255,0);
+      stroke: rgba(0,0,0,0);
+      stroke-width: 0;
+      transition: stroke 0.2s ease, stroke-width 0.2s ease;
+    }
+
+    /* hover – samo črn 2D obris */
+    #hotspots path:hover {
+      stroke: #000;
+      stroke-width: 1.2px;
+    }
+
+    /* =========================
+       LANGUAGE SWITCH
        ========================= */
     .language-switch {
       position: fixed;
@@ -74,40 +104,10 @@
       text-decoration: none;
       color: #222;
       opacity: 0.6;
-      transition: opacity 0.2s ease;
     }
 
     .language-switch a:hover {
       opacity: 1;
-    }
-
-    /* =========================
-       HOTSPOTI – SVG
-       ========================= */
-
-    #hotspots {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-    }
-
-    /* Osnovno stanje: popolnoma nevidno */
-    #hotspots path {
-      pointer-events: all;
-      cursor: pointer;
-      fill: rgba(255,255,255,0);
-      stroke: rgba(0,0,0,0);      /* NI obrisa */
-      stroke-width: 0;
-      transition: stroke 0.2s ease, stroke-width 0.2s ease;
-    }
-
-    /* Hover: samo črn 2D obris */
-    #hotspots path:hover {
-      stroke: #000;               /* čisto črn */
-      stroke-width: 1.2px;        /* tanek, ilustratorski */
     }
 
     /* =========================
@@ -156,17 +156,9 @@
         pointer-events: none;
       }
 
-      .scene img { height: auto; }
-
       #hotspots { display: none; }
 
       .mobile-menu { display: block; }
-
-      .language-switch {
-        bottom: 16px;
-        right: 16px;
-        font-size: 13px;
-      }
     }
   </style>
 </head>
@@ -181,49 +173,45 @@
   <!-- HERO -->
   <div class="hero">
 
-    <img
-      src="../assets/images/logo.png"
-      alt="Eva Margon"
-      class="signature"
-    >
+    <img src="../assets/images/logo.png" alt="Eva Margon" class="signature">
 
     <div class="scene">
       <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
 
-      <!-- INLINE SVG HOTSPOTI – TVOJ AKTUALNI SVG -->
+      <!-- INLINE SVG – TVOJ HOTSPOTS.SVG -->
       <svg id="hotspots" viewBox="0 0 463 260" xmlns="http://www.w3.org/2000/svg">
 
-        <!-- Časopis -->
+        <!-- ČASOPIS -->
         <a href="about.html">
           <path d="M135.688,213.9C134.32,212.251 ... 135.688,213.9Z"/>
         </a>
 
-        <!-- Torba -->
+        <!-- TORBA -->
         <a href="https://evamargon.sumupstore.com" target="_blank" rel="noopener noreferrer">
           <path d="M262.689,187.954C259.253,188.269 ... 262.689,187.954Z"/>
         </a>
 
-        <!-- Čopiči -->
+        <!-- ČOPIČI -->
         <a href="wet-techniques.html">
           <path d="M321.858,180.781C319.057,181.199 ... 321.997,180.449"/>
         </a>
 
-        <!-- Knjige -->
+        <!-- KNJIGE -->
         <a href="books.html">
           <path d="M389.738,69.041C389.669,67.328 ... 379.781,109.097"/>
         </a>
 
-        <!-- Ekran -->
+        <!-- EKRAN -->
         <a href="animation.html">
           <path d="M292.965,94.366C292.854,94.06 ... 292.965,94.366Z"/>
         </a>
 
-        <!-- Barvice -->
+        <!-- BARVICE -->
         <a href="dry-techniques.html">
           <path d="M236.29,112.271C235.044,112.831 ... 236.29,112.271Z"/>
         </a>
 
-        <!-- Preša -->
+        <!-- PREŠA -->
         <a href="printmaking.html">
           <path d="M164.486,68.411C164.469,67.299 ... 164.81,68.485"/>
         </a>
