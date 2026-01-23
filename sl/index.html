@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eva Margon – Studio</title>
 
-  <!-- Google font Rubik -->
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     /* =========================
-       OSNOVNI STIL
+       OSNOVNI RESET
        ========================= */
     html, body {
       margin: 0;
@@ -19,13 +18,13 @@
     }
 
     body {
-      background: #fff;
       font-family: 'Rubik', sans-serif;
+      background: #fff;
       overflow: hidden;
     }
 
     /* =========================
-       HERO (LOGO + SCENA)
+       HERO
        ========================= */
     .hero {
       width: 100%;
@@ -36,56 +35,55 @@
     .signature {
       max-width: 320px;
       width: 70%;
-      margin: 0 auto 8px;
+      margin: 0 auto 10px;
       display: block;
-      opacity: 0.95;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
     }
 
     /* =========================
-       SCENE + ILUSTRACIJA
+       SCENA
        ========================= */
     .scene {
       position: relative;
       width: 100%;
-      height: calc(100vh - 100px);
+      height: calc(100vh - 110px);
     }
 
-    .scene img {
+    /* ilustracija */
+    .scene img.background {
       width: 100%;
       height: 100%;
       object-fit: contain;
       display: block;
       margin: 0 auto;
       position: relative;
-      z-index: 1; /* slika spodaj */
+      z-index: 1;
     }
 
     /* =========================
-       SVG HOTSPOTI
+       HOTSPOT SVG OVERLAY
        ========================= */
-    #hotspots {
+    .scene object.hotspots {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
-      z-index: 5; /* SVG NAD sliko */
+      z-index: 5;              /* NAD ilustracijo */
+      pointer-events: auto;
     }
 
-    /* osnovno stanje hotspotov */
-    #hotspots path {
-      pointer-events: all;
-      cursor: pointer;
-      fill: rgba(255,255,255,0);
-      stroke: rgba(0,0,0,0);
+    /* =========================
+       SVG HOVER STIL
+       ========================= */
+    object.hotspots svg a path {
+      fill: transparent;
+      stroke: transparent;
       stroke-width: 0;
-      transition: stroke 0.2s ease, stroke-width 0.2s ease;
+      transition: stroke 0.15s ease, stroke-width 0.15s ease;
+      cursor: pointer;
     }
 
-    /* hover – samo črn 2D obris */
-    #hotspots path:hover {
-      stroke: #000;
+    object.hotspots svg a:hover path {
+      stroke: #000;            /* ČISTO ČRNA */
       stroke-width: 1.2px;
     }
 
@@ -101,8 +99,8 @@
     }
 
     .language-switch a {
-      text-decoration: none;
       color: #222;
+      text-decoration: none;
       opacity: 0.6;
     }
 
@@ -111,44 +109,20 @@
     }
 
     /* =========================
-       MOBILE MENU
-       ========================= */
-    .mobile-menu {
-      display: none;
-      padding: 20px;
-      background: #fff;
-    }
-
-    .mobile-menu a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 0;
-      font-size: 18px;
-      color: #222;
-      text-decoration: none;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .mobile-menu img.menu-icon {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    /* =========================
-       RESPONSIVE – MOBILE
+       MOBILE
        ========================= */
     @media (max-width: 420px) {
-      body { overflow-y: auto; }
+      body {
+        overflow-y: auto;
+      }
 
-      .hero { padding-top: 12px; }
+      .hero {
+        padding-top: 12px;
+      }
 
       .signature {
         max-width: 165px;
-        width: auto;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
 
       .scene {
@@ -156,9 +130,9 @@
         pointer-events: none;
       }
 
-      #hotspots { display: none; }
-
-      .mobile-menu { display: block; }
+      .scene object.hotspots {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -172,84 +146,24 @@
 
   <!-- HERO -->
   <div class="hero">
-
     <img src="../assets/images/logo.png" alt="Eva Margon" class="signature">
 
     <div class="scene">
-      <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
+      <!-- ILUSTRACIJA -->
+      <img
+        src="../assets/images/galerija.jpg"
+        alt="Illustrated studio workspace"
+        class="background"
+      >
 
-      <!-- INLINE SVG – TVOJ HOTSPOTS.SVG -->
-      <svg id="hotspots" viewBox="0 0 463 260" xmlns="http://www.w3.org/2000/svg">
-
-        <!-- ČASOPIS -->
-        <a href="about.html">
-          <path d="M135.688,213.9C134.32,212.251 ... 135.688,213.9Z"/>
-        </a>
-
-        <!-- TORBA -->
-        <a href="https://evamargon.sumupstore.com" target="_blank" rel="noopener noreferrer">
-          <path d="M262.689,187.954C259.253,188.269 ... 262.689,187.954Z"/>
-        </a>
-
-        <!-- ČOPIČI -->
-        <a href="wet-techniques.html">
-          <path d="M321.858,180.781C319.057,181.199 ... 321.997,180.449"/>
-        </a>
-
-        <!-- KNJIGE -->
-        <a href="books.html">
-          <path d="M389.738,69.041C389.669,67.328 ... 379.781,109.097"/>
-        </a>
-
-        <!-- EKRAN -->
-        <a href="animation.html">
-          <path d="M292.965,94.366C292.854,94.06 ... 292.965,94.366Z"/>
-        </a>
-
-        <!-- BARVICE -->
-        <a href="dry-techniques.html">
-          <path d="M236.29,112.271C235.044,112.831 ... 236.29,112.271Z"/>
-        </a>
-
-        <!-- PREŠA -->
-        <a href="printmaking.html">
-          <path d="M164.486,68.411C164.469,67.299 ... 164.81,68.485"/>
-        </a>
-
-      </svg>
+      <!-- HOTSPOTI – NOV SVG FILE -->
+      <object
+        type="image/svg+xml"
+        data="../assets/images/hotspots.svg"
+        class="hotspots"
+        aria-label="Interaktivni hotspoti"
+      ></object>
     </div>
-  </div>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu">
-    <a href="about.html">
-      <img src="../assets/images/icon-newspaper.png" class="menu-icon">
-      O meni / CV
-    </a>
-    <a href="wet-techniques.html">
-      <img src="../assets/images/icon-brush.png" class="menu-icon">
-      Slikanje
-    </a>
-    <a href="dry-techniques.html">
-      <img src="../assets/images/icon-crayon.png" class="menu-icon">
-      Risanje
-    </a>
-    <a href="books.html">
-      <img src="../assets/images/icon-books.png" class="menu-icon">
-      Knjige
-    </a>
-    <a href="printmaking.html">
-      <img src="../assets/images/icon-press.png" class="menu-icon">
-      Grafika
-    </a>
-    <a href="animation.html">
-      <img src="../assets/images/icon-screen.png" class="menu-icon">
-      Animacija in oblikovanje
-    </a>
-    <a href="https://evamargon.sumupstore.com" target="_blank">
-      <img src="../assets/images/icon-bag.png" class="menu-icon">
-      Trgovina
-    </a>
   </div>
 
 </body>
