@@ -21,7 +21,7 @@
     body {
       background: #fff;
       font-family: 'Rubik', sans-serif;
-      overflow: hidden; /* prepreči scroll na desktopu */
+      overflow: hidden;
     }
 
     /* =========================
@@ -83,13 +83,23 @@
 
     /* =========================
        SVG HOTSPOTI – OSNOVNO
-       (brez hover efektov)
        ========================= */
     #hotspots path {
       pointer-events: all;
       cursor: pointer;
-      fill: rgba(255,255,255,0); /* popolnoma nevidno */
-      stroke: rgba(0,0,0,0);     /* brez obrobe */
+      fill: rgba(255,255,255,0);   /* nevidno polnilo */
+      stroke: rgba(0,0,0,0);       /* brez obrobe */
+      stroke-width: 0;
+      transition: stroke 0.2s ease, stroke-width 0.2s ease;
+    }
+
+    /* =========================
+       SVG HOTSPOTI – HOVER
+       samo črna obroba
+       ========================= */
+    #hotspots path:hover {
+      stroke: #000;        /* čista črna */
+      stroke-width: 1.4;  /* dovolj vidna, ne premočna */
     }
 
     /* =========================
@@ -180,11 +190,8 @@
       <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
 
       <!-- INLINE SVG HOTSPOTI -->
-      <svg
-        id="hotspots"
-        viewBox="0 0 461 260"
-        style="position:absolute; top:0; left:0; width:100%; height:100%;"
-      >
+      <svg id="hotspots" viewBox="0 0 461 260"
+           style="position:absolute; top:0; left:0; width:100%; height:100%;">
 
         <!-- ČASOPIS -->
         <a href="about.html">
