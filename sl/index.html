@@ -102,16 +102,22 @@
       fill: rgba(255,255,255,0);  /* transparentno, da se ne vidi */
       stroke: rgba(0,0,0,0);      /* brez rdeče linije */
       stroke-width: 0;
-      transition: fill 0.3s ease, filter 0.3s ease; /* gladek prehod */
+      transition: fill 0.3s ease, filter 0.3s ease, stroke 0.3s ease; /* gladek prehod */
     }
 
-    /* Hover efekt za vse hotspot-e */
+    /* Hover efekt za vse hotspot-e – mehkejši glow + črni obris */
     #hotspots path:hover {
-      fill: rgba(255,255,255,var(--glow-fill));  /* rahlo osvetli */
+      fill: rgba(255,255,255,var(--glow-fill));  /* rahlo osvetli notranjost */
+      
+      /* Glow efekt */
       filter:
         drop-shadow(0 0 var(--glow-small) var(--glow-color))
         drop-shadow(0 0 var(--glow-medium) var(--glow-color))
         drop-shadow(0 0 var(--glow-large) var(--glow-color));
+      
+      /* Črni obris 2D */
+      stroke: rgba(0,0,0,0.3);  /* subtilen črn odtenek */
+      stroke-width: 1.2;        /* tanek, dovolj da se vidi, a ni premočan */
     }
 
     /* =========================
