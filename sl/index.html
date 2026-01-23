@@ -8,9 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* =========================
-       OSNOVNE NASTAVITVE
-       ========================= */
     html, body {
       margin: 0;
       padding: 0;
@@ -23,9 +20,6 @@
       overflow: hidden;
     }
 
-    /* =========================
-       HERO (LOGO + SCENA)
-       ========================= */
     .hero {
       width: 100%;
       text-align: center;
@@ -41,9 +35,6 @@
       filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
     }
 
-    /* =========================
-       SCENA + ILUSTRACIJA
-       ========================= */
     .scene {
       position: relative;
       width: 100%;
@@ -58,9 +49,6 @@
       margin: 0 auto;
     }
 
-    /* =========================
-       LANGUAGE SWITCH
-       ========================= */
     .language-switch {
       position: fixed;
       bottom: 20px;
@@ -81,44 +69,31 @@
     }
 
     /* =========================
-       HOTSPOTI + SPOTLIGHT
+       HOTSPOTI
        ========================= */
     #hotspots path {
       pointer-events: all;
       cursor: pointer;
       fill: rgba(255,255,255,0); /* privzeto prosojno */
-      stroke: rgba(0,0,0,0); /* brez robov */
+      stroke: rgba(0,0,0,0);
       transition: opacity 0.3s ease;
-      opacity: 1; /* normalna vidnost */
+      opacity: 1; /* privzeto */
       z-index: 10;
     }
 
-    /* overlay layer, ki rahlo zmanjša opacity okoli hoveranega path */
+    /* overlay, ki bo rahlo posvetlil vse okoli hoveranega path */
     #overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255,255,255,0); /* privzeto prosojno */
+      background: rgba(255,255,255,0); /* privzeto transparent */
       pointer-events: none; /* ne blokira hover */
       transition: background 0.3s ease;
       z-index: 5;
     }
 
-    /* Ko hoveramo nad katerikoli path */
-    #hotspots path:hover ~ #overlay {
-      background: rgba(255,255,255,0.2); /* rahlo posvetli vse okoli */
-    }
-
-    /* Posamezni path ostane polne opacity, prekrivni overlay pa zmehča ostalo */
-    #hotspots path:hover {
-      opacity: 1; /* ta ostane 100% */
-    }
-
-    /* =========================
-       MOBILNA VERZIJA
-       ========================= */
     .mobile-menu {
       display: none;
       padding: 20px;
@@ -155,15 +130,12 @@
     }
   </style>
 </head>
-
 <body>
 
-  <!-- LANGUAGE SWITCH -->
   <div class="language-switch">
     <span>SL</span> / <a href="../en/">EN</a>
   </div>
 
-  <!-- HERO -->
   <div class="hero">
     <img src="../assets/images/logo.png" alt="Eva Margon" class="signature">
 
@@ -188,7 +160,6 @@
     </div>
   </div>
 
-  <!-- MOBILE MENU -->
   <div class="mobile-menu">
     <a href="about.html"><img src="../assets/images/icon-newspaper.png" class="menu-icon">O meni / CV</a>
     <a href="wet-techniques.html"><img src="../assets/images/icon-brush.png" class="menu-icon">Slikanje</a>
@@ -198,6 +169,21 @@
     <a href="animation.html"><img src="../assets/images/icon-screen.png" class="menu-icon">Animacija in oblikovanje</a>
     <a href="https://evamargon.sumupstore.com" target="_blank"><img src="../assets/images/icon-bag.png" class="menu-icon">Trgovina</a>
   </div>
+
+  <script>
+    const overlay = document.getElementById('overlay');
+    const paths = document.querySelectorAll('#hotspots path');
+
+    paths.forEach(path => {
+      path.addEventListener('mouseenter', () => {
+        overlay.style.background = 'rgba(255,255,255,0.2)'; // rahlo posvetli vse okoli
+      });
+
+      path.addEventListener('mouseleave', () => {
+        overlay.style.background = 'rgba(255,255,255,0)'; // spet transparent
+      });
+    });
+  </script>
 
 </body>
 </html>
