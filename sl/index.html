@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eva Margon – Studio</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -21,7 +20,7 @@
     body {
       background: #fff;
       font-family: 'Rubik', sans-serif;
-      overflow: hidden; /* skrije scroll */
+      overflow: hidden;
     }
 
     /* =========================
@@ -43,18 +42,18 @@
     }
 
     /* =========================
-       SCENE + ILUSTRACIJA
+       SCENA + ILUSTRACIJA
        ========================= */
     .scene {
       position: relative;
       width: 100%;
-      height: calc(100vh - 100px); /* višina viewport minus logo */
+      height: calc(100vh - 100px);
     }
 
     .scene img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* ohranja razmerje slike */
+      object-fit: contain;
       display: block;
       margin: 0 auto;
     }
@@ -82,9 +81,19 @@
     }
 
     /* =========================
-       SPOTLIGHT / HOVER EFEKT
+       HOTSPOTI + SPOTLIGHT
        ========================= */
-    /* overlay, ki bo rahlo zatemnil ostalo ob hoverju */
+    #hotspots path {
+      pointer-events: all;
+      cursor: pointer;
+      fill: rgba(255,255,255,0); /* privzeto prosojno */
+      stroke: rgba(0,0,0,0); /* brez robov */
+      transition: opacity 0.3s ease;
+      opacity: 1; /* normalna vidnost */
+      z-index: 10;
+    }
+
+    /* overlay layer, ki rahlo zmanjša opacity okoli hoveranega path */
     #overlay {
       position: absolute;
       top: 0;
@@ -92,34 +101,23 @@
       width: 100%;
       height: 100%;
       background: rgba(255,255,255,0); /* privzeto prosojno */
-      pointer-events: none; /* overlay ne blokira hover */
-      transition: background 0.3s ease; /* mehki prehod */
+      pointer-events: none; /* ne blokira hover */
+      transition: background 0.3s ease;
       z-index: 5;
     }
 
-    /* SVG hotspoti */
-    #hotspots path {
-      pointer-events: all; /* omogoča hover */
-      cursor: pointer;
-      fill: rgba(255,255,255,0); /* privzeto prosojno */
-      stroke: rgba(0,0,0,0); /* brez robov */
-      transition: opacity 0.3s ease, fill 0.3s ease;
-      opacity: 1; /* privzeto polna vidnost */
-    }
-
-    /* hover nad posameznim path-om */
-    #hotspots path:hover {
-      fill: rgba(255,255,255,0.12); /* rahlo osvetli samo ta predmet */
-    }
-
-    /* ko hoveramo nad path, overlay rahlo zatemni vse ostalo */
-    /* uporablja ~ selektor, ker overlay je sibling SVG-ja */
+    /* Ko hoveramo nad katerikoli path */
     #hotspots path:hover ~ #overlay {
-      background: rgba(255,255,255,0.18); /* rahlo beloprosojno */
+      background: rgba(255,255,255,0.2); /* rahlo posvetli vse okoli */
+    }
+
+    /* Posamezni path ostane polne opacity, prekrivni overlay pa zmehča ostalo */
+    #hotspots path:hover {
+      opacity: 1; /* ta ostane 100% */
     }
 
     /* =========================
-       MOBILNA VERSIJA
+       MOBILNA VERZIJA
        ========================= */
     .mobile-menu {
       display: none;
@@ -146,12 +144,12 @@
     }
 
     @media (max-width: 420px) {
-      body { overflow-y: auto; } 
+      body { overflow-y: auto; }
       .hero { padding-top: 12px; }
       .signature { max-width: 165px; width: auto; margin-bottom: 10px; }
       .scene { height: auto; pointer-events: none; margin-top: 0; }
       .scene img { height: auto; }
-      #hotspots { display: none; } /* na mobitelu ni hover efektov */
+      #hotspots { display: none; }
       .mobile-menu { display: block; }
       .language-switch { bottom: 16px; right: 16px; font-size: 13px; }
     }
@@ -170,11 +168,10 @@
     <img src="../assets/images/logo.png" alt="Eva Margon" class="signature">
 
     <div class="scene">
-      <!-- Osnovna scena / ilustracija -->
       <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
 
       <!-- SVG HOTSPOTI -->
-      <svg id="hotspots" viewBox="0 0 461 260" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:10;">
+      <svg id="hotspots" viewBox="0 0 461 260" style="position:absolute; top:0; left:0; width:100%; height:100%;">
         <path id="hotspot-newspaper" d="M155.28,190.8L162.48,193.2L173.52,192.72L180.48,196.32L185.76,202.32L187.2,208.32L182.88,215.52L174.48,226.56L174.48,228.48L173.52,228.72L172.32,228.96L172.56,230.88L170.4,230.16L168,228.48L163.68,227.52L157.92,226.08L152.4,225.12L148.08,223.44L141.6,221.52L137.04,220.8L133.44,220.32L135.12,216.72L133.2,216.24L135.36,213.36L134.88,212.16L136.8,210.72L136.08,209.76L155.28,190.8Z"/>
         <path id="hotspot-brushes-" d="M320.4,196.56L325.92,199.92L330.72,200.88L336,197.28L336.72,183.36L335.28,182.4L355.2,154.8L354.48,153.84L348.72,159.6L348.48,147.12L350.16,143.04L348.48,142.56L346.08,147.6L337.68,145.2L327.84,144.96L323.52,151.44L322.8,141.84L320.88,142.08L321.84,154.56L323.04,161.28L321.12,161.04L319.44,151.44L319.44,137.76L317.76,137.52L318.48,160.8L316.32,148.08L315.12,147.6L315.36,151.44L312.96,142.32L311.76,142.56L312.96,147.36L311.52,145.44L311.52,147.36L309.36,147.12L307.68,146.64L308.4,150.96L311.04,157.92L321.6,181.44L320.4,182.16L320.4,196.56Z"/>
         <path id="hotspot-crayons-" d="M237.6,96.72L263.04,98.64L261.84,115.92L253.44,120.48L253.2,121.44L258.24,128.64L236.64,128.88L233.28,120L233.04,118.32L228,117.36L228.48,116.16L235.2,111.84L237.6,96.72Z"/>
@@ -185,7 +182,7 @@
         <path id="hotspot-envelope"/>
       </svg>
 
-      <!-- overlay za spotlight -->
+      <!-- overlay -->
       <div id="overlay"></div>
 
     </div>
