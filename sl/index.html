@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eva Margon – Studio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     html, body {
@@ -27,13 +27,13 @@
     .hero {
       width: 100%;
       text-align: center;
-      padding-top: 20px; /* manj prostora zgoraj */
+      padding-top: 20px;
     }
 
     .signature {
-      max-width: 320px;   /* manjši logo na desktop */
+      max-width: 320px;
       width: 70%;
-      margin: 0 auto 2px; /* manj prostora spodaj */
+      margin: 0 auto 8px;
       display: block;
       opacity: 0.95;
       filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
@@ -46,7 +46,7 @@
     .scene {
       position: relative;
       width: 100%;
-     height: calc(100vh - 80px); /* manj “požre” višine */
+      height: calc(100vh - 100px);
     }
 
     .scene img {
@@ -95,14 +95,14 @@
       background: rgba(255, 255, 255, 0.09);
     }
 
-    .brushes { top: 54%; left: 67%; width: 8%; height: 23%; }
-    .book { top: 26.3%; left: 77.1%; width: 9.6%; height: 15.4%; }
-    .press { top: 26.1%; left: 34.1%; width: 9.1%; height: 25.2%; }
-    .screen { top: 34%; right: 36.8%; width: 3%; height: 17%; }
-    .crayons { bottom: 53%; left: 50%; width: 7%; height: 10%; }
-    .newspaper { bottom: 9.5%; left: 29%; width: 11.6%; height: 13.6%; }
-    .envelope { top: 48.9%; right: 67.6%; width: 3.4%; height: 3.1%; }
-    .bag { bottom: 14%; right: 43%; width: 4%; height: 10%; }
+    .brushes   { top: 54%;  left: 67%;  width: 8%;   height: 23%; }
+    .book      { top: 26.3%;left: 77.1%;width: 9.6%; height: 15.4%; }
+    .press     { top: 26.1%;left: 34.1%;width: 9.1%; height: 25.2%; }
+    .screen    { top: 34%;  right: 36.8%;width: 3%;  height: 17%; }
+    .crayons   { bottom: 53%;left: 50%; width: 7%;   height: 10%; }
+    .newspaper { bottom: 9.5%;left: 29%;width: 11.6%;height: 13.6%; }
+    .envelope  { top: 48.9%;right: 67.6%;width: 3.4%;height: 3.1%; }
+    .bag       { bottom: 14%;right: 43%; width: 4%;  height: 10%; }
 
     /* =========================
        MOBILE MENU
@@ -133,7 +133,7 @@
     }
 
     /* =========================
-       RESPONSIVE
+       RESPONSIVE – MOBILE
        ========================= */
 
     @media (max-width: 420px) {
@@ -146,16 +146,15 @@
       }
 
       .signature {
-        max-width: 155px;   /* precej manjši logo na mobile */
+        max-width: 165px;
         width: auto;
-        margin-bottom: 4px;
-}
+        margin-bottom: 10px;
       }
 
       .scene {
         height: auto;
         pointer-events: none;
-        margin-top: -2px; /* potisne ilustracijo gor */
+        margin-top: 0;
       }
 
       .scene img {
