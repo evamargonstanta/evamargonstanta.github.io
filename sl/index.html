@@ -52,12 +52,13 @@
     }
 
     /* WRAP: slika + SVG v istem okvirju */
-    .media-wrap {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden; /* pomembno: da “odreže” robove (crop) */
-    }
+    .media-wrap img {
+  object-fit: cover;
+  object-position: 50% 50%;
+  transform: scale(0.975);      /* ~10px manj reza na vsaki strani (na iPhone širini) */
+  transform-origin: center;
+}
+
 
     .media-wrap picture {
       position: absolute;
@@ -77,12 +78,12 @@
 
     /* SVG overlay */
     #hotspots {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-    }
+  width: 100%;
+  height: 100%;
+  transform: scale(0.975);      /* mora biti enako kot slika */
+  transform-origin: center;
+}
+
 
     /* =========================
        LANGUAGE SWITCH (SL/EN)
