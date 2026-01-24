@@ -165,13 +165,19 @@
       margin: 0;
       border-radius: 999px;
       display: inline-flex;
+      flex-direction: column;  /* <-- ikona zgoraj, tekst spodaj */
       align-items: center;
-      gap: 10px;
+      gap: 6px;                /* <-- manjši razmik (po želji) */
       cursor: pointer;
       opacity: 1;
       transition: opacity 0.2s ease, transform 0.2s ease;
       line-height: 1;
     }
+.mobile-cta button span,
+.mobile-cta button .label {
+  font-size: 15px;
+  opacity: 0.85;
+}
 
     .mobile-cta button:hover { opacity: 1; }
     .mobile-cta button:active { transform: translateY(1px); opacity: 1; }
@@ -517,7 +523,7 @@
 
 
         
-        (Poišči  in klikni!)
+        <span>(Poišči  in klikni!)</span>
       </button>
     </div>
 
