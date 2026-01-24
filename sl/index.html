@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="sl">
 <head>
   <meta charset="UTF-8">
@@ -214,43 +214,58 @@
 
     /* =========================
        RESPONSIVE – MOBILE / POKONČNI EKRANI
-       - uporabi galerija-mobile.jpg
-       - manj "crop" (ker je slika že pripravljena), bolje zapolni ekran
+       Popravki:
+       1) odstrani praznino pod logotipom (signature)
+       2) ilustracijo malo bolj odreži (cover + rahlo zoom)
+       3) odstrani praznino med ilustracijo in gumbom
        ========================= */
-    /* Opomba: galerija-mobile.jpg ima isti "canvas"/razmerje kot original,
-       zato SVG hotspoti ostanejo na istem mestu. */
     @media (max-width: 420px), (orientation: portrait) and (max-width: 768px) {
       body { overflow-y: auto; }
 
-      .hero { padding-top: 12px; }
+      .hero {
+        padding-top: 12px;
+      }
 
-      .signature { max-width: 165px; width: auto; margin-bottom: 10px; }
+      .signature {
+        max-width: 165px;
+        width: auto;
+        margin: 0 auto 6px;  /* manj prostora pod logom */
+      }
 
       .scene {
         height: auto;
         pointer-events: auto;
         margin-top: 0;
+        line-height: 0;      /* prepreči “baseline” praznino pri inline elementih */
       }
 
-      /* Malo višje, da ni spodaj praznega prostora */
+      /* NAREDI ILUSTRACIJO BOLJ “FULL” (manj beline levo/desno) */
       .scene img {
         width: 100%;
-        height: min(80vh, 600px);
-        object-fit: contain;          /* manj reže levo/desno (slika je že prilagojena) */
+        height: 72vh;              /* manj praznega prostora pod ilustracijo */
+        object-fit: cover;         /* malo odreže levo/desno */
         object-position: center;
+        transform: scale(1.03);    /* nežno: še malo manj beline */
+        transform-origin: center;
+        display: block;
       }
 
-      /* SVG overlay naj ima isti "box" kot slika */
+      /* SVG overlay naj sledi isti “cover” sliki */
       #hotspots {
         display: block;
         position: absolute;
         top: 0; left: 0;
         width: 100%;
-        height: min(80vh, 600px);
+        height: 72vh;
         z-index: 2;
       }
 
-      .mobile-cta { display: block; }
+      /* GUMB takoj pod ilustracijo, minimalna razdalja */
+      .mobile-cta {
+        display: block;
+        padding: 6px 20px 0; /* manj prostora nad gumbom */
+        margin-top: 0;
+      }
 
       .language-switch { bottom: 16px; right: 16px; font-size: 13px; }
     }
@@ -294,7 +309,7 @@
 
         <!-- BAG -->
         <g class="hotspot" id="hotspot-bag">
-          <path class="click" d="M261.9,187.4c-3.4,0.3 -3.4,2 -9.4,2.8c-6.5,0.8 -9.6,3.9 -10.2,4.5c-1,1 -1.7,1.3 -0.8,2.4c0,0.1 2.9,4.1 3.2,5.8c0.6,2.9 -1.6,9.4 -0.5,11.6c0.6,1.1 14.8,1 17,0.3c0.1,-1.3 0.2,-2.4 0.3,-6.5c0,-0.8 -0.2,-1.5 0.3,-12.2c0.1,-1.6 0.1,-5.7 0.2,-8.7z"/>
+          <path class="click" d="M261.9,187.4c-3.4,0.3 -3.4,2 -9.4,2.8c-6.5,0.8 -9.6,3.9 -10.2,4.5c-1, 1 -1.7,1.3 -0.8,2.4c0,0.1 2.9,4.1 3.2,5.8c0.6,2.9 -1.6,9.4 -0.5,11.6c0.6,1.1 14.8,1 17,0.3c0.1,-1.3 0.2,-2.4 0.3,-6.5c0,-0.8 -0.2,-1.5 0.3,-12.2c0.1,-1.6 0.1,-5.7 0.2,-8.7z"/>
           <path class="outline" d="M261.9,187.4c-3.4,0.3 -3.4,2 -9.4,2.8c-6.5,0.8 -9.6,3.9 -10.2,4.5c-1, 1 -1.7,1.3 -0.8,2.4c0,0.1 2.9,4.1 3.2,5.8c0.6,2.9 -1.6,9.4 -0.5,11.6c0.6,1.1 14.8,1 17,0.3c0.1,-1.3 0.2,-2.4 0.3,-6.5c0,-0.8 -0.2,-1.5 0.3,-12.2c0.1,-1.6 0.1,-5.7 0.2,-8.7z"/>
         </g>
 
@@ -335,7 +350,7 @@
 
     </div>
 
-    <!-- GUMB pod ilustracijo, na sredini (mobilno/pokončno) -->
+    <!-- GUMB pod ilustracijo -->
     <div class="mobile-cta">
       <button id="openMenuBtn" type="button" aria-controls="mobileMenu" aria-expanded="false">
         <svg class="hand" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -351,7 +366,7 @@
 
   </div>
 
-  <!-- MOBILE MENU (odpre se šele po kliku na gumb) -->
+  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="about.html">
       <img src="../assets/images/icon-newspaper.png" class="menu-icon">
@@ -404,8 +419,6 @@
 
     /* =========================
        2) HOTSPOT NAV (desktop + mobile)
-       - Desktop: klik takoj navigira (hover ostane)
-       - Mobile/portrait: tap -> kratek outline -> potem navigira
        ========================= */
     (function () {
       const links = {
@@ -439,7 +452,6 @@
 
         const isExternal = /^https?:\/\//i.test(href);
 
-        // Mobile/portrait: najprej kratka obroba, potem navigacija
         if (isMobileOrPortrait()) {
           e.preventDefault();
           clearTapped();
@@ -457,7 +469,6 @@
           return;
         }
 
-        // Desktop: navigiraj takoj
         if (isExternal) {
           window.open(href, '_blank', 'noopener');
         } else {
