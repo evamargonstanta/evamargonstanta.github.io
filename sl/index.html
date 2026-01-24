@@ -325,6 +325,34 @@
   animation: none;
   opacity: 0;
 }
+    .click-symbol {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.7;
+  animation: targetPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes targetPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+}
+
+body.menu-open .click-symbol {
+  animation: none;
+  opacity: 0.4;
+}
+
 
   </style>
 </head>
@@ -437,15 +465,10 @@
     <!-- GUMB takoj pod ilustracijo -->
     <div class="mobile-cta">
       <button id="openMenuBtn" type="button" aria-controls="mobileMenu" aria-expanded="false">
-       <svg class="click-ripple" viewBox="0 0 24 24" aria-hidden="true">
-  <!-- sredinski krog -->
-  <circle class="core" cx="12" cy="12" r="4" />
-  <!-- ripple val -->
-  <circle class="ripple" cx="12" cy="12" r="4" />
-</svg>
+       <span class="click-symbol" aria-hidden="true">◎</span>
 
         
-        Poišči in tapni
+        Poišči  in klikni!
       </button>
     </div>
 
