@@ -39,7 +39,7 @@
       margin: 0 auto 8px;
       display: block;
       opacity: 0.95;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08)); /* subtilna senca pod logotipom */
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
     }
 
     /* =========================
@@ -48,14 +48,15 @@
     .scene {
       position: relative;
       width: 100%;
-      height: calc(100vh - 100px); /* višina celotnega viewporta minus logo */
+      height: calc(100vh - 100px);
     }
 
-    /* WRAP: da slika + SVG vedno delita isti okvir */
+    /* WRAP: slika + SVG v istem okvirju */
     .media-wrap {
       position: relative;
       width: 100%;
       height: 100%;
+      overflow: hidden; /* pomembno: da “odreže” robove (crop) */
     }
 
     .media-wrap picture {
@@ -91,7 +92,7 @@
       bottom: 20px;
       right: 24px;
       font-size: 14px;
-      z-index: 20; /* da je nad vsemi elementi */
+      z-index: 20;
     }
 
     .language-switch a {
@@ -101,15 +102,11 @@
       transition: opacity 0.2s ease;
     }
 
-    .language-switch a:hover {
-      opacity: 1;
-    }
+    .language-switch a:hover { opacity: 1; }
 
     /* =========================
        HOTSPOTI (SVG PATH-i)
        ========================= */
-
-    /* CLICK path: neviden, ampak interaktiven */
     #hotspots .click {
       pointer-events: all;
       cursor: pointer;
@@ -117,7 +114,6 @@
       stroke: none;
     }
 
-    /* OUTLINE path: privzeto skrit */
     #hotspots .outline {
       pointer-events: none;
       fill: none;
@@ -127,14 +123,12 @@
       transition: opacity 0.2s ease;
     }
 
-    /* Hover efekt: pokaži outline, ko je hotspot hover (desktop) */
     #hotspots .hotspot:hover .outline {
       opacity: 1;
       stroke: black;
       stroke-width: 1;
     }
 
-    /* Tap highlight (mobile): pokaži outline za kratek čas */
     #hotspots .hotspot.is-tapped .outline {
       opacity: 1;
       stroke: black;
@@ -147,11 +141,10 @@
     .mobile-cta {
       display: none;
       width: 100%;
-      padding: 0;               /* POPRAVEK: brez beline */
-      margin: 0;                /* POPRAVEK: brez beline */
-      box-sizing: border-box;
+      padding: 0;      /* brez beline */
+      margin: 0;       /* brez beline */
       text-align: center;
-      line-height: 0;           /* POPRAVEK: odstrani “baseline” praznino */
+      line-height: 0;  /* odstrani baseline praznino */
     }
 
     .mobile-cta button {
@@ -162,7 +155,8 @@
       font-family: 'Rubik', sans-serif;
       font-size: 16px;
       font-weight: 600;
-      padding: 8px 12px;        /* malo manj, da je bolj “tight” */
+      padding: 0;      /* POPRAVEK: brez dodatne beline okoli gumba */
+      margin: 0;       /* brez beline */
       border-radius: 999px;
       display: inline-flex;
       align-items: center;
@@ -170,7 +164,7 @@
       cursor: pointer;
       opacity: 0.75;
       transition: opacity 0.2s ease, transform 0.2s ease;
-      line-height: 1;           /* da ni dodatne višine */
+      line-height: 1;
     }
 
     .mobile-cta button:hover { opacity: 1; }
@@ -225,77 +219,77 @@
     /* =========================
        RESPONSIVE – MOBILE / POKONČNI EKRANI
        Zahteve:
-       - brez beline med: logo – ilustracija – gumb (vse “skupaj”)
+       - NULA praznega prostora med: logo – ilustracija – gumb
+       - crop levo/desno (malo bolj), CENTER (brez “slajdanja”)
        - vse skupaj vertikalno centrirano (kot blok)
-       - ilustracijo malo povečaj (da ni 5mm beline levo/desno)
-       - po kliku “Kaj iščeš?”: prestavi na vrh + odpre meni
+       - po kliku “Kaj iščeš?” prestavi na vrh + odpre meni
        ========================= */
     @media (max-width: 420px), (orientation: portrait) and (max-width: 768px) {
       body { overflow-y: auto; }
 
-      /* HERO postane flex, da centriramo cel blok */
+      /* blok centriran */
       .hero {
-        padding-top: 0;                 /* brez vrhnje beline */
+        padding-top: 0;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;        /* vertikalno centriranje BLOKA */
+        justify-content: center;
       }
 
-      /* KO JE MENI ODPRT: normalno na vrh */
       body.menu-open .hero {
         justify-content: flex-start;
         padding-top: 12px;
         min-height: auto;
       }
 
-      /* “TRIPLE” blok: logo + scena + gumb naj bo skupaj */
+      /* NULA presledkov */
       .signature {
         max-width: 165px;
         width: auto;
-        margin: 0 auto;                /* POPRAVEK: brez spodnje margine */
+        margin: 0 auto;     /* 0 spodaj */
         padding: 0;
       }
 
       .scene {
         height: auto;
-        margin: 0;                     /* POPRAVEK: brez margine */
+        margin: 0;
         padding: 0;
-        line-height: 0;                /* POPRAVEK: odstrani beline zaradi inline baseline */
+        line-height: 0;     /* odstrani praznino med blok elementi */
       }
 
-      /* Višina okvirja za sliko + SVG */
       .media-wrap {
-        height: min(70vh, 580px);      /* malo več, da zapolni ekran */
-        margin: 0;                     /* brez beline */
+        height: min(72vh, 620px); /* več, da zapolni ekran */
+        margin: 0;
+        padding: 0;
+        overflow: hidden;         /* crop */
       }
 
-      /* Ilustracija: CONTAIN (da se vidi polička + cel kavč),
-         + NEŽEN zoom, da odstrani tistih ~5mm beline levo/desno. */
+      /* KLJUČ: crop levo/desno + center in NO-SLIDE
+         - object-fit: cover bo odrezal robove in izpolnil širino
+         - object-position: center -> nikoli ne “beži” levo/desno */
       .media-wrap img {
-        object-fit: contain;
-        object-position: center;
-        transform: scale(1.06);        /* POPRAVEK: malo povečaj -> brez belih robov */
-        transform-origin: center;
+        object-fit: cover;
+        object-position: 50% 50%;
+        transform: none;
       }
 
-      /* SVG mora slediti isti povečavi (da hotspoti ostanejo poravnani) */
+      /* SVG mora slediti istemu cropu -> cover efekt naredimo s preserveAspectRatio */
       #hotspots {
-        transform: scale(1.06);        /* POPRAVEK: isti zoom kot slika */
-        transform-origin: center;
+        width: 100%;
+        height: 100%;
       }
 
-      /* Gumb tik pod ilustracijo (brez praznine) */
+      /* GUMB takoj pod ilustracijo */
       .mobile-cta {
         display: block;
-        padding: 0;                    /* POPRAVEK */
-        margin: 0;                     /* POPRAVEK */
+        margin: 0;
+        padding: 0;
       }
 
-      /* Mikro razmak samo, če res želiš 0, pusti 0;
-         če želiš 2-3px, odkomentiraj:
-         .mobile-cta { margin-top: 2px; }
-      */
+      /* minimalen “touch” prostor, brez vizualne beline */
+      .mobile-cta button {
+        padding: 10px 12px; /* klikabilno, a vizualno zelo “tight” */
+      }
 
       .language-switch { bottom: 16px; right: 16px; font-size: 13px; }
     }
@@ -327,8 +321,10 @@
           <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
         </picture>
 
-        <!-- SVG overlay -->
-        <svg id="hotspots" viewBox="0 0 461 260">
+        <!-- SVG overlay (IMPORTANT: preserveAspectRatio = cover center, da se ne “slajda” in da crop ujame sliko) -->
+        <svg id="hotspots"
+             viewBox="0 0 461 260"
+             preserveAspectRatio="xMidYMid slice">
           <!-- NEWSPAPER -->
           <g class="hotspot" id="hotspot-newspaper">
             <path class="click" d="M135.3,213.3c-1.4,-1.7 2.1,-1.9 0.7,-3.1c-0.5,-0.4 0.7,0.1 5.4,-5.6c0.6,-0.7 0.7,-0.5 7.6,-8.3c0,-0 1.8,-1.3 5.2,-4.7c1.1,-1.1 1.2,-0.8 2.3,-0.3c0.6,0.3 7.7,1.5 8.1,1.5c5.5,0.2 8.7,-0.8 15.1,3.4c0.7,0.5 5.6,3.8 6.9,7.7c1.2,3.7 0.1,3.8 -5.5,13.9c-1.6,3 -5.6,8.3 -6.4,10.5c-0.4,1.1 -1.6,-0.9 -1.8,0.3c-0.1,0.7 0.9,2.4 -1.3,1.5c-14.6,-5.8 -21.3,-5.7 -30.6,-8.8c-5.4,-1.8 -8.3,-0.3 -6.9,-2.6c0,-0 0.1 0 0.5,-0.6c0.4,-0.6 0.3,-0.5 0.7,-1c-0.4,-0 -3.9,-0 -1.5,-2c0.1,-0.1 0.1,-0.2 1.7,-1.8z"/>
@@ -347,11 +343,10 @@
             <path class="outline" d="M320.9,181.2c-2.8,0.4 -2.6,1.7 -2.7,1.9c-0.7,2.1 1.8,2.6 1.8,2.7c-0.1,1 -0,1 -0.1,12.3c0.2,0.1 1.1,1.9 3.9,2.6c3.6,0.8 6.4,1 10.1,-0.4c0.4,-0.2 2.7,-2 2.7,-2.3c-0.2,-11.1 -0.7,-11.6 0.2,-11.9c2.7,-0.8 2,-4.1 -0.3,-3.8c2.4,-3.8 10.3,-15 12.3,-17.3c0.4,-0.5 9.4,-10.9 5.8,-10.6c-0.4,0 -4.7,4 -6,5.5c0.2,-2.2 -0.2,-11.1 0.2,-11.7c0.2,-0.3 2.5,-3.4 1.3,-4.5c-1,-0.9 -2.4,1.3 -2.5,1.6c-0.7,1.5 -1,1.4 -1.7,2.9c-0.5,0.9 -0.7,0.5 -1.7,0.3c1.8,-2.1 1.6,-2.2 2.1,-5c0.2,-1.4 -2,-1 -2.2,-1c0.6,-2.1 1,-2.6 -0.5,-3.1c-2.2,-0.7 -0.4,1.5 -3.5,7.9c-0.8,-0.5 -7.4,-3.3 -11.3,-0.4c-3.2,2.3 -4.6,5.6 -4.8,6.2c-0.3,-2.7 -0.3,-3.9 -0.6,-5.6c-0.2,-1.1 -0.2,-4.7 -1.8,-4.2c-2.4,0.8 0.5,1.3 0.8,18.9c0,0.1 -0.2,0.4 -1.1,0c-0.8,-4.8 -0.6,-4.5 -1.2,-9.4c-0.2,-1.6 -0.2,-3.4 -0.6,-7.8c-0.1,-1.3 0.3,-3.7 -0.2,-6c-0.1,-0.5 -2.2,-1.5 -2.3,1.2c0,1.3 -0.3,14.4 0.2,17.1c-1.4,-7.6 -2.3,-7.3 -2.9,-10.6c0,-0.3 -1.2,-3.5 -1.9,-3.1c-0.1,0 -1.8,0.1 -1.1,1.6c0,0.1 0.2,0.4 0.3,1.3c-1,0.2 -1.1,0.1 -1.1,0.3c-0.1,0.7 0.4,1.6 0.4,1.6c-0.1,-0.2 -0.1,-1.8 -2.3,-0.9c-0.5,0.2 0.3,1.8 0.3,1.9c-0.8,-1.3 -1.2,-2.2 -2.2,-1.5c-0.6,0.4 1.4,5.8 2.5,6.9c0.4,0.4 -0.5,0.9 2.9,7c0.3,0.5 0.9,1.6 3.3,6.8c0.4,0.9 -0.4,1.1 0.6,2.7c0,0.1 2.3,5 2.5,5.5c0.2,0.3 0.2,0.3 2.3,4.2"/>
           </g>
 
-          <!-- BOOKS (2 paths) -->
+          <!-- BOOKS -->
           <g class="hotspot" id="hotspot-books">
             <path class="click" d="M388.7,68.8c-0.1,-1.7 -0.7,-1.9 -1.7,-1.8c-0,-0 -15.3,0.3 -16.1,0.1c-0.1,-0 -11.3,0.2 -11.9,0.2c-0.7,-0.1 -2.3,-0.2 -2.2,1.7c0.2,4 1.6,37.4 2.4,38.1c0.7,0.6 1.9,0.3 3.7,0c-0.1,2.5 1.5,1.6 4.3,1.2c0.2,1.6 0.9,0.8 2.6,0.6c0.1,0.7 0.4,0.9 4.6,0.4c0.3,-0 3.9,-0.5 4.3,-0.6"/>
             <path class="outline" d="M388.7,68.8c-0.1,-1.7 -0.7,-1.9 -1.7,-1.8c-0,-0 -15.3,0.3 -16.1,0.1c-0.1,-0 -11.3,0.2 -11.9,0.2c-0.7,-0.1 -2.3,-0.2 -2.2,1.7c0.2,4 1.6,37.4 2.4,38.1c0.7,0.6 1.9,0.3 3.7,0c-0.1,2.5 1.5,1.6 4.3,1.2c0.2,1.6 0.9,0.8 2.6,0.6c0.1,0.7 0.4,0.9 4.6,0.4c0.3,-0 3.9,-0.5 4.3,-0.6"/>
-
             <path class="click" d="M388.9,68.7c0.3,-0 2,-0.4 3.8,0c0.6,0.8 0.1,5.2 0.6,13.7c1,-0.1 1.4,-0.1 2.1,0.1c0.5,0.6 1.3,12.2 2.9,24.4c-0.7,0.7 -1.9,0.9 -7.5,1.8c-0.2,-0 -6.1,0.6 -8.3,0.9c-1.7,0.3 -2.8,0.5 -3.3,-1.1"/>
             <path class="outline" d="M388.9,68.7c0.3,-0 2,-0.4 3.8,0c0.6,0.8 0.1,5.2 0.6,13.7c1,-0.1 1.4,-0.1 2.1,0.1c0.5,0.6 1.3,12.2 2.9,24.4c-0.7,0.7 -1.9,0.9 -7.5,1.8c-0.2,-0 -6.1,0.6 -8.3,0.9c-1.7,0.3 -2.8,0.5 -3.3,-1.1"/>
           </g>
@@ -377,15 +372,13 @@
       </div>
     </div>
 
-    <!-- GUMB pod ilustracijo -->
+    <!-- GUMB takoj pod ilustracijo -->
     <div class="mobile-cta">
       <button id="openMenuBtn" type="button" aria-controls="mobileMenu" aria-expanded="false">
         <svg class="hand" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M9 11V6.5C9 5.67 9.67 5 10.5 5C11.33 5 12 5.67 12 6.5V11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           <path d="M12 11V7.5C12 6.67 12.67 6 13.5 6C14.33 6 15 6.67 15 7.5V12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           <path d="M15 12V9C15 8.17 15.67 7.5 16.5 7.5C17.33 7.5 18 8.17 18 9V15.2C18 18 16.2 19 14.8 19H12.2C10.4 19 9.4 18.2 8.6 16.8L7.3 14.5C6.9 13.8 7.2 12.9 7.9 12.5C8.5 12.2 9.2 12.4 9.6 13L10 13.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M4.8 8.2C4.3 7.3 4.1 6.3 4.1 5.3C4.1 3.5 5.2 2 7 1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
-          <path d="M19.2 6.8C19.6 6.2 19.9 5.5 19.9 4.7C19.9 3.3 19 2.1 17.7 1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
         </svg>
         Kaj iščeš?
       </button>
@@ -428,7 +421,6 @@
   <script>
     /* =========================
        1) MOBILNI GUMB -> TOGGLE MENIJA
-       (body.menu-open prestavi layout iz center v top)
        ========================= */
     (function () {
       const btn = document.getElementById('openMenuBtn');
@@ -438,7 +430,6 @@
       btn.addEventListener('click', () => {
         const isOpen = menu.classList.toggle('is-open');
         btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-
         document.body.classList.toggle('menu-open', isOpen);
 
         if (isOpen) {
