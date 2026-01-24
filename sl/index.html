@@ -182,6 +182,30 @@
       flex-shrink: 0;
     }
 
+    .click-hand {
+  width: 20px;
+  height: 20px;
+  opacity: 0.75;
+  animation: clickHint 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes clickHint {
+  0% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(2px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+}
+
+
     .click-ripple {
   width: 18px;
   height: 18px;
@@ -348,7 +372,8 @@
   }
 }
 
-body.menu-open .click-symbol {
+
+    body.menu-open .click-hand {
   animation: none;
   opacity: 0.4;
 }
@@ -465,7 +490,31 @@ body.menu-open .click-symbol {
     <!-- GUMB takoj pod ilustracijo -->
     <div class="mobile-cta">
       <button id="openMenuBtn" type="button" aria-controls="mobileMenu" aria-expanded="false">
-       <span class="click-symbol" aria-hidden="true">◎</span>
+
+        <svg class="click-hand" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M9 11V6.5
+           C9 5.67 9.67 5 10.5 5
+           C11.33 5 12 5.67 12 6.5V11
+           M12 11V7.5
+           C12 6.67 12.67 6 13.5 6
+           C14.33 6 15 6.67 15 7.5V12
+           M15 12V9
+           C15 8.17 15.67 7.5 16.5 7.5
+           C17.33 7.5 18 8.17 18 9V15.2
+           C18 18 16.2 19 14.8 19
+           H12.2
+           C10.4 19 9.4 18.2 8.6 16.8
+           L7.3 14.5
+           C6.9 13.8 7.2 12.9 7.9 12.5
+           C8.5 12.2 9.2 12.4 9.6 13
+           L10 13.7"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg>
+
 
         
         Poišči  in klikni!
