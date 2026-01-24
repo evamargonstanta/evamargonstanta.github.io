@@ -113,17 +113,13 @@
       transition: opacity 0.2s ease;
     }
 
-    #hotspots .hotspot:hover .outline {
-      opacity: 1;
-      stroke: black;
-      stroke-width: 1;
-    }
+    #hotspots .hotspot:hover .outline,
+#hotspots .hotspot.is-tapped .outline {
+  opacity: 1;
+  stroke: #000;
+  stroke-width: 1px;
+}
 
-    #hotspots .hotspot.is-tapped .outline {
-      opacity: 1;
-      stroke: black;
-      stroke-width: 1;
-    }
 
     /* =========================
        MOBILE CTA: "Kaj iščeš?"
@@ -251,13 +247,15 @@
         width: 100%;
       }
 
-      .media-wrap {
-        height: min(72vh, 620px);
-        margin: 0;
-        padding: 0;
-        overflow: hidden; /* crop */
-        width: 100%;
+       .media-wrap {
+          height: min(62vh, 560px); /* manjše -> manj horizontalnega reza */
+          margin: 0;
+          padding: 0;
+          overflow: hidden;         /* crop */
+          width: 100%;
       }
+
+
 
       /* SLIKA: cover + center => malo odreže levo/desno */
       .media-wrap img {
@@ -477,7 +475,8 @@
             } else {
               window.location.href = href;
             }
-          }, 450);
+        }, 1000);
+
 
           return;
         }
