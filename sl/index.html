@@ -165,14 +165,26 @@
       margin: 0;
       border-radius: 999px;
       display: inline-flex;
-      flex-direction: column;  /* <-- ikona zgoraj, tekst spodaj */
+      flex-direction: row;   /* ena vrstica */
       align-items: center;
-      gap: 6px;                /* <-- manjši razmik (po želji) */
+      gap: 10px;                /* <-- 6 je bil manjši razmik (po želji) */
       cursor: pointer;
       opacity: 1;
       transition: opacity 0.2s ease, transform 0.2s ease;
       line-height: 1;
     }
+
+    .hint-arrow {
+  width: 18px;
+  height: auto;
+  display: block;
+}
+
+.hint-text {
+  opacity: 0.5;
+  white-space: nowrap;
+}
+
 .mobile-cta button span,
 .mobile-cta button .label {
   font-size: 13px;
@@ -192,24 +204,29 @@
   width: 20px;
   height: 20px;
   opacity: 0.75;
-  animation: clickHint 1.6s ease-in-out infinite;
+  animation: clickHint 1.9s ease-in-out infinite;
   transform-origin: center;
 }
 
 @keyframes clickHint {
   0% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     opacity: 0.6;
   }
-  50% {
-    transform: translateY(2px);
+  40% {
+    transform: translateY(4px) scale(0.95); /* močnejši "tap" */
     opacity: 1;
   }
+  80% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
   100% {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     opacity: 0.6;
   }
 }
+
 
 
     .click-ripple {
@@ -495,9 +512,10 @@
 
     <!-- GUMB takoj pod ilustracijo -->
     <div class="mobile-cta">
-      <button id="openMenuBtn" type="button" aria-controls="mobileMenu" aria-expanded="false">
-
-        <svg class="click-hand" viewBox="0 0 24 24" aria-hidden="true">
+     <button id="openMenuBtn" type="button" aria-controls="mobileMenu" aria-expanded="false">
+  <img src="../assets/images/icon-arrow.png" class="hint-arrow" alt="" aria-hidden="true">
+  <span class="hint-text">Najdi in klikni.</span>
+  <svg class="click-hand" viewBox="0 0 24 24" aria-hidden="true">
   <path d="M9 11V6.5
            C9 5.67 9.67 5 10.5 5
            C11.33 5 12 5.67 12 6.5V11
