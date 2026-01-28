@@ -36,62 +36,43 @@
     }
 
     /* =========================
-       MASONRY GALERIJA (CSS only)
-       minimalistično + centered
+       CLEAN GRID GALERIJA
        ========================= */
 
-    .masonry{
-      column-count: 4;
-      column-gap: 18px;
+    .grid-gallery{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
       padding: 40px 20px;
 
-      max-width: 1300px;   /* omejena širina */
-      margin: 0 auto;      /* centriranje */
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    .item{
-      break-inside: avoid;
-      margin-bottom: 15px;
-      overflow: hidden;
-      border-radius: 8px;
-    }
-
-    .item img{
+    .grid-gallery img{
       width: 100%;
       height: auto;
       display: block;
+      border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       transition: transform 0.2s ease;
     }
 
     @media (hover: hover){
-      .item img:hover{
+      .grid-gallery img:hover{
         transform: scale(1.03);
       }
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 1100px){
-      .masonry{ column-count: 3; }
-    }
-
-    @media (max-width: 800px){
-      .masonry{ column-count: 2; }
-    }
-
-    @media (max-width: 520px){
-      .masonry{ column-count: 1; }
     }
 
     /* =========================
        DOOR ICON – BACK TO HOME
        ========================= */
+
     .door-hotspot {
       position: fixed;
       bottom: 28px;
       right: 32px;
-      width: 76px; /* malce večja kot prej */
+      width: 76px;
       height: 76px;
       background-image: url("../assets/images/icon-door.png");
       background-size: contain;
@@ -129,38 +110,22 @@
 
 <body>
 
-  <!-- HEADER: ikona + naslov -->
+  <!-- HEADER -->
   <header>
     <img src="../assets/images/icon-books.png" alt="books icon" class="icon">
     <h1>Knjige</h1>
   </header>
 
-  <!-- MASONRY GALERIJA -->
-  <div class="masonry">
-    <figure class="item">
-      <img src="../assets/images/books1.jpg" alt="Book 1" loading="lazy">
-    </figure>
-
-    <figure class="item">
-      <img src="../assets/images/books2.jpg" alt="Book 2" loading="lazy">
-    </figure>
-
-    <figure class="item">
-      <img src="../assets/images/books3.jpg" alt="Book 3" loading="lazy">
-    </figure>
-
-     <figure class="item">
-      <img src="../assets/images/books4.jpg" alt="Book 4" loading="lazy">
-    </figure>
-
-     <figure class="item">
-      <img src="../assets/images/books5.jpg" alt="Book 5" loading="lazy">
-    </figure>
-    
-    <!-- kopiraj ta figure blok za nove slike -->
+  <!-- GRID GALERIJA -->
+  <div class="grid-gallery">
+    <img src="../assets/images/books1.jpg" alt="Book 1" loading="lazy">
+    <img src="../assets/images/books2.jpg" alt="Book 2" loading="lazy">
+    <img src="../assets/images/books3.jpg" alt="Book 3" loading="lazy">
+    <img src="../assets/images/books4.jpg" alt="Book 4" loading="lazy">
+    <img src="../assets/images/books5.jpg" alt="Book 5" loading="lazy">
   </div>
 
-  <!-- BACK TO HOME – door hotspot -->
+  <!-- BACK TO HOME -->
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
 </body>
