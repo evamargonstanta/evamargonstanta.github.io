@@ -29,41 +29,66 @@
     }
 
     header h1 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  margin: 0;
-}
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin: 0;
+    }
 
+    /* =========================
+       MASONRY GALERIJA
+       ========================= */
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
+    .masonry{
+      column-count: 4;
+      column-gap: 15px;
       padding: 20px;
     }
 
-    .gallery img {
+    .item{
+      break-inside: avoid;
+      margin-bottom: 15px;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .item img{
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       transition: transform 0.2s ease;
     }
 
-    .gallery img:hover {
-      transform: scale(1.05);
+    @media (hover: hover){
+      .item img:hover{
+        transform: scale(1.03);
+      }
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1100px){
+      .masonry{ column-count: 3; }
+    }
+
+    @media (max-width: 800px){
+      .masonry{ column-count: 2; }
+    }
+
+    @media (max-width: 520px){
+      .masonry{ column-count: 1; }
     }
 
     /* =========================
        DOOR ICON – BACK TO HOME
        ========================= */
+
     .door-hotspot {
       position: fixed;
       bottom: 28px;
       right: 32px;
-      width: 76px; /* malce večje kot prej */
+      width: 76px;
       height: 76px;
       background-image: url("../assets/images/icon-door.png");
       background-size: contain;
@@ -96,26 +121,38 @@
         right: 20px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER: ikona + naslov -->
+  <!-- HEADER -->
   <header>
     <img src="../assets/images/icon-screen.png" alt="screen icon" class="icon">
     <h1>Animacija in oblikovanje</h1>
   </header>
 
-  <!-- GALERIJA -->
-  <div class="gallery">
-    <img src="../assets/images/animation1.jpg" alt="Animation 1">
-    <img src="../assets/images/animation2.jpg" alt="Animation 2">
-    <img src="../assets/images/animation3.jpg" alt="Animation 3">
-    <!-- Dodaj več slik po potrebi -->
+  <!-- MASONRY GALERIJA -->
+  <div class="masonry">
+
+    <figure class="item">
+      <img src="../assets/images/animation1.jpg" alt="Animation 1" loading="lazy">
+    </figure>
+
+    <figure class="item">
+      <img src="../assets/images/animation2.jpg" alt="Animation 2" loading="lazy">
+    </figure>
+
+    <figure class="item">
+      <img src="../assets/images/animation3.jpg" alt="Animation 3" loading="lazy">
+    </figure>
+
+    <!-- kopiraj ta blok za nove projekte -->
+
   </div>
 
-  <!-- BACK TO HOME – door hotspot -->
+  <!-- BACK TO HOME -->
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
 </body>
