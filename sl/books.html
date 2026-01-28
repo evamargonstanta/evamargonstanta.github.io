@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Knjige – Eva Margon</title>
-  
+
   <style>
     body {
       margin: 0;
@@ -36,51 +36,67 @@
     }
 
     /* =========================
-       CLEAN GRID GALERIJA
+       UNIFORM GRID GALERIJA
        ========================= */
 
     .grid-gallery{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;                /* VEČ BELINE */
-  padding: 60px 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
 
-  max-width: 1000px;       /* malo ožja → lepše centrirano */
-  margin: 0 auto;
-}
+      gap: 80px;               /* VEČ BELINE med projekti */
+      padding: 90px 20px;
 
-/* tablet */
-@media (max-width: 900px){
-  .grid-gallery{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-}
-
-/* mobile */
-@media (max-width: 500px){
-  .grid-gallery{
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
-    padding: 40px 15px;
-  }
-}
-
-
-
-    .grid-gallery img{
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
+      max-width: 1050px;
+      margin: 0 auto;
     }
 
-    @media (hover: hover){
-      .grid-gallery img:hover{
-        transform: scale(1.03);
+    /* tablet */
+    @media (max-width: 900px){
+      .grid-gallery{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+        padding: 70px 18px;
       }
+    }
+
+    /* mobile */
+    @media (max-width: 500px){
+      .grid-gallery{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 36px;
+        padding: 60px 15px;
+      }
+    }
+
+    /* KVADRAT */
+
+    .project-card{
+      aspect-ratio: 1 / 1;     /* vedno kvadrat */
+
+      display: flex;
+      align-items: center;     /* vertikalno CENTER */
+      justify-content: center;/* horizontalno CENTER */
+    }
+
+    /* notranji okvir (beline) */
+
+    .project-inner{
+      width: 75%;
+      height: 75%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* slika */
+
+    .project-inner img{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      border-radius: 0;
     }
 
     /* =========================
@@ -135,13 +151,39 @@
     <h1>Knjige</h1>
   </header>
 
-  <!-- GRID GALERIJA -->
+  <!-- GALERIJA -->
   <div class="grid-gallery">
-    <img src="../assets/images/books1.jpg" alt="Book 1" loading="lazy">
-    <img src="../assets/images/books2.jpg" alt="Book 2" loading="lazy">
-    <img src="../assets/images/books3.jpg" alt="Book 3" loading="lazy">
-    <img src="../assets/images/books4.jpg" alt="Book 4" loading="lazy">
-    <img src="../assets/images/books5.jpg" alt="Book 5" loading="lazy">
+
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/books1.jpg" alt="Knjiga 1" loading="lazy">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/books2.jpg" alt="Knjiga 2" loading="lazy">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/books3.jpg" alt="Knjiga 3" loading="lazy">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/books4.jpg" alt="Knjiga 4" loading="lazy">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/books5.jpg" alt="Knjiga 5" loading="lazy">
+      </div>
+    </div>
+
   </div>
 
   <!-- BACK TO HOME -->
