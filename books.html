@@ -43,8 +43,8 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
 
-      gap: 70px;                 
-      padding: 80px 20px;
+      gap: 80px;               /* VEČ BELINE med projekti */
+      padding: 90px 20px;
 
       max-width: 1050px;
       margin: 0 auto;
@@ -54,8 +54,8 @@
     @media (max-width: 900px){
       .grid-gallery{
         grid-template-columns: repeat(2, 1fr);
-        gap: 45px;
-        padding: 60px 18px;
+        gap: 50px;
+        padding: 70px 18px;
       }
     }
 
@@ -63,34 +63,31 @@
     @media (max-width: 500px){
       .grid-gallery{
         grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
-        padding: 50px 15px;
+        gap: 36px;
+        padding: 60px 15px;
       }
     }
 
-    /* KVADRATNI OKVIR */
+    /* KVADRAT */
 
     .project-card{
-      background: #fff;
-      border: 1px solid #eee;
+      aspect-ratio: 1 / 1;     /* vedno kvadrat */
 
-      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;     /* vertikalno CENTER */
+      justify-content: center;/* horizontalno CENTER */
+    }
+
+    /* notranji okvir (beline) */
+
+    .project-inner{
+      width: 75%;
+      height: 75%;
 
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
-    /* notranji box = enakomerna belina */
-
-   .project-inner img{
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
-  border-radius: 0;   /* ← TO DODAŠ */
-}
-
 
     /* slika */
 
@@ -99,6 +96,7 @@
       max-height: 100%;
       object-fit: contain;
       display: block;
+      border-radius: 0;
     }
 
     /* =========================
