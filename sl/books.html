@@ -42,10 +42,10 @@
     .grid-gallery{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 40px 20px;
+  gap: 40px;                /* VEČ BELINE */
+  padding: 60px 20px;
 
-  max-width: 1100px;
+  max-width: 1000px;       /* malo ožja → lepše centrirano */
   margin: 0 auto;
 }
 
@@ -53,17 +53,19 @@
 @media (max-width: 900px){
   .grid-gallery{
     grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 }
 
 /* mobile */
 @media (max-width: 500px){
   .grid-gallery{
-    grid-template-columns: repeat(2, 1fr); /* ostane 2 tudi na mobile */
-    gap: 14px;
-    padding: 25px 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    padding: 40px 15px;
   }
 }
+
 
 
     .grid-gallery img{
