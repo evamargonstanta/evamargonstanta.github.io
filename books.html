@@ -66,44 +66,67 @@
       }
     }
 
-    .grid-gallery{
-  grid-auto-rows: 360px;
+   .grid-gallery{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 60px 20px;
+
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-    /* enotno po višini */
-  .grid-gallery img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* nič rezanja, celotna knjiga vidna */
-  display: block;
-
-  border-radius: 8px;
-  background: #f6f6f6;   /* subtilen okvir za belino */
-  padding: 10px;
-
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-
-   @media (max-width: 900px){
+/* responsive */
+@media (max-width: 900px){
   .grid-gallery{
-    grid-auto-rows: 300px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 }
 
 @media (max-width: 500px){
   .grid-gallery{
-    grid-auto-rows: 240px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
   }
 }
 
+/* BELA KARTICA */
 
-    /* bolj subtilen hover */
-    @media (hover: hover){
-      .grid-gallery img:hover{
-        transform: scale(1.03);
-      }
-    }
+.project-card{
+  background: #fff;
+  border-radius: 10px;
+
+  padding: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+
+  height: 360px;   /* vse kartice enako visoke */
+}
+
+/* responsive višina kartice */
+
+@media (max-width: 900px){
+  .project-card{ height: 300px; }
+}
+
+@media (max-width: 500px){
+  .project-card{ height: 240px; }
+}
+
+/* slika znotraj kartice */
+
+.project-card img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 
     /* =========================
        DOOR ICON – BACK TO HOME
@@ -159,12 +182,28 @@
 
   <!-- GALERIJA -->
   <div class="grid-gallery">
+
+  <div class="project-card">
     <img src="../assets/images/books1.jpg" alt="Knjiga 1" loading="lazy">
+  </div>
+
+  <div class="project-card">
     <img src="../assets/images/books2.jpg" alt="Knjiga 2" loading="lazy">
+  </div>
+
+  <div class="project-card">
     <img src="../assets/images/books3.jpg" alt="Knjiga 3" loading="lazy">
+  </div>
+
+  <div class="project-card">
     <img src="../assets/images/books4.jpg" alt="Knjiga 4" loading="lazy">
+  </div>
+
+  <div class="project-card">
     <img src="../assets/images/books5.jpg" alt="Knjiga 5" loading="lazy">
   </div>
+
+</div>
 
   <!-- BACK TO HOME -->
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
