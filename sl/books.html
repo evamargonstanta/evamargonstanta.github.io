@@ -2,33 +2,39 @@
 <html lang="sl">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Knjige – Eva Margon</title>
 
   <style>
-    body {
+    :root{
+      /* “prst” približek: na iPhone SE je 16px približno pol prsta, 24px ~ 1 prst */
+      --outer-space: 24px;   /* okrog galerije (1 prst) */
+      --inner-space: 12px;   /* med projekti (pol prsta) */
+      --header-gap: 28px;    /* belina med header in galerijo */
+    }
+
+    body{
       margin: 0;
       font-family: 'Rubik', sans-serif;
       background: #fff;
       color: #222;
     }
 
-    header {
+    header{
       display: flex;
       align-items: center;
       padding: 20px;
       border-bottom: 1px solid #ddd;
     }
 
-    header img.icon {
+    header img.icon{
       width: 60px;
       height: 60px;
       margin-right: 15px;
     }
 
-    header h1 {
+    header h1{
       font-size: 1.6rem;
       font-weight: 600;
       letter-spacing: 0.01em;
@@ -36,68 +42,86 @@
     }
 
     /* =========================
-       UNIFORM GRID GALERIJA
+       GALERIJA – DESKTOP (5 v vrsti)
        ========================= */
 
- .grid-gallery{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+    .grid-gallery{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;                    /* manj prostora med projekti (desktop) */
 
-  gap: 6px;                 /* malo več kot 2px, da ne zgleda “zlepljeno” */
-  padding: 20px 0;
+      max-width: 1750px;           /* projekti malenkost večji */
+      margin: var(--header-gap) auto 0;
 
-  max-width: 1600px;        /* VEČJI projekti na desktopu */
-  margin: 0 auto;
+      padding: 0 18px 18px;        /* malo zunanjega prostora */
+      box-sizing: border-box;
+    }
 
-  justify-content: center;
-}
+    /* =========================
+       MOBILE/TABLET (2 v vrsti)
+       želja: okrog ~1 prst, vmes ~pol prsta
+       ========================= */
 
-/* tablet + mobile (2 v vrsti) */
-@media (max-width: 900px){
-  .grid-gallery{
-    grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 900px){
+      .grid-gallery{
+        grid-template-columns: repeat(2, 1fr);
 
-    gap: 2px;               /* manj “sredinskega” zraka */
-    padding: 28px 0;        /* več zgoraj/spodaj, manj levo/desno */
+        /* pol prsta med projekti */
+        gap: var(--inner-space);
 
-    max-width: 520px;       /* projekti manjši na mobile/tablet */
-  }
-}
+        /* 1 prst okrog: levo/desno + zgoraj/spodaj */
+        padding: var(--outer-space);
 
-/* KVADRAT */
-.project-card{
-  aspect-ratio: 1 / 1;
+        /* da 2 stolpca nista prevelika na ozkih zaslonih */
+        max-width: 520px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        /* več beline med headerjem in galerijo */
+        margin: var(--header-gap) auto 0;
+      }
+    }
 
-/* notranji okvir (beline) */
-.project-inner{
-  width: 92%;
-  height: 92%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    /* iPhone SE 2022 / zelo ozko: še malo bolj “tesno” v sredini, več zgoraj/spodaj */
+    @media (max-width: 420px){
+      :root{
+        --outer-space: 26px;   /* malenkost več okrog */
+        --inner-space: 10px;   /* malenkost manj med */
+        --header-gap: 30px;
+      }
+    }
 
-/* slika */
-.project-inner img{
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
-  border-radius: 0;
-}
+    /* =========================
+       KVADRAT + CENTER
+       ========================= */
 
+    .project-card{
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
+    /* notranji okvir: enakomerna belina okoli vsebine */
+    .project-inner{
+      width: 92%;
+      height: 92%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-inner img{
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      border-radius: 0;
+    }
 
     /* =========================
        DOOR ICON – BACK TO HOME
        ========================= */
 
-    .door-hotspot {
+    .door-hotspot{
       position: fixed;
       bottom: 28px;
       right: 32px;
@@ -110,7 +134,7 @@
       z-index: 20;
     }
 
-    .door-hotspot::after {
+    .door-hotspot::after{
       content: "";
       position: absolute;
       inset: 0;
@@ -119,15 +143,15 @@
       transition: opacity 0.2s ease;
     }
 
-    @media (hover: hover) {
-      .door-hotspot:hover::after {
+    @media (hover: hover){
+      .door-hotspot:hover::after{
         opacity: 1;
         cursor: pointer;
       }
     }
 
-    @media (max-width: 768px) {
-      .door-hotspot {
+    @media (max-width: 768px){
+      .door-hotspot{
         width: 60px;
         height: 60px;
         bottom: 20px;
@@ -139,13 +163,11 @@
 
 <body>
 
-  <!-- HEADER -->
   <header>
     <img src="../assets/images/icon-books.png" alt="books icon" class="icon">
     <h1>Knjige</h1>
   </header>
 
-  <!-- GALERIJA -->
   <div class="grid-gallery">
 
     <div class="project-card">
@@ -180,7 +202,6 @@
 
   </div>
 
-  <!-- BACK TO HOME -->
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
 </body>
