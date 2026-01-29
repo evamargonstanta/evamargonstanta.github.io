@@ -41,12 +41,12 @@
 
    .grid-gallery{
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
-  gap: 5px;          /* manj prostora med projekti */
-  padding: 20px 5px; /* manj beline okoli galerije */
+  gap: 12px;             /* ZELO MAJHEN razmik */
+  padding: 20px 12px;
 
-  max-width: 1650px;
+  max-width: 1050px;    /* ožja → projekti večji */
   margin: 0 auto;
 }
 
@@ -54,8 +54,8 @@
 @media (max-width: 900px){
   .grid-gallery{
     grid-template-columns: repeat(2, 1fr);
-     gap: 16px;
-    padding: 26px 18px;
+    gap: 10px;
+    padding: 18px 10px;
   }
 }
 
@@ -63,8 +63,8 @@
 @media (max-width: 500px){
   .grid-gallery{
     grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
-    padding: 18px 5px;
+    gap: 8px;
+    padding: 14px 8px;
   }
 }
 
