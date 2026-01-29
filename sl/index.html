@@ -99,14 +99,35 @@
   z-index: 2;
 }
 
-/* Klikabilne površine (nevidne), a z fade efektom */
 #hotspots .click{
   pointer-events: all;
   cursor: pointer;
 
-  /* nevidno, ampak obstaja */
-  fill: rgba(255,255,255,0);
+  /* osnova: brez overlaya */
+  fill: #fff;
+  fill-opacity: 0;
   stroke: none;
+
+  transition: fill-opacity 160ms ease;
+}
+
+/* DESKTOP hover: osvetli območje */
+@media (hover: hover){
+  #hotspots .hotspot:hover .click{
+    fill-opacity: 0.28;   /* povečaj na 0.35, če želiš bolj očitno */
+  }
+}
+
+/* MOBILE tap: JS doda .is-tapped */
+#hotspots .hotspot.is-tapped .click{
+  fill-opacity: 0.32;
+}
+
+/* iOS highlight off */
+#hotspots .hotspot{
+  -webkit-tap-highlight-color: transparent;
+}
+
 
   transition: opacity 160ms ease;
   opacity: 1;
