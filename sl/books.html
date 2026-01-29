@@ -41,58 +41,42 @@
       margin: 0;
     }
 
-  /* =========================
-   GALERIJA – DESKTOP (5 v vrsti)
-   ========================= */
-
+ /* DESKTOP: 5 v eni vrsti */
 .grid-gallery{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 
-  gap: 8px;                 /* manj prostora med projekti (desktop) */
+  gap: 6px;                 /* malo manj med projekti (desktop) */
   padding: 0 18px 18px;
   box-sizing: border-box;
 
-  max-width: 1750px;        /* projekti malenkost večji */
-  margin: 34px auto 0;      /* VEČ BELINE med headerjem in galerijo */
+  max-width: 1750px;
+  margin: 44px auto 0;      /* ✅ prostor pod headerjem */
 }
 
-/* =========================
-   TABLET + MOBILE (2 v vrsti)
-   - manj “header-gap”
-   - enak razmik povsod (vodoravno + navpično)
-   - zadnja slika centrirana
-   ========================= */
-
+/* TABLET + MOBILE: 2 v eni vrsti */
 @media (max-width: 900px){
   .grid-gallery{
     grid-template-columns: repeat(2, 1fr);
 
-    gap: 12px;              /* ENAKO med projekti in med vrsticami */
-    padding: 12px;          /* enak “okvir” okoli galerije */
+    column-gap: 6px;        /* ✅ manj prostora na sredini */
+    row-gap: 12px;          /* ✅ malo več med vrsticami */
+    padding: 12px;          /* okvir okoli galerije */
 
     max-width: 520px;
-    margin: 16px auto 0;    /* MANJ prostora od headerja na mobile */
-  }
-
-  /* Zadnji element (5.) naj bo centriran spodaj */
-  .grid-gallery > .project-card:last-child{
-    grid-column: 1 / -1;                       /* vzame celo vrstico */
-    width: calc((100% - 12px) / 2);            /* širina enega stolpca */
-    justify-self: center;                      /* centriraj */
+    margin: 14px auto 0;    /* ✅ manj prostora pod headerjem na mobile */
   }
 }
 
-/* iPhone SE / zelo ozko: še malo bolj kompaktno */
+/* iPhone SE (ozko): še bolj “skupaj” po sredini */
 @media (max-width: 420px){
   .grid-gallery{
-    gap: 10px;
+    column-gap: 4px;        /* še manj sredine */
+    row-gap: 10px;
     padding: 10px;
-    margin-top: 14px;
-  }
 
-  .grid-gallery > .project-card:last-child{
-    width: calc((100% - 10px) / 2);
+    max-width: 500px;       /* pusti dovolj velike, ampak ne prevelike */
+    margin-top: 12px;
   }
 }
 
