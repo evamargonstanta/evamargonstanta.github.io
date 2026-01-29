@@ -41,53 +41,61 @@
       margin: 0;
     }
 
-    /* =========================
-       GALERIJA – DESKTOP (5 v vrsti)
-       ========================= */
+  /* =========================
+   GALERIJA – DESKTOP (5 v vrsti)
+   ========================= */
 
-    .grid-gallery{
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;                    /* manj prostora med projekti (desktop) */
+.grid-gallery{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 
-      max-width: 1750px;           /* projekti malenkost večji */
-      margin: var(--header-gap) auto 0;
+  gap: 8px;                 /* manj prostora med projekti (desktop) */
+  padding: 0 18px 18px;
+  box-sizing: border-box;
 
-      padding: 0 18px 18px;        /* malo zunanjega prostora */
-      box-sizing: border-box;
-    }
+  max-width: 1750px;        /* projekti malenkost večji */
+  margin: 34px auto 0;      /* VEČ BELINE med headerjem in galerijo */
+}
 
-    /* =========================
-       MOBILE/TABLET (2 v vrsti)
-       želja: okrog ~1 prst, vmes ~pol prsta
-       ========================= */
+/* =========================
+   TABLET + MOBILE (2 v vrsti)
+   - manj “header-gap”
+   - enak razmik povsod (vodoravno + navpično)
+   - zadnja slika centrirana
+   ========================= */
 
-    @media (max-width: 900px){
-      .grid-gallery{
-        grid-template-columns: repeat(2, 1fr);
+@media (max-width: 900px){
+  .grid-gallery{
+    grid-template-columns: repeat(2, 1fr);
 
-        /* pol prsta med projekti */
-        gap: var(--inner-space);
+    gap: 12px;              /* ENAKO med projekti in med vrsticami */
+    padding: 12px;          /* enak “okvir” okoli galerije */
 
-        /* 1 prst okrog: levo/desno + zgoraj/spodaj */
-        padding: var(--outer-space);
+    max-width: 520px;
+    margin: 16px auto 0;    /* MANJ prostora od headerja na mobile */
+  }
 
-        /* da 2 stolpca nista prevelika na ozkih zaslonih */
-        max-width: 520px;
+  /* Zadnji element (5.) naj bo centriran spodaj */
+  .grid-gallery > .project-card:last-child{
+    grid-column: 1 / -1;                       /* vzame celo vrstico */
+    width: calc((100% - 12px) / 2);            /* širina enega stolpca */
+    justify-self: center;                      /* centriraj */
+  }
+}
 
-        /* več beline med headerjem in galerijo */
-        margin: var(--header-gap) auto 0;
-      }
-    }
+/* iPhone SE / zelo ozko: še malo bolj kompaktno */
+@media (max-width: 420px){
+  .grid-gallery{
+    gap: 10px;
+    padding: 10px;
+    margin-top: 14px;
+  }
 
-    /* iPhone SE 2022 / zelo ozko: še malo bolj “tesno” v sredini, več zgoraj/spodaj */
-    @media (max-width: 420px){
-      :root{
-        --outer-space: 26px;   /* malenkost več okrog */
-        --inner-space: 10px;   /* malenkost manj med */
-        --header-gap: 30px;
-      }
-    }
+  .grid-gallery > .project-card:last-child{
+    width: calc((100% - 10px) / 2);
+  }
+}
+
 
     /* =========================
        KVADRAT + CENTER
