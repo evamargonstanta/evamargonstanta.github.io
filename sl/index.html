@@ -75,51 +75,60 @@
       margin: 0 auto;
     }
 
-    /* =========================
-       SVG LAYERJI
-       ========================= */
+/* =========================
+   SVG LAYERJI
+   ========================= */
 
-    /* outline layer (tvoj SVG): samo črta, brez klikov */
-    #hotspots-outline {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
+/* outline layer (tvoj SVG): zdaj samo “neviden layer” (lahko ga tudi izbrišeš iz HTML, če hočeš) */
+#hotspots-outline{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  display: none; /* <- skrijemo obrobe, ker jih ne rabimo več */
+}
 
-    /* privzeto obrobe skrite */
-    #hotspots-outline path {
-      fill: none;
-      stroke: #000;
-      stroke-width: 3px;
-      opacity: 0;
-      transition: opacity 0.18s ease;
-      vector-effect: non-scaling-stroke; /* obdrži 1px občutek */
-    }
+/* klik layer: lovi interakcijo */
+#hotspots{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
 
-    /* pokaži obrobo na hover ali tap */
-    #hotspots-outline g.is-hovered path,
-    #hotspots-outline g.is-tapped path {
-      opacity: 1;
-    }
+/* Klikabilne površine (nevidne), a z fade efektom */
+#hotspots .click{
+  pointer-events: all;
+  cursor: pointer;
 
-    /* klik layer: lovi interakcijo */
-    #hotspots {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-    }
+  /* nevidno, ampak obstaja */
+  fill: rgba(255,255,255,0);
+  stroke: none;
 
-    #hotspots .click {
-      pointer-events: all;
-      cursor: pointer;
-      fill: rgba(255,255,255,0);
-      stroke: none;
-    }
+  transition: opacity 160ms ease;
+  opacity: 1;
+}
+
+/* DESKTOP hover: samo fade (brez obrobe) */
+@media (hover: hover){
+  #hotspots .hotspot:hover .click{
+    opacity: 0.55;
+  }
+}
+
+/* MOBILE tap: JS doda .is-tapped, mi fade-amo */
+#hotspots .hotspot.is-tapped .click{
+  opacity: 0.55;
+}
+
+/* da na touch ni modri highlight */
+#hotspots .hotspot{
+  -webkit-tap-highlight-color: transparent;
+}
+
 
     /* =========================
        LANGUAGE SWITCH (SL/EN)
@@ -606,100 +615,83 @@
       });
     })();
 
-    /* =========================
-       2) HOTSPOT NAV + OUTLINE HOVER/TAP
-       ========================= */
-    (function () {
-      const links = {
-        'hotspot-newspaper': 'about.html',
-        'hotspot-brushes': 'wet-techniques.html',
-        'hotspot-crayons': 'dry-techniques.html',
-        'hotspot-books': 'books.html',
-        'hotspot-press': 'printmaking.html',
-        'hotspot-screen': 'animation.html',
-        'hotspot-bag': 'https://evamargon.sumupstore.com'
-      };
+   /* =========================
+   2) HOTSPOT NAV + FADE HOVER/TAP
+   ========================= */
+(function () {
+  const links = {
+    'hotspot-newspaper': 'about.html',
+    'hotspot-brushes': 'wet-techniques.html',
+    'hotspot-crayons': 'dry-techniques.html',
+    'hotspot-books': 'books.html',
+    'hotspot-press': 'printmaking.html',
+    'hotspot-screen': 'animation.html',
+    'hotspot-bag': 'https://evamargon.sumupstore.com'
+  };
 
-      const hotspotsSvg = document.getElementById('hotspots');
-      const outlineSvg = document.getElementById('hotspots-outline');
-      if (!hotspotsSvg || !outlineSvg) return;
+  const hotspotsSvg = document.getElementById('hotspots');
+  const outlineSvg = document.getElementById('hotspots-outline'); // ostane zaradi aspect sync, lahko je null
+  if (!hotspotsSvg) return;
 
-      const isMobileOrPortrait = () =>
-        window.matchMedia('(max-width: 420px)').matches ||
-        window.matchMedia('(orientation: portrait) and (max-width: 768px)').matches;
+  const isMobileOrPortrait = () =>
+    window.matchMedia('(max-width: 420px)').matches ||
+    window.matchMedia('(orientation: portrait) and (max-width: 768px)').matches;
 
-      const applyAspect = () => {
-        const par = isMobileOrPortrait() ? 'xMidYMid slice' : 'xMidYMid meet';
-        hotspotsSvg.setAttribute('preserveAspectRatio', par);
-        outlineSvg.setAttribute('preserveAspectRatio', par);
-      };
+  const applyAspect = () => {
+    const par = isMobileOrPortrait() ? 'xMidYMid slice' : 'xMidYMid meet';
+    hotspotsSvg.setAttribute('preserveAspectRatio', par);
+    if (outlineSvg) outlineSvg.setAttribute('preserveAspectRatio', par);
+  };
 
-      applyAspect();
-      window.addEventListener('resize', applyAspect, { passive: true });
+  applyAspect();
+  window.addEventListener('resize', applyAspect, { passive: true });
 
-      const getOutlineGroup = (id) => outlineSvg.querySelector('#' + CSS.escape(id));
+  const clearTapped = () => {
+    hotspotsSvg.querySelectorAll('.hotspot.is-tapped').forEach(el => el.classList.remove('is-tapped'));
+  };
 
-      const clearTapped = () => {
-        outlineSvg.querySelectorAll('g.is-tapped').forEach(el => el.classList.remove('is-tapped'));
-      };
+  /* DESKTOP HOVER: fade je že v CSS (:hover), tukaj ni treba nič */
 
-      /* DESKTOP HOVER: pokaži obrobo */
-      hotspotsSvg.querySelectorAll('.hotspot').forEach(h => {
-        h.addEventListener('pointerenter', () => {
-          if (isMobileOrPortrait()) return;
-          const og = getOutlineGroup(h.id);
-          if (og) og.classList.add('is-hovered');
-        });
+  /* KLIK (desktop + mobile) */
+  hotspotsSvg.addEventListener('click', function (e) {
+    const hotspot = e.target.closest('.hotspot');
+    if (!hotspot) return;
 
-        h.addEventListener('pointerleave', () => {
-          const og = getOutlineGroup(h.id);
-          if (og) og.classList.remove('is-hovered');
-        });
-      });
+    const id = hotspot.id;
+    const href = links[id];
+    if (!href) return;
 
-      /* KLIK (desktop + mobile) */
-      hotspotsSvg.addEventListener('click', function (e) {
-        const hotspot = e.target.closest('.hotspot');
-        if (!hotspot) return;
+    const isExternal = /^https?:\/\//i.test(href);
 
-        const id = hotspot.id;
-        const href = links[id];
-        if (!href) return;
+    if (isMobileOrPortrait()) {
+      e.preventDefault();
+      clearTapped();
 
-        const isExternal = /^https?:\/\//i.test(href);
+      hotspot.classList.add('is-tapped');
 
-        if (isMobileOrPortrait()) {
-          e.preventDefault();
-          clearTapped();
-
-          const og = getOutlineGroup(id);
-          if (og) og.classList.add('is-tapped');
-
-          window.setTimeout(() => {
-            if (og) og.classList.remove('is-tapped');
-            if (isExternal) {
-              window.open(href, '_blank', 'noopener');
-            } else {
-              window.location.href = href;
-            }
-          }, 1000);
-
-          return;
-        }
-
+      window.setTimeout(() => {
+        hotspot.classList.remove('is-tapped');
         if (isExternal) {
           window.open(href, '_blank', 'noopener');
         } else {
           window.location.href = href;
         }
-      }, { passive: false });
+      }, 700);
 
-      window.addEventListener('scroll', clearTapped, { passive: true });
-      window.addEventListener('resize', () => {
-        clearTapped();
-        outlineSvg.querySelectorAll('g.is-hovered').forEach(el => el.classList.remove('is-hovered'));
-      }, { passive: true });
-    })();
+      return;
+    }
+
+    if (isExternal) {
+      window.open(href, '_blank', 'noopener');
+    } else {
+      window.location.href = href;
+    }
+  }, { passive: false });
+
+  window.addEventListener('scroll', clearTapped, { passive: true });
+  window.addEventListener('resize', clearTapped, { passive: true });
+})();
+
   </script>
 
 </body>
