@@ -55,34 +55,30 @@
   margin: 0 auto;
 }
 
-/* TABLET + MOBILE: 2 v eni vrsti */
+/* TABLET + MOBILE */
 @media (max-width: 900px){
   .grid-gallery{
     grid-template-columns: repeat(2, 1fr);
 
-    /* enotno kontroliramo razmake */
-    column-gap: 2px;         
-    row-gap: 10px;
+    column-gap: 2px;     /* skoraj nič na sredini */
+    row-gap: 12px;       /* več zgoraj/spodaj */
 
-    /* manj prostora nad galerijo na mobile */
-    padding: 14px 6px 12px;
+    padding: 14px 18px 18px;  /* več ob straneh kot v sredini */
 
     max-width: 520px;
-    margin: 0 auto;          /* brez dodatnih top marginov */
+    margin: 0 auto;
   }
 }
 
-/* iPhone SE (ozko): še bolj “skupaj” po sredini */
+/* iPhone SE */
 @media (max-width: 420px){
   .grid-gallery{
-    column-gap: 4px;
+    column-gap: 1px;     /* praktično skupaj */
     row-gap: 10px;
 
-    /* okvir okoli galerije (malo manj) */
-    padding: 12px 10px 10px;
+    padding: 12px 20px 18px;
 
-    max-width: 500px;
-    margin: 0 auto;          /* ✅ odstranjeno margin-top */
+    max-width: 480px;
   }
 }
 
