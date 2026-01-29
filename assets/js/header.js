@@ -3,7 +3,8 @@ async function loadHeader() {
   if (!mount) return;
 
   // Naloži skupni header iz sl/_header.html (ker so vse sl strani v isti mapi)
-  const res = await fetch("_header.html");
+  const res = await fetch("header.html");
+
   mount.innerHTML = await res.text();
 
   // Ker so ikone v root/assets/images, iz sl/ do tja potrebuješ ../
