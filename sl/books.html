@@ -22,11 +22,13 @@
     }
 
     header{
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
-    }
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  padding-bottom: 48px;      /* ✅ to je prostor pod glavo */
+  border-bottom: 1px solid #ddd;
+}
+
 
     header img.icon{
       width: 60px;
@@ -51,7 +53,7 @@
   box-sizing: border-box;
 
   max-width: 1750px;
-  margin: 44px auto 0;      /* ✅ prostor pod headerjem */
+  margin: 0 auto;      /* ✅ prostor pod headerjem */
 }
 
 /* TABLET + MOBILE: 2 v eni vrsti */
