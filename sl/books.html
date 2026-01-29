@@ -43,19 +43,21 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 4px;            /* manj med projekti */
-  padding: 12px 6px;   /* manj okrog galerije */
+  gap: 2px;              /* skoraj nič razmika */
+  padding: 8px 2px;      /* zelo malo okrog */
 
   max-width: 1550px;
   margin: 0 auto;
+
+  justify-content: center;
 }
 
 /* tablet + mobile (poenoteno) */
 @media (max-width: 900px){
   .grid-gallery{
     grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
-    padding: 10px 6px;
+    gap: 2px;
+    padding: 6px 2px;
   }
 }
 
