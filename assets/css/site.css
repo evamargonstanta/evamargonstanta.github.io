@@ -61,3 +61,42 @@ html, body{
   }
 }
 
+/* MOBILE - prisilno (da ne prepiše inline CSS iz strani) */
+@media (max-width: 520px){
+  .site-header{
+    padding: 10px 8px 8px !important;
+    background: #fff !important;
+  }
+
+  .site-header .icon-nav{
+    gap: 8px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    flex-wrap: nowrap !important;   /* vse v 1 vrstico */
+    justify-content: center !important;
+  }
+
+  .site-header .icon-link{
+    width: auto !important;
+    margin: 0 !important;
+  }
+
+  .site-header .icon{
+    width: 30px !important;
+    height: 30px !important;
+    filter: grayscale(100%) contrast(1.1) !important;
+    opacity: 0.35 !important;       /* neaktivne bolj “fade” */
+  }
+
+  .site-header .icon-link.is-active .icon{
+    filter: none !important;
+    opacity: 1 !important;
+  }
+
+  .site-header .icon-title{
+    font-size: 11px !important;
+    margin-top: 4px !important;
+  }
+}
+
+
