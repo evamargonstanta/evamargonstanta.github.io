@@ -43,43 +43,49 @@
       margin: 0;
     }
 
- /* DESKTOP: 5 v eni vrsti */
+/* DESKTOP: 5 v eni vrsti */
 .grid-gallery{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 
   gap: 6px;
-  padding: 40px 18px 18px;   /* ↑ 40px je prostor NAD galerijo */
+  padding: 40px 18px 18px;   /* prostor POD sivo črto, NAD galerijo */
 
   max-width: 1750px;
   margin: 0 auto;
 }
-
 
 /* TABLET + MOBILE: 2 v eni vrsti */
 @media (max-width: 900px){
   .grid-gallery{
     grid-template-columns: repeat(2, 1fr);
 
-    column-gap: 6px;        /* ✅ manj prostora na sredini */
-    row-gap: 12px;          /* ✅ malo več med vrsticami */
-    padding: 18px 12px 12px;          /* okvir okoli galerije */
+    /* enotno kontroliramo razmake */
+    column-gap: 6px;         
+    row-gap: 12px;
+
+    /* manj prostora nad galerijo na mobile */
+    padding: 14px 12px 12px;
 
     max-width: 520px;
+    margin: 0 auto;          /* brez dodatnih top marginov */
   }
 }
 
 /* iPhone SE (ozko): še bolj “skupaj” po sredini */
 @media (max-width: 420px){
   .grid-gallery{
-    column-gap: 4px;        /* še manj sredine */
+    column-gap: 4px;
     row-gap: 10px;
-    padding: 10px;
 
-    max-width: 500px;       /* pusti dovolj velike, ampak ne prevelike */
-    margin-top: 12px;
+    /* okvir okoli galerije (malo manj) */
+    padding: 12px 10px 10px;
+
+    max-width: 500px;
+    margin: 0 auto;          /* ✅ odstranjeno margin-top */
   }
 }
+
 
 
     /* =========================
