@@ -12,9 +12,17 @@ async function loadHeader() {
 
   // Nastavi src za vse ikone
   document.querySelectorAll(".site-header img[data-icon]").forEach(img => {
-    const file = img.getAttribute("data-icon");
-    img.src = assetPrefix + "assets/images/" + file;
-  });
+  const file = img.getAttribute("data-icon");
+  const url = assetPrefix + "assets/images/" + file;
+
+  img.src = url;
+
+  // Če se ikona ne naloži, jo skrijemo (da ni "vprašaja")
+  img.onerror = () => {
+    img.style.display = "none";
+  };
+});
+
 
   // Ugotovi, katera stran je aktivna (npr. books.html)
   const current = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
