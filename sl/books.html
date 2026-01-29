@@ -39,34 +39,35 @@
        UNIFORM GRID GALERIJA
        ========================= */
 
-    .grid-gallery{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+   .grid-gallery{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* VSE V ENO VRSTO */
 
-       gap: 40px;          /* manj razmika med projekti */
-  padding: 50px 20px; /* manj beline okoli galerije */
+  gap: 24px;               
+  padding: 40px 20px;
 
-      max-width: 1050px;
-      margin: 0 auto;
-    }
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-    /* tablet */
-    @media (max-width: 900px){
-      .grid-gallery{
-        grid-template-columns: repeat(2, 1fr);
-        gap: 28px;
-    padding: 40px 18px;
-      }
-    }
+/* tablet */
+@media (max-width: 900px){
+  .grid-gallery{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 32px 18px;
+  }
+}
 
-    /* mobile */
-    @media (max-width: 500px){
-      .grid-gallery{
-        grid-template-columns: repeat(2, 1fr);
-        ap: 20px;
-    padding: 32px 15px;
-      }
-    }
+/* mobile */
+@media (max-width: 500px){
+  .grid-gallery{
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 28px 15px;
+  }
+}
+
 
     /* KVADRAT */
 
