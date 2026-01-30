@@ -93,6 +93,15 @@
       transition: fill-opacity 160ms ease;
     }
 
+    /* Fix za "šiv" (poševna črta) na BOOKS hotspotu */
+#hotspots #hotspot-books .click{
+  stroke: rgba(255,255,255,0);  /* prosojen stroke */
+  stroke-width: 0.6px;          /* zelo tanko */
+  stroke-linejoin: round;       /* zgladi stike */
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
     #hotspots #hotspot-books .click{
   shape-rendering: geometricPrecision;
 }
