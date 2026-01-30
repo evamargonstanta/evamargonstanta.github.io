@@ -39,11 +39,9 @@
     .grid-gallery{
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-
-      gap: 22px;                 /* razmik med projekti (desktop) */
+      gap: 22px;
       padding: 50px 24px 24px;
-
-      max-width: 1600px;         /* ožja galerija = manjši kvadrati */
+      max-width: 1600px;
       margin: 0 auto;
     }
 
@@ -54,7 +52,6 @@
         row-gap: 14px;
         padding: 18px 20px 20px;
         max-width: 600px;
-        margin: 0 auto;
       }
     }
 
@@ -129,7 +126,7 @@
       max-height: 100%;
       object-fit: contain;
       display: block;
-      border-radius: 0; /* 90° robovi */
+      border-radius: 0;
     }
 
     /* ===== DOOR ICON – BACK TO HOME ===== */
@@ -171,14 +168,13 @@
       }
     }
 
-    /* ===== MODAL (slika + podatki) ===== */
+    /* ===== MODAL ===== */
     .modal{
       position: fixed;
       inset: 0;
       display: none;
       z-index: 999;
     }
-
     .modal.is-open{ display: block; }
 
     .modal-backdrop{
@@ -193,46 +189,98 @@
       top: 50%;
       transform: translate(-50%, -50%);
 
-      width: min(980px, calc(100vw - 28px));
+      width: min(1100px, calc(100vw - 28px));
       max-height: calc(100vh - 28px);
-      overflow: auto;
 
       background: #fff;
-      border-radius: 0; /* 90° */
+      border-radius: 0;
+      overflow: hidden; /* pomembno: vse scroll se zgodi znotraj */
     }
 
-    .modal-close{
-      position: absolute;
-      top: 10px;
-      right: 10px;
+    /* header z gumbi */
+    .modal-topbar{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 10px;
+      border-bottom: 1px solid #eee;
+      background: #fff;
+    }
+
+    .modal-topbar .spacer{
+      width: 40px; /* da je naslov optično centriran */
+    }
+
+    .modal-titlebar{
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 0;
+      text-align: center;
+      flex: 1;
+      padding: 0 10px;
+      line-height: 1.2;
+    }
+
+    .icon-btn{
       border: 0;
-      background: rgba(255,255,255,0.92);
-      padding: 8px 10px;
+      background: transparent;
+      padding: 6px;
       cursor: pointer;
-      font: inherit;
-      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-btn img{
+      width: 34px;
+      height: 34px;
+      display: block;
+    }
+
+    @media (max-width: 520px){
+      .icon-btn img{ width: 30px; height: 30px; }
+    }
+
+    .icon-btn:focus{ outline: none; }
+    .icon-btn:focus-visible{
+      outline: 2px solid #111;
+      outline-offset: 2px;
+    }
+
+    /* vsebina: desktop levo slika / desno podatki */
+    .modal-content{
+      display: flex;
+      gap: 0;
+      height: calc(100% - 56px); /* približek višine topbara */
     }
 
     .modal-media{
-      width: 100%;
+      flex: 0 0 58%;
       background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      box-sizing: border-box;
     }
 
     .modal-media img{
       width: 100%;
       height: auto;
+      max-height: 62vh;          /* manjša slika = manj potrebe po scrollu */
+      object-fit: contain;
       display: block;
     }
 
     .modal-body{
-      padding: 16px 16px 18px;
-      text-align: left;
-    }
+      flex: 0 0 42%;
+      padding: 14px 14px 16px;
+      box-sizing: border-box;
 
-    .modal-title{
-      margin: 0 0 10px;
-      font-size: 1.25rem;
-      font-weight: 600;
+      /* če podatkov res veliko, naj se scrolla samo desna stran */
+      overflow: auto;
+      max-height: calc(100vh - 28px - 56px); /* okno - padding - topbar */
+      background: #fff;
     }
 
     .meta{
@@ -244,43 +292,33 @@
       line-height: 1.35;
     }
 
-    @media (max-width: 520px){
-      .meta{
-        grid-template-columns: 1fr;
+    .meta .label{ opacity: 0.7; }
+    .meta .value{ opacity: 0.95; }
+
+    /* MOBILE: slika zgoraj, podatki spodaj */
+    @media (max-width: 860px){
+      .modal-content{
+        flex-direction: column;
+        height: auto;
+        max-height: calc(100vh - 28px);
+        overflow: auto; /* če je res potrebno */
       }
-      .meta .label{
-        opacity: 0.7;
-        margin-top: 6px;
+
+      .modal-media{
+        flex: none;
+        padding: 12px;
+      }
+
+      .modal-media img{
+        max-height: 46vh; /* na mobile še malo manj, da ostane prostor za tekst */
+      }
+
+      .modal-body{
+        flex: none;
+        max-height: none;
+        overflow: visible;
       }
     }
-
-    .meta .label{
-      opacity: 0.7;
-    }
-
-    .meta .value{
-      opacity: 0.95;
-    }
-
-    .modal-footer{
-      position: sticky;
-      bottom: 0;
-      padding: 10px 10px;
-      border-top: 1px solid #eee;
-      background: #fff;
-      display: flex;
-      gap: 8px;
-    }
-
-    .modal-btn{
-      border: 1px solid #ddd;
-      background: #fff;
-      padding: 10px 12px;
-      font: inherit;
-      cursor: pointer;
-    }
-
-    .modal-btn:active{ transform: translateY(1px); }
   </style>
 </head>
 
@@ -376,30 +414,43 @@
   <div class="modal" id="projectModal" aria-hidden="true">
     <div class="modal-backdrop" data-close="1"></div>
 
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" type="button" data-close="1">Zapri ✕</button>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitleTop">
+      <!-- TOP BAR -->
+      <div class="modal-topbar">
+        <button class="icon-btn" type="button" id="prevBtn" aria-label="Prejšnji">
+          <img src="../assets/images/icon-backward.png" alt="">
+        </button>
 
-      <div class="modal-media">
-        <img id="modalImg" src="" alt="">
+        <h2 class="modal-titlebar" id="modalTitleTop"></h2>
+
+        <button class="icon-btn" type="button" data-close="1" aria-label="Zapri">
+          <img src="../assets/images/icon-exit.png" alt="">
+        </button>
       </div>
 
-      <div class="modal-body">
-        <h2 class="modal-title" id="modalTitle"></h2>
-
-        <div class="meta">
-          <div class="label">Leto</div><div class="value" id="mYear"></div>
-          <div class="label">Dolžina</div><div class="value" id="mDuration"></div>
-          <div class="label">Tip</div><div class="value" id="mType"></div>
-          <div class="label">Programi</div><div class="value" id="mTools"></div>
-          <div class="label">Vloga</div><div class="value" id="mRole"></div>
-          <div class="label">Opombe</div><div class="value" id="mNotes"></div>
+      <!-- CONTENT -->
+      <div class="modal-content">
+        <div class="modal-media">
+          <img id="modalImg" src="" alt="">
         </div>
-      </div>
 
-      <div class="modal-footer">
-        <button class="modal-btn" type="button" id="prevBtn">← Prejšnji</button>
-        <button class="modal-btn" type="button" id="nextBtn">Naslednji →</button>
-        <button class="modal-btn" type="button" data-close="1">Zapri</button>
+        <div class="modal-body">
+          <div class="meta">
+            <div class="label">Leto</div><div class="value" id="mYear"></div>
+            <div class="label">Dolžina</div><div class="value" id="mDuration"></div>
+            <div class="label">Tip</div><div class="value" id="mType"></div>
+            <div class="label">Programi</div><div class="value" id="mTools"></div>
+            <div class="label">Vloga</div><div class="value" id="mRole"></div>
+            <div class="label">Opombe</div><div class="value" id="mNotes"></div>
+          </div>
+
+          <!-- spodnji gumb samo za next (na desktopu je v topbaru že prev; to je “hitro” dno) -->
+          <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:14px;">
+            <button class="icon-btn" type="button" id="nextBtn" aria-label="Naslednji">
+              <img src="../assets/images/icon-forward.png" alt="">
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -409,7 +460,8 @@
     const cards = Array.from(document.querySelectorAll('.project-card[data-media]'));
     const modal = document.getElementById('projectModal');
     const img = document.getElementById('modalImg');
-    const title = document.getElementById('modalTitle');
+
+    const titleTop = document.getElementById('modalTitleTop');
 
     const mYear = document.getElementById('mYear');
     const mDuration = document.getElementById('mDuration');
@@ -435,7 +487,8 @@
 
       img.src = card.dataset.media;
       img.alt = card.querySelector('img')?.alt || card.dataset.title || 'Projekt';
-      title.textContent = card.dataset.title || '';
+
+      titleTop.textContent = card.dataset.title || '';
 
       setText(mYear, card.dataset.year || '');
       setText(mDuration, card.dataset.duration || '');
