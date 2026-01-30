@@ -40,15 +40,16 @@
       color: #222;
     }
 
-    /* DESKTOP: 5 v eni vrsti */
+    /* DESKTOP: 4 v eni vrsti */
     .grid-gallery{
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      padding: 50px 18px 18px;
-      max-width: 1750px;
-      margin: 0 auto;
-    }
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;                 /* več prostora med projekti */
+  padding: 50px 24px 24px;
+  max-width: 1500px;        /* ožja galerija = manjši kvadrati */
+  margin: 0 auto;
+}
+
 
     /* TABLET + MOBILE */
     @media (max-width: 900px){
