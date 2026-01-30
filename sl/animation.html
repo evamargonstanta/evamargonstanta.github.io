@@ -175,18 +175,43 @@
 }
 
 /* gumbi v kotih / straneh (overlay) */
-.modal-close,
-.modal-prev,
-.modal-next{
+/* vsi gumbi spodaj desno skupaj */
+.modal-controls{
   position:absolute;
+  right:16px;
+  bottom:16px;
   z-index:5;
+
+  display:flex;
+  gap:14px;
+}
+
+.modal-controls button{
   border:0;
   background:transparent;
   padding:6px;
   cursor:pointer;
-  display:inline-flex;
+  display:flex;
   align-items:center;
   justify-content:center;
+}
+
+.modal-controls img{
+  width:36px;
+  height:36px;
+  display:block;
+}
+
+@media (max-width:520px){
+  .modal-controls{
+    right:12px;
+    bottom:12px;
+  }
+
+  .modal-controls img{
+    width:32px;
+    height:32px;
+  }
 }
 
 .modal-close{ top:12px; right:12px; }
@@ -456,17 +481,20 @@
 
     <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Podrobnosti projekta">
       <!-- gumbi v “stari” postavitvi -->
-      <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
-        <img src="../assets/images/icon-exit.png" alt="" />
-      </button>
+      <div class="modal-controls">
+  <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
+    <img src="../assets/images/icon-backward.png" alt="">
+  </button>
 
-      <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
-        <img src="../assets/images/icon-backward.png" alt="" />
-      </button>
+  <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
+    <img src="../assets/images/icon-forward.png" alt="">
+  </button>
 
-      <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
-        <img src="../assets/images/icon-forward.png" alt="" />
-      </button>
+  <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
+    <img src="../assets/images/icon-exit.png" alt="">
+  </button>
+</div>
+
 
       <div class="modal-content">
         <div class="modal-media">
