@@ -482,7 +482,8 @@
         window.matchMedia('(orientation: portrait) and (max-width: 768px)').matches;
 
       const applyAspect = () => {
-        const par = 'xMidYMid meet';
+        const par = isMobileOrPortrait() ? 'xMidYMid slice' : 'xMidYMid meet';
+
 
         hotspotsSvg.setAttribute('preserveAspectRatio', par);
       };
