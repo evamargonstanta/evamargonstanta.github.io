@@ -2,12 +2,18 @@
 <html lang="sl">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animacija in oblikovanje – Eva Margon</title>
 
   <style>
+    body{
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: #fff;
+      color: #222;
+    }
+
     header{
       display:flex;
       align-items:center;
@@ -25,108 +31,86 @@
     header h1{
       font-size:1.8rem;
       margin:0;
+      font-weight: 600;
+      letter-spacing: 0.01em;
     }
 
-    :root{
-      --outer-space: 24px;
-      --inner-space: 12px;
-      --header-gap: 28px;
-    }
-
-    body{
-      margin: 0;
-      font-family: 'Rubik', sans-serif;
-      background: #fff;
-      color: #222;
-    }
-
-    /* DESKTOP: 5 v eni vrsti */
+    /* ===== GALERIJA ===== */
     .grid-gallery{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 22px;                 /* več prostora med projekti */
-  padding: 50px 24px 24px;
-  max-width: 1600px;        /* ožja galerija = manjši kvadrati */
-  margin: 0 auto;
-}
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
 
+      gap: 22px;                 /* razmik med projekti (desktop) */
+      padding: 50px 24px 24px;
 
-    /* TABLET + MOBILE */
-   @media (max-width: 900px){
-  .grid-gallery{
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 12px;
-    row-gap: 14px;
-    padding: 18px 20px 20px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-}
-
+      max-width: 1600px;         /* ožja galerija = manjši kvadrati */
+      margin: 0 auto;
     }
 
-    /* iPhone SE */
+    @media (max-width: 900px){
+      .grid-gallery{
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 12px;
+        row-gap: 14px;
+        padding: 18px 20px 20px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
     @media (max-width: 420px){
       .grid-gallery{
-        column-gap: 1px;
-        row-gap: 10px;
+        column-gap: 10px;
+        row-gap: 12px;
         padding: 12px 20px 18px;
         max-width: 480px;
       }
     }
 
-    /* MOBILE: odstrani “fake” sredinsko belino, ki nastane iz project-inner */
-    @media (max-width: 900px){
-      .project-inner{
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    /* iPhone SE: še malenkost bolj tesno */
-    @media (max-width: 420px){
-      .project-inner{
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    /* =========================
-       KVADRAT + CENTER
-       ========================= */
+    /* ===== PROJEKT = BUTTON ===== */
     .project-card{
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;   /* NUJNO za overlay */
-}
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
 
-/* play ikona */
-.project-card::after{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("../assets/images/icon-play.png") center center no-repeat;
-  background-size: 72px 72px;   /* velikost ikonice */
-  opacity: 0.85;
-  pointer-events: none;        /* da klik še vedno gre na projekt */
-}
+      background: transparent;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .project-card:focus{ outline: none; }
+    .project-card:focus-visible{
+      outline: 2px solid #111;
+      outline-offset: 3px;
+    }
+
+    /* “play” ikonca */
+    .project-card::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("../assets/images/icon-play.png") center center no-repeat;
+      background-size: 72px 72px;
+      opacity: 0.88;
+      pointer-events: none;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
 
     @media (max-width: 900px){
-  .project-card::after{
-    background-size: 56px 56px;
-  }
-}
+      .project-card::after{
+        background-size: 56px 56px;
+      }
+    }
 
-/* malo lepši hover (desktop) */
-@media (hover: hover){
-  .project-card:hover::after{
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
+    @media (hover: hover){
+      .project-card:hover::after{
+        opacity: 1;
+        transform: scale(1.06);
+      }
+    }
 
     .project-inner{
       width: 92%;
@@ -134,6 +118,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    @media (max-width: 900px){
+      .project-inner{ width: 100%; height: 100%; }
     }
 
     .project-inner img{
@@ -144,9 +132,7 @@
       border-radius: 0; /* 90° robovi */
     }
 
-    /* =========================
-       DOOR ICON – BACK TO HOME
-       ========================= */
+    /* ===== DOOR ICON – BACK TO HOME ===== */
     .door-hotspot{
       position: fixed;
       bottom: 28px;
@@ -184,6 +170,117 @@
         right: 20px;
       }
     }
+
+    /* ===== MODAL (slika + podatki) ===== */
+    .modal{
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 999;
+    }
+
+    .modal.is-open{ display: block; }
+
+    .modal-backdrop{
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .modal-panel{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      width: min(980px, calc(100vw - 28px));
+      max-height: calc(100vh - 28px);
+      overflow: auto;
+
+      background: #fff;
+      border-radius: 0; /* 90° */
+    }
+
+    .modal-close{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: 0;
+      background: rgba(255,255,255,0.92);
+      padding: 8px 10px;
+      cursor: pointer;
+      font: inherit;
+      z-index: 2;
+    }
+
+    .modal-media{
+      width: 100%;
+      background: #000;
+    }
+
+    .modal-media img{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .modal-body{
+      padding: 16px 16px 18px;
+      text-align: left;
+    }
+
+    .modal-title{
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .meta{
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      column-gap: 12px;
+      row-gap: 8px;
+      font-size: 0.98rem;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 520px){
+      .meta{
+        grid-template-columns: 1fr;
+      }
+      .meta .label{
+        opacity: 0.7;
+        margin-top: 6px;
+      }
+    }
+
+    .meta .label{
+      opacity: 0.7;
+    }
+
+    .meta .value{
+      opacity: 0.95;
+    }
+
+    .modal-footer{
+      position: sticky;
+      bottom: 0;
+      padding: 10px 10px;
+      border-top: 1px solid #eee;
+      background: #fff;
+      display: flex;
+      gap: 8px;
+    }
+
+    .modal-btn{
+      border: 1px solid #ddd;
+      background: #fff;
+      padding: 10px 12px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .modal-btn:active{ transform: translateY(1px); }
   </style>
 </head>
 
@@ -196,39 +293,188 @@
 
   <div class="grid-gallery">
 
-    <div class="project-card">
+    <!-- PROJEKT 1 -->
+    <button class="project-card" type="button"
+      data-title="Animacija 1"
+      data-year="2024"
+      data-duration="00:12"
+      data-type="2D loop / motion design"
+      data-tools="After Effects, Procreate"
+      data-role="Ilustracija + animacija"
+      data-notes="(po želji) Naročnik / format / kratke opombe…"
+      data-media="../assets/images/animation1.jpg">
       <div class="project-inner">
         <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
       </div>
-    </div>
+    </button>
 
-    <div class="project-card">
+    <!-- PROJEKT 2 -->
+    <button class="project-card" type="button"
+      data-title="Animacija 2"
+      data-year="2023"
+      data-duration="01:10"
+      data-type="Explainer / naslovni insert"
+      data-tools="After Effects"
+      data-role="Animacija"
+      data-notes=""
+      data-media="../assets/images/animation2.jpg">
       <div class="project-inner">
         <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
       </div>
-    </div>
+    </button>
 
-    <div class="project-card">
+    <!-- PROJEKT 3 -->
+    <button class="project-card" type="button"
+      data-title="Animacija 3"
+      data-year="2022"
+      data-duration="00:30"
+      data-type="Motion design"
+      data-tools="After Effects, Illustrator"
+      data-role="Oblikovanje + animacija"
+      data-notes=""
+      data-media="../assets/images/animation3.jpg">
       <div class="project-inner">
         <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy">
       </div>
-    </div>
+    </button>
 
-    <div class="project-card">
+    <!-- PROJEKT 4 -->
+    <button class="project-card" type="button"
+      data-title="Animacija 4"
+      data-year="2021"
+      data-duration="00:08"
+      data-type="2D loop"
+      data-tools="Procreate"
+      data-role="Ilustracija"
+      data-notes=""
+      data-media="../assets/images/animation4.jpg">
       <div class="project-inner">
         <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
       </div>
-    </div>
+    </button>
 
-    <div class="project-card">
+    <!-- PROJEKT 5 -->
+    <button class="project-card" type="button"
+      data-title="Animacija 5"
+      data-year="2020"
+      data-duration="00:15"
+      data-type="Grafična špica"
+      data-tools="After Effects"
+      data-role="Animacija"
+      data-notes=""
+      data-media="../assets/images/animation5.jpg">
       <div class="project-inner">
         <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
       </div>
-    </div>
+    </button>
 
   </div>
 
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+
+  <!-- MODAL -->
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="1"></div>
+
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" data-close="1">Zapri ✕</button>
+
+      <div class="modal-media">
+        <img id="modalImg" src="" alt="">
+      </div>
+
+      <div class="modal-body">
+        <h2 class="modal-title" id="modalTitle"></h2>
+
+        <div class="meta">
+          <div class="label">Leto</div><div class="value" id="mYear"></div>
+          <div class="label">Dolžina</div><div class="value" id="mDuration"></div>
+          <div class="label">Tip</div><div class="value" id="mType"></div>
+          <div class="label">Programi</div><div class="value" id="mTools"></div>
+          <div class="label">Vloga</div><div class="value" id="mRole"></div>
+          <div class="label">Opombe</div><div class="value" id="mNotes"></div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="modal-btn" type="button" id="prevBtn">← Prejšnji</button>
+        <button class="modal-btn" type="button" id="nextBtn">Naslednji →</button>
+        <button class="modal-btn" type="button" data-close="1">Zapri</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const cards = Array.from(document.querySelectorAll('.project-card[data-media]'));
+    const modal = document.getElementById('projectModal');
+    const img = document.getElementById('modalImg');
+    const title = document.getElementById('modalTitle');
+
+    const mYear = document.getElementById('mYear');
+    const mDuration = document.getElementById('mDuration');
+    const mType = document.getElementById('mType');
+    const mTools = document.getElementById('mTools');
+    const mRole = document.getElementById('mRole');
+    const mNotes = document.getElementById('mNotes');
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (!cards.length || !modal) return;
+
+    let index = 0;
+
+    function setText(el, value){
+      el.textContent = (value && value.trim()) ? value : "—";
+    }
+
+    function openAt(i){
+      index = (i + cards.length) % cards.length;
+      const card = cards[index];
+
+      img.src = card.dataset.media;
+      img.alt = card.querySelector('img')?.alt || card.dataset.title || 'Projekt';
+      title.textContent = card.dataset.title || '';
+
+      setText(mYear, card.dataset.year || '');
+      setText(mDuration, card.dataset.duration || '');
+      setText(mType, card.dataset.type || '');
+      setText(mTools, card.dataset.tools || '');
+      setText(mRole, card.dataset.role || '');
+      setText(mNotes, card.dataset.notes || '');
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close(){
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      img.src = '';
+    }
+
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => openAt(i));
+    });
+
+    prevBtn.addEventListener('click', () => openAt(index - 1));
+    nextBtn.addEventListener('click', () => openAt(index + 1));
+
+    modal.addEventListener('click', (e) => {
+      if (e.target.dataset.close) close();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') openAt(index - 1);
+      if (e.key === 'ArrowRight') openAt(index + 1);
+    });
+  })();
+  </script>
 
 </body>
 </html>
