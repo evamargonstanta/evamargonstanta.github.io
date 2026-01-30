@@ -249,13 +249,19 @@
 
     /* desno podatki */
     .modal-body{
-      flex:0 0 42%;
-      padding:16px 16px 18px;
-      box-sizing:border-box;
-      overflow:auto;
-      max-height:calc(100vh - 28px);
-      background:#fff;
-    }
+  flex:0 0 42%;
+  padding:16px 16px 18px;
+  box-sizing:border-box;
+  background:#fff;
+
+  display: flex;
+  align-items: center;     /* vertikalno centriranje */
+  justify-content: center; /* horizontalno centriranje */
+
+  overflow: auto;
+  max-height:calc(100vh - 28px);
+}
+
 
     .meta{
       display:grid;
