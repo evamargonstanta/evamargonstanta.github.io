@@ -113,6 +113,12 @@
   pointer-events: none;        /* da klik še vedno gre na projekt */
 }
 
+    @media (max-width: 900px){
+  .project-card::after{
+    background-size: 56px 56px;
+  }
+}
+
 /* malo lepši hover (desktop) */
 @media (hover: hover){
   .project-card:hover::after{
