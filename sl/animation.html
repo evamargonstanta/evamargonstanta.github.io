@@ -40,11 +40,11 @@
       color: #222;
     }
 
-    /* DESKTOP: 4 v eni vrsti */
+    /* DESKTOP: 5 v eni vrsti */
     .grid-gallery{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 18px;                 /* več prostora med projekti */
+  gap: 22px;                 /* več prostora med projekti */
   padding: 50px 24px 24px;
   max-width: 1600px;        /* ožja galerija = manjši kvadrati */
   margin: 0 auto;
@@ -95,11 +95,32 @@
        KVADRAT + CENTER
        ========================= */
     .project-card{
-      aspect-ratio: 1 / 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;   /* NUJNO za overlay */
+}
+
+/* play ikona */
+.project-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/images/icon-play.png") center center no-repeat;
+  background-size: 42px 42px;   /* velikost ikonice */
+  opacity: 0.85;
+  pointer-events: none;        /* da klik še vedno gre na projekt */
+}
+
+/* malo lepši hover (desktop) */
+@media (hover: hover){
+  .project-card:hover::after{
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
 
     .project-inner{
       width: 92%;
@@ -187,14 +208,17 @@
       </div>
     </div>
 
-    <!-- kopiraj ta blok za nove projekte -->
-    <!--
     <div class="project-card">
       <div class="project-inner">
         <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
       </div>
     </div>
-    -->
+
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
+      </div>
+    </div>
 
   </div>
 
