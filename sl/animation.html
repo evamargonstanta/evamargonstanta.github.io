@@ -2,81 +2,106 @@
 <html lang="sl">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animacija in oblikovanje – Eva Margon</title>
 
   <style>
     body{
       margin:0;
-      font-family:'Rubik',sans-serif;
+      font-family:'Rubik', sans-serif;
       background:#fff;
       color:#222;
     }
 
-    header{
+    /* ===== SEKCIJSKI HEADER (kot "books" header, samo večkrat) ===== */
+    .section-header{
       display:flex;
       align-items:center;
       padding:20px;
       border-bottom:1px solid #ddd;
       background:#fff;
     }
-    header img.icon{
+    .section-header img.icon{
       width:60px;
       height:60px;
       margin-right:15px;
     }
-    header h1{
+    .section-header h1,
+    .section-header h2{
       font-size:1.8rem;
       margin:0;
       font-weight:600;
-      letter-spacing:.01em;
+      letter-spacing:0.01em;
     }
 
-    /* ===== GALERIJA ===== */
+    /* malo zraka med sekcijami (da ne izgleda "zlepljeno") */
+    .section{
+      padding-bottom: 24px;
+    }
+    .section + .section{
+      margin-top: 10px; /* loči "Animacija" in "Oblikovanje" */
+    }
+
+    /* ===== GALERIJA (enaka logika kot books) ===== */
     .grid-gallery{
       display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:22px;
-      padding:50px 24px 24px;
-      max-width:1600px;
-      margin:0 auto;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 22px;
+      padding: 28px 24px 24px;
+      max-width: 1600px;
+      margin: 0 auto;
+      box-sizing: border-box;
     }
-    @media (max-width:900px){
+
+    @media (max-width: 900px){
       .grid-gallery{
-        grid-template-columns:repeat(2,1fr);
-        column-gap:12px;
-        row-gap:14px;
-        padding:18px 20px 20px;
-        max-width:600px;
-      }
-    }
-    @media (max-width:420px){
-      .grid-gallery{
-        column-gap:10px;
-        row-gap:12px;
-        padding:12px 20px 18px;
-        max-width:480px;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 12px;
+        row-gap: 14px;
+        padding: 18px 20px 20px;
+        max-width: 600px;
       }
     }
 
-    /* ===== PROJEKT (brez črnega okvirja) ===== */
+    @media (max-width: 420px){
+      .grid-gallery{
+        column-gap: 10px;
+        row-gap: 12px;
+        padding: 14px 18px 18px;
+        max-width: 480px;
+      }
+    }
+
     .project-card{
-      aspect-ratio:1/1;
+      aspect-ratio: 1 / 1;
       display:flex;
       align-items:center;
       justify-content:center;
       position:relative;
-
-      background:transparent;
-      border:0;
-      padding:0;
       cursor:pointer;
     }
-    .project-card:focus{ outline:none; }
-    .project-card:focus-visible{
-      outline:2px solid #111;
-      outline-offset:3px;
+
+    /* play overlay */
+    .project-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: url("../assets/images/icon-play.png") center center no-repeat;
+      background-size: 72px 72px;
+      opacity: 0.85;
+      pointer-events:none;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    @media (max-width: 900px){
+      .project-card::after{ background-size: 56px 56px; }
+    }
+    @media (hover:hover){
+      .project-card:hover::after{
+        opacity:1;
+        transform: scale(1.05);
+      }
     }
 
     .project-inner{
@@ -86,7 +111,7 @@
       align-items:center;
       justify-content:center;
     }
-    @media (max-width:900px){
+    @media (max-width: 900px){
       .project-inner{ width:100%; height:100%; }
     }
     .project-inner img{
@@ -97,34 +122,13 @@
       border-radius:0;
     }
 
-    /* play overlay */
-    .project-card::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:url("../assets/images/icon-play.png") center center no-repeat;
-      background-size:72px 72px;
-      opacity:.88;
-      pointer-events:none;
-      transition:transform .18s ease, opacity .18s ease;
-    }
-    @media (max-width:900px){
-      .project-card::after{ background-size:56px 56px; }
-    }
-    @media (hover:hover){
-      .project-card:hover::after{
-        opacity:1;
-        transform:scale(1.06);
-      }
-    }
-
-    /* ===== DOOR ===== */
+    /* ===== DOOR ICON – BACK TO HOME ===== */
     .door-hotspot{
       position:fixed;
-      bottom:28px;
-      right:32px;
-      width:76px;
-      height:76px;
+      bottom: 28px;
+      right: 32px;
+      width: 76px;
+      height: 76px;
       background-image:url("../assets/images/icon-door.png");
       background-size:contain;
       background-repeat:no-repeat;
@@ -135,463 +139,469 @@
       content:"";
       position:absolute;
       inset:0;
-      background:rgba(255,255,255,.12);
+      background: rgba(255,255,255,0.12);
       opacity:0;
       transition:opacity .2s ease;
     }
     @media (hover:hover){
       .door-hotspot:hover::after{ opacity:1; cursor:pointer; }
     }
-    @media (max-width:768px){
-      .door-hotspot{ width:60px; height:60px; bottom:20px; right:20px; }
+    @media (max-width: 768px){
+      .door-hotspot{
+        width:60px;
+        height:60px;
+        bottom:20px;
+        right:20px;
+      }
     }
 
     /* ===== MODAL ===== */
-.modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  z-index:999;
-}
-.modal.is-open{ display:block; }
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      z-index:999;
+    }
+    .modal.is-open{ display:block; }
 
-.modal-backdrop{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.45);
-}
+    .modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.45);
+    }
 
-/* panel je bel, brez borderjev/okvirjev */
-.modal-panel{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  width:min(1100px, calc(100vw - 28px));
-  max-height:calc(100vh - 28px);
-  background:#fff;
-  border-radius:0;
-  overflow:hidden;
-}
+    .modal-panel{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:min(1100px, calc(100vw - 48px));
+      max-height:calc(100vh - 28px);
+      background:#fff;
+      border-radius:0;
+      overflow:hidden;
+    }
 
-/* gumbi v kotih / straneh (overlay) */
-/* vsi gumbi spodaj desno skupaj */
-.modal-controls{
-  position:absolute;
-  right:16px;
-  bottom:16px;
-  z-index:5;
+    /* kontrole desno spodaj – vse v isti vrstici */
+    .modal-controls{
+      position:absolute;
+      right:16px;
+      bottom:16px;
+      z-index:5;
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .modal-controls button{
+      border:0;
+      background:transparent;
+      padding:6px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .modal-controls img{
+      width:36px;
+      height:36px;
+      display:block;
+    }
+    @media (max-width:520px){
+      .modal-controls{ right:12px; bottom:12px; }
+      .modal-controls img{ width:32px; height:32px; }
+    }
 
-  display:flex;
-  gap:14px;
-}
+    .modal-content{
+      display:flex;
+      gap:0;
+    }
 
-.modal-controls button{
-  border:0;
-  background:transparent;
-  padding:6px;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+    .modal-media{
+      flex:0 0 58%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      box-sizing:border-box;
+      background:#fff;
+    }
+    .modal-media img{
+      width:100%;
+      height:auto;
+      max-height:62vh;
+      object-fit:contain;
+      display:block;
+    }
 
-.modal-controls img{
-  width:36px;
-  height:36px;
-  display:block;
-}
+    .modal-body{
+      flex:0 0 42%;
+      padding:16px 16px 18px;
+      box-sizing:border-box;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:auto;
+      max-height:calc(100vh - 28px);
+      scrollbar-gutter: stable;
+    }
+    @supports not (scrollbar-gutter: stable){
+      .modal-body{ overflow-y: scroll; }
+    }
 
-@media (max-width:520px){
-  .modal-controls{
-    right:12px;
-    bottom:12px;
-  }
+    /* tekst katalog-look: grid label/value, centriran */
+    .meta-wrap{
+      width: min(360px, 100%);
+      text-align:center;
+    }
+    .meta-title{
+      font-size:1.1rem;
+      font-weight:600;
+      margin:0 0 14px;
+    }
+    .meta{
+      display:grid;
+      grid-template-columns: 130px 1fr;
+      column-gap:12px;
+      row-gap:10px;
+      font-size:.98rem;
+      line-height:1.35;
+      align-items:center;
+      text-align:left;
+    }
+    .meta .label{ opacity:.7; }
+    .meta .value{ opacity:.95; }
 
-  .modal-controls img{
-    width:32px;
-    height:32px;
-  }
-}
-
-.modal-close img,
-.modal-prev img,
-.modal-next img{
-  width:36px;
-  height:36px;
-  display:block;
-}
-
-@media (max-width:520px){
-  .modal-close{ top:10px; right:10px; }
-  .modal-prev{ left:8px; }
-  .modal-next{ right:8px; }
-  .modal-close img,
-  .modal-prev img,
-  .modal-next img{
-    width:32px;
-    height:32px;
-  }
-}
-
-.modal-close:focus,
-.modal-prev:focus,
-.modal-next:focus{ outline:none; }
-.modal-close:focus-visible,
-.modal-prev:focus-visible,
-.modal-next:focus-visible{
-  outline:2px solid #111;
-  outline-offset:2px;
-}
-
-/* layout */
-.modal-content{
-  display:flex;
-  gap:0;
-}
-
-/* levo slika */
-.modal-media{
-  flex:0 0 58%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:14px;
-  box-sizing:border-box;
-  background:#fff;
-}
-.modal-media img{
-  width:100%;
-  height:auto;
-  max-height:62vh;           /* manj, da ne rabiš scrollat */
-  object-fit:contain;
-  display:block;
-}
-
-/* desno podatki (kataloški look + stabilno) */
-.modal-body{
-  flex:0 0 42%;
-  padding:18px 18px 20px;
-  box-sizing:border-box;
-  background:#fff;
-
-  /* stabilnost: naj se nič ne premika zaradi scrollbara */
-  overflow-y:auto;
-  max-height:calc(100vh - 28px);
-  scrollbar-gutter: stable;
-
-  /* centriranje celotnega kataloga po višini */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-/* fallback: če scrollbar-gutter ni podprt, vedno rezerviraj prostor */
-@supports not (scrollbar-gutter: stable){
-  .modal-body{ overflow-y: scroll; }
-}
-
-/* “kataloška kartica” znotraj desnega dela */
-.modal-body .catalog{
-  width:100%;
-  max-width:420px;           /* vedno enaka širina = nič zamikanja */
-  text-align:center;
-}
-
-/* naslov (na vrhu, kot si želela) */
-.modal-title{
-  font-size:1.25rem;
-  font-weight:600;
-  letter-spacing:0.01em;
-  margin:0 0 10px;
-}
-
-/* podnaslov / kratki opis (če ga imaš) */
-.modal-subtitle{
-  font-size:.95rem;
-  opacity:.75;
-  margin:0 0 16px;
-  line-height:1.45;
-}
-
-/* meta podatki v “katalog” stilu */
-.meta{
-  display:grid;
-  grid-template-columns:150px 1fr;  /* fiksno = nič skakanja */
-  column-gap:14px;
-  row-gap:10px;
-
-  font-size:.98rem;
-  line-height:1.4;
-  align-items:baseline;
-
-  /* vizualno bolj “katalog” */
-  padding-top:14px;
-  border-top:1px solid rgba(0,0,0,.08);
-}
-
-.meta .label{
-  opacity:.6;
-  text-align:right;          /* katalog: label desno */
-  white-space:nowrap;
-}
-
-.meta .value{
-  opacity:.95;
-  text-align:left;           /* vrednost levo */
-}
-
-/* malo bolj “razstavno”: več miru med vrsticami na velikih ekranih */
-@media (min-width: 900px){
-  .meta{ row-gap:12px; }
-}
-
-/* mobile: slika zgoraj, podatki spodaj */
-@media (max-width:860px){
-  .modal-content{ flex-direction:column; }
-
-  .modal-media img{ max-height:46vh; }
-
-  .modal-body{
-    max-height:none;
-    overflow:visible;
-    padding:16px 18px 20px;
-    display:block;           /* na mobile ne centriraj po višini */
-  }
-
-  .modal-body .catalog{
-    max-width:520px;
-    margin:0 auto;
-    text-align:center;
-  }
-
-  .meta{
-    grid-template-columns:1fr; /* en stolpec (label nad value) */
-    border-top:1px solid rgba(0,0,0,.08);
-  }
-  .meta .label{
-    text-align:center;
-    opacity:.55;
-  }
-  .meta .value{
-    text-align:center;
-    margin-top:-6px;
-  }
-
-  /* prev/next malo nižje, da ne prekrivata X */
-  .modal-prev,
-  .modal-next{ top:42%; }
-}
-
+    @media (max-width: 860px){
+      .modal-content{ flex-direction:column; }
+      .modal-media img{ max-height:46vh; }
+      .modal-body{
+        max-height:none;
+        overflow:visible;
+        padding-bottom: 70px; /* da gumbi spodaj ne prekrijejo vsebine */
+      }
+    }
   </style>
 </head>
 
 <body>
-  <header>
-    <img src="../assets/images/icon-screen.png" alt="Animacija in oblikovanje" class="icon" />
-    <h1>Animacija in oblikovanje</h1>
-  </header>
 
-  <div class="grid-gallery">
-    <!-- PROJEKT 1 -->
-    <button class="project-card" type="button"
-      data-title="Jazon in Argonavti"
-      data-year="2015"
-      data-duration="03:44"
-      data-type="2D animation"
-      data-tools="Moho"
-      data-role="Režija, ilustracija, animacija"
-      data-notes="opombe: predvajano: predstava Emona, Emona v Cankarjevem domu, Ljubljana"
-      data-media="../assets/images/animation1.jpg">
-      <div class="project-inner">
-        <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy" />
+  <!-- ===== SEKCIJA 1: ANIMACIJA ===== -->
+  <section class="section" aria-label="Animacija">
+    <div class="section-header">
+      <img src="../assets/images/icon-screen.png" alt="Animacija" class="icon">
+      <h1>Animacija</h1>
+    </div>
+
+    <div class="grid-gallery" id="galleryAnimation">
+
+      <!-- Projekt 1 -->
+      <div class="project-card"
+           data-img="../assets/images/animation1.jpg"
+           data-title="Naslov animacije 1"
+           data-year="2024"
+           data-duration="00:45"
+           data-type="2D animacija"
+           data-tools="After Effects, Photoshop"
+           data-role="Avtorica / animacija"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
+        </div>
       </div>
-    </button>
 
-    <!-- PROJEKT 2 -->
-    <button class="project-card" type="button"
-      data-title="Vrzi kovanec"
-      data-year="2017"
-      data-duration="01:10"
-      data-type="Stop-motion"
-      data-tools="After Effects"
-      data-role="Režija, ilustracija, animacija"
-      data-notes="opombe: Predvajanje : - 3. Mednarodni filmski festival, Kranjska Gora
- - Otroški program, Festival slovenskega filma, Portorož
-- Slovenska kinoteka, Ljubljana
-      data-media="../assets/images/animation2.jpg">
-      <div class="project-inner">
-        <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy" />
+      <div class="project-card"
+           data-img="../assets/images/animation2.jpg"
+           data-title="Naslov animacije 2"
+           data-year="2023"
+           data-duration="01:10"
+           data-type="Motion design"
+           data-tools="After Effects, Illustrator"
+           data-role="Animacija"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
+        </div>
       </div>
-    </button>
 
-    <!-- PROJEKT 3 -->
-    <button class="project-card" type="button"
-      data-title="Zajcek pece torto"
-      data-year="2014"
-      data-duration="01:51"
-      data-type="Stop motion"
-      data-tools="After Effects, Illustrator"
-      data-role="Režija, ilustracija, animacija"
-      data-notes=""
-      data-media="../assets/images/animation3.jpg">
-      <div class="project-inner">
-        <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy" />
+      <div class="project-card"
+           data-img="../assets/images/animation3.jpg"
+           data-title="Naslov animacije 3"
+           data-year="2022"
+           data-duration="00:30"
+           data-type="2D animacija"
+           data-tools="Toon Boom, Photoshop"
+           data-role="Režija / animacija"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy">
+        </div>
       </div>
-    </button>
 
-    <!-- PROJEKT 4 -->
-    <button class="project-card" type="button"
-      data-title="Hitra dostava"
-      data-year="2021"
-      data-duration="00:16"
-      data-type="2D loop"
-      data-tools="Tv paint"
-      data-role="Režija, ilustracija, animacija"
-      data-notes=""
-      data-media="../assets/images/animation4.jpg">
-      <div class="project-inner">
-        <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy" />
+      <div class="project-card"
+           data-img="../assets/images/animation4.jpg"
+           data-title="Naslov animacije 4"
+           data-year="2021"
+           data-duration="00:20"
+           data-type="Eksperimentalno"
+           data-tools="Procreate, After Effects"
+           data-role="Avtorica"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
+        </div>
       </div>
-    </button>
 
-    <!-- PROJEKT 5 -->
-    <button class="project-card" type="button"
-      data-title="Zaraščanje"
-      data-year="2025"
-      data-duration="00:15"
-      data-type="2d animacija"
-      data-tools="Procreate, DaVinci"
-      data-role="Režija, ilustracija, animacija"
-      data-notes=""
-      data-media="../assets/images/animation5.jpg">
-      <div class="project-inner">
-        <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy" />
+      <div class="project-card"
+           data-img="../assets/images/animation5.jpg"
+           data-title="Naslov animacije 5"
+           data-year="2020"
+           data-duration="00:55"
+           data-type="Motion design"
+           data-tools="After Effects"
+           data-role="Animacija / oblikovanje"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
+        </div>
       </div>
-    </button>
-  </div>
 
+    </div>
+  </section>
+
+
+  <!-- ===== SEKCIJA 2: OBLIKOVANJE ===== -->
+  <section class="section" aria-label="Oblikovanje">
+    <div class="section-header">
+      <img src="../assets/images/icon-screen.png" alt="Oblikovanje" class="icon">
+      <h2>Oblikovanje</h2>
+    </div>
+
+    <div class="grid-gallery" id="galleryDesign">
+
+      <!-- ZAMENJAJ s svojimi slikami/podatki -->
+      <div class="project-card"
+           data-img="../assets/images/design1.jpg"
+           data-title="Naslov oblikovanja 1"
+           data-year="2024"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Illustrator, InDesign"
+           data-role="Oblikovanje"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design1.jpg" alt="Oblikovanje 1" loading="lazy">
+        </div>
+      </div>
+
+      <div class="project-card"
+           data-img="../assets/images/design2.jpg"
+           data-title="Naslov oblikovanja 2"
+           data-year="2023"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Figma"
+           data-role="UI / vizualna podoba"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design2.jpg" alt="Oblikovanje 2" loading="lazy">
+        </div>
+      </div>
+
+      <div class="project-card"
+           data-img="../assets/images/design3.jpg"
+           data-title="Naslov oblikovanja 3"
+           data-year="2022"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Photoshop"
+           data-role="Vizualna podoba"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design3.jpg" alt="Oblikovanje 3" loading="lazy">
+        </div>
+      </div>
+
+      <div class="project-card"
+           data-img="../assets/images/design4.jpg"
+           data-title="Naslov oblikovanja 4"
+           data-year="2021"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Illustrator"
+           data-role="Ilustracija / grafika"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design4.jpg" alt="Oblikovanje 4" loading="lazy">
+        </div>
+      </div>
+
+      <div class="project-card"
+           data-img="../assets/images/design5.jpg"
+           data-title="Naslov oblikovanja 5"
+           data-year="2020"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="InDesign"
+           data-role="Prelom / dizajn"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design5.jpg" alt="Oblikovanje 5" loading="lazy">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- BACK TO HOME -->
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
-  <!-- MODAL -->
+
+  <!-- ===== MODAL ===== -->
   <div class="modal" id="projectModal" aria-hidden="true">
     <div class="modal-backdrop" id="modalBackdrop"></div>
 
     <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Podrobnosti projekta">
-      <!-- gumbi v “stari” postavitvi -->
+      <!-- kontrole desno spodaj (v isti vrstici) -->
       <div class="modal-controls">
-  <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
-    <img src="../assets/images/icon-backward.png" alt="">
-  </button>
+        <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
+          <img src="../assets/images/icon-backward.png" alt="">
+        </button>
 
-  <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
-    <img src="../assets/images/icon-forward.png" alt="">
-  </button>
+        <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
+          <img src="../assets/images/icon-forward.png" alt="">
+        </button>
 
-  <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
-    <img src="../assets/images/icon-exit.png" alt="">
-  </button>
-</div>
-
+        <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
+          <img src="../assets/images/icon-exit.png" alt="">
+        </button>
+      </div>
 
       <div class="modal-content">
         <div class="modal-media">
-          <img id="modalImg" src="" alt="" />
+          <img id="modalImg" src="" alt="">
         </div>
 
         <div class="modal-body">
-  <div class="catalog">
-    <h2 class="modal-title">Naslov: <span id="mTitle"></span></h2>
+          <div class="meta-wrap">
+            <p class="meta-title" id="mTitleTop">Naslov: —</p>
 
-    <!-- optional: če hočeš kratko vrstico pod naslovom (lahko pustiš prazno) -->
-    <p class="modal-subtitle" id="mSubtitle" style="display:none;"></p>
-
-    <div class="meta">
-      <div class="label">Leto</div><div class="value" id="mYear"></div>
-      <div class="label">Dolžina</div><div class="value" id="mDuration"></div>
-      <div class="label">Tip</div><div class="value" id="mType"></div>
-      <div class="label">Programi</div><div class="value" id="mTools"></div>
-      <div class="label">Vloga</div><div class="value" id="mRole"></div>
-      <div class="label">Opombe</div><div class="value" id="mNotes"></div>
+            <div class="meta">
+              <div class="label">Leto</div><div class="value" id="mYear"></div>
+              <div class="label">Dolžina</div><div class="value" id="mDuration"></div>
+              <div class="label">Tip</div><div class="value" id="mType"></div>
+              <div class="label">Programi</div><div class="value" id="mTools"></div>
+              <div class="label">Vloga</div><div class="value" id="mRole"></div>
+              <div class="label">Opombe</div><div class="value" id="mNotes"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
 
   <script>
-  (function(){
-    const cards = Array.from(document.querySelectorAll('.project-card[data-media]'));
-    const modal = document.getElementById('projectModal');
-    const backdrop = document.getElementById('modalBackdrop');
+    (function () {
+      const modal = document.getElementById('projectModal');
+      const backdrop = document.getElementById('modalBackdrop');
+      const closeBtn = document.getElementById('closeBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
 
-    const img = document.getElementById('modalImg');
-    const mTitle = document.getElementById('mTitle');
-    const mYear = document.getElementById('mYear');
-    const mDuration = document.getElementById('mDuration');
-    const mType = document.getElementById('mType');
-    const mTools = document.getElementById('mTools');
-    const mRole = document.getElementById('mRole');
-    const mNotes = document.getElementById('mNotes');
+      const modalImg = document.getElementById('modalImg');
+      const mTitleTop = document.getElementById('mTitleTop');
+      const mYear = document.getElementById('mYear');
+      const mDuration = document.getElementById('mDuration');
+      const mType = document.getElementById('mType');
+      const mTools = document.getElementById('mTools');
+      const mRole = document.getElementById('mRole');
+      const mNotes = document.getElementById('mNotes');
 
-    const closeBtn = document.getElementById('closeBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+      // poberemo projekte iz obeh galerij (eni prev/next po vseh)
+      const cards = Array.from(document.querySelectorAll('.project-card'));
+      let currentIndex = -1;
 
-    if (!cards.length || !modal) return;
+      function fillModalFromCard(card){
+        const img = card.getAttribute('data-img') || '';
+        const title = card.getAttribute('data-title') || '—';
+        const year = card.getAttribute('data-year') || '—';
+        const duration = card.getAttribute('data-duration') || '—';
+        const type = card.getAttribute('data-type') || '—';
+        const tools = card.getAttribute('data-tools') || '—';
+        const role = card.getAttribute('data-role') || '—';
+        const notes = card.getAttribute('data-notes') || '—';
 
-    let index = 0;
+        modalImg.src = img;
+        modalImg.alt = title;
 
-    function setText(el, value){
-      el.textContent = (value && value.trim()) ? value : "—";
-    }
+        mTitleTop.textContent = 'Naslov: ' + title;
+        mYear.textContent = year;
+        mDuration.textContent = duration;
+        mType.textContent = type;
+        mTools.textContent = tools;
+        mRole.textContent = role;
+        mNotes.textContent = notes;
+      }
 
-    function openAt(i){
-      index = (i + cards.length) % cards.length;
-      const card = cards[index];
+      function openModal(index){
+        currentIndex = index;
+        fillModalFromCard(cards[currentIndex]);
 
-      img.src = card.dataset.media;
-      img.alt = card.querySelector('img')?.alt || card.dataset.title || 'Projekt';
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
 
-      setText(mTitle, card.dataset.title || "");
-      setText(mYear, card.dataset.year || "");
-      setText(mDuration, card.dataset.duration || "");
-      setText(mType, card.dataset.type || "");
-      setText(mTools, card.dataset.tools || "");
-      setText(mRole, card.dataset.role || "");
-      setText(mNotes, card.dataset.notes || "");
+        // prepreči scroll ozadja (da se ne “premika”)
+        document.body.style.overflow = 'hidden';
+      }
 
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+      function closeModal(){
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
 
-    function close(){
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      img.src = '';
-    }
+        document.body.style.overflow = '';
+        currentIndex = -1;
+      }
 
-    cards.forEach((card, i) => {
-      card.addEventListener('click', () => openAt(i));
-    });
+      function showPrev(){
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        fillModalFromCard(cards[currentIndex]);
+      }
 
-    prevBtn.addEventListener('click', () => openAt(index - 1));
-    nextBtn.addEventListener('click', () => openAt(index + 1));
+      function showNext(){
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex + 1) % cards.length;
+        fillModalFromCard(cards[currentIndex]);
+      }
 
-    // X je prej “ne delal” zaradi tega, ker ni bil pravilno zvezan na handler.
-    closeBtn.addEventListener('click', close);
+      cards.forEach((card, idx) => {
+        card.addEventListener('click', () => openModal(idx));
+        // keyboard
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(idx);
+          }
+        });
+      });
 
-    // klik na ozadje zapre
-    backdrop.addEventListener('click', close);
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
 
-    window.addEventListener('keydown', (e) => {
-      if (!modal.classList.contains('is-open')) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') openAt(index - 1);
-      if (e.key === 'ArrowRight') openAt(index + 1);
-    });
-  })();
+      prevBtn.addEventListener('click', showPrev);
+      nextBtn.addEventListener('click', showNext);
+
+      window.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      });
+    })();
   </script>
 
 </body>
