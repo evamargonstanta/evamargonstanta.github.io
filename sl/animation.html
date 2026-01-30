@@ -147,152 +147,221 @@
     }
 
     /* ===== MODAL ===== */
-    .modal{
-      position:fixed;
-      inset:0;
-      display:none;
-      z-index:999;
-    }
-    .modal.is-open{ display:block; }
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:999;
+}
+.modal.is-open{ display:block; }
 
-    .modal-backdrop{
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,.45); /* brez črnega “okvirja”, samo dim */
-    }
+.modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.45);
+}
 
-    /* panel je bel, brez borderjev/okvirjev */
-    .modal-panel{
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      width:min(1100px, calc(100vw - 28px));
-      max-height:calc(100vh - 28px);
-      background:#fff;
-      border-radius:0;
-      overflow:hidden;
-    }
+/* panel je bel, brez borderjev/okvirjev */
+.modal-panel{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(1100px, calc(100vw - 28px));
+  max-height:calc(100vh - 28px);
+  background:#fff;
+  border-radius:0;
+  overflow:hidden;
+}
 
-    /* “prejšnja pozicija gumbov” = v kotih (overlay), ne v topbar-u */
-    .modal-close,
-    .modal-prev,
-    .modal-next{
-      position:absolute;
-      top:12px;
-      z-index:5;
-      border:0;
-      background:transparent;
-      padding:6px;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .modal-close{ right:12px; }
-    .modal-prev{ left:12px; top:50%; transform:translateY(-50%); }
-    .modal-next{ right:12px; top:50%; transform:translateY(-50%); }
+/* gumbi v kotih / straneh (overlay) */
+.modal-close,
+.modal-prev,
+.modal-next{
+  position:absolute;
+  z-index:5;
+  border:0;
+  background:transparent;
+  padding:6px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .modal-close img,
-    .modal-prev img,
-    .modal-next img{
-      width:36px;
-      height:36px;
-      display:block;
-    }
+.modal-close{ top:12px; right:12px; }
+.modal-prev{ left:12px; top:50%; transform:translateY(-50%); }
+.modal-next{ right:12px; top:50%; transform:translateY(-50%); }
 
-    @media (max-width:520px){
-      .modal-close{ top:10px; right:10px; }
-      .modal-prev{ left:8px; }
-      .modal-next{ right:8px; }
-      .modal-close img,
-      .modal-prev img,
-      .modal-next img{
-        width:32px;
-        height:32px;
-      }
-    }
+.modal-close img,
+.modal-prev img,
+.modal-next img{
+  width:36px;
+  height:36px;
+  display:block;
+}
 
-    .modal-close:focus,
-    .modal-prev:focus,
-    .modal-next:focus{ outline:none; }
-    .modal-close:focus-visible,
-    .modal-prev:focus-visible,
-    .modal-next:focus-visible{
-      outline:2px solid #111;
-      outline-offset:2px;
-    }
+@media (max-width:520px){
+  .modal-close{ top:10px; right:10px; }
+  .modal-prev{ left:8px; }
+  .modal-next{ right:8px; }
+  .modal-close img,
+  .modal-prev img,
+  .modal-next img{
+    width:32px;
+    height:32px;
+  }
+}
 
-    /* layout */
-    .modal-content{
-      display:flex;
-      gap:0;
-    }
+.modal-close:focus,
+.modal-prev:focus,
+.modal-next:focus{ outline:none; }
+.modal-close:focus-visible,
+.modal-prev:focus-visible,
+.modal-next:focus-visible{
+  outline:2px solid #111;
+  outline-offset:2px;
+}
 
-    /* levo slika – brez črne podlage */
-    .modal-media{
-      flex:0 0 58%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px;
-      box-sizing:border-box;
-      background:#fff;
-    }
-    .modal-media img{
-      width:100%;
-      height:auto;
-      max-height:62vh; /* manj, da ne rabiš scrollat */
-      object-fit:contain;
-      display:block;
-    }
+/* layout */
+.modal-content{
+  display:flex;
+  gap:0;
+}
 
-    /* desno podatki */
-    .modal-body{
+/* levo slika */
+.modal-media{
+  flex:0 0 58%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px;
+  box-sizing:border-box;
+  background:#fff;
+}
+.modal-media img{
+  width:100%;
+  height:auto;
+  max-height:62vh;           /* manj, da ne rabiš scrollat */
+  object-fit:contain;
+  display:block;
+}
+
+/* desno podatki (kataloški look + stabilno) */
+.modal-body{
   flex:0 0 42%;
-  padding:16px 16px 18px;
+  padding:18px 18px 20px;
   box-sizing:border-box;
   background:#fff;
 
-  display: flex;
-  align-items: center;     /* vertikalno centriranje */
-  justify-content: center; /* horizontalno centriranje */
-
-  overflow: auto;
+  /* stabilnost: naj se nič ne premika zaradi scrollbara */
+  overflow-y:auto;
   max-height:calc(100vh - 28px);
+  scrollbar-gutter: stable;
+
+  /* centriranje celotnega kataloga po višini */
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
+/* fallback: če scrollbar-gutter ni podprt, vedno rezerviraj prostor */
+@supports not (scrollbar-gutter: stable){
+  .modal-body{ overflow-y: scroll; }
+}
 
-    .meta{
+/* “kataloška kartica” znotraj desnega dela */
+.modal-body .catalog{
+  width:100%;
+  max-width:420px;           /* vedno enaka širina = nič zamikanja */
+  text-align:center;
+}
+
+/* naslov (na vrhu, kot si želela) */
+.modal-title{
+  font-size:1.25rem;
+  font-weight:600;
+  letter-spacing:0.01em;
+  margin:0 0 10px;
+}
+
+/* podnaslov / kratki opis (če ga imaš) */
+.modal-subtitle{
+  font-size:.95rem;
+  opacity:.75;
+  margin:0 0 16px;
+  line-height:1.45;
+}
+
+/* meta podatki v “katalog” stilu */
+.meta{
   display:grid;
-  grid-template-columns:140px 1fr;
-  column-gap:12px;
+  grid-template-columns:150px 1fr;  /* fiksno = nič skakanja */
+  column-gap:14px;
   row-gap:10px;
-  font-size:.98rem;
-  line-height:1.35;
 
-  align-items: center;
+  font-size:.98rem;
+  line-height:1.4;
+  align-items:baseline;
+
+  /* vizualno bolj “katalog” */
+  padding-top:14px;
+  border-top:1px solid rgba(0,0,0,.08);
 }
 
-    .meta .label{ opacity:.7; }
-    .meta .value{ opacity:.95; }
+.meta .label{
+  opacity:.6;
+  text-align:right;          /* katalog: label desno */
+  white-space:nowrap;
+}
 
-    /* mobile: slika zgoraj, podatki spodaj */
-    @media (max-width:860px){
-      .modal-content{
-        flex-direction:column;
-      }
-      .modal-media img{
-        max-height:46vh;
-      }
-      .modal-body{
-        max-height:none;
-        overflow:visible;
-      }
-      /* prev/next malo nižje, da ne prekrivata X */
-      .modal-prev,
-      .modal-next{ top:42%; }
-    }
+.meta .value{
+  opacity:.95;
+  text-align:left;           /* vrednost levo */
+}
+
+/* malo bolj “razstavno”: več miru med vrsticami na velikih ekranih */
+@media (min-width: 900px){
+  .meta{ row-gap:12px; }
+}
+
+/* mobile: slika zgoraj, podatki spodaj */
+@media (max-width:860px){
+  .modal-content{ flex-direction:column; }
+
+  .modal-media img{ max-height:46vh; }
+
+  .modal-body{
+    max-height:none;
+    overflow:visible;
+    padding:16px 18px 20px;
+    display:block;           /* na mobile ne centriraj po višini */
+  }
+
+  .modal-body .catalog{
+    max-width:520px;
+    margin:0 auto;
+    text-align:center;
+  }
+
+  .meta{
+    grid-template-columns:1fr; /* en stolpec (label nad value) */
+    border-top:1px solid rgba(0,0,0,.08);
+  }
+  .meta .label{
+    text-align:center;
+    opacity:.55;
+  }
+  .meta .value{
+    text-align:center;
+    margin-top:-6px;
+  }
+
+  /* prev/next malo nižje, da ne prekrivata X */
+  .modal-prev,
+  .modal-next{ top:42%; }
+}
+
   </style>
 </head>
 
@@ -405,19 +474,23 @@
         </div>
 
         <div class="modal-body">
-          <div class="meta">
-            <div class="label">Naslov</div><div class="value" id="mTitle"></div>
-            <div class="label">Leto</div><div class="value" id="mYear"></div>
-            <div class="label">Dolžina</div><div class="value" id="mDuration"></div>
-            <div class="label">Tip</div><div class="value" id="mType"></div>
-            <div class="label">Programi</div><div class="value" id="mTools"></div>
-            <div class="label">Vloga</div><div class="value" id="mRole"></div>
-            <div class="label">Opombe</div><div class="value" id="mNotes"></div>
-          </div>
-        </div>
-      </div>
+  <div class="catalog">
+    <h2 class="modal-title">Naslov: <span id="mTitle"></span></h2>
+
+    <!-- optional: če hočeš kratko vrstico pod naslovom (lahko pustiš prazno) -->
+    <p class="modal-subtitle" id="mSubtitle" style="display:none;"></p>
+
+    <div class="meta">
+      <div class="label">Leto</div><div class="value" id="mYear"></div>
+      <div class="label">Dolžina</div><div class="value" id="mDuration"></div>
+      <div class="label">Tip</div><div class="value" id="mType"></div>
+      <div class="label">Programi</div><div class="value" id="mTools"></div>
+      <div class="label">Vloga</div><div class="value" id="mRole"></div>
+      <div class="label">Opombe</div><div class="value" id="mNotes"></div>
     </div>
   </div>
+</div>
+
 
   <script>
   (function(){
