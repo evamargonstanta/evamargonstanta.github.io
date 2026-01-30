@@ -460,6 +460,23 @@
   opacity: 0.4;
 }
 
+    body.menu-open .hero{
+  justify-content: center;   /* namesto flex-start */
+}
+
+    .mobile-menu{
+  display:none;
+  opacity:0;
+  transform: translateY(10px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.mobile-menu.is-open{
+  display:block;
+  opacity:1;
+  transform: translateY(0);
+}
+
 
   </style>
 </head>
@@ -662,8 +679,6 @@
         btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         document.body.classList.toggle('menu-open', isOpen);
 
-        if (isOpen) {
-          menu.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     })();
