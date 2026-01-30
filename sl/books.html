@@ -2,35 +2,38 @@
 <html lang="sl">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+  
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animacija in oblikovanje – Eva Margon</title>
+  <title>Knjige – Eva Margon</title>
 
   <style>
+
     header{
-      display:flex;
-      align-items:center;
-      padding:20px;
-      border-bottom:1px solid #ddd;
-      background:#fff;
-    }
+  display:flex;
+  align-items:center;
+  padding:20px;
+  border-bottom:1px solid #ddd;
+  background:#fff;
+}
 
-    header img.icon{
-      width:60px;
-      height:60px;
-      margin-right:15px;
-    }
+header img.icon{
+  width:60px;
+  height:60px;
+  margin-right:15px;
+}
 
-    header h1{
-      font-size:1.8rem;
-      margin:0;
-    }
+header h1{
+  font-size:1.8rem;
+  margin:0;
+}
 
     :root{
-      --outer-space: 24px;
-      --inner-space: 12px;
-      --header-gap: 28px;
+      /* “prst” približek: na iPhone SE je 16px približno pol prsta, 24px ~ 1 prst */
+      --outer-space: 24px;   /* okrog galerije (1 prst) */
+      --inner-space: 12px;   /* med projekti (pol prsta) */
+      --header-gap: 28px;    /* belina med header in galerijo */
     }
 
     body{
@@ -40,57 +43,67 @@
       color: #222;
     }
 
-    /* DESKTOP: 5 v eni vrsti */
-    .grid-gallery{
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 6px;
-      padding: 50px 18px 18px;
-      max-width: 1750px;
-      margin: 0 auto;
-    }
+/* DESKTOP: 5 v eni vrsti */
+.grid-gallery{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 
-    /* TABLET + MOBILE */
-    @media (max-width: 900px){
-      .grid-gallery{
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 2px;
-        row-gap: 12px;
-        padding: 14px 18px 18px;
-        max-width: 520px;
-        margin: 0 auto;
-      }
-    }
+  gap: 6px;
+  padding: 50px 18px 18px;   /* prostor POD sivo črto, NAD galerijo */
 
-    /* iPhone SE */
-    @media (max-width: 420px){
-      .grid-gallery{
-        column-gap: 1px;
-        row-gap: 10px;
-        padding: 12px 20px 18px;
-        max-width: 480px;
-      }
-    }
+  max-width: 1750px;
+  margin: 0 auto;
+}
 
+/* TABLET + MOBILE */
+@media (max-width: 900px){
+  .grid-gallery{
+    grid-template-columns: repeat(2, 1fr);
+
+    column-gap: 2px;     /* skoraj nič na sredini */
+    row-gap: 12px;       /* več zgoraj/spodaj */
+
+    padding: 14px 18px 18px;  /* več ob straneh kot v sredini */
+
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+
+/* iPhone SE */
+@media (max-width: 420px){
+  .grid-gallery{
+    column-gap: 1px;     /* praktično skupaj */
+    row-gap: 10px;
+
+    padding: 12px 20px 18px;
+
+    max-width: 480px;
+  }
+}
     /* MOBILE: odstrani “fake” sredinsko belino, ki nastane iz project-inner */
-    @media (max-width: 900px){
-      .project-inner{
-        width: 100%;
-        height: 100%;
-      }
-    }
+@media (max-width: 900px){
+  .project-inner{
+    width: 100%;
+    height: 100%;
+  }
+}
 
-    /* iPhone SE: še malenkost bolj tesno */
-    @media (max-width: 420px){
-      .project-inner{
-        width: 100%;
-        height: 100%;
-      }
-    }
+/* iPhone SE: še malenkost bolj tesno */
+@media (max-width: 420px){
+  .project-inner{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+
 
     /* =========================
        KVADRAT + CENTER
        ========================= */
+
     .project-card{
       aspect-ratio: 1 / 1;
       display: flex;
@@ -98,6 +111,7 @@
       justify-content: center;
     }
 
+    /* notranji okvir: enakomerna belina okoli vsebine */
     .project-inner{
       width: 92%;
       height: 92%;
@@ -111,12 +125,13 @@
       max-height: 100%;
       object-fit: contain;
       display: block;
-      border-radius: 0; /* 90° robovi */
+      border-radius: 0;
     }
 
     /* =========================
        DOOR ICON – BACK TO HOME
        ========================= */
+
     .door-hotspot{
       position: fixed;
       bottom: 28px;
@@ -155,51 +170,48 @@
       }
     }
   </style>
+  
 </head>
 
 <body>
 
   <header>
-    <img src="../assets/images/icon-screen.png" alt="Animacija in oblikovanje" class="icon">
-    <h1>Animacija in oblikovanje</h1>
-  </header>
+  <img src="../assets/images/icon-books.png" alt="Knjige" class="icon">
+  <h1>Knjige in revije</h1>
+</header>
 
   <div class="grid-gallery">
 
     <div class="project-card">
       <div class="project-inner">
-        <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
+        <img src="../assets/images/books1.jpg" alt="Knjiga 1" loading="lazy">
       </div>
     </div>
 
     <div class="project-card">
       <div class="project-inner">
-        <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
+        <img src="../assets/images/books2.jpg" alt="Knjiga 2" loading="lazy">
       </div>
     </div>
 
     <div class="project-card">
       <div class="project-inner">
-        <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy">
-      </div>
-    </div>
-
-    <!-- kopiraj ta blok za nove projekte -->
-   <div class="project-card">
-      <div class="project-inner">
-        <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
+        <img src="../assets/images/books3.jpg" alt="Knjiga 3" loading="lazy">
       </div>
     </div>
 
     <div class="project-card">
       <div class="project-inner">
-        <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
+        <img src="../assets/images/books4.jpg" alt="Knjiga 4" loading="lazy">
       </div>
     </div>
 
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/books5.jpg" alt="Knjiga 5" loading="lazy">
+      </div>
+    </div>
 
-
-    
   </div>
 
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
