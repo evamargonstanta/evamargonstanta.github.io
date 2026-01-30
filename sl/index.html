@@ -315,31 +315,54 @@
     /* =========================
        MOBILE MENU
        ========================= */
-    .mobile-menu {
-      display: none;
-      padding: 20px;
-      background: #fff;
-    }
+ .mobile-menu{
+  display:none;
+  padding: 14px 12px 18px;
+  background:#fff;
+}
 
-    .mobile-menu a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 0;
-      font-size: 18px;
-      color: #222;
-      text-decoration: none;
-      border-bottom: 1px solid #ddd;
-    }
+.mobile-menu.is-open{ display:block; }
 
-    .mobile-menu img.menu-icon {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
+.icon-nav-mobile{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap: 10px;
+  flex-wrap: nowrap;          /* v eni vrstici */
+}
 
-    .mobile-menu.is-open { display: block; }
+.icon-nav-mobile .icon-link{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+}
+
+.icon-nav-mobile .icon{
+  width: 30px;
+  height: 30px;
+  display:block;
+  filter: grayscale(100%) contrast(1.1);
+  opacity: 0.55;              /* malo manj vidne */
+}
+
+.icon-nav-mobile .icon-title{
+  margin-top: 5px;
+  font-size: 11px;
+  line-height: 1.1;
+  text-align:center;
+  color:#111;
+  opacity: 0.9;
+  max-width: 72px;            /* da se napisi ne razlezejo */
+}
+
+@media (hover: hover){
+  .icon-nav-mobile .icon-link:hover .icon{
+    opacity: 0.85;
+    filter: none;             /* rahlo “aktivno” na hover */
+  }
+}
+
 
     /* =========================
        RESPONSIVE – MOBILE / POKONČNI EKRANI
@@ -586,35 +609,44 @@
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="about.html">
-      <img src="../assets/images/icon-newspaper.png" class="menu-icon">
-      O meni / CV
+  <nav class="icon-nav-mobile" aria-label="Meni">
+    <a class="icon-link" href="about.html">
+      <img class="icon" src="../assets/images/icon-newspaper.png" alt="O meni">
+      <div class="icon-title">O meni / CV</div>
     </a>
-    <a href="wet-techniques.html">
-      <img src="../assets/images/icon-brush.png" class="menu-icon">
-      Slikanje
+
+    <a class="icon-link" href="wet-techniques.html">
+      <img class="icon" src="../assets/images/icon-brush.png" alt="Slikanje">
+      <div class="icon-title">Slikanje</div>
     </a>
-    <a href="dry-techniques.html">
-      <img src="../assets/images/icon-crayon.png" class="menu-icon">
-      Risanje
+
+    <a class="icon-link" href="dry-techniques.html">
+      <img class="icon" src="../assets/images/icon-crayons.png" alt="Risanje">
+      <div class="icon-title">Risanje</div>
     </a>
-    <a href="books.html">
-      <img src="../assets/images/icon-books.png" class="menu-icon">
-      Knjige
+
+    <a class="icon-link" href="books.html">
+      <img class="icon" src="../assets/images/icon-books.png" alt="Knjige">
+      <div class="icon-title">Knjige</div>
     </a>
-    <a href="printmaking.html">
-      <img src="../assets/images/icon-press.png" class="menu-icon">
-      Grafika
+
+    <a class="icon-link" href="printmaking.html">
+      <img class="icon" src="../assets/images/icon-press.png" alt="Grafika">
+      <div class="icon-title">Grafika</div>
     </a>
-    <a href="animation.html">
-      <img src="../assets/images/icon-screen.png" class="menu-icon">
-      Animacija in oblikovanje
+
+    <a class="icon-link" href="animation.html">
+      <img class="icon" src="../assets/images/icon-screen.png" alt="Animacija in oblikovanje">
+      <div class="icon-title">Animacija</div>
     </a>
-    <a href="https://evamargon.sumupstore.com" target="_blank">
-      <img src="../assets/images/icon-bag.png" class="menu-icon">
-      Trgovina
+
+    <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener">
+      <img class="icon" src="../assets/images/icon-bag.png" alt="Trgovina">
+      <div class="icon-title">Trgovina</div>
     </a>
-  </div>
+  </nav>
+</div>
+
 
   <script>
     /* =========================
