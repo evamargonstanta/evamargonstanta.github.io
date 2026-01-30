@@ -129,28 +129,6 @@
 }
 
 
-  transition: opacity 160ms ease;
-  opacity: 1;
-}
-
-/* DESKTOP hover: samo fade (brez obrobe) */
-@media (hover: hover){
-  #hotspots .hotspot:hover .click{
-    opacity: 0.55;
-  }
-}
-
-/* MOBILE tap: JS doda .is-tapped, mi fade-amo */
-#hotspots .hotspot.is-tapped .click{
-  opacity: 0.55;
-}
-
-/* da na touch ni modri highlight */
-#hotspots .hotspot{
-  -webkit-tap-highlight-color: transparent;
-}
-
-
     /* =========================
        LANGUAGE SWITCH (SL/EN)
        ========================= */
@@ -588,38 +566,38 @@
 
     <!-- GUMB takoj pod ilustracijo -->
     <div class="mobile-cta">
-     <button id="openMenuBtn" ...>
+     <button id="openMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">
   <img src="../assets/images/icon-arrow.png" class="hint-arrow" alt="" aria-hidden="true">
 
   <div class="hint-row">
     <span class="hint-text">Poišči in klikni.</span>
 
     <svg class="click-hand" viewBox="0 0 24 24" aria-hidden="true">
-  <path d="M9 11V6.5
-           C9 5.67 9.67 5 10.5 5
-           C11.33 5 12 5.67 12 6.5V11
-           M12 11V7.5
-           C12 6.67 12.67 6 13.5 6
-           C14.33 6 15 6.67 15 7.5V12
-           M15 12V9
-           C15 8.17 15.67 7.5 16.5 7.5
-           C17.33 7.5 18 8.17 18 9V15.2
-           C18 18 16.2 19 14.8 19
-           H12.2
-           C10.4 19 9.4 18.2 8.6 16.8
-           L7.3 14.5
-           C6.9 13.8 7.2 12.9 7.9 12.5
-           C8.5 12.2 9.2 12.4 9.6 13
-           L10 13.7"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"/>
-</svg>
+      <path d="M9 11V6.5
+               C9 5.67 9.67 5 10.5 5
+               C11.33 5 12 5.67 12 6.5V11
+               M12 11V7.5
+               C12 6.67 12.67 6 13.5 6
+               C14.33 6 15 6.67 15 7.5V12
+               M15 12V9
+               C15 8.17 15.67 7.5 16.5 7.5
+               C17.33 7.5 18 8.17 18 9V15.2
+               C18 18 16.2 19 14.8 19
+               H12.2
+               C10.4 19 9.4 18.2 8.6 16.8
+               L7.3 14.5
+               C6.9 13.8 7.2 12.9 7.9 12.5
+               C8.5 12.2 9.2 12.4 9.6 13
+               L10 13.7"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"/>
+    </svg>
+  </div>
+</button>
 
-
-      </button>
     </div>
 
   </div>
@@ -666,22 +644,21 @@
 
 
   <script>
-    /* =========================
-       1) MOBILNI GUMB -> TOGGLE MENIJA
-       ========================= */
-    (function () {
-      const btn = document.getElementById('openMenuBtn');
-      const menu = document.getElementById('mobileMenu');
-      if (!btn || !menu) return;
+  /* =========================
+   1) MOBILNI GUMB -> TOGGLE MENIJA
+   ========================= */
+(function () {
+  const btn = document.getElementById('openMenuBtn');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return;
 
-      btn.addEventListener('click', () => {
-        const isOpen = menu.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        document.body.classList.toggle('menu-open', isOpen);
+  btn.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.classList.toggle('menu-open', isOpen);
+  });
+})();
 
-        }
-      });
-    })();
 
    /* =========================
    2) HOTSPOT NAV + FADE HOVER/TAP
