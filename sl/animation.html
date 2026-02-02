@@ -15,7 +15,7 @@
       color:#222;
     }
 
-    /* ===== SEKCIJSKI HEADER (kot "books" header, samo večkrat) ===== */
+    /* ===== SEKCIJSKI HEADER (en sam) ===== */
     .section-header{
       display:flex;
       align-items:center;
@@ -28,20 +28,11 @@
       height:60px;
       margin-right:15px;
     }
-    .section-header h1,
-    .section-header h2{
+    .section-header h1{
       font-size:1.8rem;
       margin:0;
       font-weight:600;
       letter-spacing:0.01em;
-    }
-
-    /* malo zraka med sekcijami (da ne izgleda "zlepljeno") */
-    .section{
-      padding-bottom: 24px;
-    }
-    .section + .section{
-      margin-top: 10px; /* loči "Animacija" in "Oblikovanje" */
     }
 
     /* ===== GALERIJA (enaka logika kot books) ===== */
@@ -83,8 +74,8 @@
       cursor:pointer;
     }
 
-    /* play overlay */
-    .project-card::after{
+    /* play overlay – SAMO na animacijah */
+    .project-card.is-animation::after{
       content:"";
       position:absolute;
       inset:0;
@@ -95,10 +86,10 @@
       transition: transform .18s ease, opacity .18s ease;
     }
     @media (max-width: 900px){
-      .project-card::after{ background-size: 56px 56px; }
+      .project-card.is-animation::after{ background-size: 56px 56px; }
     }
     @media (hover:hover){
-      .project-card:hover::after{
+      .project-card.is-animation:hover::after{
         opacity:1;
         transform: scale(1.05);
       }
@@ -286,17 +277,20 @@
 
 <body>
 
-  <!-- ===== SEKCIJA 1: ANIMACIJA ===== -->
-  <section class="section" aria-label="Animacija">
+  <!-- ===== ENA SEKCIJA: ANIMACIJA + OBLIKOVANJE ===== -->
+  <section aria-label="Animacija in oblikovanje">
     <div class="section-header">
-      <img src="../assets/images/icon-screen.png" alt="Animacija" class="icon">
-      <h1>Animacija</h1>
+      <img src="../assets/images/icon-screen.png" alt="Animacija in oblikovanje" class="icon">
+      <h1>Animacija in oblikovanje</h1>
     </div>
 
-    <div class="grid-gallery" id="galleryAnimation">
+    <!-- ENA SKUPNA GALERIJA, malo pomešano -->
+    <div class="grid-gallery" id="galleryMixed">
 
-      <!-- Projekt 1 -->
-      <div class="project-card"
+      <!-- ===== MIX: Animacija + Design ===== -->
+
+      <!-- 1 (A) -->
+      <div class="project-card is-animation"
            data-img="../assets/images/animation1.jpg"
            data-title="Naslov animacije 1"
            data-year="2024"
@@ -310,76 +304,7 @@
         </div>
       </div>
 
-      <div class="project-card"
-           data-img="../assets/images/animation2.jpg"
-           data-title="Naslov animacije 2"
-           data-year="2023"
-           data-duration="01:10"
-           data-type="Motion design"
-           data-tools="After Effects, Illustrator"
-           data-role="Animacija"
-           data-notes="Kratek opis ali opomba.">
-        <div class="project-inner">
-          <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-img="../assets/images/animation3.jpg"
-           data-title="Naslov animacije 3"
-           data-year="2022"
-           data-duration="00:30"
-           data-type="2D animacija"
-           data-tools="Toon Boom, Photoshop"
-           data-role="Režija / animacija"
-           data-notes="Kratek opis ali opomba.">
-        <div class="project-inner">
-          <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-img="../assets/images/animation4.jpg"
-           data-title="Naslov animacije 4"
-           data-year="2021"
-           data-duration="00:20"
-           data-type="Eksperimentalno"
-           data-tools="Procreate, After Effects"
-           data-role="Avtorica"
-           data-notes="Kratek opis ali opomba.">
-        <div class="project-inner">
-          <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-img="../assets/images/animation5.jpg"
-           data-title="Naslov animacije 5"
-           data-year="2020"
-           data-duration="00:55"
-           data-type="Motion design"
-           data-tools="After Effects"
-           data-role="Animacija / oblikovanje"
-           data-notes="Kratek opis ali opomba.">
-        <div class="project-inner">
-          <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ===== SEKCIJA 2: OBLIKOVANJE ===== -->
-  <section class="section" aria-label="Oblikovanje">
-    <div class="section-header">
-      <img src="../assets/images/icon-screen.png" alt="Oblikovanje" class="icon">
-      <h2>Oblikovanje</h2>
-    </div>
-
-    <div class="grid-gallery" id="galleryDesign">
-
-      <!-- ZAMENJAJ s svojimi slikami/podatki -->
+      <!-- 2 (D) -->
       <div class="project-card"
            data-img="../assets/images/design1.jpg"
            data-title="Naslov oblikovanja 1"
@@ -394,6 +319,7 @@
         </div>
       </div>
 
+      <!-- 3 (D) -->
       <div class="project-card"
            data-img="../assets/images/design2.jpg"
            data-title="Naslov oblikovanja 2"
@@ -408,6 +334,22 @@
         </div>
       </div>
 
+      <!-- 4 (A) -->
+      <div class="project-card is-animation"
+           data-img="../assets/images/animation2.jpg"
+           data-title="Naslov animacije 2"
+           data-year="2023"
+           data-duration="01:10"
+           data-type="Motion design"
+           data-tools="After Effects, Illustrator"
+           data-role="Animacija"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 5 (D) -->
       <div class="project-card"
            data-img="../assets/images/design3.jpg"
            data-title="Naslov oblikovanja 3"
@@ -422,6 +364,22 @@
         </div>
       </div>
 
+      <!-- 6 (A) -->
+      <div class="project-card is-animation"
+           data-img="../assets/images/animation3.jpg"
+           data-title="Naslov animacije 3"
+           data-year="2022"
+           data-duration="00:30"
+           data-type="2D animacija"
+           data-tools="Toon Boom, Photoshop"
+           data-role="Režija / animacija"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 7 (D) -->
       <div class="project-card"
            data-img="../assets/images/design4.jpg"
            data-title="Naslov oblikovanja 4"
@@ -436,6 +394,7 @@
         </div>
       </div>
 
+      <!-- 8 (D) -->
       <div class="project-card"
            data-img="../assets/images/design5.jpg"
            data-title="Naslov oblikovanja 5"
@@ -447,6 +406,156 @@
            data-notes="Kratek opis ali opomba.">
         <div class="project-inner">
           <img src="../assets/images/design5.jpg" alt="Oblikovanje 5" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 9 (A) -->
+      <div class="project-card is-animation"
+           data-img="../assets/images/animation4.jpg"
+           data-title="Naslov animacije 4"
+           data-year="2021"
+           data-duration="00:20"
+           data-type="Eksperimentalno"
+           data-tools="Procreate, After Effects"
+           data-role="Avtorica"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 10 (D) -->
+      <div class="project-card"
+           data-img="../assets/images/design6.jpg"
+           data-title="Naslov oblikovanja 6"
+           data-year="2024"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Illustrator"
+           data-role="Oblikovanje"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design6.jpg" alt="Oblikovanje 6" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 11 (A) -->
+      <div class="project-card is-animation"
+           data-img="../assets/images/animation5.jpg"
+           data-title="Naslov animacije 5"
+           data-year="2020"
+           data-duration="00:55"
+           data-type="Motion design"
+           data-tools="After Effects"
+           data-role="Animacija / oblikovanje"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 12 (D) -->
+      <div class="project-card"
+           data-img="../assets/images/design7.jpg"
+           data-title="Naslov oblikovanja 7"
+           data-year="2023"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Figma"
+           data-role="UI / vizualna podoba"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design7.jpg" alt="Oblikovanje 7" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 13 (D) -->
+      <div class="project-card"
+           data-img="../assets/images/design8.jpg"
+           data-title="Naslov oblikovanja 8"
+           data-year="2022"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Photoshop"
+           data-role="Vizualna podoba"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design8.jpg" alt="Oblikovanje 8" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 14 (A) – NOVA 6. animacija -->
+      <div class="project-card is-animation"
+           data-img="../assets/images/animation6.jpg"
+           data-title="Naslov animacije 6"
+           data-year="2024"
+           data-duration="00:40"
+           data-type="2D animacija"
+           data-tools="After Effects"
+           data-role="Animacija"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation6.jpg" alt="Animacija 6" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 15 (D) -->
+      <div class="project-card"
+           data-img="../assets/images/design9.jpg"
+           data-title="Naslov oblikovanja 9"
+           data-year="2021"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Illustrator"
+           data-role="Ilustracija / grafika"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design9.jpg" alt="Oblikovanje 9" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 16 (D) -->
+      <div class="project-card"
+           data-img="../assets/images/design10.jpg"
+           data-title="Naslov oblikovanja 10"
+           data-year="2020"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="InDesign"
+           data-role="Prelom / dizajn"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design10.jpg" alt="Oblikovanje 10" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 17 (D) -->
+      <div class="project-card"
+           data-img="../assets/images/design11.jpg"
+           data-title="Naslov oblikovanja 11"
+           data-year="2024"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Illustrator, InDesign"
+           data-role="Oblikovanje"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design11.jpg" alt="Oblikovanje 11" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 18 (D) -->
+      <div class="project-card"
+           data-img="../assets/images/design12.jpg"
+           data-title="Naslov oblikovanja 12"
+           data-year="2023"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Figma"
+           data-role="UI / vizualna podoba"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design12.jpg" alt="Oblikovanje 12" loading="lazy">
         </div>
       </div>
 
@@ -519,7 +628,7 @@
       const mRole = document.getElementById('mRole');
       const mNotes = document.getElementById('mNotes');
 
-      // poberemo projekte iz obeh galerij (eni prev/next po vseh)
+      // poberemo projekte iz skupne galerije (prev/next po vseh)
       const cards = Array.from(document.querySelectorAll('.project-card'));
       let currentIndex = -1;
 
