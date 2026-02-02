@@ -35,7 +35,7 @@
       letter-spacing:0.01em;
     }
 
-    /* ===== FILTER BAR (bolj ilustrativni pill gumbi) ===== */
+    /* ===== FILTER BAR (brez ikon, malo bolj odebeljeno) ===== */
     .filter-bar{
       display:flex;
       align-items:center;
@@ -51,23 +51,15 @@
       border:1px solid #ddd;
       background:#fff;
       color:#222;
-      font: inherit;
-      font-size: .95rem;
-      padding: 9px 12px;
+      font-family: inherit;
+      font-size: .98rem;
+      font-weight: 600; /* bolj odebeljeno */
+      padding: 9px 14px;
       cursor:pointer;
       border-radius: 999px;
-      display:flex;
-      align-items:center;
-      gap:8px;
       line-height:1;
       box-shadow: 0 1px 0 rgba(0,0,0,0.03);
       transition: transform .06s ease, border-color .15s ease, box-shadow .15s ease;
-    }
-    .filter-btn svg{
-      width:18px;
-      height:18px;
-      display:block;
-      opacity:.85;
     }
     @media (hover:hover){
       .filter-btn:hover{
@@ -88,10 +80,9 @@
         gap:8px;
       }
       .filter-btn{
-        font-size: .92rem;
-        padding: 8px 11px;
+        font-size: .95rem;
+        padding: 8px 12px;
       }
-      .filter-btn svg{ width:17px; height:17px; }
     }
 
     /* ===== GALERIJA ===== */
@@ -99,7 +90,7 @@
       display:grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 22px;
-      padding: 16px 24px 24px; /* malo manj zgoraj zaradi filter bar */
+      padding: 16px 24px 24px;
       max-width: 1600px;
       margin: 0 auto;
       box-sizing: border-box;
@@ -232,7 +223,7 @@
       overflow:hidden;
     }
 
-    /* kontrole desno spodaj – SVG ikone */
+    /* kontrole desno spodaj – klasične odebeljene ikone */
     .modal-controls{
       position:absolute;
       right:16px;
@@ -252,13 +243,20 @@
       justify-content:center;
     }
     .modal-controls svg{
-      width:38px;
-      height:38px;
+      width:36px;
+      height:36px;
       display:block;
     }
     @media (max-width:520px){
-      .modal-controls{ right:10px; bottom:10px; gap:12px; }
-      .modal-controls svg{ width:32px; height:32px; }
+      .modal-controls{
+        right:10px;
+        bottom:10px;
+        gap:12px;
+      }
+      .modal-controls svg{
+        width:32px;
+        height:32px;
+      }
     }
 
     .modal-content{
@@ -304,90 +302,93 @@
       text-align:center;
     }
 
-    /* ZVRST nad naslovom */
     .meta-genre{
       font-size:.92rem;
       opacity:.72;
-      margin: 0 0 6px;
+      margin: 0 0 4px; /* manj prostora */
       letter-spacing:.01em;
     }
 
     .meta-title{
       font-size:1.12rem;
       font-weight:600;
-      margin:0 0 14px;
+      margin:0 0 10px; /* manj prostora */
     }
 
     .meta{
       display:grid;
       grid-template-columns: 130px 1fr;
       column-gap:12px;
-      row-gap:10px;
+      row-gap:8px;              /* manj lufta */
       font-size:.98rem;
-      line-height:1.35;
+      line-height:1.25;         /* bolj skupaj */
       align-items:center;
       text-align:left;
     }
     .meta .label{ opacity:.7; }
     .meta .value{ opacity:.95; }
 
-    /* ===== MOBILE: bolj lično, bolj “kartica”, bolj sredinsko ===== */
+    /* ===== MOBILE: manjša "kartica", manj paddinga, bolj kompaktno ===== */
     @media (max-width: 860px){
       .modal-content{ flex-direction:column; }
 
       .modal-media{
-        padding:10px;
+        padding:8px;
       }
       .modal-media img{
-        max-height:38vh;
+        max-height:32vh; /* manjše, da ostane prostor spodaj */
       }
 
       .modal-body{
         max-height:none;
         overflow:visible;
-        padding: 12px 14px 68px; /* prostor za gumbe */
+        padding: 10px 12px 78px; /* več prostora spodaj za kontrole */
       }
 
-      /* kartični občutek (znotraj body) */
       .meta-wrap{
-        width: min(560px, 100%);
-        padding: 12px 12px 10px;
+        width: min(520px, 100%);
+        padding: 10px 10px 8px;  /* manjša kartica */
         border: 1px solid #eee;
         box-shadow: 0 2px 0 rgba(0,0,0,0.04);
         background:#fff;
       }
 
-      .meta-genre{ font-size:.9rem; }
-      .meta-title{ font-size:1.02rem; margin-bottom: 10px; }
+      .meta-genre{ font-size:.9rem; margin-bottom: 3px; }
+      .meta-title{ font-size:1.02rem; margin-bottom: 8px; }
 
-      /* center / stack na mobilcu */
       .meta{
         grid-template-columns: 1fr;
-        row-gap: 6px;
+        row-gap: 4px;           /* še bolj kompaktno */
         text-align:center;
-        font-size:.95rem;
+        font-size:.94rem;
+        line-height:1.22;
       }
       .meta .label{
-        margin-top: 10px;
+        margin-top: 8px;
         opacity:.6;
       }
       .meta .value{
-        margin-top: -2px;
+        margin-top: -1px;
+      }
+
+      /* gumbi naj bodo res spodaj */
+      .modal-controls{
+        right:10px;
+        bottom:10px;
       }
     }
 
     @media (max-width: 520px){
       .modal-panel{
-        width: calc(100vw - 22px);
-        max-height: calc(100vh - 18px);
+        width: calc(100vw - 18px);
+        max-height: calc(100vh - 14px);
       }
-      .modal-media img{ max-height: 33vh; }
+      .modal-media img{ max-height: 28vh; }
+      .modal-controls svg{ width:30px; height:30px; }
     }
 
     /* filter skrij */
-    .project-card.is-hidden{
-      display:none;
-    }
+    .project-card.is-hidden{ display:none; }
   </style>
 </head>
 
@@ -399,44 +400,17 @@
       <h1>Animacija in oblikovanje</h1>
     </div>
 
-    <!-- FILTER BUTTONS (bolj ilustrativni) -->
+    <!-- FILTER BUTTONS (brez ikon) -->
     <div class="filter-bar" aria-label="Filtri">
-      <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">
-        <!-- Sparkle / grid -->
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2l1.2 4.3L18 7.5l-4.8 1.2L12 13l-1.2-4.3L6 7.5l4.8-1.2L12 2z" stroke="#222" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M19 13l.7 2.5 2.3.5-2.3.6L19 19l-.6-2.4-2.4-.6 2.4-.5L19 13z" stroke="#222" stroke-width="1.4" stroke-linejoin="round" opacity=".8"/>
-        </svg>
-        Vse
-      </button>
-
-      <button class="filter-btn" type="button" data-filter="animation" aria-pressed="false">
-        <!-- Film / screen -->
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 6h16v12H4V6z" stroke="#222" stroke-width="1.6" />
-          <path d="M8 6v12M16 6v12" stroke="#222" stroke-width="1.2" opacity=".85"/>
-          <path d="M11 10l4 2-4 2v-4z" fill="#222" opacity=".85"/>
-        </svg>
-        Animacija
-      </button>
-
-      <button class="filter-btn" type="button" data-filter="design" aria-pressed="false">
-        <!-- Pen / nib -->
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 3l6 6-7 12-3-3 4-4-3-3 3-3z" stroke="#222" stroke-width="1.4" stroke-linejoin="round"/>
-          <path d="M8.5 18.5L5 22" stroke="#222" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>
-        </svg>
-        Oblikovanje
-      </button>
+      <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Vse</button>
+      <button class="filter-btn" type="button" data-filter="animation" aria-pressed="false">Animacija</button>
+      <button class="filter-btn" type="button" data-filter="design" aria-pressed="false">Oblikovanje</button>
     </div>
 
-    <!-- ENA SKUPNA GALERIJA (DODATNO PREMEŠANA) -->
+    <!-- GALERIJA (pomešana) -->
     <div class="grid-gallery" id="galleryMixed">
 
-      <!-- Cilj: animacije naj padajo v različne pozicije po vrsticah (5-wide), da niso "v istih stolpcih" -->
-
       <!-- Row 1: A, D, D, D, A -->
-      <!-- A1 -->
       <div class="project-card is-animation"
            data-category="animation"
            data-img="../assets/images/animation1.jpg"
@@ -452,7 +426,6 @@
         </div>
       </div>
 
-      <!-- D1 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design1.jpg"
@@ -468,7 +441,6 @@
         </div>
       </div>
 
-      <!-- D2 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design2.jpg"
@@ -484,7 +456,6 @@
         </div>
       </div>
 
-      <!-- D3 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design3.jpg"
@@ -500,7 +471,6 @@
         </div>
       </div>
 
-      <!-- A2 -->
       <div class="project-card is-animation"
            data-category="animation"
            data-img="../assets/images/animation2.jpg"
@@ -517,7 +487,6 @@
       </div>
 
       <!-- Row 2: D, A, D, D, D -->
-      <!-- D4 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design4.jpg"
@@ -533,7 +502,6 @@
         </div>
       </div>
 
-      <!-- A3 -->
       <div class="project-card is-animation"
            data-category="animation"
            data-img="../assets/images/animation3.jpg"
@@ -549,7 +517,6 @@
         </div>
       </div>
 
-      <!-- D5 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design5.jpg"
@@ -565,7 +532,6 @@
         </div>
       </div>
 
-      <!-- D6 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design6.jpg"
@@ -581,7 +547,6 @@
         </div>
       </div>
 
-      <!-- D7 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design7.jpg"
@@ -598,7 +563,6 @@
       </div>
 
       <!-- Row 3: D, D, A, D, D -->
-      <!-- D8 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design8.jpg"
@@ -614,7 +578,6 @@
         </div>
       </div>
 
-      <!-- D9 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design9.jpg"
@@ -630,7 +593,6 @@
         </div>
       </div>
 
-      <!-- A4 -->
       <div class="project-card is-animation"
            data-category="animation"
            data-img="../assets/images/animation4.jpg"
@@ -646,7 +608,6 @@
         </div>
       </div>
 
-      <!-- D10 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design10.jpg"
@@ -662,7 +623,6 @@
         </div>
       </div>
 
-      <!-- D11 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design11.jpg"
@@ -679,7 +639,6 @@
       </div>
 
       <!-- Row 4: A, D, A, D, D -->
-      <!-- A5 -->
       <div class="project-card is-animation"
            data-category="animation"
            data-img="../assets/images/animation5.jpg"
@@ -695,7 +654,6 @@
         </div>
       </div>
 
-      <!-- D12 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design12.jpg"
@@ -711,7 +669,6 @@
         </div>
       </div>
 
-      <!-- A6 -->
       <div class="project-card is-animation"
            data-category="animation"
            data-img="../assets/images/animation6.jpg"
@@ -727,8 +684,7 @@
         </div>
       </div>
 
-      <!-- (še 2 design kartici, da zapolnimo 18) -->
-      <!-- D13 (če boš dodala slike, sicer lahko izbrišeš) -->
+      <!-- Če nimaš design13/14, izbriši ti dve kartici -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design13.jpg"
@@ -744,7 +700,6 @@
         </div>
       </div>
 
-      <!-- D14 -->
       <div class="project-card"
            data-category="design"
            data-img="../assets/images/design14.jpg"
@@ -776,32 +731,24 @@
 
       <div class="modal-controls">
         <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
-          <!-- ilustrativna puščica levo -->
-          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-            <path d="M29.5 10.5c-6.5 4.2-11.8 8.7-16.8 13.5 5 4.8 10.3 9.3 16.8 13.5"
-                  stroke="#222" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 24h24" stroke="#222" stroke-width="1.7" stroke-linecap="round" opacity=".8"/>
-            <path d="M18 15.5l-6 8.5 6 8.5" stroke="#222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+          <!-- klasična odebeljena puščica levo -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14.5 5l-7 7 7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
 
         <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
-          <!-- ilustrativna puščica desno -->
-          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-            <path d="M18.5 10.5c6.5 4.2 11.8 8.7 16.8 13.5-5 4.8-10.3 9.3-16.8 13.5"
-                  stroke="#222" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 24h24" stroke="#222" stroke-width="1.7" stroke-linecap="round" opacity=".8"/>
-            <path d="M30 15.5l6 8.5-6 8.5" stroke="#222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>
+          <!-- klasična odebeljena puščica desno -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9.5 5l7 7-7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
 
         <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
-          <!-- ilustrativni X (malo “hand-drawn”) -->
-          <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
-            <path d="M14 14l20 20" stroke="#222" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M34 14L14 34" stroke="#222" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M18 12.5c2.2 1.2 4.3 2.7 6.2 4.6" stroke="#222" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
-            <path d="M30 35.5c-2.2-1.2-4.3-2.7-6.2-4.6" stroke="#222" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
+          <!-- klasičen odebeljen X -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M18 6L6 18" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
           </svg>
         </button>
       </div>
@@ -894,7 +841,6 @@
       function closeModal(){
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
-
         document.body.style.overflow = '';
         currentIndex = -1;
       }
