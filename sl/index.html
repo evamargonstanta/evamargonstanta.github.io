@@ -25,13 +25,16 @@
       z-index:1;
     }
 
-    .signature{
-      max-width:320px;
-      width:70%;
-      margin:0 auto 8px;
-      display:block;
-      opacity:.95;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+   .signature{
+  width: min(78vw, 520px);  /* večje, a še vedno responsivno */
+  max-width: 520px;
+  height:auto;
+  margin:0 auto 10px;
+  display:block;
+  opacity:.95;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+}
+
     }
 
     /* SCENE */
@@ -273,10 +276,12 @@
       }
 
       .signature{
-        max-width:165px;
-        width:auto;
-        margin:0 auto;
-      }
+  width: min(82vw, 280px); /* večji logo na mobilcu */
+  max-width: 280px;
+  height:auto;
+  margin:0 auto 6px;
+}
+
 
       .scene{
         height:auto;
