@@ -15,7 +15,7 @@
       color:#222;
     }
 
-    /* ===== SEKCIJSKI HEADER (en sam) ===== */
+    /* ===== HEADER ===== */
     .section-header{
       display:flex;
       align-items:center;
@@ -35,12 +35,49 @@
       letter-spacing:0.01em;
     }
 
-    /* ===== GALERIJA (enaka logika kot books) ===== */
+    /* ===== FILTER BAR ===== */
+    .filter-bar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 14px 24px 0;
+      max-width: 1600px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    .filter-btn{
+      border:1px solid #ddd;
+      background:#fff;
+      color:#222;
+      font: inherit;
+      font-size: .95rem;
+      padding: 8px 12px;
+      cursor:pointer;
+      border-radius: 999px;
+      transition: background .15s ease, border-color .15s ease, transform .05s ease;
+    }
+    .filter-btn:active{ transform: scale(0.98); }
+    .filter-btn.is-active{
+      border-color:#222;
+    }
+
+    @media (max-width: 900px){
+      .filter-bar{
+        padding: 12px 20px 0;
+        gap:8px;
+      }
+      .filter-btn{
+        font-size: .92rem;
+        padding: 7px 11px;
+      }
+    }
+
+    /* ===== GALERIJA ===== */
     .grid-gallery{
       display:grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 22px;
-      padding: 28px 24px 24px;
+      padding: 18px 24px 24px; /* malo manj zgoraj zaradi filter bar */
       max-width: 1600px;
       margin: 0 auto;
       box-sizing: border-box;
@@ -51,7 +88,7 @@
         grid-template-columns: repeat(2, 1fr);
         column-gap: 12px;
         row-gap: 14px;
-        padding: 18px 20px 20px;
+        padding: 14px 20px 20px;
         max-width: 600px;
       }
     }
@@ -60,7 +97,7 @@
       .grid-gallery{
         column-gap: 10px;
         row-gap: 12px;
-        padding: 14px 18px 18px;
+        padding: 12px 18px 18px;
         max-width: 480px;
       }
     }
@@ -74,7 +111,7 @@
       cursor:pointer;
     }
 
-    /* play overlay – SAMO na animacijah */
+    /* play overlay – SAMO animacije */
     .project-card.is-animation::after{
       content:"";
       position:absolute;
@@ -173,7 +210,7 @@
       overflow:hidden;
     }
 
-    /* kontrole desno spodaj – vse v isti vrstici */
+    /* kontrole desno spodaj */
     .modal-controls{
       position:absolute;
       right:16px;
@@ -198,8 +235,8 @@
       display:block;
     }
     @media (max-width:520px){
-      .modal-controls{ right:12px; bottom:12px; }
-      .modal-controls img{ width:32px; height:32px; }
+      .modal-controls{ right:10px; bottom:10px; gap:12px; }
+      .modal-controls img{ width:30px; height:30px; }
     }
 
     .modal-content{
@@ -240,16 +277,24 @@
       .modal-body{ overflow-y: scroll; }
     }
 
-    /* tekst katalog-look: grid label/value, centriran */
     .meta-wrap{
       width: min(360px, 100%);
       text-align:center;
     }
+
+    /* NOVO: zvrst nad naslovom */
+    .meta-genre{
+      font-size:.92rem;
+      opacity:.7;
+      margin: 0 0 6px;
+    }
+
     .meta-title{
       font-size:1.1rem;
       font-weight:600;
       margin:0 0 14px;
     }
+
     .meta{
       display:grid;
       grid-template-columns: 130px 1fr;
@@ -263,49 +308,70 @@
     .meta .label{ opacity:.7; }
     .meta .value{ opacity:.95; }
 
+    /* ===== MOBILE: manjše, bolj pregledno ===== */
     @media (max-width: 860px){
       .modal-content{ flex-direction:column; }
-      .modal-media img{ max-height:46vh; }
+      .modal-media{ padding:10px; }
+      .modal-media img{ max-height:40vh; }  /* manj ogromno */
       .modal-body{
         max-height:none;
         overflow:visible;
-        padding-bottom: 70px; /* da gumbi spodaj ne prekrijejo vsebine */
+        padding: 12px 14px 64px; /* prostor za gumbe */
       }
+      .meta-wrap{ width: min(520px, 100%); }
+      .meta-title{ font-size: 1.02rem; margin-bottom: 12px; }
+      .meta{ font-size: .95rem; }
+    }
+
+    @media (max-width: 520px){
+      .modal-panel{
+        width: calc(100vw - 22px); /* ožje, manj “težko” */
+        max-height: calc(100vh - 18px);
+      }
+      .modal-media img{ max-height: 34vh; }
+      .meta-genre{ font-size: .9rem; }
+      .meta-title{ font-size: 1rem; }
+
+      /* meta v 1 stolpec: label nad value */
+      .meta{
+        grid-template-columns: 1fr;
+        row-gap: 6px;
+      }
+      .meta .label{
+        margin-top: 10px;
+      }
+    }
+
+    /* ===== FILTER: skrij kartice (JS doda class) ===== */
+    .project-card.is-hidden{
+      display:none;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ===== ENA SEKCIJA: ANIMACIJA + OBLIKOVANJE ===== -->
   <section aria-label="Animacija in oblikovanje">
     <div class="section-header">
       <img src="../assets/images/icon-screen.png" alt="Animacija in oblikovanje" class="icon">
       <h1>Animacija in oblikovanje</h1>
     </div>
 
-    <!-- ENA SKUPNA GALERIJA, malo pomešano -->
+    <!-- FILTER BUTTONS -->
+    <div class="filter-bar" aria-label="Filtri">
+      <button class="filter-btn is-active" type="button" data-filter="all">Vse</button>
+      <button class="filter-btn" type="button" data-filter="animation">Animacija</button>
+      <button class="filter-btn" type="button" data-filter="design">Oblikovanje</button>
+    </div>
+
+    <!-- ENA SKUPNA, RES POMEŠANA GALERIJA -->
     <div class="grid-gallery" id="galleryMixed">
 
-      <!-- ===== MIX: Animacija + Design ===== -->
+      <!-- Vrstni red: D, A, D, D, A, D, A ... (namenoma) -->
 
-      <!-- 1 (A) -->
-      <div class="project-card is-animation"
-           data-img="../assets/images/animation1.jpg"
-           data-title="Naslov animacije 1"
-           data-year="2024"
-           data-duration="00:45"
-           data-type="2D animacija"
-           data-tools="After Effects, Photoshop"
-           data-role="Avtorica / animacija"
-           data-notes="Kratek opis ali opomba.">
-        <div class="project-inner">
-          <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
-        </div>
-      </div>
-
-      <!-- 2 (D) -->
+      <!-- D1 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design1.jpg"
            data-title="Naslov oblikovanja 1"
            data-year="2024"
@@ -319,8 +385,25 @@
         </div>
       </div>
 
-      <!-- 3 (D) -->
+      <!-- A1 -->
+      <div class="project-card is-animation"
+           data-category="animation"
+           data-img="../assets/images/animation1.jpg"
+           data-title="Naslov animacije 1"
+           data-year="2024"
+           data-duration="00:45"
+           data-type="2D animacija"
+           data-tools="After Effects, Photoshop"
+           data-role="Avtorica / animacija"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
+        </div>
+      </div>
+
+      <!-- D2 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design2.jpg"
            data-title="Naslov oblikovanja 2"
            data-year="2023"
@@ -334,23 +417,9 @@
         </div>
       </div>
 
-      <!-- 4 (A) -->
-      <div class="project-card is-animation"
-           data-img="../assets/images/animation2.jpg"
-           data-title="Naslov animacije 2"
-           data-year="2023"
-           data-duration="01:10"
-           data-type="Motion design"
-           data-tools="After Effects, Illustrator"
-           data-role="Animacija"
-           data-notes="Kratek opis ali opomba.">
-        <div class="project-inner">
-          <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
-        </div>
-      </div>
-
-      <!-- 5 (D) -->
+      <!-- D3 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design3.jpg"
            data-title="Naslov oblikovanja 3"
            data-year="2022"
@@ -364,23 +433,25 @@
         </div>
       </div>
 
-      <!-- 6 (A) -->
+      <!-- A2 -->
       <div class="project-card is-animation"
-           data-img="../assets/images/animation3.jpg"
-           data-title="Naslov animacije 3"
-           data-year="2022"
-           data-duration="00:30"
-           data-type="2D animacija"
-           data-tools="Toon Boom, Photoshop"
-           data-role="Režija / animacija"
+           data-category="animation"
+           data-img="../assets/images/animation2.jpg"
+           data-title="Naslov animacije 2"
+           data-year="2023"
+           data-duration="01:10"
+           data-type="Motion design"
+           data-tools="After Effects, Illustrator"
+           data-role="Animacija"
            data-notes="Kratek opis ali opomba.">
         <div class="project-inner">
-          <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy">
+          <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
         </div>
       </div>
 
-      <!-- 7 (D) -->
+      <!-- D4 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design4.jpg"
            data-title="Naslov oblikovanja 4"
            data-year="2021"
@@ -394,8 +465,25 @@
         </div>
       </div>
 
-      <!-- 8 (D) -->
+      <!-- A3 -->
+      <div class="project-card is-animation"
+           data-category="animation"
+           data-img="../assets/images/animation3.jpg"
+           data-title="Naslov animacije 3"
+           data-year="2022"
+           data-duration="00:30"
+           data-type="2D animacija"
+           data-tools="Toon Boom, Photoshop"
+           data-role="Režija / animacija"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy">
+        </div>
+      </div>
+
+      <!-- D5 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design5.jpg"
            data-title="Naslov oblikovanja 5"
            data-year="2020"
@@ -409,23 +497,9 @@
         </div>
       </div>
 
-      <!-- 9 (A) -->
-      <div class="project-card is-animation"
-           data-img="../assets/images/animation4.jpg"
-           data-title="Naslov animacije 4"
-           data-year="2021"
-           data-duration="00:20"
-           data-type="Eksperimentalno"
-           data-tools="Procreate, After Effects"
-           data-role="Avtorica"
-           data-notes="Kratek opis ali opomba.">
-        <div class="project-inner">
-          <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
-        </div>
-      </div>
-
-      <!-- 10 (D) -->
+      <!-- D6 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design6.jpg"
            data-title="Naslov oblikovanja 6"
            data-year="2024"
@@ -439,23 +513,25 @@
         </div>
       </div>
 
-      <!-- 11 (A) -->
+      <!-- A4 -->
       <div class="project-card is-animation"
-           data-img="../assets/images/animation5.jpg"
-           data-title="Naslov animacije 5"
-           data-year="2020"
-           data-duration="00:55"
-           data-type="Motion design"
-           data-tools="After Effects"
-           data-role="Animacija / oblikovanje"
+           data-category="animation"
+           data-img="../assets/images/animation4.jpg"
+           data-title="Naslov animacije 4"
+           data-year="2021"
+           data-duration="00:20"
+           data-type="Eksperimentalno"
+           data-tools="Procreate, After Effects"
+           data-role="Avtorica"
            data-notes="Kratek opis ali opomba.">
         <div class="project-inner">
-          <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
+          <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
         </div>
       </div>
 
-      <!-- 12 (D) -->
+      <!-- D7 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design7.jpg"
            data-title="Naslov oblikovanja 7"
            data-year="2023"
@@ -469,8 +545,25 @@
         </div>
       </div>
 
-      <!-- 13 (D) -->
+      <!-- A5 -->
+      <div class="project-card is-animation"
+           data-category="animation"
+           data-img="../assets/images/animation5.jpg"
+           data-title="Naslov animacije 5"
+           data-year="2020"
+           data-duration="00:55"
+           data-type="Motion design"
+           data-tools="After Effects"
+           data-role="Animacija / oblikovanje"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
+        </div>
+      </div>
+
+      <!-- D8 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design8.jpg"
            data-title="Naslov oblikovanja 8"
            data-year="2022"
@@ -484,8 +577,9 @@
         </div>
       </div>
 
-      <!-- 14 (A) – NOVA 6. animacija -->
+      <!-- A6 (nova) -->
       <div class="project-card is-animation"
+           data-category="animation"
            data-img="../assets/images/animation6.jpg"
            data-title="Naslov animacije 6"
            data-year="2024"
@@ -499,8 +593,9 @@
         </div>
       </div>
 
-      <!-- 15 (D) -->
+      <!-- D9 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design9.jpg"
            data-title="Naslov oblikovanja 9"
            data-year="2021"
@@ -514,8 +609,9 @@
         </div>
       </div>
 
-      <!-- 16 (D) -->
+      <!-- D10 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design10.jpg"
            data-title="Naslov oblikovanja 10"
            data-year="2020"
@@ -529,8 +625,9 @@
         </div>
       </div>
 
-      <!-- 17 (D) -->
+      <!-- D11 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design11.jpg"
            data-title="Naslov oblikovanja 11"
            data-year="2024"
@@ -544,8 +641,9 @@
         </div>
       </div>
 
-      <!-- 18 (D) -->
+      <!-- D12 -->
       <div class="project-card"
+           data-category="design"
            data-img="../assets/images/design12.jpg"
            data-title="Naslov oblikovanja 12"
            data-year="2023"
@@ -572,7 +670,6 @@
     <div class="modal-backdrop" id="modalBackdrop"></div>
 
     <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Podrobnosti projekta">
-      <!-- kontrole desno spodaj (v isti vrstici) -->
       <div class="modal-controls">
         <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
           <img src="../assets/images/icon-backward.png" alt="">
@@ -594,6 +691,10 @@
 
         <div class="modal-body">
           <div class="meta-wrap">
+
+            <!-- NOVO: zvrst -->
+            <p class="meta-genre" id="mGenre">Zvrst: —</p>
+
             <p class="meta-title" id="mTitleTop">Naslov: —</p>
 
             <div class="meta">
@@ -620,6 +721,7 @@
       const nextBtn = document.getElementById('nextBtn');
 
       const modalImg = document.getElementById('modalImg');
+      const mGenre = document.getElementById('mGenre');
       const mTitleTop = document.getElementById('mTitleTop');
       const mYear = document.getElementById('mYear');
       const mDuration = document.getElementById('mDuration');
@@ -628,9 +730,15 @@
       const mRole = document.getElementById('mRole');
       const mNotes = document.getElementById('mNotes');
 
-      // poberemo projekte iz skupne galerije (prev/next po vseh)
+      // projekti
       const cards = Array.from(document.querySelectorAll('.project-card'));
       let currentIndex = -1;
+
+      function prettyGenre(cat){
+        if (cat === 'animation') return 'Animacija';
+        if (cat === 'design') return 'Oblikovanje';
+        return '—';
+      }
 
       function fillModalFromCard(card){
         const img = card.getAttribute('data-img') || '';
@@ -641,10 +749,12 @@
         const tools = card.getAttribute('data-tools') || '—';
         const role = card.getAttribute('data-role') || '—';
         const notes = card.getAttribute('data-notes') || '—';
+        const category = card.getAttribute('data-category') || '';
 
         modalImg.src = img;
         modalImg.alt = title;
 
+        mGenre.textContent = 'Zvrst: ' + prettyGenre(category);
         mTitleTop.textContent = 'Naslov: ' + title;
         mYear.textContent = year;
         mDuration.textContent = duration;
@@ -660,8 +770,6 @@
 
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
-
-        // prepreči scroll ozadja (da se ne “premika”)
         document.body.style.overflow = 'hidden';
       }
 
@@ -687,7 +795,6 @@
 
       cards.forEach((card, idx) => {
         card.addEventListener('click', () => openModal(idx));
-        // keyboard
         card.setAttribute('tabindex', '0');
         card.setAttribute('role', 'button');
         card.addEventListener('keydown', (e) => {
@@ -700,7 +807,6 @@
 
       closeBtn.addEventListener('click', closeModal);
       backdrop.addEventListener('click', closeModal);
-
       prevBtn.addEventListener('click', showPrev);
       nextBtn.addEventListener('click', showNext);
 
@@ -709,6 +815,39 @@
         if (e.key === 'Escape') closeModal();
         if (e.key === 'ArrowLeft') showPrev();
         if (e.key === 'ArrowRight') showNext();
+      });
+
+      // ===== FILTER LOGIC =====
+      const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+      let activeFilter = 'all';
+
+      function applyFilter(filter){
+        activeFilter = filter;
+
+        filterBtns.forEach(btn => {
+          btn.classList.toggle('is-active', btn.getAttribute('data-filter') === filter);
+        });
+
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          const shouldShow = (filter === 'all') || (cat === filter);
+          card.classList.toggle('is-hidden', !shouldShow);
+        });
+
+        // če je modal odprt in trenutna kartica postane skrita, ga zapremo (da ni čudno)
+        if (modal.classList.contains('is-open')) {
+          const currentCard = cards[currentIndex];
+          if (currentCard && currentCard.classList.contains('is-hidden')) {
+            closeModal();
+          }
+        }
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+          applyFilter(filter);
+        });
       });
     })();
   </script>
