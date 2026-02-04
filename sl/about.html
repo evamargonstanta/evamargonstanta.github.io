@@ -34,34 +34,38 @@
       margin: 0;
     }
 
+    /* širše kot prej */
     .container {
-      max-width: 900px;
+      max-width: 1180px;
       margin: 40px auto;
       padding: 0 20px;
     }
 
-    /* NOVO: zgornji blok (fotka + uvod) */
+    /* ===== NOVO: fotka + življenjepis poravnano po višini ===== */
     .top-grid{
       display: grid;
-      grid-template-columns: 210px 1fr;
-      gap: 26px;
-      align-items: start;
-      margin-bottom: 34px;
+      grid-template-columns: 360px 1fr;  /* večja fotka */
+      gap: 28px;
+      align-items: stretch;              /* pomembno: enaka višina stolpcev */
+      margin-bottom: 40px;
+    }
+
+    /* ovitek, da slika lahko zavzame 100% višine besedila */
+    .photo-wrap{
+      border: 1px solid #ddd;           /* isti jezik kot ostali dividerji */
+      background:#fff;
+      overflow: hidden;                  /* da se obreže, če je cover */
     }
 
     .profile-photo{
       width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display:block;
-      border-radius: 0;          /* da paše k tvojemu “čistem” stilu */
-      box-shadow: none;          /* brez “olepševanja” */
-      border: 1px solid #ddd;    /* enak vizualni jezik kot header/section */
-      background:#fff;
+      height: 100%;                      /* poravnava po višini s tekstom */
+      object-fit: cover;                 /* lepo zapolni prostor */
+      display: block;
     }
 
-    .top-grid .section{
-      margin-bottom: 0; /* da ne podvoji razmika */
+    .top-grid .section {
+      margin-bottom: 0;                  /* brez dodatnega spodnjega razmika */
     }
 
     .section {
@@ -147,25 +151,38 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
+    @media (max-width: 980px) {
       .container {
-        margin: 20px auto;
+        margin: 24px auto;
         padding: 0 12px;
       }
 
+      .top-grid{
+        grid-template-columns: 300px 1fr;
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 768px) {
       .section h2 {
         font-size: 1.2rem;
       }
 
       .top-grid{
-        grid-template-columns: 1fr;
-        gap: 16px;
-        margin-bottom: 26px;
+        grid-template-columns: 1fr;  /* zloži */
+        gap: 14px;
+        margin-bottom: 28px;
       }
 
+      /* na mobilu naj slika ne sili v previsoko */
+      .photo-wrap{
+        height: auto;
+      }
       .profile-photo{
-        width: min(320px, 100%);
-        justify-self: start;
+        height: auto;
+        width: 100%;
+        max-height: 420px;
+        object-fit: cover;
       }
 
       .door-hotspot {
@@ -187,20 +204,23 @@
 
   <div class="container">
 
-    <!-- NOVO: fotka + življenjepis skupaj na vrhu -->
+    <!-- FOTKA + ŽIVLJENJEPIS (poravnano po višini) -->
     <div class="top-grid">
-      <img
-        src="../assets/images/osebna.jpg"
-        alt="Eva Margon"
-        class="profile-photo"
-        loading="lazy"
-      >
 
-      <!-- ŽIVLJENJEPIS -->
+      <div class="photo-wrap" aria-label="Portret">
+        <img
+          src="../assets/images/osebna.jpg"
+          alt="Eva Margon"
+          class="profile-photo"
+          loading="lazy"
+        >
+      </div>
+
       <div class="section" id="zivljenjepis">
         <h2>Življenjepis</h2>
         <p>Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Na Akademiji za likovno umetnost in oblikovanje v Ljubljani je leta 2015 diplomirala s samostojnim animiranim filmom Jazon in Argonavti, leta 2019 pa magistrirala s projektom Slikovni zemljevid planinskih poti v Logarski dolini. Svoje znanje je izpopolnjevala na raznoraznih institucijah, med drugim na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem. Poleg knjižne ilustracije, kateri v zadnjem času posveča večino svojega časa, se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi. Njene ilustracije in animacije lahko najdete v Prirodoslovnem muzeju, na poštnih znamkah Slovenije, v učbenikih Gozdarskega inštituta, na Centru Ilustracije in verjetno na steni kakšnega domovanja.</p>
       </div>
+
     </div>
 
     <!-- NAGRADE -->
@@ -290,7 +310,6 @@
         <li>Predvajanje filma <em>Jazon in Argonavti</em>, Socialna akademija, Ljubljana</li>
         <li>Samostojni kratek animirani film <em>Jazon in Argonavti</em>, Cankarjev dom, Ljubljana</li>
       </ul>
-
     </div>
 
   </div>
