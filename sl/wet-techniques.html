@@ -6,116 +6,535 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slikanje – Eva Margon</title>
-  
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Rubik', sans-serif;
-      background: #fff;
-      color: #222;
+    body{
+      margin:0;
+      font-family:'Rubik', sans-serif;
+      background:#fff;
+      color:#222;
     }
 
-    header {
-      display: flex;
-      align-items: center;
-      padding: 20px;
-      border-bottom: 1px solid #ddd;
+    /* ===== HEADER ===== */
+    .section-header{
+      display:flex;
+      align-items:center;
+      padding:20px;
+      border-bottom:1px solid #ddd;
+      background:#fff;
+    }
+    .section-header img.icon{
+      width:60px;
+      height:60px;
+      margin-right:15px;
+    }
+    .section-header h1{
+      font-size:1.8rem;
+      margin:0;
+      font-weight:600;
+      letter-spacing:0.01em;
     }
 
-    header img.icon {
-      width: 60px;
-      height: 60px;
-      margin-right: 15px;
+    /* ===== GALERIJA (enaka kot Animacija/Oblikovanje) ===== */
+    .grid-gallery{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 22px;
+      padding: 16px 24px 24px;
+      max-width: 1600px;
+      margin: 0 auto;
+      box-sizing: border-box;
     }
 
-   header h1 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  margin: 0;
-}
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      padding: 20px;
+    @media (max-width: 900px){
+      .grid-gallery{
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 12px;
+        row-gap: 14px;
+        padding: 14px 20px 20px;
+        max-width: 600px;
+      }
     }
 
-    .gallery img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
+    @media (max-width: 420px){
+      .grid-gallery{
+        column-gap: 10px;
+        row-gap: 12px;
+        padding: 12px 18px 18px;
+        max-width: 480px;
+      }
     }
 
-    .gallery img:hover {
-      transform: scale(1.05);
+    .project-card{
+      aspect-ratio: 1 / 1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      cursor:pointer;
     }
 
-    /* =========================
-       DOOR ICON – BACK TO HOME
-       ========================= */
-    .door-hotspot {
-      position: fixed;
+    .project-inner{
+      width:92%;
+      height:92%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    @media (max-width: 900px){
+      .project-inner{ width:100%; height:100%; }
+    }
+    .project-inner img{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      display:block;
+      border-radius:0;
+    }
+
+    /* ===== DOOR ICON – BACK TO HOME ===== */
+    .door-hotspot{
+      position:fixed;
       bottom: 28px;
       right: 32px;
-      width: 76px; /* malce večja */
+      width: 76px;
       height: 76px;
-      background-image: url("../assets/images/icon-door.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      z-index: 20;
+      background-image:url("../assets/images/icon-door.png");
+      background-size:contain;
+      background-repeat:no-repeat;
+      background-position:center;
+      z-index:20;
     }
-
-    .door-hotspot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.12);
-      opacity: 0;
-      transition: opacity 0.2s ease;
+    .door-hotspot::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(255,255,255,0.12);
+      opacity:0;
+      transition:opacity .2s ease;
     }
-
-    @media (hover: hover) {
-      .door-hotspot:hover::after {
-        opacity: 1;
-        cursor: pointer;
+    @media (hover:hover){
+      .door-hotspot:hover::after{ opacity:1; cursor:pointer; }
+    }
+    @media (max-width: 768px){
+      .door-hotspot{
+        width:60px;
+        height:60px;
+        bottom:20px;
+        right:20px;
       }
     }
 
-    @media (max-width: 768px) {
-      .door-hotspot {
-        width: 60px;
-        height: 60px;
-        bottom: 20px;
-        right: 20px;
+    /* ===== MODAL (isti kot Animacija/Oblikovanje) ===== */
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      z-index:999;
+    }
+    .modal.is-open{ display:block; }
+
+    .modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.45);
+    }
+
+    .modal-panel{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:min(1100px, calc(100vw - 48px));
+      max-height:calc(100vh - 28px);
+      background:#fff;
+      border-radius:0;
+      overflow:hidden;
+    }
+
+    .modal-controls{
+      position:absolute;
+      right:16px;
+      bottom:16px;
+      z-index:5;
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    .modal-controls button{
+      border:0;
+      background:transparent;
+      padding:6px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .modal-controls svg{
+      width:36px;
+      height:36px;
+      display:block;
+    }
+    @media (max-width:520px){
+      .modal-controls{
+        right:10px;
+        bottom:10px;
+        gap:12px;
       }
+      .modal-controls svg{
+        width:32px;
+        height:32px;
+      }
+    }
+
+    .modal-content{
+      display:flex;
+      gap:0;
+    }
+
+    .modal-media{
+      flex:0 0 58%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      box-sizing:border-box;
+      background:#fff;
+    }
+    .modal-media img{
+      width:100%;
+      height:auto;
+      max-height:62vh;
+      object-fit:contain;
+      display:block;
+    }
+
+    .modal-body{
+      flex:0 0 42%;
+      padding:16px 16px 18px;
+      box-sizing:border-box;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:auto;
+      max-height:calc(100vh - 28px);
+      scrollbar-gutter: stable;
+    }
+    @supports not (scrollbar-gutter: stable){
+      .modal-body{ overflow-y: scroll; }
+    }
+
+    .meta-wrap{
+      width: min(380px, 100%);
+      text-align:center;
+    }
+
+    .meta-genre{
+      font-size:.92rem;
+      opacity:.72;
+      margin: 0 0 4px;
+      letter-spacing:.01em;
+    }
+
+    .meta-title{
+      font-size:1.12rem;
+      font-weight:600;
+      margin:0 0 10px;
+    }
+
+    .meta{
+      display:grid;
+      grid-template-columns: 130px 1fr;
+      column-gap:12px;
+      row-gap:8px;
+      font-size:.98rem;
+      line-height:1.25;
+      align-items:center;
+      text-align:left;
+    }
+    .meta .label{ opacity:.7; }
+    .meta .value{ opacity:.95; }
+
+    @media (max-width: 860px){
+      .modal-content{ flex-direction:column; }
+
+      .modal-media{
+        padding:8px;
+      }
+      .modal-media img{
+        max-height:32vh;
+      }
+
+      .modal-body{
+        max-height:none;
+        overflow:visible;
+        padding: 10px 12px 78px;
+      }
+
+      .meta-wrap{
+        width: min(520px, 100%);
+        padding: 10px 10px 8px;
+        border: 1px solid #eee;
+        box-shadow: 0 2px 0 rgba(0,0,0,0.04);
+        background:#fff;
+      }
+
+      .meta-genre{ font-size:.9rem; margin-bottom: 3px; }
+      .meta-title{ font-size:1.02rem; margin-bottom: 8px; }
+
+      .meta{
+        grid-template-columns: 1fr;
+        row-gap: 4px;
+        text-align:center;
+        font-size:.94rem;
+        line-height:1.22;
+      }
+      .meta .label{
+        margin-top: 8px;
+        opacity:.6;
+      }
+      .meta .value{
+        margin-top: -1px;
+      }
+
+      .modal-controls{
+        right:10px;
+        bottom:10px;
+      }
+    }
+
+    @media (max-width: 520px){
+      .modal-panel{
+        width: calc(100vw - 18px);
+        max-height: calc(100vh - 14px);
+      }
+      .modal-media img{ max-height: 28vh; }
+      .modal-controls svg{ width:30px; height:30px; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER: ikona + naslov -->
-  <header>
-    <img src="../assets/images/icon-brush.png" alt="brush icon" class="icon">
-    <h1>Slikanje</h1>
-  </header>
+  <section aria-label="Slikanje">
+    <div class="section-header">
+      <img src="../assets/images/icon-brush.png" alt="Slikanje" class="icon">
+      <h1>Slikanje</h1>
+    </div>
 
-  <!-- GALERIJA -->
-  <div class="gallery">
-    <img src="../assets/images/brush1.jpg" alt="Slikanje 1">
-    <img src="../assets/images/brush2.jpg" alt="Slikanje 2">
-    <img src="../assets/images/brush3.jpg" alt="Slikanje 3">
-    <!-- Dodaj več slik po potrebi -->
+    <!-- GALERIJA -->
+    <div class="grid-gallery" id="paintingGallery">
+
+      <div class="project-card"
+           data-category="painting"
+           data-img="../assets/images/brush1.jpg"
+           data-title="Slikanje 1"
+           data-year="—"
+           data-duration="—"
+           data-type="Slikanje"
+           data-tools="—"
+           data-role="—"
+           data-notes="—">
+        <div class="project-inner">
+          <img src="../assets/images/brush1.jpg" alt="Slikanje 1" loading="lazy">
+        </div>
+      </div>
+
+      <div class="project-card"
+           data-category="painting"
+           data-img="../assets/images/brush2.jpg"
+           data-title="Slikanje 2"
+           data-year="—"
+           data-duration="—"
+           data-type="Slikanje"
+           data-tools="—"
+           data-role="—"
+           data-notes="—">
+        <div class="project-inner">
+          <img src="../assets/images/brush2.jpg" alt="Slikanje 2" loading="lazy">
+        </div>
+      </div>
+
+      <div class="project-card"
+           data-category="painting"
+           data-img="../assets/images/brush3.jpg"
+           data-title="Slikanje 3"
+           data-year="—"
+           data-duration="—"
+           data-type="Slikanje"
+           data-tools="—"
+           data-role="—"
+           data-notes="—">
+        <div class="project-inner">
+          <img src="../assets/images/brush3.jpg" alt="Slikanje 3" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Dodaj še več slik po istem vzorcu -->
+
+    </div>
+  </section>
+
+  <!-- BACK TO HOME -->
+  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+
+  <!-- ===== MODAL ===== -->
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Podrobnosti slike">
+
+      <div class="modal-controls">
+        <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14.5 5l-7 7 7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9.5 5l7 7-7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M18 6L6 18" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-content">
+        <div class="modal-media">
+          <img id="modalImg" src="" alt="">
+        </div>
+
+        <div class="modal-body">
+          <div class="meta-wrap">
+            <p class="meta-genre" id="mGenre">Zvrst: —</p>
+            <p class="meta-title" id="mTitleTop">Naslov: —</p>
+
+            <div class="meta">
+              <div class="label">Leto</div><div class="value" id="mYear"></div>
+              <div class="label">Dolžina</div><div class="value" id="mDuration"></div>
+              <div class="label">Tip</div><div class="value" id="mType"></div>
+              <div class="label">Programi</div><div class="value" id="mTools"></div>
+              <div class="label">Vloga</div><div class="value" id="mRole"></div>
+              <div class="label">Opombe</div><div class="value" id="mNotes"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <!-- BACK TO HOME – door hotspot -->
-  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+  <script>
+    (function () {
+      const modal = document.getElementById('projectModal');
+      const backdrop = document.getElementById('modalBackdrop');
+      const closeBtn = document.getElementById('closeBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      const modalImg = document.getElementById('modalImg');
+      const mGenre = document.getElementById('mGenre');
+      const mTitleTop = document.getElementById('mTitleTop');
+      const mYear = document.getElementById('mYear');
+      const mDuration = document.getElementById('mDuration');
+      const mType = document.getElementById('mType');
+      const mTools = document.getElementById('mTools');
+      const mRole = document.getElementById('mRole');
+      const mNotes = document.getElementById('mNotes');
+
+      const cards = Array.from(document.querySelectorAll('.project-card'));
+      let currentIndex = -1;
+
+      function prettyGenre(cat){
+        if (cat === 'painting') return 'Slikanje';
+        return '—';
+      }
+
+      function fillModalFromCard(card){
+        const img = card.getAttribute('data-img') || '';
+        const title = card.getAttribute('data-title') || '—';
+        const year = card.getAttribute('data-year') || '—';
+        const duration = card.getAttribute('data-duration') || '—';
+        const type = card.getAttribute('data-type') || '—';
+        const tools = card.getAttribute('data-tools') || '—';
+        const role = card.getAttribute('data-role') || '—';
+        const notes = card.getAttribute('data-notes') || '—';
+        const category = card.getAttribute('data-category') || '';
+
+        modalImg.src = img;
+        modalImg.alt = title;
+
+        mGenre.textContent = 'Zvrst: ' + prettyGenre(category);
+        mTitleTop.textContent = 'Naslov: ' + title;
+        mYear.textContent = year;
+        mDuration.textContent = duration;
+        mType.textContent = type;
+        mTools.textContent = tools;
+        mRole.textContent = role;
+        mNotes.textContent = notes;
+      }
+
+      function openModal(index){
+        currentIndex = index;
+        fillModalFromCard(cards[currentIndex]);
+
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(){
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        currentIndex = -1;
+      }
+
+      function showPrev(){
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        fillModalFromCard(cards[currentIndex]);
+      }
+
+      function showNext(){
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex + 1) % cards.length;
+        fillModalFromCard(cards[currentIndex]);
+      }
+
+      cards.forEach((card, idx) => {
+        card.addEventListener('click', () => openModal(idx));
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(idx);
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
+
+      prevBtn.addEventListener('click', showPrev);
+      nextBtn.addEventListener('click', showNext);
+
+      window.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      });
+    })();
+  </script>
 
 </body>
 </html>
