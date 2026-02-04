@@ -40,6 +40,30 @@
       padding: 0 20px;
     }
 
+    /* NOVO: zgornji blok (fotka + uvod) */
+    .top-grid{
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 26px;
+      align-items: start;
+      margin-bottom: 34px;
+    }
+
+    .profile-photo{
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display:block;
+      border-radius: 0;          /* da paše k tvojemu “čistem” stilu */
+      box-shadow: none;          /* brez “olepševanja” */
+      border: 1px solid #ddd;    /* enak vizualni jezik kot header/section */
+      background:#fff;
+    }
+
+    .top-grid .section{
+      margin-bottom: 0; /* da ne podvoji razmika */
+    }
+
     .section {
       margin-bottom: 40px;
     }
@@ -71,7 +95,7 @@
       font-size: 1rem;
     }
 
-    /* GALERIJA */
+    /* GALERIJA (pusti, če jo boš kdaj rabila) */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -133,6 +157,17 @@
         font-size: 1.2rem;
       }
 
+      .top-grid{
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 26px;
+      }
+
+      .profile-photo{
+        width: min(320px, 100%);
+        justify-self: start;
+      }
+
       .door-hotspot {
         width: 60px;
         height: 60px;
@@ -152,19 +187,27 @@
 
   <div class="container">
 
-    <!-- ŽIVLJENJEPIS -->
-    <div class="section" id="zivljenjepis">
-      <h2>Življenjepis</h2>
-      <p>Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Na Akademiji za likovno umetnost in oblikovanje v Ljubljani je leta 2015 diplomirala s samostojnim animiranim filmom Jazon in Argonavti, leta 2019 pa magistrirala s projektom Slikovni zemljevid planinskih poti v Logarski dolini. Svoje znanje je izpopolnjevala na raznoraznih institucijah, med drugim na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem. Poleg knjižne ilustracije, kateri v zadnjem času posveča večino svojega časa, se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi. Njene ilustracije in animacije lahko najdete v Prirodoslovnem muzeju, na poštnih znamkah Slovenije, v učbenikih Gozdarskega inštituta, na Centru Ilustracije in verjetno na steni kakšnega domovanja.</p>
-    </div>
+    <!-- NOVO: fotka + življenjepis skupaj na vrhu -->
+    <div class="top-grid">
+      <img
+        src="../assets/images/osebna.jpg"
+        alt="Eva Margon"
+        class="profile-photo"
+        loading="lazy"
+      >
 
+      <!-- ŽIVLJENJEPIS -->
+      <div class="section" id="zivljenjepis">
+        <h2>Življenjepis</h2>
+        <p>Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Na Akademiji za likovno umetnost in oblikovanje v Ljubljani je leta 2015 diplomirala s samostojnim animiranim filmom Jazon in Argonavti, leta 2019 pa magistrirala s projektom Slikovni zemljevid planinskih poti v Logarski dolini. Svoje znanje je izpopolnjevala na raznoraznih institucijah, med drugim na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem. Poleg knjižne ilustracije, kateri v zadnjem času posveča večino svojega časa, se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi. Njene ilustracije in animacije lahko najdete v Prirodoslovnem muzeju, na poštnih znamkah Slovenije, v učbenikih Gozdarskega inštituta, na Centru Ilustracije in verjetno na steni kakšnega domovanja.</p>
+      </div>
+    </div>
 
     <!-- NAGRADE -->
     <div class="section" id="nagrade">
       <h2>Nagrade</h2>
       <ul>
         <li>2020 – Priznanje z odliko na <em>Ijungle Illustration Awards</em></li>
-        
       </ul>
     </div>
 
@@ -250,7 +293,7 @@
 
     </div>
 
-
+  </div>
 
   <!-- BACK TO HOME – door hotspot -->
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
