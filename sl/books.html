@@ -50,22 +50,16 @@ header h1{
   gap: 1px;   /* prej 3px */
   padding: 40px 14px 14px;
 
-  max-width: 1950px;
-  margin: 0 auto;
 }
 
 /* TABLET + MOBILE */
 @media (max-width: 900px){
   .grid-gallery{
     grid-template-columns: repeat(2, 1fr);
+    column-gap: 1px;   /* prej 2px */
+    row-gap: 6px;      /* prej 12px */
+    padding: 12px 14px 14px;
 
-    column-gap: 2px;     /* skoraj nič na sredini */
-    row-gap: 12px;       /* več zgoraj/spodaj */
-
-    padding: 14px 18px 18px;  /* več ob straneh kot v sredini */
-
-    max-width: 520px;
-    margin: 0 auto;
   }
 }
 
