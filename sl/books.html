@@ -34,34 +34,43 @@
     }
 
     /* =========================
-       GALERIJA (tesnejši razmiki)
+       GALERIJA 
        ========================= */
+/* DESKTOP */
+.grid-gallery{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
-    .grid-gallery{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0px;                 /* manj prostora med projekti */
-      padding: 40px 14px 14px;  /* manj paddinga zgoraj/ob straneh */
-      max-width: 1750px;
-      margin: 0 auto;
-    }
+  gap: 0px;                 /* skoraj nič med projekti */
 
-    @media (max-width: 900px){
-      .grid-gallery{
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0px;               /* uporablja se za row + column gap */
-        padding: 12px 14px 14px;
-        max-width: 520px;
-      }
-    }
+  padding: 40px 40px 20px;  /* LEVO/DESNO prostor (tu ga uravnavaš!) */
+                            /* zgoraj 40px, spodaj 20px */
 
-    @media (max-width: 420px){
-      .grid-gallery{
-        gap: 0px;               /* še bolj skupaj */
-        padding: 10px 14px 14px;
-        max-width: 480px;
-      }
-    }
+  max-width: 1950px;
+  margin: 0 auto;
+}
+
+/* TABLET + MOBILE */
+@media (max-width: 900px){
+  .grid-gallery{
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 1px;               /* čisto malo da se ločijo */
+
+    padding: 20px 24px 16px; /* še vedno prostor ob straneh */
+    max-width: 520px;
+  }
+}
+
+/* iPhone SE */
+@media (max-width: 420px){
+  .grid-gallery{
+    gap: 0px;
+
+    padding: 16px 20px 14px;
+    max-width: 480px;
+  }
+}
 
     /* =========================
        KVADRATI + SLIKE
