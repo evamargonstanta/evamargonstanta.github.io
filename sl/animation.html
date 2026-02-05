@@ -15,27 +15,83 @@
       color:#222;
     }
 
-    /* ===== HEADER ===== */
+    /* ===== HEADER + DESKTOP IKON MENI ===== */
     .section-header{
       display:flex;
       align-items:center;
+      justify-content:space-between;
+      gap:16px;
       padding:20px;
       border-bottom:1px solid #ddd;
       background:#fff;
+      box-sizing:border-box;
+    }
+    .header-left{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      min-width:0;
     }
     .section-header img.icon{
       width:60px;
       height:60px;
-      margin-right:15px;
+      flex:0 0 auto;
     }
     .section-header h1{
       font-size:1.8rem;
       margin:0;
       font-weight:600;
       letter-spacing:0.01em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    /* ===== FILTER BAR (brez ikon, malo bolj odebeljeno) ===== */
+    .icon-nav-desktop{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
+    }
+    .icon-nav-desktop .icon-link{
+      width:60px;
+      height:60px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .icon-nav-desktop img{
+      width:54px;
+      height:54px;
+      display:block;
+      filter: grayscale(100%);
+      opacity:.5;
+      transition: filter .18s ease, opacity .18s ease, transform .18s ease;
+    }
+    @media (hover:hover){
+      .icon-nav-desktop a.icon-link:hover img{
+        filter:none;
+        opacity:1;
+        transform: scale(1.02);
+      }
+    }
+    .icon-nav-desktop .is-active img{
+      filter:none;
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width: 900px){
+      .icon-nav-desktop{ gap:8px; }
+      .icon-nav-desktop .icon-link{ width:44px; height:44px; }
+      .icon-nav-desktop img{ width:38px; height:38px; }
+      .section-header img.icon{ width:52px; height:52px; }
+      .section-header h1{ font-size:1.55rem; }
+    }
+
+    /* ===== FILTER BAR ===== */
     .filter-bar{
       display:flex;
       align-items:center;
@@ -53,7 +109,7 @@
       color:#222;
       font-family: inherit;
       font-size: .98rem;
-      font-weight: 600; /* bolj odebeljeno */
+      font-weight: 600;
       padding: 9px 14px;
       cursor:pointer;
       border-radius: 999px;
@@ -146,11 +202,11 @@
     }
 
     .project-inner{
-  width:86%;
-  height:86%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+      width:86%;
+      height:86%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
     @media (max-width: 900px){
       .project-inner{ width:80%; height:80%; }
@@ -163,7 +219,7 @@
       border-radius:0;
     }
 
-    /* ===== DOOR ICON – BACK TO HOME ===== */
+    /* ===== DOOR ICON ===== */
     .door-hotspot{
       position:fixed;
       bottom: 28px;
@@ -223,7 +279,6 @@
       overflow:hidden;
     }
 
-    /* kontrole desno spodaj – klasične odebeljene ikone */
     .modal-controls{
       position:absolute;
       right:16px;
@@ -259,10 +314,7 @@
       }
     }
 
-    .modal-content{
-      display:flex;
-      gap:0;
-    }
+    .modal-content{ display:flex; gap:0; }
 
     .modal-media{
       flex:0 0 58%;
@@ -301,53 +353,46 @@
       width: min(380px, 100%);
       text-align:center;
     }
-
     .meta-genre{
       font-size:.92rem;
       opacity:.72;
-      margin: 0 0 4px; /* manj prostora */
+      margin: 0 0 4px;
       letter-spacing:.01em;
     }
-
     .meta-title{
       font-size:1.12rem;
       font-weight:600;
-      margin:0 0 10px; /* manj prostora */
+      margin:0 0 10px;
     }
 
     .meta{
       display:grid;
       grid-template-columns: 130px 1fr;
       column-gap:12px;
-      row-gap:8px;              /* manj lufta */
+      row-gap:8px;
       font-size:.98rem;
-      line-height:1.25;         /* bolj skupaj */
+      line-height:1.25;
       align-items:center;
       text-align:left;
     }
     .meta .label{ opacity:.7; }
     .meta .value{ opacity:.95; }
 
-    /* ===== MOBILE: manjša "kartica", manj paddinga, bolj kompaktno ===== */
     @media (max-width: 860px){
       .modal-content{ flex-direction:column; }
 
-      .modal-media{
-        padding:8px;
-      }
-      .modal-media img{
-        max-height:32vh; /* manjše, da ostane prostor spodaj */
-      }
+      .modal-media{ padding:8px; }
+      .modal-media img{ max-height:32vh; }
 
       .modal-body{
         max-height:none;
         overflow:visible;
-        padding: 10px 12px 78px; /* več prostora spodaj za kontrole */
+        padding: 10px 12px 78px;
       }
 
       .meta-wrap{
         width: min(520px, 100%);
-        padding: 10px 10px 8px;  /* manjša kartica */
+        padding: 10px 10px 8px;
         border: 1px solid #eee;
         box-shadow: 0 2px 0 rgba(0,0,0,0.04);
         background:#fff;
@@ -358,24 +403,15 @@
 
       .meta{
         grid-template-columns: 1fr;
-        row-gap: 4px;           /* še bolj kompaktno */
+        row-gap: 4px;
         text-align:center;
         font-size:.94rem;
         line-height:1.22;
       }
-      .meta .label{
-        margin-top: 8px;
-        opacity:.6;
-      }
-      .meta .value{
-        margin-top: -1px;
-      }
+      .meta .label{ margin-top: 8px; opacity:.6; }
+      .meta .value{ margin-top: -1px; }
 
-      /* gumbi naj bodo res spodaj */
-      .modal-controls{
-        right:10px;
-        bottom:10px;
-      }
+      .modal-controls{ right:10px; bottom:10px; }
     }
 
     @media (max-width: 520px){
@@ -387,7 +423,6 @@
       .modal-controls svg{ width:30px; height:30px; }
     }
 
-    /* filter skrij */
     .project-card.is-hidden{ display:none; }
   </style>
 </head>
@@ -396,51 +431,61 @@
 
   <section aria-label="Animacija in oblikovanje">
     <div class="section-header">
-      <img src="../assets/images/icon-screen.png" alt="Animacija in oblikovanje" class="icon">
-      <h1>Animacija in oblikovanje</h1>
+      <div class="header-left">
+        <img src="../assets/images/icon-screen.png" alt="Animacija in oblikovanje" class="icon">
+        <h1>Animacija in oblikovanje</h1>
+      </div>
+
+      <nav class="icon-nav-desktop" aria-label="Meni">
+        <a class="icon-link" href="about.html" aria-label="O meni / CV"><img src="../assets/images/icon-newspaper.png" alt=""></a>
+        <a class="icon-link" href="wet-techniques.html" aria-label="Slikanje"><img src="../assets/images/icon-brush.png" alt=""></a>
+        <a class="icon-link" href="dry-techniques.html" aria-label="Risanje"><img src="../assets/images/icon-crayon.png" alt=""></a>
+        <a class="icon-link" href="books.html" aria-label="Knjige"><img src="../assets/images/icon-books.png" alt=""></a>
+        <a class="icon-link" href="printmaking.html" aria-label="Grafika"><img src="../assets/images/icon-press.png" alt=""></a>
+        <a class="icon-link is-active" href="animation.html" aria-label="Animacija"><img src="../assets/images/icon-screen.png" alt=""></a>
+        <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" aria-label="Trgovina"><img src="../assets/images/icon-bag.png" alt=""></a>
+      </nav>
     </div>
 
-    <!-- FILTER BUTTONS (brez ikon) -->
     <div class="filter-bar" aria-label="Filtri">
       <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Vse</button>
       <button class="filter-btn" type="button" data-filter="animation" aria-pressed="false">Animacija</button>
       <button class="filter-btn" type="button" data-filter="design" aria-pressed="false">Oblikovanje</button>
     </div>
 
-    <!-- GALERIJA (pomešana) -->
     <div class="grid-gallery" id="galleryMixed">
+      <!-- (tvoj obstoječ content kartic ostane ISTI) -->
+      <!-- 1 -->
+      <div class="project-card is-animation" data-category="animation"
+           data-img="../assets/images/animation1.jpg"
+           data-title="Naslov animacije 1"
+           data-year="2024"
+           data-duration="00:45"
+           data-type="2D animacija"
+           data-tools="After Effects, Photoshop"
+           data-role="Avtorica / animacija"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
+        </div>
+      </div>
 
-  <!-- 1 -->
-  <div class="project-card is-animation" data-category="animation"
-       data-img="../assets/images/animation1.jpg"
-       data-title="Naslov animacije 1"
-       data-year="2024"
-       data-duration="00:45"
-       data-type="2D animacija"
-       data-tools="After Effects, Photoshop"
-       data-role="Avtorica / animacija"
-       data-notes="Kratek opis ali opomba.">
-    <div class="project-inner">
-      <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
-    </div>
-  </div>
+      <!-- 2 -->
+      <div class="project-card" data-category="design"
+           data-img="../assets/images/design1.jpg"
+           data-title="Naslov oblikovanja 1"
+           data-year="2024"
+           data-duration="—"
+           data-type="Oblikovanje"
+           data-tools="Illustrator, InDesign"
+           data-role="Oblikovanje"
+           data-notes="Kratek opis ali opomba.">
+        <div class="project-inner">
+          <img src="../assets/images/design1.jpg" alt="Oblikovanje 1" loading="lazy">
+        </div>
+      </div>
 
-  <!-- 2 -->
-  <div class="project-card" data-category="design"
-       data-img="../assets/images/design1.jpg"
-       data-title="Naslov oblikovanja 1"
-       data-year="2024"
-       data-duration="—"
-       data-type="Oblikovanje"
-       data-tools="Illustrator, InDesign"
-       data-role="Oblikovanje"
-       data-notes="Kratek opis ali opomba.">
-    <div class="project-inner">
-      <img src="../assets/images/design1.jpg" alt="Oblikovanje 1" loading="lazy">
-    </div>
-  </div>
-
-  <!-- 3 -->
+ <!-- 3 -->
   <div class="project-card is-animation" data-category="animation"
        data-img="../assets/images/animation2.jpg"
        data-title="Naslov animacije 2"
@@ -680,14 +725,13 @@
     </div>
   </div>
 
-</div>
+      <!-- (… ostale kartice pusti kot imaš …) -->
+    </div>
 
   </section>
 
-
-  <!-- BACK TO HOME -->
-  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
-
+  
+<a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
   <!-- ===== MODAL ===== -->
   <div class="modal" id="projectModal" aria-hidden="true">
@@ -697,21 +741,18 @@
 
       <div class="modal-controls">
         <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
-          <!-- klasična odebeljena puščica levo -->
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M14.5 5l-7 7 7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
 
         <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
-          <!-- klasična odebeljena puščica desno -->
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9.5 5l7 7-7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
 
         <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
-          <!-- klasičen odebeljen X -->
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M6 6l12 12" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
             <path d="M18 6L6 18" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
@@ -742,7 +783,6 @@
       </div>
     </div>
   </div>
-
 
   <script>
     (function () {
@@ -848,7 +888,6 @@
         if (e.key === 'ArrowRight') showNext();
       });
 
-      // ===== FILTER LOGIC =====
       const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
 
       function applyFilter(filter){
@@ -866,16 +905,12 @@
 
         if (modal.classList.contains('is-open')) {
           const currentCard = cards[currentIndex];
-          if (currentCard && currentCard.classList.contains('is-hidden')) {
-            closeModal();
-          }
+          if (currentCard && currentCard.classList.contains('is-hidden')) closeModal();
         }
       }
 
       filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          applyFilter(btn.getAttribute('data-filter'));
-        });
+        btn.addEventListener('click', () => applyFilter(btn.getAttribute('data-filter')));
       });
     })();
   </script>
