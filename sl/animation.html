@@ -2,7 +2,6 @@
 <html lang="sl">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Animacija in oblikovanje – Eva Margon</title>
@@ -15,7 +14,7 @@
       color:#222;
     }
 
-    /* ===== HEADER + DESKTOP IKON MENI ===== */
+    /* ===== HEADER + DESKTOP MENU ===== */
     .section-header{
       display:flex;
       align-items:center;
@@ -24,7 +23,6 @@
       padding:20px;
       border-bottom:1px solid #ddd;
       background:#fff;
-      box-sizing:border-box;
     }
     .header-left{
       display:flex;
@@ -50,45 +48,42 @@
     .icon-nav-desktop{
       display:flex;
       align-items:center;
-      gap:10px;
-      flex:0 0 auto;
+      gap:12px;
     }
     .icon-nav-desktop .icon-link{
-      width:60px;
-      height:60px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      width:60px;
+      height:60px;
       text-decoration:none;
-      -webkit-tap-highlight-color: transparent;
     }
     .icon-nav-desktop img{
-      width:54px;
-      height:54px;
+      width:56px;
+      height:56px;
       display:block;
       filter: grayscale(100%);
       opacity:.5;
-      transition: filter .18s ease, opacity .18s ease, transform .18s ease;
+      transition: filter .18s ease, opacity .18s ease;
     }
     @media (hover:hover){
       .icon-nav-desktop a.icon-link:hover img{
         filter:none;
         opacity:1;
-        transform: scale(1.02);
       }
+    }
+    .icon-nav-desktop .is-active{
+      pointer-events:none;
     }
     .icon-nav-desktop .is-active img{
       filter:none;
       opacity:1;
-      transform:none;
     }
 
-    @media (max-width: 900px){
-      .icon-nav-desktop{ gap:8px; }
-      .icon-nav-desktop .icon-link{ width:44px; height:44px; }
-      .icon-nav-desktop img{ width:38px; height:38px; }
-      .section-header img.icon{ width:52px; height:52px; }
-      .section-header h1{ font-size:1.55rem; }
+    /* MOBILE: header kot prej */
+    @media (max-width: 768px){
+      .icon-nav-desktop{ display:none; }
+      .section-header{ justify-content:flex-start; }
     }
 
     /* ===== FILTER BAR ===== */
@@ -102,7 +97,6 @@
       box-sizing: border-box;
       flex-wrap: wrap;
     }
-
     .filter-btn{
       border:1px solid #ddd;
       background:#fff;
@@ -131,14 +125,8 @@
     }
 
     @media (max-width: 900px){
-      .filter-bar{
-        padding: 12px 20px 0;
-        gap:8px;
-      }
-      .filter-btn{
-        font-size: .95rem;
-        padding: 8px 12px;
-      }
+      .filter-bar{ padding: 12px 20px 0; gap:8px; }
+      .filter-btn{ font-size: .95rem; padding: 8px 12px; }
     }
 
     /* ===== GALERIJA ===== */
@@ -151,7 +139,6 @@
       margin: 0 auto;
       box-sizing: border-box;
     }
-
     @media (max-width: 900px){
       .grid-gallery{
         grid-template-columns: repeat(2, 1fr);
@@ -161,7 +148,6 @@
         max-width: 600px;
       }
     }
-
     @media (max-width: 420px){
       .grid-gallery{
         column-gap: 10px;
@@ -244,33 +230,15 @@
       .door-hotspot:hover::after{ opacity:1; cursor:pointer; }
     }
     @media (max-width: 768px){
-      .door-hotspot{
-        width:60px;
-        height:60px;
-        bottom:20px;
-        right:20px;
-      }
+      .door-hotspot{ width:60px; height:60px; bottom:20px; right:20px; }
     }
 
     /* ===== MODAL ===== */
-    .modal{
-      position:fixed;
-      inset:0;
-      display:none;
-      z-index:999;
-    }
+    .modal{ position:fixed; inset:0; display:none; z-index:999; }
     .modal.is-open{ display:block; }
-
-    .modal-backdrop{
-      position:absolute;
-      inset:0;
-      background:rgba(0,0,0,.45);
-    }
-
+    .modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
     .modal-panel{
-      position:absolute;
-      left:50%;
-      top:50%;
+      position:absolute; left:50%; top:50%;
       transform:translate(-50%,-50%);
       width:min(1100px, calc(100vw - 48px));
       max-height:calc(100vh - 28px);
@@ -280,57 +248,28 @@
     }
 
     .modal-controls{
-      position:absolute;
-      right:16px;
-      bottom:16px;
-      z-index:5;
-      display:flex;
-      align-items:center;
-      gap:14px;
+      position:absolute; right:16px; bottom:16px;
+      z-index:5; display:flex; align-items:center; gap:14px;
     }
     .modal-controls button{
-      border:0;
-      background:transparent;
-      padding:6px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      border:0; background:transparent; padding:6px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
     }
-    .modal-controls svg{
-      width:36px;
-      height:36px;
-      display:block;
-    }
+    .modal-controls svg{ width:36px; height:36px; display:block; }
     @media (max-width:520px){
-      .modal-controls{
-        right:10px;
-        bottom:10px;
-        gap:12px;
-      }
-      .modal-controls svg{
-        width:32px;
-        height:32px;
-      }
+      .modal-controls{ right:10px; bottom:10px; gap:12px; }
+      .modal-controls svg{ width:32px; height:32px; }
     }
 
     .modal-content{ display:flex; gap:0; }
-
     .modal-media{
       flex:0 0 58%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:14px;
-      box-sizing:border-box;
-      background:#fff;
+      display:flex; align-items:center; justify-content:center;
+      padding:14px; box-sizing:border-box; background:#fff;
     }
     .modal-media img{
-      width:100%;
-      height:auto;
-      max-height:62vh;
-      object-fit:contain;
-      display:block;
+      width:100%; height:auto; max-height:62vh;
+      object-fit:contain; display:block;
     }
 
     .modal-body{
@@ -338,9 +277,7 @@
       padding:16px 16px 18px;
       box-sizing:border-box;
       background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      display:flex; align-items:center; justify-content:center;
       overflow:auto;
       max-height:calc(100vh - 28px);
       scrollbar-gutter: stable;
@@ -349,22 +286,9 @@
       .modal-body{ overflow-y: scroll; }
     }
 
-    .meta-wrap{
-      width: min(380px, 100%);
-      text-align:center;
-    }
-    .meta-genre{
-      font-size:.92rem;
-      opacity:.72;
-      margin: 0 0 4px;
-      letter-spacing:.01em;
-    }
-    .meta-title{
-      font-size:1.12rem;
-      font-weight:600;
-      margin:0 0 10px;
-    }
-
+    .meta-wrap{ width: min(380px, 100%); text-align:center; }
+    .meta-genre{ font-size:.92rem; opacity:.72; margin: 0 0 4px; letter-spacing:.01em; }
+    .meta-title{ font-size:1.12rem; font-weight:600; margin:0 0 10px; }
     .meta{
       display:grid;
       grid-template-columns: 130px 1fr;
@@ -380,16 +304,9 @@
 
     @media (max-width: 860px){
       .modal-content{ flex-direction:column; }
-
       .modal-media{ padding:8px; }
       .modal-media img{ max-height:32vh; }
-
-      .modal-body{
-        max-height:none;
-        overflow:visible;
-        padding: 10px 12px 78px;
-      }
-
+      .modal-body{ max-height:none; overflow:visible; padding: 10px 12px 78px; }
       .meta-wrap{
         width: min(520px, 100%);
         padding: 10px 10px 8px;
@@ -397,10 +314,8 @@
         box-shadow: 0 2px 0 rgba(0,0,0,0.04);
         background:#fff;
       }
-
       .meta-genre{ font-size:.9rem; margin-bottom: 3px; }
       .meta-title{ font-size:1.02rem; margin-bottom: 8px; }
-
       .meta{
         grid-template-columns: 1fr;
         row-gap: 4px;
@@ -410,15 +325,11 @@
       }
       .meta .label{ margin-top: 8px; opacity:.6; }
       .meta .value{ margin-top: -1px; }
-
       .modal-controls{ right:10px; bottom:10px; }
     }
 
     @media (max-width: 520px){
-      .modal-panel{
-        width: calc(100vw - 18px);
-        max-height: calc(100vh - 14px);
-      }
+      .modal-panel{ width: calc(100vw - 18px); max-height: calc(100vh - 14px); }
       .modal-media img{ max-height: 28vh; }
       .modal-controls svg{ width:30px; height:30px; }
     }
@@ -437,13 +348,13 @@
       </div>
 
       <nav class="icon-nav-desktop" aria-label="Meni">
-        <a class="icon-link" href="about.html" aria-label="O meni / CV"><img src="../assets/images/icon-newspaper.png" alt=""></a>
-        <a class="icon-link" href="wet-techniques.html" aria-label="Slikanje"><img src="../assets/images/icon-brush.png" alt=""></a>
-        <a class="icon-link" href="dry-techniques.html" aria-label="Risanje"><img src="../assets/images/icon-crayon.png" alt=""></a>
-        <a class="icon-link" href="books.html" aria-label="Knjige"><img src="../assets/images/icon-books.png" alt=""></a>
-        <a class="icon-link" href="printmaking.html" aria-label="Grafika"><img src="../assets/images/icon-press.png" alt=""></a>
-        <a class="icon-link is-active" href="animation.html" aria-label="Animacija"><img src="../assets/images/icon-screen.png" alt=""></a>
-        <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" aria-label="Trgovina"><img src="../assets/images/icon-bag.png" alt=""></a>
+        <a href="about.html" class="icon-link" aria-label="O meni"><img src="../assets/images/icon-newspaper.png" alt=""></a>
+        <a href="wet-techniques.html" class="icon-link" aria-label="Slikanje"><img src="../assets/images/icon-brush.png" alt=""></a>
+        <a href="dry-techniques.html" class="icon-link" aria-label="Risanje"><img src="../assets/images/icon-crayon.png" alt=""></a>
+        <a href="books.html" class="icon-link" aria-label="Knjige"><img src="../assets/images/icon-books.png" alt=""></a>
+        <a href="printmaking.html" class="icon-link" aria-label="Grafika"><img src="../assets/images/icon-press.png" alt=""></a>
+        <span class="icon-link is-active" aria-label="Animacija"><img src="../assets/images/icon-screen.png" alt=""></span>
+        <a href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" class="icon-link" aria-label="Trgovina"><img src="../assets/images/icon-bag.png" alt=""></a>
       </nav>
     </div>
 
@@ -453,7 +364,7 @@
       <button class="filter-btn" type="button" data-filter="design" aria-pressed="false">Oblikovanje</button>
     </div>
 
-    <div class="grid-gallery" id="galleryMixed">
+<div class="grid-gallery" id="galleryMixed">
       <!-- (tvoj obstoječ content kartic ostane ISTI) -->
       <!-- 1 -->
       <div class="project-card is-animation" data-category="animation"
@@ -725,15 +636,14 @@
     </div>
   </div>
 
-      <!-- (… ostale kartice pusti kot imaš …) -->
-    </div>
 
+      <!-- ... naprej pustiš svoje kartice kot imaš ... -->
+    </div>
   </section>
 
-  
-<a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
-  <!-- ===== MODAL ===== -->
+  <!-- MODAL -->
   <div class="modal" id="projectModal" aria-hidden="true">
     <div class="modal-backdrop" id="modalBackdrop"></div>
 
@@ -838,7 +748,6 @@
       function openModal(index){
         currentIndex = index;
         fillModalFromCard(cards[currentIndex]);
-
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -905,15 +814,22 @@
 
         if (modal.classList.contains('is-open')) {
           const currentCard = cards[currentIndex];
-          if (currentCard && currentCard.classList.contains('is-hidden')) closeModal();
+          if (currentCard && currentCard.classList.contains('is-hidden')) {
+            closeModal();
+          }
         }
       }
 
       filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => applyFilter(btn.getAttribute('data-filter')));
+        btn.addEventListener('click', () => {
+          applyFilter(btn.getAttribute('data-filter'));
+        });
       });
     })();
   </script>
 
 </body>
 </html>
+
+
+
