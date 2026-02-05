@@ -14,7 +14,7 @@
       color:#222;
     }
 
-    /* ===== HEADER ===== */
+    /* ===== HEADER + DESKTOP IKON MENI ===== */
     .section-header{
       display:flex;
       align-items:center;
@@ -23,21 +23,19 @@
       padding:20px;
       border-bottom:1px solid #ddd;
       background:#fff;
+      box-sizing:border-box;
     }
-
     .header-left{
       display:flex;
       align-items:center;
       gap:15px;
       min-width:0;
     }
-
     .section-header img.icon{
       width:60px;
       height:60px;
       flex:0 0 auto;
     }
-
     .section-header h1{
       font-size:1.8rem;
       margin:0;
@@ -48,85 +46,49 @@
       text-overflow:ellipsis;
     }
 
-    /* DESKTOP ICON MENU */
     .icon-nav-desktop{
       display:flex;
       align-items:center;
-      gap:12px;
+      gap:10px;
+      flex:0 0 auto;
+    }
+    .icon-nav-desktop .icon-link{
+      width:60px;
+      height:60px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .icon-nav-desktop img{
+      width:54px;
+      height:54px;
+      display:block;
+      filter: grayscale(100%);
+      opacity:.5;
+      transition: filter .18s ease, opacity .18s ease, transform .18s ease;
+    }
+    @media (hover:hover){
+      .icon-nav-desktop a.icon-link:hover img{
+        filter:none;
+        opacity:1;
+        transform: scale(1.02);
+      }
+    }
+    .icon-nav-desktop .is-active img{
+      filter:none;
+      opacity:1;
+      transform:none;
     }
 
-    /* večji desktop ikon meni */
-.icon-nav-desktop .icon-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-
-  /* širina/višina linka je večja */
-  width:48px;
-  height:48px;
-}
-
-.icon-nav-desktop img{
-  width:44px;
-  height:44px;
-  display:block;
-
-  /* črno-bela privzeto */
-  filter: grayscale(100%);
-  opacity:.5;
-
-  /* gladek prehod ob hover */
-  transition: filter .18s ease, opacity .18s ease;
-}
-
-/* hover → barvne + polna opacity */
-@media (hover:hover){
-  .icon-nav-desktop a.icon-link:hover img{
-    filter:none;
-    opacity:1;
-  }
-}
-
-/* aktivna stran → vedno barvna in polna opacity */
-.icon-nav-desktop .is-active img{
-  filter:none;
-  opacity:1;
-}
-
-
-  /* privzeto: črno-belo + prosojno */
-  filter: grayscale(100%);
-  opacity:.5;
-
-  transition: filter .18s ease, opacity .18s ease;
-}
-
-/* hover → barvno + polna vidnost */
-@media (hover:hover){
-  .icon-nav-desktop a.icon-link:hover img{
-    filter: none;
-    opacity:1;
-  }
-}
-
-/* aktivna stran → vedno barvna + 100% */
-.icon-nav-desktop .is-active{
-  pointer-events:none;
-}
-
-.icon-nav-desktop .is-active img{
-  filter:none;
-  opacity:1;
-}
-
-
+    /* če želiš meni skriti na mobilu (ker imaš tam svoj mobile meni) */
     @media (max-width: 768px){
       .icon-nav-desktop{ display:none; }
     }
 
     /* ===== GALERIJA ===== */
     .grid-gallery{
-      /* custom props (podedujejo jih otroci) */
       --cols: 3;
       --gap: 22px;
 
@@ -152,7 +114,6 @@
     @media (max-width: 420px){
       .grid-gallery{
         --gap: 10px;
-
         padding: 12px 18px 18px;
         max-width: 480px;
       }
@@ -164,10 +125,9 @@
       align-items:center;
       justify-content:center;
       position:relative;
-      cursor:default; /* ni več klikabilno */
+      cursor:default;
     }
 
-    /* KVADRATKI OSTANEJO ISTI */
     .project-inner{
       width:92%;
       height:92%;
@@ -175,7 +135,6 @@
       align-items:center;
       justify-content:center;
     }
-
     @media (max-width: 900px){
       .project-inner{ width:100%; height:100%; }
     }
@@ -188,10 +147,7 @@
       border-radius:0;
     }
 
-    /* =========================
-       WIDE PROJECT – poravnan + enaka višina kot kvadratki
-       ========================= */
-
+    /* ===== WIDE PROJECT – enaka višina kot kvadratki ===== */
     .project-card.is-wide{
       grid-column: 1 / -1;
 
@@ -221,7 +177,7 @@
       height:100%;
       max-width:none;
       max-height:none;
-      object-fit:cover; /* ti imaš cover */
+      object-fit:cover;
       display:block;
     }
 
@@ -229,7 +185,7 @@
       .project-card.is-wide{ padding:0; }
     }
 
-    /* ===== DOOR ICON – BACK TO HOME ===== */
+    /* ===== DOOR ICON ===== */
     .door-hotspot{
       position:fixed;
       bottom: 28px;
@@ -274,19 +230,17 @@
       </div>
 
       <nav class="icon-nav-desktop" aria-label="Meni">
-        <a href="about.html" class="icon-link" aria-label="O meni"><img src="../assets/images/icon-newspaper.png" alt=""></a>
-        <a href="wet-techniques.html" class="icon-link" aria-label="Slikanje"><img src="../assets/images/icon-brush.png" alt=""></a>
-        <span class="icon-link is-active" aria-label="Risanje"><img src="../assets/images/icon-crayon.png" alt=""></span>
-        <a href="books.html" class="icon-link" aria-label="Knjige"><img src="../assets/images/icon-books.png" alt=""></a>
-        <a href="printmaking.html" class="icon-link" aria-label="Grafika"><img src="../assets/images/icon-press.png" alt=""></a>
-        <a href="animation.html" class="icon-link" aria-label="Animacija"><img src="../assets/images/icon-screen.png" alt=""></a>
-        <a href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" class="icon-link" aria-label="Trgovina"><img src="../assets/images/icon-bag.png" alt=""></a>
+        <a class="icon-link" href="about.html" aria-label="O meni / CV"><img src="../assets/images/icon-newspaper.png" alt=""></a>
+        <a class="icon-link" href="wet-techniques.html" aria-label="Slikanje"><img src="../assets/images/icon-brush.png" alt=""></a>
+        <a class="icon-link is-active" href="dry-techniques.html" aria-label="Risanje"><img src="../assets/images/icon-crayon.png" alt=""></a>
+        <a class="icon-link" href="books.html" aria-label="Knjige"><img src="../assets/images/icon-books.png" alt=""></a>
+        <a class="icon-link" href="printmaking.html" aria-label="Grafika"><img src="../assets/images/icon-press.png" alt=""></a>
+        <a class="icon-link" href="animation.html" aria-label="Animacija"><img src="../assets/images/icon-screen.png" alt=""></a>
+        <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" aria-label="Trgovina"><img src="../assets/images/icon-bag.png" alt=""></a>
       </nav>
     </div>
 
-    <!-- GALERIJA -->
     <div class="grid-gallery" id="drawingGallery">
-
       <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon1.jpg" alt="Risba 1" loading="lazy"></div></div>
       <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon2.jpg" alt="Risba 2" loading="lazy"></div></div>
       <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon3.jpg" alt="Risba 3" loading="lazy"></div></div>
@@ -303,14 +257,10 @@
       <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon11.jpg" alt="Risba 11" loading="lazy"></div></div>
       <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon12.jpg" alt="Risba 12" loading="lazy"></div></div>
 
-      <!-- dodaj po potrebi še več kvadratkov ... -->
-
       <div class="project-card is-wide"><div class="project-inner"><img src="../assets/images/crayon-wide.jpg" alt="Podolgovat projekt" loading="lazy"></div></div>
-
     </div>
   </section>
 
-  <!-- BACK TO HOME -->
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
 </body>
