@@ -100,9 +100,11 @@
 
 /* da wide slika lepo zapolni, ne "contain" */
 .project-card.is-wide .project-inner img{
-  width:100%;
-  height:100%;
-  object-fit:cover;      /* obreže robove, da zapolni */
+  width:100% !important;
+  height:100% !important;
+ max-height: none !important;
+  object-fit: cover !important;
+  display: block;
 }
 
     /* ===== DOOR ICON – BACK TO HOME ===== */
