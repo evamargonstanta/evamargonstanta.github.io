@@ -2,7 +2,6 @@
 <html lang="sl">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slikanje – Eva Margon</title>
@@ -19,20 +18,75 @@
     .section-header{
       display:flex;
       align-items:center;
+      justify-content:space-between;
+      gap:16px;
       padding:20px;
       border-bottom:1px solid #ddd;
       background:#fff;
     }
+
+    .header-left{
+      display:flex;
+      align-items:center;
+      gap:15px;
+      min-width:0;
+    }
+
     .section-header img.icon{
       width:60px;
       height:60px;
-      margin-right:15px;
+      flex:0 0 auto;
     }
+
     .section-header h1{
       font-size:1.8rem;
       margin:0;
       font-weight:600;
       letter-spacing:0.01em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    /* DESKTOP ICON MENU */
+    .icon-nav-desktop{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .icon-nav-desktop .icon-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:34px;
+      height:34px;
+      text-decoration:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .icon-nav-desktop img{
+      width:30px;
+      height:30px;
+      display:block;
+      filter: grayscale(100%) brightness(0);
+      opacity:.5;
+      transition: opacity .18s ease;
+    }
+
+    @media (hover:hover){
+      .icon-nav-desktop a.icon-link:hover img{ opacity:.9; }
+    }
+
+    .icon-nav-desktop .is-active{
+      pointer-events:none;
+    }
+    .icon-nav-desktop .is-active img{
+      opacity:1;
+    }
+
+    @media (max-width: 768px){
+      .icon-nav-desktop{ display:none; }
     }
 
     /* ===== GALERIJA ===== */
@@ -75,7 +129,7 @@
       align-items:center;
       justify-content:center;
       position:relative;
-      cursor:pointer;
+      cursor:default; /* ni več klikabilno */
     }
 
     /* KVADRATKI OSTANEJO ISTI */
@@ -86,6 +140,7 @@
       align-items:center;
       justify-content:center;
     }
+
     @media (max-width: 900px){
       .project-inner{ width:100%; height:100%; }
     }
@@ -99,28 +154,27 @@
     }
 
     /* =========================
-       WIDE PROJECT – poravnan z “vidno širino” kvadratkov
+       WIDE PROJECT – poravnan + enaka višina kot kvadratki
        ========================= */
 
     .project-card.is-wide{
-  grid-column: 1 / -1;
+      grid-column: 1 / -1;
 
-  /* širina enega stolpca (enaka “velikosti kvadratka”) */
-  --colw: calc((100% - ((var(--cols) - 1) * var(--gap))) / var(--cols));
-  --pad:  calc(var(--colw) * 0.04);
+      /* širina enega stolpca = “višina kvadratka” */
+      --colw: calc((100% - ((var(--cols) - 1) * var(--gap))) / var(--cols));
+      --pad:  calc(var(--colw) * 0.04);
 
-  /* ✅ višina wide = višina kvadratkov */
-  height: var(--colw);
-  aspect-ratio: auto;
+      height: var(--colw);
+      aspect-ratio: auto;
 
-  padding: var(--pad);
-  box-sizing: border-box;
+      padding: var(--pad);
+      box-sizing: border-box;
 
-  display:flex;
-  align-items:stretch;
-  justify-content:stretch;
-  overflow:hidden;
-}
+      display:flex;
+      align-items:stretch;
+      justify-content:stretch;
+      overflow:hidden;
+    }
 
     .project-card.is-wide .project-inner{
       width:100%;
@@ -133,15 +187,12 @@
       height:100%;
       max-width:none;
       max-height:none;
-      object-fit:cover !important;   /* pustiš cover, ker ti izgleda ok, lahko pa contain */
+      object-fit:cover; /* ti imaš cover */
       display:block;
     }
 
-    /* Na mobile naj bo wide brez paddinga (ker kvadratki so tam 100%) */
     @media (max-width: 900px){
-      .project-card.is-wide{
-        padding: 0;
-      }
+      .project-card.is-wide{ padding:0; }
     }
 
     /* ===== DOOR ICON – BACK TO HOME ===== */
@@ -176,7 +227,6 @@
         right:20px;
       }
     }
-
   </style>
 </head>
 
@@ -184,430 +234,54 @@
 
   <section aria-label="Slikanje">
     <div class="section-header">
-      <img src="../assets/images/icon-brush.png" alt="Slikanje" class="icon">
-      <h1>Slikanje</h1>
+      <div class="header-left">
+        <img src="../assets/images/icon-brush.png" alt="Slikanje" class="icon">
+        <h1>Slikanje</h1>
+      </div>
+
+      <nav class="icon-nav-desktop" aria-label="Meni">
+        <a href="about.html" class="icon-link" aria-label="O meni"><img src="../assets/images/icon-newspaper.png" alt=""></a>
+        <span class="icon-link is-active" aria-label="Slikanje"><img src="../assets/images/icon-brush.png" alt=""></span>
+        <a href="dry-techniques.html" class="icon-link" aria-label="Risanje"><img src="../assets/images/icon-crayon.png" alt=""></a>
+        <a href="books.html" class="icon-link" aria-label="Knjige"><img src="../assets/images/icon-books.png" alt=""></a>
+        <a href="printmaking.html" class="icon-link" aria-label="Grafika"><img src="../assets/images/icon-press.png" alt=""></a>
+        <a href="animation.html" class="icon-link" aria-label="Animacija"><img src="../assets/images/icon-screen.png" alt=""></a>
+        <a href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" class="icon-link" aria-label="Trgovina"><img src="../assets/images/icon-bag.png" alt=""></a>
+      </nav>
     </div>
 
     <!-- GALERIJA -->
     <div class="grid-gallery" id="paintingGallery">
 
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush1.jpg"
-           data-title="Slikanje 1"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush1.jpg" alt="Slikanje 1" loading="lazy">
-        </div>
-      </div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush1.jpg" alt="Slikanje 1" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush2.jpg" alt="Slikanje 2" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush3.jpg" alt="Slikanje 3" loading="lazy"></div></div>
 
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush2.jpg"
-           data-title="Slikanje 2"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush2.jpg" alt="Slikanje 2" loading="lazy">
-        </div>
-      </div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush4.jpg" alt="Slikanje 4" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush5.jpg" alt="Slikanje 5" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush6.jpg" alt="Slikanje 6" loading="lazy"></div></div>
 
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush3.jpg"
-           data-title="Slikanje 3"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush3.jpg" alt="Slikanje 3" loading="lazy">
-        </div>
-      </div>
+      <div class="project-card is-wide"><div class="project-inner"><img src="../assets/images/brush-wide2.jpg" alt="Podolgovat projekt 2" loading="lazy"></div></div>
 
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush4.jpg"
-           data-title="Slikanje 4"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush4.jpg" alt="Slikanje 4" loading="lazy">
-        </div>
-      </div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush7.jpg" alt="Slikanje 7" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush8.jpg" alt="Slikanje 8" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush9.jpg" alt="Slikanje 9" loading="lazy"></div></div>
 
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush5.jpg"
-           data-title="Slikanje 5"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush5.jpg" alt="Slikanje 5" loading="lazy">
-        </div>
-      </div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush10.jpg" alt="Slikanje 10" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush11.jpg" alt="Slikanje 11" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush12.jpg" alt="Slikanje 12" loading="lazy"></div></div>
 
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush6.jpg"
-           data-title="Slikanje 6"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush6.jpg" alt="Slikanje 6" loading="lazy">
-        </div>
-      </div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush13.jpg" alt="Slikanje 13" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush14.jpg" alt="Slikanje 14" loading="lazy"></div></div>
+      <div class="project-card"><div class="project-inner"><img src="../assets/images/brush15.jpg" alt="Slikanje 15" loading="lazy"></div></div>
 
-      <div class="project-card is-wide"
-           data-category="painting"
-           data-img="../assets/images/brush-wide2.jpg"
-           data-title="Podolgovat projekt 2"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush-wide2.jpg" alt="Podolgovat projekt 2" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush7.jpg"
-           data-title="Slikanje 7"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush7.jpg" alt="Slikanje 7" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush8.jpg"
-           data-title="Slikanje 8"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush8.jpg" alt="Slikanje 8" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush9.jpg"
-           data-title="Slikanje 9"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush9.jpg" alt="Slikanje 9" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush10.jpg"
-           data-title="Slikanje 10"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush10.jpg" alt="Slikanje 10" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush11.jpg"
-           data-title="Slikanje 11"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush11.jpg" alt="Slikanje 11" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush12.jpg"
-           data-title="Slikanje 12"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush12.jpg" alt="Slikanje 12" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush13.jpg"
-           data-title="Slikanje 13"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush13.jpg" alt="Slikanje 13" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush14.jpg"
-           data-title="Slikanje 14"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush14.jpg" alt="Slikanje 14" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card"
-           data-category="painting"
-           data-img="../assets/images/brush15.jpg"
-           data-title="Slikanje 15"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush15.jpg" alt="Slikanje 15" loading="lazy">
-        </div>
-      </div>
-
-      <div class="project-card is-wide"
-           data-category="painting"
-           data-img="../assets/images/brush-wide.jpg"
-           data-title="Podolgovat projekt"
-           data-year="—"
-           data-duration="—"
-           data-type="Slikanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/brush-wide.jpg" alt="Podolgovat projekt" loading="lazy">
-        </div>
-      </div>
+      <div class="project-card is-wide"><div class="project-inner"><img src="../assets/images/brush-wide.jpg" alt="Podolgovat projekt" loading="lazy"></div></div>
 
     </div>
   </section>
 
   <!-- BACK TO HOME -->
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
-
-  <!-- ===== MODAL ===== -->
-  <div class="modal" id="projectModal" aria-hidden="true">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Podrobnosti slike">
-
-      <div class="modal-controls">
-        <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M14.5 5l-7 7 7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-
-        <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M9.5 5l7 7-7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-
-        <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6 6l12 12" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
-            <path d="M18 6L6 18" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-
-      <div class="modal-content">
-        <div class="modal-media">
-          <img id="modalImg" src="" alt="">
-        </div>
-
-        <div class="modal-body">
-          <div class="meta-wrap">
-            <p class="meta-genre" id="mGenre">Zvrst: —</p>
-            <p class="meta-title" id="mTitleTop">Naslov: —</p>
-
-            <div class="meta">
-              <div class="label">Leto</div><div class="value" id="mYear"></div>
-              <div class="label">Dolžina</div><div class="value" id="mDuration"></div>
-              <div class="label">Tip</div><div class="value" id="mType"></div>
-              <div class="label">Programi</div><div class="value" id="mTools"></div>
-              <div class="label">Vloga</div><div class="value" id="mRole"></div>
-              <div class="label">Opombe</div><div class="value" id="mNotes"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    (function () {
-      const modal = document.getElementById('projectModal');
-      const backdrop = document.getElementById('modalBackdrop');
-      const closeBtn = document.getElementById('closeBtn');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-
-      const modalImg = document.getElementById('modalImg');
-      const mGenre = document.getElementById('mGenre');
-      const mTitleTop = document.getElementById('mTitleTop');
-      const mYear = document.getElementById('mYear');
-      const mDuration = document.getElementById('mDuration');
-      const mType = document.getElementById('mType');
-      const mTools = document.getElementById('mTools');
-      const mRole = document.getElementById('mRole');
-      const mNotes = document.getElementById('mNotes');
-
-      const cards = Array.from(document.querySelectorAll('.project-card'));
-      let currentIndex = -1;
-
-      function prettyGenre(cat){
-        if (cat === 'painting') return 'Slikanje';
-        return '—';
-      }
-
-      function fillModalFromCard(card){
-        const img = card.getAttribute('data-img') || '';
-        const title = card.getAttribute('data-title') || '—';
-        const year = card.getAttribute('data-year') || '—';
-        const duration = card.getAttribute('data-duration') || '—';
-        const type = card.getAttribute('data-type') || '—';
-        const tools = card.getAttribute('data-tools') || '—';
-        const role = card.getAttribute('data-role') || '—';
-        const notes = card.getAttribute('data-notes') || '—';
-        const category = card.getAttribute('data-category') || '';
-
-        modalImg.src = img;
-        modalImg.alt = title;
-
-        mGenre.textContent = 'Zvrst: ' + prettyGenre(category);
-        mTitleTop.textContent = 'Naslov: ' + title;
-        mYear.textContent = year;
-        mDuration.textContent = duration;
-        mType.textContent = type;
-        mTools.textContent = tools;
-        mRole.textContent = role;
-        mNotes.textContent = notes;
-      }
-
-      function openModal(index){
-        currentIndex = index;
-        fillModalFromCard(cards[currentIndex]);
-
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal(){
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        currentIndex = -1;
-      }
-
-      function showPrev(){
-        if (currentIndex < 0) return;
-        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-        fillModalFromCard(cards[currentIndex]);
-      }
-
-      function showNext(){
-        if (currentIndex < 0) return;
-        currentIndex = (currentIndex + 1) % cards.length;
-        fillModalFromCard(cards[currentIndex]);
-      }
-
-      cards.forEach((card, idx) => {
-        card.addEventListener('click', () => openModal(idx));
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('role', 'button');
-        card.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            openModal(idx);
-          }
-        });
-      });
-
-      closeBtn.addEventListener('click', closeModal);
-      backdrop.addEventListener('click', closeModal);
-
-      prevBtn.addEventListener('click', showPrev);
-      nextBtn.addEventListener('click', showNext);
-
-      window.addEventListener('keydown', (e) => {
-        if (!modal.classList.contains('is-open')) return;
-        if (e.key === 'Escape') closeModal();
-        if (e.key === 'ArrowLeft') showPrev();
-        if (e.key === 'ArrowRight') showNext();
-      });
-    })();
-  </script>
 
 </body>
 </html>
