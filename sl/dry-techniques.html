@@ -102,25 +102,26 @@
        WIDE PROJECT – poravnan z “vidno širino” kvadratkov
        ========================= */
 
-    .project-card.is-wide{
-      grid-column: 1 / -1;
-      aspect-ratio: 3 / 1;
+   .project-card.is-wide{
+  grid-column: 1 / -1;
 
-      /* ŠIRINA ENEGA STOLPCA v trenutnem gridu:
-         col = (100% - (cols-1)*gap) / cols
-         Kvadratek ima 92% inner => padding na vsaki strani = 4% * col
-      */
-      --colw: calc((100% - ((var(--cols) - 1) * var(--gap))) / var(--cols));
-      --pad:  calc(var(--colw) * 0.04);
+  /* širina enega stolpca (enaka “velikosti kvadratka”) */
+  --colw: calc((100% - ((var(--cols) - 1) * var(--gap))) / var(--cols));
+  --pad:  calc(var(--colw) * 0.04);
 
-      padding: var(--pad);
-      box-sizing: border-box;
+  /* ✅ višina wide = višina kvadratkov */
+  height: var(--colw);
+  aspect-ratio: auto;
 
-      display:flex;
-      align-items:stretch;
-      justify-content:stretch;
-      overflow:hidden;
-    }
+  padding: var(--pad);
+  box-sizing: border-box;
+
+  display:flex;
+  align-items:stretch;
+  justify-content:stretch;
+  overflow:hidden;
+}
+
 
     /* Wide naj znotraj paddinga zapolni vse */
     .project-card.is-wide .project-inner{
