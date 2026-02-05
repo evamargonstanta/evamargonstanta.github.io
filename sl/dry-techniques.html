@@ -35,7 +35,7 @@
       letter-spacing:0.01em;
     }
 
-    /* ===== GALERIJA (enaka kot Slikanje/Animacija/Oblikovanje) ===== */
+    /* ===== GALERIJA ===== */
     .grid-gallery{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -84,6 +84,7 @@
     @media (max-width: 900px){
       .project-inner{ width:100%; height:100%; }
     }
+
     .project-inner img{
       max-width:100%;
       max-height:100%;
@@ -92,39 +93,35 @@
       border-radius:0;
     }
 
- /* =========================
-   WIDE PROJECT – poravnan z ostalimi karticami
-   ========================= */
+    /* =========================
+       WIDE PROJECT – PORAVNAN Z GRID-OM (brez beline levo/desno)
+       ========================= */
 
-.project-card.is-wide{
-  grid-column: 1 / -1;
-  aspect-ratio: 3 / 1;
-}
+    .project-card.is-wide{
+      grid-column: 1 / -1;
+      aspect-ratio: 3 / 1;
+      /* da je 100% polno in se nič ne “centra” v manjši širini */
+      align-items: stretch;
+      justify-content: stretch;
+      overflow: hidden; /* če object-fit:cover obreže, je lepo */
+    }
 
-/* wide ima isti inset kot kvadratki */
-.project-card.is-wide .project-inner{
-  width:92% !important;
-  height:92% !important;
-}
+    /* KLJUČNO: wide NE sme imeti 92% inseta */
+    .project-card.is-wide .project-inner{
+      width:100% !important;
+      height:100% !important;
+      display:block !important;
+    }
 
-/* wide slika zapolni svoj inner */
-.project-card.is-wide .project-inner img{
-  width:100% !important;
-  height:100% !important;
-  max-width:none !important;
-  max-height:none !important;
-  object-fit:cover !important;   /* če nočeš obrezovanja: contain */
-  display:block;
-}
-
-/* mobile ostane 100% kot prej */
-@media (max-width: 900px){
-  .project-card.is-wide .project-inner{
-    width:100% !important;
-    height:100% !important;
-  }
-}
-
+    /* KLJUČNO: prepišemo max-width/max-height in contain */
+    .project-card.is-wide .project-inner img{
+      width:100% !important;
+      height:100% !important;
+      max-width:none !important;
+      max-height:none !important;
+      object-fit:cover !important;  /* če nočeš obrezovanja: contain */
+      display:block !important;
+    }
 
     /* ===== DOOR ICON – BACK TO HOME ===== */
     .door-hotspot{
@@ -159,7 +156,7 @@
       }
     }
 
-    /* ===== MODAL (isti kot Slikanje) ===== */
+    /* ===== MODAL ===== */
     .modal{
       position:fixed;
       inset:0;
@@ -360,209 +357,75 @@
     <!-- GALERIJA -->
     <div class="grid-gallery" id="drawingGallery">
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon1.jpg"
-           data-title="Risba 1"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon1.jpg" alt="Risba 1" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon1.jpg" data-title="Risba 1" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon1.jpg" alt="Risba 1" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon2.jpg"
-           data-title="Risba 2"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon2.jpg" alt="Risba 2" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon2.jpg" data-title="Risba 2" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon2.jpg" alt="Risba 2" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon3.jpg"
-           data-title="Risba 3"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon3.jpg" alt="Risba 3" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon3.jpg" data-title="Risba 3" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon3.jpg" alt="Risba 3" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon4.jpg"
-           data-title="Risba 4"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon4.jpg" alt="Risba 4" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon4.jpg" data-title="Risba 4" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon4.jpg" alt="Risba 4" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon5.jpg"
-           data-title="Risba 5"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon5.jpg" alt="Risba 5" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon5.jpg" data-title="Risba 5" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon5.jpg" alt="Risba 5" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon6.jpg"
-           data-title="Risba 6"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon6.jpg" alt="Risba 6" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon6.jpg" data-title="Risba 6" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon6.jpg" alt="Risba 6" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon7.jpg"
-           data-title="Risba 7"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon7.jpg" alt="Risba 7" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon7.jpg" data-title="Risba 7" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon7.jpg" alt="Risba 7" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon8.jpg"
-           data-title="Risba 8"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon8.jpg" alt="Risba 8" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon8.jpg" data-title="Risba 8" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon8.jpg" alt="Risba 8" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon9.jpg"
-           data-title="Risba 9"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon9.jpg" alt="Risba 9" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon9.jpg" data-title="Risba 9" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon9.jpg" alt="Risba 9" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon10.jpg"
-           data-title="Risba 10"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon10.jpg" alt="Risba 10" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon10.jpg" data-title="Risba 10" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon10.jpg" alt="Risba 10" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon11.jpg"
-           data-title="Risba 11"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon11.jpg" alt="Risba 11" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon11.jpg" data-title="Risba 11" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon11.jpg" alt="Risba 11" loading="lazy"></div>
       </div>
 
-      <div class="project-card"
-           data-category="drawing"
-           data-img="../assets/images/crayon12.jpg"
-           data-title="Risba 12"
-           data-year="—"
-           data-duration="—"
-           data-type="Risanje"
-           data-tools="—"
-           data-role="—"
-           data-notes="—">
-        <div class="project-inner">
-          <img src="../assets/images/crayon12.jpg" alt="Risba 12" loading="lazy">
-        </div>
+      <div class="project-card" data-category="drawing" data-img="../assets/images/crayon12.jpg" data-title="Risba 12" data-year="—" data-duration="—" data-type="Risanje" data-tools="—" data-role="—" data-notes="—">
+        <div class="project-inner"><img src="../assets/images/crayon12.jpg" alt="Risba 12" loading="lazy"></div>
       </div>
-      
+
       <div class="project-card is-wide"
-       data-category="drawing"
-       data-img="../assets/images/crayon-wide.jpg"
-       data-title="Podolgovat projekt"
-       data-year="—"
-       data-duration="—"
-       data-type="Risanje"
-       data-tools="—"
-       data-role="—"
-       data-notes="—">
-    <div class="project-inner">
-      <img src="../assets/images/crayon-wide.jpg" alt="Podolgovat projekt" loading="lazy">
-    </div>
-  </div>
-      <!-- Dodaj še več risb po istem vzorcu -->
+           data-category="drawing"
+           data-img="../assets/images/crayon-wide.jpg"
+           data-title="Podolgovat projekt"
+           data-year="—"
+           data-duration="—"
+           data-type="Risanje"
+           data-tools="—"
+           data-role="—"
+           data-notes="—">
+        <div class="project-inner">
+          <img src="../assets/images/crayon-wide.jpg" alt="Podolgovat projekt" loading="lazy">
+        </div>
+      </div>
 
     </div>
   </section>
 
-  <!-- BACK TO HOME -->
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
-  <!-- ===== MODAL ===== -->
+  <!-- MODAL ostane isti -->
   <div class="modal" id="projectModal" aria-hidden="true">
     <div class="modal-backdrop" id="modalBackdrop"></div>
 
