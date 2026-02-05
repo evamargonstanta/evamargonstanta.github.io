@@ -89,6 +89,7 @@
     /* ===== GALERIJA ===== */
     .grid-gallery{
       --cols: 3;
+      --colsMinus1: 2;     /* <-- dodaj */
       --gap: 22px;
 
       display:grid;
@@ -103,6 +104,7 @@
     @media (max-width: 900px){
       .grid-gallery{
         --cols: 2;
+         --colsMinus1: 1;   /* <-- dodaj */
         --gap: 12px;
 
         padding: 14px 20px 20px;
@@ -149,22 +151,24 @@
 
     /* ===== WIDE PROJECT – enaka višina kot kvadratki ===== */
     .project-card.is-wide{
-      grid-column: 1 / -1;
+  grid-column: 1 / -1;
 
-      --colw: calc((100% - ((var(--cols) - 1) * var(--gap))) / var(--cols));
-      --pad:  calc(var(--colw) * 0.04);
+  --colw: calc((100% - (var(--colsMinus1) * var(--gap))) / var(--cols));
+  --pad:  calc(var(--colw) * 0.04);
 
-      height: var(--colw);
-      aspect-ratio: auto;
+  height: var(--colw);
+  aspect-ratio: auto;
 
-      padding: var(--pad);
-      box-sizing: border-box;
+  padding: var(--pad);
+  box-sizing: border-box;
 
-      display:flex;
-      align-items:stretch;
-      justify-content:stretch;
-      overflow:hidden;
-    }
+  display:flex;
+  align-items:stretch;
+  justify-content:stretch;
+  overflow:hidden;
+        min-height: 240px; /* po želji, samo kot varovalka */
+}
+
 
     .project-card.is-wide .project-inner{
       width:100%;
