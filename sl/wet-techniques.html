@@ -37,9 +37,13 @@
 
     /* ===== GALERIJA ===== */
     .grid-gallery{
+      /* custom props (podedujejo jih otroci) */
+      --cols: 3;
+      --gap: 22px;
+
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      grid-template-columns: repeat(var(--cols), 1fr);
+      gap: var(--gap);
       padding: 16px 16px 24px;
       max-width: 1300px;
       margin: 0 auto;
@@ -48,9 +52,9 @@
 
     @media (max-width: 900px){
       .grid-gallery{
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 12px;
-        row-gap: 14px;
+        --cols: 2;
+        --gap: 12px;
+
         padding: 14px 20px 20px;
         max-width: 600px;
       }
@@ -58,8 +62,8 @@
 
     @media (max-width: 420px){
       .grid-gallery{
-        column-gap: 10px;
-        row-gap: 12px;
+        --gap: 10px;
+
         padding: 12px 18px 18px;
         max-width: 480px;
       }
@@ -74,6 +78,7 @@
       cursor:pointer;
     }
 
+    /* KVADRATKI OSTANEJO ISTI */
     .project-inner{
       width:92%;
       height:92%;
@@ -94,37 +99,48 @@
     }
 
     /* =========================
-       WIDE PROJECT (PORAVNAN KOT OSTALI)
+       WIDE PROJECT – poravnan z “vidno širino” kvadratkov
        ========================= */
 
-    /* kartica čez cel grid */
     .project-card.is-wide{
       grid-column: 1 / -1;
       aspect-ratio: 3 / 1;
+
+      /* ŠIRINA ENEGA STOLPCA:
+         col = (100% - (cols-1)*gap) / cols
+         Kvadratek ima 92% inner => padding na vsaki strani = 4% * col
+      */
+      --colw: calc((100% - ((var(--cols) - 1) * var(--gap))) / var(--cols));
+      --pad:  calc(var(--colw) * 0.04);
+
+      padding: var(--pad);
+      box-sizing: border-box;
+
+      display:flex;
+      align-items:stretch;
+      justify-content:stretch;
+      overflow:hidden;
     }
 
-    /* KLJUČNO: wide uporablja ISTI inset kot kvadratki (92%),
-       zato so robovi poravnani z ostalimi slikami */
     .project-card.is-wide .project-inner{
-      width:92% !important;
-      height:92% !important;
-    }
-
-    /* wide slika naj zapolni svoj inner brez max omejitev */
-    .project-card.is-wide .project-inner img{
-      width:100% !important;
-      height:100% !important;
-      max-width:none !important;
-      max-height:none !important;
-      object-fit:cover !important;  /* če nočeš obrezovanja, daj: contain */
+      width:100%;
+      height:100%;
       display:block;
     }
 
-    /* na telefonu imaš že 100% inner, pustimo to logiko */
+    .project-card.is-wide .project-inner img{
+      width:100%;
+      height:100%;
+      max-width:none;
+      max-height:none;
+      object-fit:cover;   /* pustiš cover, ker ti izgleda ok */
+      display:block;
+    }
+
+    /* Na mobile naj bo wide brez paddinga (ker kvadratki so tam 100%) */
     @media (max-width: 900px){
-      .project-card.is-wide .project-inner{
-        width:100% !important;
-        height:100% !important;
+      .project-card.is-wide{
+        padding: 0;
       }
     }
 
@@ -512,7 +528,6 @@
         </div>
       </div>
 
-
       <div class="project-card"
            data-category="painting"
            data-img="../assets/images/brush10.jpg"
@@ -617,7 +632,7 @@
           <img src="../assets/images/brush-wide.jpg" alt="Podolgovat projekt" loading="lazy">
         </div>
       </div>
-      
+
     </div>
   </section>
 
