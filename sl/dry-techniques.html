@@ -92,17 +92,37 @@
       border-radius:0;
     }
 
-    /* kartica, ki zavzame celo širino (vse stolpce) */
+ /* =========================
+   WIDE PROJECT – poravnan z ostalimi karticami
+   ========================= */
+
 .project-card.is-wide{
-  grid-column: 1 / -1;   /* full width */
-  aspect-ratio: 3 / 1;   /* podolgovato – prilagodi po želji */
+  grid-column: 1 / -1;
+  aspect-ratio: 3 / 1;
 }
 
-/* da wide slika lepo zapolni, ne "contain" */
+/* wide ima isti inset kot kvadratki */
+.project-card.is-wide .project-inner{
+  width:92% !important;
+  height:92% !important;
+}
+
+/* wide slika zapolni svoj inner */
 .project-card.is-wide .project-inner img{
-  width:100%;
-  height:100%;
-  object-fit:cover;      /* obreže robove, da zapolni */
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  max-height:none !important;
+  object-fit:cover !important;   /* če nočeš obrezovanja: contain */
+  display:block;
+}
+
+/* mobile ostane 100% kot prej */
+@media (max-width: 900px){
+  .project-card.is-wide .project-inner{
+    width:100% !important;
+    height:100% !important;
+  }
 }
 
 
