@@ -169,11 +169,12 @@
     }
 
     .project-card.is-wide .project-inner{
-      position:absolute;
-      inset: 4%;            /* <<< ujema se s paddingom na kartici */
-      width:auto;
-      height:auto;
-    }
+  position: absolute;
+  inset: 0;      /* pomembno: brez dodatnega inseta */
+  width: 100%;
+  height: 100%;
+}
+
 
     @media (max-width: 900px){
       .project-card.is-wide .project-inner{
