@@ -92,6 +92,19 @@
       border-radius:0;
     }
 
+     /* kartica, ki zavzame celo širino (vse stolpce) */
+.project-card.is-wide{
+  grid-column: 1 / -1;   /* full width */
+  aspect-ratio: 3 / 1;   /* podolgovato – prilagodi po želji */
+}
+
+/* da wide slika lepo zapolni, ne "contain" */
+.project-card.is-wide .project-inner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;      /* obreže robove, da zapolni */
+}
+
     /* ===== DOOR ICON – BACK TO HOME ===== */
     .door-hotspot{
       position:fixed;
