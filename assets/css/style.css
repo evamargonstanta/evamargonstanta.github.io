@@ -245,7 +245,7 @@ body{
 }
 
 
-/* ================= MOBILE FOOTER ICON NAV (na dnu vsebine) ================= */
+/* ================= MOBILE FOOTER ICON NAV (čisto na dnu strani) ================= */
 
 .icon-nav-mobile-footer{
   display:none;
@@ -255,44 +255,50 @@ body{
   .icon-nav-mobile-footer{
     display:flex;
     justify-content:center;
-    align-items:center;
-    gap:14px;
-    flex-wrap:wrap;
+    align-items:flex-start;
+    gap:10px;
+    flex-wrap:nowrap;
+
+    /* čisto spodaj kot “footer” */
+    margin: 28px auto 18px;
+    padding: 14px 12px;
+    border-top: 1px solid #ddd;
 
     max-width: 520px;
-    margin: 28px auto 22px;
-    padding: 18px 14px;
-    border-top: 1px solid #ddd;
     box-sizing:border-box;
+
+    /* če je pretesno (iPhone), dovoli scroll namesto rezanja */
+    overflow-x:auto;
+    -webkit-overflow-scrolling: touch;
   }
 
+  .icon-nav-mobile-footer::-webkit-scrollbar{ display:none; }
+
   .icon-nav-mobile-footer .icon-link{
-    width:60px;
-    height:60px;
+    width:44px;
+    height:44px;
     display:flex;
     align-items:center;
     justify-content:center;
     text-decoration:none;
+    flex: 0 0 auto;
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* velikost kot na tvoji naslovni strani */
   .icon-nav-mobile-footer .icon-link img{
-    width:56px;
-    height:56px;
+    width:30px;
+    height:30px;
     display:block;
 
     filter: grayscale(100%);
     opacity:.5;
-
     transition: filter .18s ease, opacity .18s ease, transform .18s ease;
   }
 
-  @media (hover:hover){
-    .icon-nav-mobile-footer .icon-link:hover img{
-      filter:none;
-      opacity:1;
-      transform: scale(1.02);
-    }
+  .icon-nav-mobile-footer .icon-link.is-active img{
+    filter:none;
+    opacity:1;
+    transform:none;
   }
 }
-
