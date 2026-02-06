@@ -1,292 +1,44 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Risanje – Eva Margon</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:'Rubik', sans-serif;
-      background:#fff;
-      color:#222;
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
 
-    /* ===== HEADER + DESKTOP IKON MENI ===== */
-    .section-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:20px;
-      border-bottom:1px solid #ddd;
-      background:#fff;
-      box-sizing:border-box;
-    }
-    .header-left{
-      display:flex;
-      align-items:center;
-      gap:15px;
-      min-width:0;
-    }
-    .section-header img.icon{
-      width:60px;
-      height:60px;
-      flex:0 0 auto;
-    }
-    .section-header h1{
-      font-size:1.8rem;
-      margin:0;
-      font-weight:600;
-      letter-spacing:0.01em;
-
-      /* desktop: lahko ostane v eni vrstici */
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .icon-nav-desktop{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex:0 0 auto;
-    }
-    .icon-nav-desktop .icon-link{
-      width:60px;
-      height:60px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .icon-nav-desktop img{
-      width:54px;
-      height:54px;
-      display:block;
-      filter: grayscale(100%);
-      opacity:.5;
-      transition: filter .18s ease, opacity .18s ease, transform .18s ease;
-    }
-    @media (hover:hover){
-      .icon-nav-desktop a.icon-link:hover img{
-        filter:none;
-        opacity:1;
-        transform: scale(1.02);
-      }
-    }
-    .icon-nav-desktop .is-active img{
-      filter:none;
-      opacity:1;
-      transform:none;
-    }
-
-    /* meni skrijemo na mobilu */
-    @media (max-width: 768px){
-      .icon-nav-desktop{ display:none; }
-    }
-
-    /* ===== MOBILNI HEADER: manjše ikone + naslov, ki se lahko prelomi ===== */
-    @media (max-width: 768px){
-      .section-header{
-        padding:14px 16px;
-        gap:12px;
-      }
-      .section-header img.icon{
-        width:44px;
-        height:44px;
-      }
-      .section-header h1{
-        font-size:1.25rem;
-        line-height:1.15;
-
-        /* ključno: na mobilu dovolimo prelom, da se dolg naslov vidi */
-        white-space:normal;
-        overflow:visible;
-        text-overflow:clip;
-      }
-    }
-
-    @media (max-width: 380px){
-      .section-header h1{ font-size:1.15rem; }
-    }
-
-    /* ===== GALERIJA ===== */
-    .grid-gallery{
-      --cols: 3;
-      --gap: 22px;
-
-      display:grid;
-      grid-template-columns: repeat(var(--cols), 1fr);
-      gap: var(--gap);
-      padding: 16px 16px 24px;
-      max-width: 1300px;
-      margin: 0 auto;
-      box-sizing: border-box;
-    }
-
-    @media (max-width: 900px){
-      .grid-gallery{
-        --cols: 2;
-        --gap: 12px;
-
-        padding: 14px 20px 20px;
-        max-width: 600px;
-      }
-    }
-
-    @media (max-width: 420px){
-      .grid-gallery{
-        --gap: 10px;
-        padding: 12px 18px 18px;
-        max-width: 480px;
-      }
-    }
-
-    /* VSE KARTICE: 100% + enak notranji rob (da je wide poravnan) */
-    .project-card{
-      aspect-ratio: 1 / 1;
-      position:relative;
-      display:block;
-      box-sizing:border-box;
-
-      padding:4%;
-      overflow:hidden;
-      cursor:default;
-    }
-
-    @media (max-width: 900px){
-      .project-card{ padding:0; }
-    }
-
-    .project-inner{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .project-inner img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      display:block;
-      border-radius:0;
-    }
-
-    /* ===== WIDE PROJECT – stabilna višina + poravnani robovi ===== */
-    .project-card.is-wide{
-      grid-column: 1 / -1;
-      aspect-ratio: unset;
-      padding:4%; /* isti padding kot kvadratki */
-    }
-
-    @media (max-width: 900px){
-      .project-card.is-wide{ padding:0; }
-    }
-
-    /* stabilna višina iz širine (brez calc(height) problemov) */
-    .project-card.is-wide::before{
-      content:"";
-      display:block;
-      padding-top: calc(100% / var(--cols));
-    }
-
-    .project-card.is-wide .project-inner{
-      position:absolute;
-      inset:0;         /* pomembno: brez dodatnega inseta */
-      width:100%;
-      height:100%;
-    }
-
-    .project-card.is-wide .project-inner img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    /* ===== DOOR ICON ===== */
-    .door-hotspot{
-      position:fixed;
-      bottom: 28px;
-      right: 32px;
-      width: 76px;
-      height: 76px;
-      background-image:url("../assets/images/icon-door.png");
-      background-size:contain;
-      background-repeat:no-repeat;
-      background-position:center;
-      z-index:20;
-    }
-    .door-hotspot::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: rgba(255,255,255,0.12);
-      opacity:0;
-      transition:opacity .2s ease;
-    }
-    @media (hover:hover){
-      .door-hotspot:hover::after{ opacity:1; cursor:pointer; }
-    }
-    @media (max-width: 768px){
-      .door-hotspot{
-        width:60px;
-        height:60px;
-        bottom:20px;
-        right:20px;
-      }
-    }
-  </style>
+  <meta name="page-title" content="Risanje">
+  <meta name="page-icon" content="../assets/images/icon-crayon.png">
+  <meta name="nav-active" content="drawing">
 </head>
 
 <body>
 
-  <section aria-label="Risanje">
-    <div class="section-header">
-      <div class="header-left">
-        <img src="../assets/images/icon-crayon.png" alt="Risanje" class="icon">
-        <h1>Risanje</h1>
-      </div>
+  <div data-include="header"></div>
 
-      <nav class="icon-nav-desktop" aria-label="Meni">
-        <a class="icon-link" href="about.html" aria-label="O meni / CV"><img src="../assets/images/icon-newspaper.png" alt=""></a>
-        <a class="icon-link" href="wet-techniques.html" aria-label="Slikanje"><img src="../assets/images/icon-brush.png" alt=""></a>
-        <a class="icon-link is-active" href="dry-techniques.html" aria-label="Risanje"><img src="../assets/images/icon-crayon.png" alt=""></a>
-        <a class="icon-link" href="books.html" aria-label="Knjige"><img src="../assets/images/icon-books.png" alt=""></a>
-        <a class="icon-link" href="printmaking.html" aria-label="Grafika"><img src="../assets/images/icon-press.png" alt=""></a>
-        <a class="icon-link" href="animation.html" aria-label="Animacija"><img src="../assets/images/icon-screen.png" alt=""></a>
-        <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" aria-label="Trgovina"><img src="../assets/images/icon-bag.png" alt=""></a>
-      </nav>
-    </div>
+  <div class="grid-gallery" id="drawingGallery">
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon1.jpg" alt="Risba 1" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon2.jpg" alt="Risba 2" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon3.jpg" alt="Risba 3" loading="lazy"></div></div>
 
-    <div class="grid-gallery" id="drawingGallery">
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon1.jpg" alt="Risba 1" loading="lazy"></div></div>
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon2.jpg" alt="Risba 2" loading="lazy"></div></div>
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon3.jpg" alt="Risba 3" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon4.jpg" alt="Risba 4" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon5.jpg" alt="Risba 5" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon6.jpg" alt="Risba 6" loading="lazy"></div></div>
 
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon4.jpg" alt="Risba 4" loading="lazy"></div></div>
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon5.jpg" alt="Risba 5" loading="lazy"></div></div>
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon6.jpg" alt="Risba 6" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon7.jpg" alt="Risba 7" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon8.jpg" alt="Risba 8" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon9.jpg" alt="Risba 9" loading="lazy"></div></div>
 
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon7.jpg" alt="Risba 7" loading="lazy"></div></div>
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon8.jpg" alt="Risba 8" loading="lazy"></div></div>
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon9.jpg" alt="Risba 9" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon10.jpg" alt="Risba 10" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon11.jpg" alt="Risba 11" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon12.jpg" alt="Risba 12" loading="lazy"></div></div>
 
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon10.jpg" alt="Risba 10" loading="lazy"></div></div>
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon11.jpg" alt="Risba 11" loading="lazy"></div></div>
-      <div class="project-card"><div class="project-inner"><img src="../assets/images/crayon12.jpg" alt="Risba 12" loading="lazy"></div></div>
-
-      <div class="project-card is-wide"><div class="project-inner"><img src="../assets/images/crayon-wide.jpg" alt="Podolgovat projekt" loading="lazy"></div></div>
-    </div>
-  </section>
+    <div class="project-card is-wide"><div class="project-inner"><img src="../assets/images/crayon-wide.jpg" alt="Podolgovat projekt" loading="lazy"></div></div>
+  </div>
 
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
+  <script src="../assets/js/include.js"></script>
 </body>
 </html>
