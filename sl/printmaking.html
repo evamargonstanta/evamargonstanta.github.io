@@ -1,92 +1,27 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grafika – Eva Margon</title>
-  
+
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <meta name="page-title" content="Grafika">
+  <meta name="page-icon" content="../assets/images/icon-press.png">
+  <meta name="nav-active" content="printmaking">
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Rubik', sans-serif;
-      background: #fff;
-      color: #222;
-    }
-
-    /* ===== HEADER + DESKTOP MENU ===== */
-    .section-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:20px;
-      border-bottom:1px solid #ddd;
-      background:#fff;
-    }
-    .header-left{
-      display:flex;
-      align-items:center;
-      gap:15px;
-      min-width:0;
-    }
-    .section-header img.icon{
-      width:60px;
-      height:60px;
-      flex:0 0 auto;
-    }
-    .section-header h1{
-      font-size:1.6rem;
-      font-weight:600;
-      letter-spacing:0.01em;
-      margin:0;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .icon-nav-desktop{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .icon-nav-desktop .icon-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:60px;
-      height:60px;
-      text-decoration:none;
-    }
-    .icon-nav-desktop img{
-      width:56px;
-      height:56px;
-      display:block;
-      filter: grayscale(100%);
-      opacity:.5;
-      transition: filter .18s ease, opacity .18s ease;
-    }
-    @media (hover:hover){
-      .icon-nav-desktop a.icon-link:hover img{
-        filter:none;
-        opacity:1;
-      }
-    }
-    .icon-nav-desktop .is-active{ pointer-events:none; }
-    .icon-nav-desktop .is-active img{ filter:none; opacity:1; }
-
-    /* MOBILE: header kot prej */
-    @media (max-width: 768px){
-      .icon-nav-desktop{ display:none; }
-      .section-header{ justify-content:flex-start; }
-    }
-
-    /* GALERIJA (tvoja obstoječa) */
+    /* tvoja grafika galerija */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 15px;
       padding: 20px;
+      box-sizing: border-box;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .gallery img {
@@ -98,69 +33,13 @@
       transition: transform 0.2s ease;
     }
 
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    /* DOOR */
-    .door-hotspot {
-      position: fixed;
-      bottom: 28px;
-      right: 32px;
-      width: 76px;
-      height: 76px;
-      background-image: url("../assets/images/icon-door.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      z-index: 20;
-    }
-
-    .door-hotspot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.12);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    @media (hover: hover) {
-      .door-hotspot:hover::after {
-        opacity: 1;
-        cursor: pointer;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .door-hotspot {
-        width: 60px;
-        height: 60px;
-        bottom: 20px;
-        right: 20px;
-      }
-    }
+    .gallery img:hover { transform: scale(1.05); }
   </style>
 </head>
 
 <body>
 
-  <header class="section-header">
-    <div class="header-left">
-      <img src="../assets/images/icon-press.png" alt="Grafika" class="icon">
-      <h1>Grafika</h1>
-    </div>
-
-    <nav class="icon-nav-desktop" aria-label="Meni">
-      <a href="about.html" class="icon-link" aria-label="O meni"><img src="../assets/images/icon-newspaper.png" alt=""></a>
-      <a href="wet-techniques.html" class="icon-link" aria-label="Slikanje"><img src="../assets/images/icon-brush.png" alt=""></a>
-      <a href="dry-techniques.html" class="icon-link" aria-label="Risanje"><img src="../assets/images/icon-crayon.png" alt=""></a>
-      <a href="books.html" class="icon-link" aria-label="Knjige"><img src="../assets/images/icon-books.png" alt=""></a>
-      <span class="icon-link is-active" aria-label="Grafika"><img src="../assets/images/icon-press.png" alt=""></span>
-      <a href="animation.html" class="icon-link" aria-label="Animacija"><img src="../assets/images/icon-screen.png" alt=""></a>
-      <a href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" class="icon-link" aria-label="Trgovina"><img src="../assets/images/icon-bag.png" alt=""></a>
-    </nav>
-  </header>
+  <div data-include="header"></div>
 
   <div class="gallery">
     <img src="../assets/images/press1.jpg" alt="Grafika 1">
@@ -170,5 +49,6 @@
 
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
+  <script src="../assets/js/include.js"></script>
 </body>
 </html>
