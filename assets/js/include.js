@@ -19,35 +19,19 @@ async function loadHeader() {
     pageIcon.alt = title;
   }
 
-  // Active stanje v meniju
+  // Active stanje v menijih (desktop + mobile footer)
   const activeKey = document.querySelector('meta[name="nav-active"]')?.content;
+
   if (activeKey) {
-    const activeLink = mount.querySelector(`.icon-link[data-nav="${activeKey}"]`);
-    if (activeLink) activeLink.classList.add('is-active');
+    // označi aktivno ikono povsod
+    mount.querySelectorAll(`.icon-link[data-nav="${activeKey}"]`).forEach(el => {
+      el.classList.add('is-active');
+    });
+
+    // na mobilnem footer meniju aktivne ikone NE kažemo (da ostane 6 ikon)
+    const footerActive = mount.querySelector(`.icon-nav-mobile-footer .icon-link[data-nav="${activeKey}"]`);
+    if (footerActive) footerActive.style.display = 'none';
   }
 }
 
 document.addEventListener('DOMContentLoaded', loadHeader);
-
-
-
-(function setActiveNavAuto(){
-  const file = (location.pathname.split('/').pop() || '').toLowerCase();
-
-  const map = {
-    'about.html': 'about',
-    'wet-techniques.html': 'wet-techniques',
-    'dry-techniques.html': 'dry-techniques',
-    'books.html': 'books',
-    'printmaking.html': 'printmaking',
-    'animation.html': 'animation'
-  };
-
-  const activeKey = map[file];
-  if (!activeKey) return;
-
-  document.querySelectorAll('[data-nav]').forEach(a => {
-    a.classList.toggle('is-active', a.getAttribute('data-nav') === activeKey);
-  });
-})();
-
