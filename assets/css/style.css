@@ -173,54 +173,36 @@ body{
 }
 
 
-/* ===== WIDE PROJECT – ENAK POVSOD, PORAVNANI ROBOVI ===== */
+/* ===== WIDE PROJECT – PORAVNAN Z GALERIJO, BREZ BELINE ===== */
 
-/* kako visok je wide glede na kvadratek */
+/* Nastavi “oblika pasice” (večja številka = nižja pasica)
+   21/9 je super za panoramske slike.
+   Če želiš malo višje: 16/9 */
 .grid-gallery{
-  --wide-mult: 0.6;   /* 0.5 nižji, 0.6 srednji, 0.7 višji */
+  --wide-ar-w: 21;
+  --wide-ar-h: 9;
 }
 
 .project-card.is-wide{
   grid-column: 1 / -1;
-  position: relative;
-  padding:4%;
-  box-sizing:border-box;
-  overflow:hidden;
+  padding: 0;              /* pomembno: brez dodatnega roba */
+  aspect-ratio: calc(var(--wide-ar-w) / var(--wide-ar-h));
+  overflow: hidden;
 }
 
-/* določi višino wide bannerja */
-.project-card.is-wide::before{
-  content:"";
-  display:block;
-  padding-top: calc((100% / var(--cols)) * var(--wide-mult));
-}
-
-@media (max-width:900px){
-  .project-card.is-wide{
-    padding:0;
-  }
-}
-
-/* notranjost */
+/* notranjost naj zapolni 100% */
 .project-card.is-wide .project-inner{
-  position:absolute;
-  inset:4%;
-  width:auto;
-  height:auto;
+  width: 100%;
+  height: 100%;
 }
 
-@media (max-width:900px){
-  .project-card.is-wide .project-inner{
-    inset:0;
-  }
-}
-
-/* brez zoomanja */
+/* brez beline -> cover (zapolni pasico; lahko minimalno odreže) */
 .project-card.is-wide img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 
