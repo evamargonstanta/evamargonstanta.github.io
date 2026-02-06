@@ -11,40 +11,39 @@
   <meta name="page-title" content="Grafika">
   <meta name="page-icon" content="../assets/images/icon-press.png">
   <meta name="nav-active" content="printmaking">
-
-  <style>
-    /* tvoja grafika galerija */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      padding: 20px;
-      box-sizing: border-box;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
-
-    .gallery img:hover { transform: scale(1.05); }
-  </style>
 </head>
 
 <body>
 
   <div data-include="header"></div>
 
-  <div class="gallery">
-    <img src="../assets/images/press1.jpg" alt="Grafika 1">
-    <img src="../assets/images/press2.jpg" alt="Grafika 2">
-    <img src="../assets/images/press3.jpg" alt="Grafika 3">
+  <!-- ista galerija kot Risanje/Slikanje -->
+  <div class="grid-gallery" id="printmakingGallery">
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/press1.jpg" alt="Grafika 1" loading="lazy">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/press2.jpg" alt="Grafika 2" loading="lazy">
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-inner">
+        <img src="../assets/images/press3.jpg" alt="Grafika 3" loading="lazy">
+      </div>
+    </div>
+
+    <!-- če boš kdaj dodala wide projekt:
+    <div class="project-card is-wide">
+      <div class="project-inner">
+        <img src="../assets/images/press-wide.jpg" alt="Podolgovat projekt" loading="lazy">
+      </div>
+    </div>
+    -->
   </div>
 
   <div data-include="footer-nav"></div>
