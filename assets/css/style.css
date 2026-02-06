@@ -214,16 +214,14 @@ body{
   right: 32px;
   width: 76px;
   height: 76px;
-
-  /* POPRAVLJENA POT (CSS je v /assets/css/) */
   background-image: url("../images/icon-door.png");
-
   background-size:contain;
   background-repeat:no-repeat;
   background-position:center;
-  z-index: 200;       /* malo višje, da ga nič ne prekrije */
-  display:block;      /* za vsak slučaj */
+  z-index: 200;
+  display:block;
 }
+
 .door-hotspot::after{
   content:"";
   position:absolute;
@@ -232,9 +230,11 @@ body{
   opacity:0;
   transition:opacity .2s ease;
 }
+
 @media (hover:hover){
   .door-hotspot:hover::after{ opacity:1; cursor:pointer; }
 }
+
 @media (max-width: 768px){
   .door-hotspot{
     width:60px;
@@ -242,35 +242,33 @@ body{
     bottom:20px;
     right:20px;
   }
+}
 
 
-  /* ===== MOBILE BOTTOM NAV (dock) ===== */
-.icon-nav-mobile-bottom{
+/* ================= MOBILE FOOTER ICON NAV (na dnu vsebine) ================= */
+
+.icon-nav-mobile-footer{
   display:none;
 }
 
 @media (max-width: 768px){
-  .icon-nav-mobile-bottom{
+  .icon-nav-mobile-footer{
     display:flex;
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    z-index:300;
-
-    justify-content:space-around;
+    justify-content:center;
     align-items:center;
-    gap:6px;
+    gap:14px;
+    flex-wrap:wrap;
 
-    padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
-    background:#fff;
-    border-top:1px solid #ddd;
+    max-width: 520px;
+    margin: 28px auto 22px;
+    padding: 18px 14px;
+    border-top: 1px solid #ddd;
     box-sizing:border-box;
   }
 
-  .icon-nav-mobile-bottom .icon-link{
-    width:44px;
-    height:44px;
+  .icon-nav-mobile-footer .icon-link{
+    width:60px;
+    height:60px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -278,40 +276,23 @@ body{
     -webkit-tap-highlight-color: transparent;
   }
 
-  .icon-nav-mobile-bottom .icon-link img{
-    width:28px;
-    height:28px;
+  .icon-nav-mobile-footer .icon-link img{
+    width:56px;
+    height:56px;
     display:block;
 
-    /* izgled kot desktop (ČB + 50%) */
     filter: grayscale(100%);
     opacity:.5;
 
     transition: filter .18s ease, opacity .18s ease, transform .18s ease;
   }
 
-  .icon-nav-mobile-bottom .icon-link.is-active img{
-    filter:none;
-    opacity:1;
-    transform:none;
+  @media (hover:hover){
+    .icon-nav-mobile-footer .icon-link:hover img{
+      filter:none;
+      opacity:1;
+      transform: scale(1.02);
+    }
   }
-
-  /* da vsebina ne gre pod dock */
-  body{
-    padding-bottom: 74px; /* približno višina docka */
-  }
-
-  /* da door ikona ni “pod” dockom */
-  .door-hotspot{
-    bottom: 92px;
-  }
-}
-
-/* še manjši telefoni */
-@media (max-width: 380px){
-  .icon-nav-mobile-bottom .icon-link{ width:40px; height:40px; }
-  .icon-nav-mobile-bottom .icon-link img{ width:26px; height:26px; }
-}
-
 }
 
