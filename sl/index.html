@@ -200,21 +200,33 @@
       transform: translateY(0);
     }
 
-    .icon-nav-mobile{
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      gap:10px;
-      flex-wrap:nowrap;
-    }
+   .icon-nav-mobile{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:10px;
+  flex-wrap:nowrap;
 
-    .icon-nav-mobile .icon-link{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-decoration:none;
-      min-width: 56px; /* stabilno */
-    }
+  /* ključ: nikoli ne odreže ikon */
+  overflow-x:auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 10px;
+}
+
+.icon-nav-mobile::-webkit-scrollbar{
+  display:none; /* lepše na iOS */
+}
+
+.icon-nav-mobile .icon-link{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+
+  /* pomembno: brez min-width, ker to razširi vrstico */
+  flex: 0 0 auto;
+  min-width: 0;
+}
 
     .icon-nav-mobile .icon{
       width: 28px;
