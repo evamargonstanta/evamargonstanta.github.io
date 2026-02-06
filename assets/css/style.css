@@ -90,32 +90,31 @@ body{
   .icon-nav-desktop{ display:none; }
 }
 
-/* ===== mobile header ===== */
-
-@media (max-width:768px){
+/* ===== MOBILNI HEADER (naslov + ikona) ===== */
+@media (max-width: 768px){
   .section-header{
     padding:14px 16px;
     gap:12px;
   }
-
   .section-header img.icon{
     width:44px;
     height:44px;
   }
-
   .section-header h1{
-    font-size:1.25rem;
+    font-size:1.32rem;   /* prej ~1.25rem -> malenkost večje */
     line-height:1.15;
 
+    /* da se dolgi naslovi vidijo */
     white-space:normal;
     overflow:visible;
     text-overflow:clip;
   }
 }
 
-@media (max-width:380px){
-  .section-header h1{ font-size:1.15rem; }
+@media (max-width: 380px){
+  .section-header h1{ font-size:1.22rem; }
 }
+
 
 /* ================= GALLERY ================= */
 
