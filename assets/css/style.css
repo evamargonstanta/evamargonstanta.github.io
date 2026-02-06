@@ -252,16 +252,16 @@ body{
 }
 
 @media (max-width: 768px){
+
   .icon-nav-mobile-footer{
     display:flex;
     justify-content:center;
-    align-items:flex-start;
-    gap:10px;
-    flex-wrap:nowrap;
+    align-items:center;
+    gap:8px;                 /* ISTO kot naslovna */
 
-    margin: 28px auto 18px;
-    padding: 14px 12px;
-    border-top: 1px solid #ddd;
+    margin: 26px auto 16px;
+    padding: 12px 10px;
+    border-top:1px solid #ddd;
 
     max-width: 520px;
     box-sizing:border-box;
@@ -270,41 +270,46 @@ body{
     -webkit-overflow-scrolling: touch;
   }
 
-  .icon-nav-mobile-footer::-webkit-scrollbar{ display:none; }
+  .icon-nav-mobile-footer::-webkit-scrollbar{
+    display:none;
+  }
 
   .icon-nav-mobile-footer .icon-link{
-    width:44px;
-    height:44px;
+    width:30px;              /* ISTO kot naslovna */
+    height:30px;
     display:flex;
     align-items:center;
     justify-content:center;
+    flex:0 0 auto;
     text-decoration:none;
-    flex: 0 0 auto;
-    -webkit-tap-highlight-color: transparent;
   }
 
-  /* ISTO KOT NA NASLOVNI: 30x30 */
   .icon-nav-mobile-footer .icon-link img{
-    width:30px !important;
-    height:30px !important;
+    width:30px;
+    height:30px;
     display:block;
 
-    filter: grayscale(100%);
+    filter:grayscale(100%);
     opacity:.5;
-    transition: filter .18s ease, opacity .18s ease, transform .18s ease;
+    transition:.18s ease;
   }
 
   .icon-nav-mobile-footer .icon-link.is-active img{
     filter:none;
     opacity:1;
-    transform:none;
   }
 }
 
-/* ISTO KOT NA NASLOVNI (tvoj “compact” na manjših): 28x28 */
-@media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
+/* še malo manjše telefone (kot pri hero meniju) */
+@media (max-width:420px){
+  .icon-nav-mobile-footer{
+    gap:8px;
+  }
+
+  .icon-nav-mobile-footer .icon-link,
   .icon-nav-mobile-footer .icon-link img{
-    width:28px !important;
-    height:28px !important;
+    width:28px;
+    height:28px;
   }
 }
+
