@@ -28,3 +28,26 @@ async function loadHeader() {
 }
 
 document.addEventListener('DOMContentLoaded', loadHeader);
+
+
+
+(function setActiveNavAuto(){
+  const file = (location.pathname.split('/').pop() || '').toLowerCase();
+
+  const map = {
+    'about.html': 'about',
+    'wet-techniques.html': 'wet-techniques',
+    'dry-techniques.html': 'dry-techniques',
+    'books.html': 'books',
+    'printmaking.html': 'printmaking',
+    'animation.html': 'animation'
+  };
+
+  const activeKey = map[file];
+  if (!activeKey) return;
+
+  document.querySelectorAll('[data-nav]').forEach(a => {
+    a.classList.toggle('is-active', a.getAttribute('data-nav') === activeKey);
+  });
+})();
+
