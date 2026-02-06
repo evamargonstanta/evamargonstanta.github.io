@@ -242,5 +242,76 @@ body{
     bottom:20px;
     right:20px;
   }
+
+
+  /* ===== MOBILE BOTTOM NAV (dock) ===== */
+.icon-nav-mobile-bottom{
+  display:none;
+}
+
+@media (max-width: 768px){
+  .icon-nav-mobile-bottom{
+    display:flex;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:300;
+
+    justify-content:space-around;
+    align-items:center;
+    gap:6px;
+
+    padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
+    background:#fff;
+    border-top:1px solid #ddd;
+    box-sizing:border-box;
+  }
+
+  .icon-nav-mobile-bottom .icon-link{
+    width:44px;
+    height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .icon-nav-mobile-bottom .icon-link img{
+    width:28px;
+    height:28px;
+    display:block;
+
+    /* izgled kot desktop (ČB + 50%) */
+    filter: grayscale(100%);
+    opacity:.5;
+
+    transition: filter .18s ease, opacity .18s ease, transform .18s ease;
+  }
+
+  .icon-nav-mobile-bottom .icon-link.is-active img{
+    filter:none;
+    opacity:1;
+    transform:none;
+  }
+
+  /* da vsebina ne gre pod dock */
+  body{
+    padding-bottom: 74px; /* približno višina docka */
+  }
+
+  /* da door ikona ni “pod” dockom */
+  .door-hotspot{
+    bottom: 92px;
+  }
+}
+
+/* še manjši telefoni */
+@media (max-width: 380px){
+  .icon-nav-mobile-bottom .icon-link{ width:40px; height:40px; }
+  .icon-nav-mobile-bottom .icon-link img{ width:26px; height:26px; }
+}
+
 }
 
