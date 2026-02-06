@@ -41,6 +41,8 @@
       margin:0;
       font-weight:600;
       letter-spacing:0.01em;
+
+      /* desktop: lahko ostane v eni vrstici */
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -82,9 +84,34 @@
       transform:none;
     }
 
-    /* če želiš meni skriti na mobilu (ker imaš tam svoj mobile meni) */
+    /* meni skrijemo na mobilu */
     @media (max-width: 768px){
       .icon-nav-desktop{ display:none; }
+    }
+
+    /* ===== MOBILNI HEADER: manjše ikone + naslov, ki se lahko prelomi ===== */
+    @media (max-width: 768px){
+      .section-header{
+        padding:14px 16px;
+        gap:12px;
+      }
+      .section-header img.icon{
+        width:44px;
+        height:44px;
+      }
+      .section-header h1{
+        font-size:1.25rem;
+        line-height:1.15;
+
+        /* ključno: na mobilu dovolimo prelom, da se dolg naslov vidi */
+        white-space:normal;
+        overflow:visible;
+        text-overflow:clip;
+      }
+    }
+
+    @media (max-width: 380px){
+      .section-header h1{ font-size:1.15rem; }
     }
 
     /* ===== GALERIJA ===== */
@@ -119,70 +146,68 @@
       }
     }
 
+    /* VSE KARTICE: 100% + enak notranji rob (da je wide poravnan) */
     .project-card{
       aspect-ratio: 1 / 1;
-      display:flex;
-      align-items:center;
-      justify-content:center;
       position:relative;
+      display:block;
+      box-sizing:border-box;
+
+      padding:4%;
+      overflow:hidden;
       cursor:default;
     }
 
+    @media (max-width: 900px){
+      .project-card{ padding:0; }
+    }
+
     .project-inner{
-      width:92%;
-      height:92%;
+      width:100%;
+      height:100%;
       display:flex;
       align-items:center;
       justify-content:center;
     }
-    @media (max-width: 900px){
-      .project-inner{ width:100%; height:100%; }
-    }
 
     .project-inner img{
-      max-width:100%;
-      max-height:100%;
+      width:100%;
+      height:100%;
       object-fit:contain;
       display:block;
       border-radius:0;
     }
 
-    /* ===== WIDE PROJECT – enaka višina kot kvadratki ===== */
+    /* ===== WIDE PROJECT – stabilna višina + poravnani robovi ===== */
     .project-card.is-wide{
       grid-column: 1 / -1;
+      aspect-ratio: unset;
+      padding:4%; /* isti padding kot kvadratki */
+    }
 
-      --colw: calc((100% - ((var(--cols) - 1) * var(--gap))) / var(--cols));
-      --pad:  calc(var(--colw) * 0.04);
+    @media (max-width: 900px){
+      .project-card.is-wide{ padding:0; }
+    }
 
-      height: var(--colw);
-      aspect-ratio: auto;
-
-      padding: var(--pad);
-      box-sizing: border-box;
-
-      display:flex;
-      align-items:stretch;
-      justify-content:stretch;
-      overflow:hidden;
+    /* stabilna višina iz širine (brez calc(height) problemov) */
+    .project-card.is-wide::before{
+      content:"";
+      display:block;
+      padding-top: calc(100% / var(--cols));
     }
 
     .project-card.is-wide .project-inner{
+      position:absolute;
+      inset:0;         /* pomembno: brez dodatnega inseta */
       width:100%;
       height:100%;
-      display:block;
     }
 
     .project-card.is-wide .project-inner img{
       width:100%;
       height:100%;
-      max-width:none;
-      max-height:none;
       object-fit:cover;
       display:block;
-    }
-
-    @media (max-width: 900px){
-      .project-card.is-wide{ padding:0; }
     }
 
     /* ===== DOOR ICON ===== */
