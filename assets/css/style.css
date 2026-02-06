@@ -259,7 +259,6 @@ body{
     gap:10px;
     flex-wrap:nowrap;
 
-    /* čisto spodaj kot “footer” */
     margin: 28px auto 18px;
     padding: 14px 12px;
     border-top: 1px solid #ddd;
@@ -267,7 +266,6 @@ body{
     max-width: 520px;
     box-sizing:border-box;
 
-    /* če je pretesno (iPhone), dovoli scroll namesto rezanja */
     overflow-x:auto;
     -webkit-overflow-scrolling: touch;
   }
@@ -285,10 +283,10 @@ body{
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* velikost kot na tvoji naslovni strani */
+  /* ISTO KOT NA NASLOVNI: 30x30 */
   .icon-nav-mobile-footer .icon-link img{
-    width:30px;
-    height:30px;
+    width:30px !important;
+    height:30px !important;
     display:block;
 
     filter: grayscale(100%);
@@ -300,5 +298,13 @@ body{
     filter:none;
     opacity:1;
     transform:none;
+  }
+}
+
+/* ISTO KOT NA NASLOVNI (tvoj “compact” na manjših): 28x28 */
+@media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
+  .icon-nav-mobile-footer .icon-link img{
+    width:28px !important;
+    height:28px !important;
   }
 }
