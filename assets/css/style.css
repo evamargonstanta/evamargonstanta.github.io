@@ -211,15 +211,32 @@ body{
 
 .door-hotspot{
   position:fixed;
-  bottom:28px;
-  right:32px;
-  width:76px;
-  height:76px;
-  background:url("../assets/images/icon-door.png") center/contain no-repeat;
-  z-index:20;
-}
+  bottom: 28px;
+  right: 32px;
+  width: 76px;
+  height: 76px;
 
-@media (max-width:768px){
+  /* POPRAVLJENA POT (CSS je v /assets/css/) */
+  background-image: url("../images/icon-door.png");
+
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  z-index: 200;       /* malo višje, da ga nič ne prekrije */
+  display:block;      /* za vsak slučaj */
+}
+.door-hotspot::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(255,255,255,0.12);
+  opacity:0;
+  transition:opacity .2s ease;
+}
+@media (hover:hover){
+  .door-hotspot:hover::after{ opacity:1; cursor:pointer; }
+}
+@media (max-width: 768px){
   .door-hotspot{
     width:60px;
     height:60px;
@@ -227,3 +244,4 @@ body{
     right:20px;
   }
 }
+
