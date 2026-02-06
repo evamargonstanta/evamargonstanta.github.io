@@ -23,14 +23,20 @@ async function loadHeader() {
   const activeKey = document.querySelector('meta[name="nav-active"]')?.content;
 
   if (activeKey) {
-    // označi aktivno ikono povsod
+    // označi aktivno ikono povsod (če obstaja v headerju)
     mount.querySelectorAll(`.icon-link[data-nav="${activeKey}"]`).forEach(el => {
       el.classList.add('is-active');
     });
 
-    // na mobilnem footer meniju aktivne ikone NE kažemo (da ostane 6 ikon)
-    const footerActive = mount.querySelector(`.icon-nav-mobile-footer .icon-link[data-nav="${activeKey}"]`);
-    if (footerActive) footerActive.style.display = 'none';
+    // Na mobilnem footer meniju skrij aktivno ikono,
+    // AMPAK samo za tvoje interne strani (ne za shop).
+    const internalKeys = new Set(['about','painting','drawing','books','printmaking','animation']);
+    if (internalKeys.has(activeKey)) {
+      const footerActive = mount.querySelector(
+        `.icon-nav-mobile-footer .icon-link[data-nav="${activeKey}"]`
+      );
+      if (footerActive) footerActive.style.display = 'none';
+    }
   }
 }
 
