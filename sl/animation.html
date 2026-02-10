@@ -132,14 +132,25 @@
       .modal-body{ overflow-y: scroll; }
     }
 
+    /* ✅ VEČ PROSTORA med: zvrst - naslov - ostalo */
     .meta-wrap{ width: min(380px, 100%); text-align:center; }
-    .meta-genre{ font-size:.92rem; opacity:.72; margin: 0 0 4px; letter-spacing:.01em; }
-    .meta-title{ font-size:1.12rem; font-weight:600; margin:0 0 10px; }
+    .meta-genre{
+      font-size:.92rem;
+      opacity:.72;
+      margin: 0 0 12px;
+      letter-spacing:.01em;
+    }
+    .meta-title{
+      font-size:1.12rem;
+      font-weight:600;
+      margin:0 0 18px;
+    }
     .meta{
+      margin-top: 6px;
       display:grid;
       grid-template-columns: 130px 1fr;
       column-gap:12px;
-      row-gap:8px;
+      row-gap:10px;
       font-size:.98rem;
       line-height:1.25;
       align-items:center;
@@ -160,8 +171,8 @@
         box-shadow: 0 2px 0 rgba(0,0,0,0.04);
         background:#fff;
       }
-      .meta-genre{ font-size:.9rem; margin-bottom: 3px; }
-      .meta-title{ font-size:1.02rem; margin-bottom: 8px; }
+      .meta-genre{ font-size:.9rem; margin-bottom: 10px; }
+      .meta-title{ font-size:1.02rem; margin-bottom: 14px; }
       .meta{
         grid-template-columns: 1fr;
         row-gap: 4px;
@@ -181,7 +192,6 @@
     }
 
     .project-card.is-hidden{ display:none; }
-    .meta-row.is-hidden{ display:none; }
   </style>
 </head>
 
@@ -399,8 +409,8 @@
          data-year="2025"
          data-type="Ilustracija / grafično oblikovanje"
          data-client="ISPO d.o.o."
-         data-notes="Besedilo: Jakob J. Kenda
-Slikanica, ki nagovarja vse Slovence, še posebej najstnike in njihove starše in jih vzpodbuja, da prehodijo vsaj del poti slovenske krožne Transverzale. Govori o zgodovini slovencev ter prikazuje ob pripovedi prikazuje z njo povezane ilustracije.">
+         data-text="Jakob J. Kenda"
+         data-notes="Slikanica, ki nagovarja vse Slovence, še posebej najstnike in njihove starše in jih vzpodbuja, da prehodijo vsaj del poti slovenske krožne Transverzale. Govori o zgodovini slovencev ter prikazuje ob pripovedi prikazuje z njo povezane ilustracije.">
       <div class="project-inner">
         <img src="../assets/images/design10.jpg" alt="Oblikovanje 10" loading="lazy">
       </div>
@@ -424,233 +434,242 @@ Slikanica, ki nagovarja vse Slovence, še posebej najstnike in njihove starše i
   <div data-include="footer-nav"></div>
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
-<!-- MODAL -->
-<div class="modal" id="projectModal" aria-hidden="true">
-  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <!-- MODAL -->
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
 
-  <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Podrobnosti projekta">
-    <div class="modal-controls">
-      <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M14.5 5l-7 7 7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Podrobnosti projekta">
+      <div class="modal-controls">
+        <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14.5 5l-7 7 7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
 
-      <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M9.5 5l7 7-7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+        <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9.5 5l7 7-7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
 
-      <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M6 6l12 12" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M18 6L6 18" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="modal-content">
-      <div class="modal-media">
-        <img id="modalImg" src="" alt="">
+        <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M18 6L6 18" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+        </button>
       </div>
 
-      <div class="modal-body">
-        <div class="meta-wrap">
-          <p class="meta-genre" id="mGenre">—</p>
-          <p class="meta-title" id="mTitleTop">—</p>
+      <div class="modal-content">
+        <div class="modal-media">
+          <img id="modalImg" src="" alt="">
+        </div>
 
-          <div class="meta">
-            <div class="label">Leto</div><div class="value" id="mYear"></div>
+        <div class="modal-body">
+          <div class="meta-wrap">
+            <p class="meta-genre" id="mGenre">—</p>
+            <p class="meta-title" id="mTitleTop">—</p>
 
-            <div class="label" id="lblDuration">Dolžina</div><div class="value" id="mDuration"></div>
+            <div class="meta">
+              <div class="label">Leto</div><div class="value" id="mYear"></div>
 
-            <div class="label" id="lblType">Področje</div><div class="value" id="mType"></div>
+              <div class="label" id="lblDuration">Dolžina</div><div class="value" id="mDuration"></div>
 
-            <div class="label" id="lblClient">Naročnik</div><div class="value" id="mClient"></div>
+              <div class="label" id="lblType">Področje</div><div class="value" id="mType"></div>
 
-            <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
+              <div class="label" id="lblClient">Naročnik</div><div class="value" id="mClient"></div>
 
-            <div class="label">Opis</div><div class="value" id="mNotes"></div>
+              <div class="label" id="lblText">Besedilo</div><div class="value" id="mText"></div>
+
+              <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
+
+              <div class="label">Opis</div><div class="value" id="mNotes"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
 
   <script src="../assets/js/include.js"></script>
 
- <script>
-  (function () {
-    const modal = document.getElementById('projectModal');
-    const backdrop = document.getElementById('modalBackdrop');
-    const closeBtn = document.getElementById('closeBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+  <script>
+    (function () {
+      const modal = document.getElementById('projectModal');
+      const backdrop = document.getElementById('modalBackdrop');
+      const closeBtn = document.getElementById('closeBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
 
-    const modalImg = document.getElementById('modalImg');
-    const mGenre = document.getElementById('mGenre');
-    const mTitleTop = document.getElementById('mTitleTop');
-    const mYear = document.getElementById('mYear');
-    const mDuration = document.getElementById('mDuration');
-    const mType = document.getElementById('mType');
-    const mClient = document.getElementById('mClient');
-    const mRole = document.getElementById('mRole');
-    const mNotes = document.getElementById('mNotes');
+      const modalImg = document.getElementById('modalImg');
+      const mGenre = document.getElementById('mGenre');
+      const mTitleTop = document.getElementById('mTitleTop');
+      const mYear = document.getElementById('mYear');
+      const mDuration = document.getElementById('mDuration');
+      const mType = document.getElementById('mType');
+      const mClient = document.getElementById('mClient');
+      const mText = document.getElementById('mText');
+      const mRole = document.getElementById('mRole');
+      const mNotes = document.getElementById('mNotes');
 
-    const lblDuration = document.getElementById('lblDuration');
-    const lblType = document.getElementById('lblType');
-    const lblClient = document.getElementById('lblClient');
-    const lblRole = document.getElementById('lblRole');
+      const lblDuration = document.getElementById('lblDuration');
+      const lblType = document.getElementById('lblType');
+      const lblClient = document.getElementById('lblClient');
+      const lblText = document.getElementById('lblText');
+      const lblRole = document.getElementById('lblRole');
 
-    const cards = Array.from(document.querySelectorAll('.project-card'));
-    let currentIndex = -1;
+      const cards = Array.from(document.querySelectorAll('.project-card'));
+      let currentIndex = -1;
 
-    function prettyGenre(cat){
-      if (cat === 'animation') return 'Animacija';
-      if (cat === 'design') return 'Oblikovanje';
-      return '—';
-    }
-
-    function show(el, yes){
-      el.style.display = yes ? '' : 'none';
-    }
-
-    function fillModalFromCard(card){
-      const img = card.getAttribute('data-img') || '';
-      const title = card.getAttribute('data-title') || '—';
-      const year = card.getAttribute('data-year') || '—';
-      const duration = card.getAttribute('data-duration') || '';
-      const type = card.getAttribute('data-type') || '';
-      const client = card.getAttribute('data-client') || '';
-      const role = card.getAttribute('data-role') || '';
-      const notes = card.getAttribute('data-notes') || '—';
-      const category = card.getAttribute('data-category') || '';
-
-      modalImg.src = img;
-      modalImg.alt = title;
-
-      mGenre.textContent = prettyGenre(category);
-      mTitleTop.textContent = title;   // brez "Naslov:"
-      mYear.textContent = year;
-      mNotes.textContent = notes;
-
-      const isAnimation = category === 'animation';
-      const isDesign = category === 'design';
-
-      // Prikaži/Skrij polja glede na kategorijo
-      show(lblDuration, isAnimation);
-      show(mDuration, isAnimation);
-      show(lblRole, isAnimation);
-      show(mRole, isAnimation);
-
-      show(lblType, isDesign);
-      show(mType, isDesign);
-      show(lblClient, isDesign);
-      show(mClient, isDesign);
-
-      if (isAnimation){
-        mDuration.textContent = duration || '—';
-        mRole.textContent = role || '—';
-      } else {
-        mDuration.textContent = '';
-        mRole.textContent = '';
+      function prettyGenre(cat){
+        if (cat === 'animation') return 'Animacija';
+        if (cat === 'design') return 'Oblikovanje';
+        return '—';
       }
 
-      if (isDesign){
-        mType.textContent = type || '—';
-        mClient.textContent = client || '—';
-      } else {
-        mType.textContent = '';
-        mClient.textContent = '';
+      function show(el, yes){
+        el.style.display = yes ? '' : 'none';
       }
-    }
 
-    function openModal(index){
-      currentIndex = index;
-      fillModalFromCard(cards[currentIndex]);
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
+      function fillModalFromCard(card){
+        const img = card.getAttribute('data-img') || '';
+        const title = card.getAttribute('data-title') || '—';
+        const year = card.getAttribute('data-year') || '—';
+        const duration = card.getAttribute('data-duration') || '';
+        const type = card.getAttribute('data-type') || '';
+        const client = card.getAttribute('data-client') || '';
+        const text = card.getAttribute('data-text') || '';
+        const role = card.getAttribute('data-role') || '';
+        const notes = card.getAttribute('data-notes') || '—';
+        const category = card.getAttribute('data-category') || '';
 
-    function closeModal(){
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      currentIndex = -1;
-    }
+        modalImg.src = img;
+        modalImg.alt = title;
 
-    function showPrev(){
-      if (currentIndex < 0) return;
-      currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-      fillModalFromCard(cards[currentIndex]);
-    }
+        mGenre.textContent = prettyGenre(category);
+        mTitleTop.textContent = title;
+        mYear.textContent = year;
+        mNotes.textContent = notes;
 
-    function showNext(){
-      if (currentIndex < 0) return;
-      currentIndex = (currentIndex + 1) % cards.length;
-      fillModalFromCard(cards[currentIndex]);
-    }
+        const isAnimation = category === 'animation';
+        const isDesign = category === 'design';
 
-    cards.forEach((card, idx) => {
-      card.addEventListener('click', () => openModal(idx));
-      card.setAttribute('tabindex', '0');
-      card.setAttribute('role', 'button');
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openModal(idx);
+        // Animacija: Dolžina + Vloga
+        show(lblDuration, isAnimation);
+        show(mDuration, isAnimation);
+        show(lblRole, isAnimation);
+        show(mRole, isAnimation);
+
+        // Oblikovanje: Področje + Naročnik (+ Besedilo samo če obstaja)
+        show(lblType, isDesign);
+        show(mType, isDesign);
+        show(lblClient, isDesign);
+        show(mClient, isDesign);
+
+        const showTextRow = isDesign && text.trim().length > 0;
+        show(lblText, showTextRow);
+        show(mText, showTextRow);
+
+        if (isAnimation){
+          mDuration.textContent = duration || '—';
+          mRole.textContent = role || '—';
+        } else {
+          mDuration.textContent = '';
+          mRole.textContent = '';
         }
+
+        if (isDesign){
+          mType.textContent = type || '—';
+          mClient.textContent = client || '—';
+        } else {
+          mType.textContent = '';
+          mClient.textContent = '';
+        }
+
+        mText.textContent = showTextRow ? text : '';
+      }
+
+      function openModal(index){
+        currentIndex = index;
+        fillModalFromCard(cards[currentIndex]);
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(){
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        currentIndex = -1;
+      }
+
+      function showPrev(){
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        fillModalFromCard(cards[currentIndex]);
+      }
+
+      function showNext(){
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex + 1) % cards.length;
+        fillModalFromCard(cards[currentIndex]);
+      }
+
+      cards.forEach((card, idx) => {
+        card.addEventListener('click', () => openModal(idx));
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(idx);
+          }
+        });
       });
-    });
 
-    closeBtn.addEventListener('click', closeModal);
-    backdrop.addEventListener('click', closeModal);
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
 
-    prevBtn.addEventListener('click', showPrev);
-    nextBtn.addEventListener('click', showNext);
+      prevBtn.addEventListener('click', showPrev);
+      nextBtn.addEventListener('click', showNext);
 
-    window.addEventListener('keydown', (e) => {
-      if (!modal.classList.contains('is-open')) return;
-      if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowLeft') showPrev();
-      if (e.key === 'ArrowRight') showNext();
-    });
+      window.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      });
 
-    const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+      const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
 
-    function applyFilter(filter){
+      function applyFilter(filter){
+        filterBtns.forEach(btn => {
+          const isActive = btn.getAttribute('data-filter') === filter;
+          btn.classList.toggle('is-active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          const shouldShow = (filter === 'all') || (cat === filter);
+          card.classList.toggle('is-hidden', !shouldShow);
+        });
+
+        if (modal.classList.contains('is-open')) {
+          const currentCard = cards[currentIndex];
+          if (currentCard && currentCard.classList.contains('is-hidden')) {
+            closeModal();
+          }
+        }
+      }
+
       filterBtns.forEach(btn => {
-        const isActive = btn.getAttribute('data-filter') === filter;
-        btn.classList.toggle('is-active', isActive);
-        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        btn.addEventListener('click', () => {
+          applyFilter(btn.getAttribute('data-filter'));
+        });
       });
-
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        const shouldShow = (filter === 'all') || (cat === filter);
-        card.classList.toggle('is-hidden', !shouldShow);
-      });
-
-      // če je modal odprt in trenutna kartica skrita, ga zapri
-      if (modal.classList.contains('is-open')) {
-        const currentCard = cards[currentIndex]; // <-- POPRAVEK: ] namesto )
-        if (currentCard && currentCard.classList.contains('is-hidden')) {
-          closeModal();
-        }
-      }
-    }
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        applyFilter(btn.getAttribute('data-filter'));
-      });
-    });
-  })();
-</script>
-
+    })();
+  </script>
 </body>
 </html>
