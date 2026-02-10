@@ -111,27 +111,30 @@
     .modal-content{ display:flex; height:100%; }
 
     .modal-media{
-      flex:0 0 58%;
-      padding:14px;
-      box-sizing:border-box;
-      background:#fff;
-      display:flex; align-items:center; justify-content:center;
-    }
+  flex:0 0 58%;
+  padding:14px;
+  box-sizing:border-box;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .media-grid{
+.media-grid{
   width:100%;
-  height:100%;
+  height:auto;                 /* ✅ ne raztezaj po višini */
   display:grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap:10px;
-  align-content:center;   /* center grid v prostoru */
+  grid-template-rows: auto auto; /* ✅ višina vrstic po vsebini */
+  column-gap: 10px;            /* levo-desno */
+  row-gap: 12px;               /* ✅ malo več kot levo-desno */
+  align-content:start;
 }
 
 .media-tile{
   width:100%;
-  aspect-ratio: 1 / 1;    /* ✅ tile vedno kvadraten */
-  background:#fff;
+  aspect-ratio: 1 / 1;
+  background:#f6f6f6;
   overflow:hidden;
   display:block;
 }
@@ -139,7 +142,7 @@
 .media-tile img{
   width:100%;
   height:100%;
-  object-fit:cover;       /* ✅ brez sivih robov */
+  object-fit:cover;
   object-position:center;
   display:block;
 }
