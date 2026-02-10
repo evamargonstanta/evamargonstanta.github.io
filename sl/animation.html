@@ -79,17 +79,17 @@
       }
     }
 
-    /* ===== MODAL ===== */
+    /* ===== MODAL (nova postavitev) ===== */
     .modal{ position:fixed; inset:0; display:none; z-index:999; }
     .modal.is-open{ display:block; }
     .modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
+
     .modal-panel{
       position:absolute; left:50%; top:50%;
       transform:translate(-50%,-50%);
       width:min(1100px, calc(100vw - 48px));
-      max-height:calc(100vh - 28px);
+      height: min(760px, calc(100vh - 40px));  /* cilj: brez scrolla na desktopu */
       background:#fff;
-      border-radius:0;
       overflow:hidden;
     }
 
@@ -102,93 +102,136 @@
       display:flex; align-items:center; justify-content:center;
     }
     .modal-controls svg{ width:36px; height:36px; display:block; }
-    @media (max-width:520px){
-      .modal-controls{ right:10px; bottom:10px; gap:12px; }
-      .modal-controls svg{ width:32px; height:32px; }
+
+    .modal-content{
+      display:flex;
+      height:100%;
     }
 
-    .modal-content{ display:flex; gap:0; }
+    /* LEVO: mreža slik (2x2 kvadrat) */
     .modal-media{
       flex:0 0 58%;
-      display:flex; align-items:center; justify-content:center;
-      padding:14px; box-sizing:border-box; background:#fff;
-    }
-    .modal-media img{
-      width:100%; height:auto; max-height:62vh;
-      object-fit:contain; display:block;
-    }
-
-    .modal-body{
-      flex:0 0 42%;
-      padding:16px 16px 18px;
+      padding:14px;
       box-sizing:border-box;
       background:#fff;
-      display:flex; align-items:center; justify-content:center;
-      overflow:auto;
-      max-height:calc(100vh - 28px);
-      scrollbar-gutter: stable;
-    }
-    @supports not (scrollbar-gutter: stable){
-      .modal-body{ overflow-y: scroll; }
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
-    /* ✅ VEČ PROSTORA med: zvrst - naslov - ostalo */
-    .meta-wrap{ width: min(380px, 100%); text-align:center; }
+    .media-grid{
+      width:100%;
+      height:100%;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap:10px;
+    }
+
+    .media-tile{
+      width:100%;
+      height:100%;
+      background:#f6f6f6;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* Namerno: "contain", da ne reže ilustracij */
+    .media-tile img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    /* DESNO: besedilo - vse levo poravnano */
+    .modal-body{
+      flex:0 0 42%;
+      padding:16px 18px 18px;
+      box-sizing:border-box;
+      background:#fff;
+      overflow:hidden;           /* desktop: brez scrolla */
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .meta-wrap{
+      width:100%;
+      text-align:left;           /* ✅ levo poravnano */
+    }
+
     .meta-genre{
       font-size:.92rem;
       opacity:.72;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       letter-spacing:.01em;
     }
     .meta-title{
-      font-size:1.12rem;
+      font-size:1.18rem;
       font-weight:600;
-      margin:0 0 18px;
+      margin: 0 0 14px;
     }
+
     .meta{
-      margin-top: 6px;
       display:grid;
-      grid-template-columns: 130px 1fr;
+      grid-template-columns: 120px 1fr;
       column-gap:12px;
       row-gap:10px;
       font-size:.98rem;
       line-height:1.25;
-      align-items:center;
+      align-items:start;
       text-align:left;
+      margin:0;
     }
-    .meta .label{ opacity:.7; }
+    .meta .label{ opacity:.65; }
     .meta .value{ opacity:.95; }
 
-    @media (max-width: 860px){
-      .modal-content{ flex-direction:column; }
-      .modal-media{ padding:8px; }
-      .modal-media img{ max-height:32vh; }
-      .modal-body{ max-height:none; overflow:visible; padding: 10px 12px 78px; }
-      .meta-wrap{
-        width: min(520px, 100%);
-        padding: 10px 10px 8px;
-        border: 1px solid #eee;
-        box-shadow: 0 2px 0 rgba(0,0,0,0.04);
-        background:#fff;
+    /* ✅ Opis: brez "Opis:" labela, samo besedilo spodaj */
+    .desc{
+      margin-top: 10px;
+      font-size:.98rem;
+      line-height:1.35;
+      opacity:.95;
+      text-align:left;
+      overflow:hidden;           /* brez scrolla na desktopu */
+      display:-webkit-box;
+      -webkit-line-clamp: 9;     /* omeji višino, da ostane brez scrolla */
+      -webkit-box-orient: vertical;
+    }
+
+    /* Če želiš brez “clamp”, zamenjaj overflow/line-clamp - ampak potem se lahko pojavi scroll. */
+
+    @media (max-width: 900px){
+      .modal-panel{
+        width: calc(100vw - 18px);
+        height: calc(100vh - 14px);
       }
-      .meta-genre{ font-size:.9rem; margin-bottom: 10px; }
-      .meta-title{ font-size:1.02rem; margin-bottom: 14px; }
+      .modal-content{ flex-direction:column; }
+
+      .modal-media{
+        flex:0 0 auto;
+        padding:10px;
+        height: 44vh;
+      }
+      .modal-body{
+        flex:1 1 auto;
+        overflow:auto;            /* na mobilu naj bo scroll, če je potrebno */
+        padding: 12px 14px 84px;
+      }
+      .desc{
+        -webkit-line-clamp: unset; /* mobil: pokaži cel opis */
+        overflow: visible;
+      }
+      .modal-controls{ right:10px; bottom:10px; gap:12px; }
+      .modal-controls svg{ width:32px; height:32px; }
       .meta{
         grid-template-columns: 1fr;
         row-gap: 4px;
-        text-align:center;
-        font-size:.94rem;
-        line-height:1.22;
       }
-      .meta .label{ margin-top: 8px; opacity:.6; }
-      .meta .value{ margin-top: -1px; }
-      .modal-controls{ right:10px; bottom:10px; }
-    }
-
-    @media (max-width: 520px){
-      .modal-panel{ width: calc(100vw - 18px); max-height: calc(100vh - 14px); }
-      .modal-media img{ max-height: 28vh; }
-      .modal-controls svg{ width:30px; height:30px; }
+      .meta .label{ margin-top: 10px; }
     }
 
     .project-card.is-hidden{ display:none; }
@@ -207,9 +250,14 @@
 
   <div class="grid-gallery" id="galleryMixed">
 
+    <!-- OPOMBA: za več slik na projektu samo dopolni data-images z več potmi, ločenimi z vejico.
+         primer: data-images="../assets/images/p1-1.jpg,../assets/images/p1-2.jpg,../assets/images/p1-3.jpg"
+         Če daš 2 ali 3 slike, se bodo ostale "ploščice" samodejno skrile. -->
+
     <!-- 1 = Oblikovanje5 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design5.jpg"
+         data-images="../assets/images/design5.jpg"
          data-title="Rastlinstvo: Rastline regijskega parka Pohorje - Poštne znamke, poštni žig in ovitka 1. dne"
          data-year="2023"
          data-type="Grafično oblikovanje / ilustracija"
@@ -223,6 +271,7 @@
     <!-- 2 = Oblikovanje1 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design1.jpg"
+         data-images="../assets/images/design1.jpg"
          data-title="Zemljevid goriškega bibliobusa"
          data-year="2026"
          data-type="grafično oblikovanje / ilustracija"
@@ -236,6 +285,7 @@
     <!-- 3 = Animacija2 -->
     <div class="project-card is-animation" data-category="animation"
          data-img="../assets/images/animation2.jpg"
+         data-images="../assets/images/animation2.jpg"
          data-title="Vrzi kovanec"
          data-year="2017"
          data-duration="2:00"
@@ -249,6 +299,7 @@
     <!-- 4 = Oblikovanje2 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design2.jpg"
+         data-images="../assets/images/design2.jpg"
          data-title="Slikovni zemljevid planinskih poti v Logarski dolini"
          data-year="2019"
          data-type="grafično oblikovanje / ilustracija"
@@ -262,6 +313,7 @@
     <!-- 5 = Animacija3 -->
     <div class="project-card is-animation" data-category="animation"
          data-img="../assets/images/animation3.jpg"
+         data-images="../assets/images/animation3.jpg"
          data-title="Zaraščanje"
          data-year="2025"
          data-duration="01:20"
@@ -275,6 +327,7 @@
     <!-- 6 = Oblikovanje3 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design3.jpg"
+         data-images="../assets/images/design3.jpg"
          data-title="Rastlinstvo: Mušnice – poštne znamke, poštni žig in ovittka 1. dne"
          data-year="2017"
          data-type="grafično oblikovanje / ilustracija"
@@ -288,6 +341,7 @@
     <!-- 7 = Animacija4 -->
     <div class="project-card is-animation" data-category="animation"
          data-img="../assets/images/animation4.jpg"
+         data-images="../assets/images/animation4.jpg"
          data-title="Hitra dostava"
          data-year="2019"
          data-duration="00:16"
@@ -301,6 +355,7 @@
     <!-- 8 = Oblikovanje4 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design4.jpg"
+         data-images="../assets/images/design4.jpg"
          data-title="Rastlinstvo: Tulipani – poštne znamke, poštni žig in ovitka 1. dne"
          data-year="2022"
          data-type="grafično oblikovanje / ilustracija"
@@ -314,6 +369,7 @@
     <!-- 9 = Animacija5 -->
     <div class="project-card is-animation" data-category="animation"
          data-img="../assets/images/animation5.jpg"
+         data-images="../assets/images/animation5.jpg"
          data-title="Včasih je ena kaplja dovolj"
          data-year="2017"
          data-duration="00:28"
@@ -327,6 +383,7 @@
     <!-- 10 = Animacija1 -->
     <div class="project-card is-animation" data-category="animation"
          data-img="../assets/images/animation1.jpg"
+         data-images="../assets/images/animation1.jpg"
          data-title="Jazon in Argonavti"
          data-year="2015"
          data-duration="3:44"
@@ -340,6 +397,7 @@
     <!-- 11 = Oblikovanje6 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design6.jpg"
+         data-images="../assets/images/design6.jpg"
          data-title="Rastlinstvo: lilije – Poštne znamke"
          data-year="2023"
          data-type="Grafično oblikovanje / ilustracija"
@@ -353,6 +411,7 @@
     <!-- 12 = Animacija6 (Portfolio Reel) -->
     <div class="project-card is-animation" data-category="animation"
          data-img="../assets/images/animation6.jpg"
+         data-images="../assets/images/animation6.jpg"
          data-title="Portfolio Reel"
          data-year="2024"
          data-duration="03:00"
@@ -366,6 +425,7 @@
     <!-- 13 = Oblikovanje7 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design7.jpg"
+         data-images="../assets/images/design7.jpg"
          data-title="Živalstvo: gams – Poštne znamke, poštni žig in ovitka 1. dne"
          data-year="2024"
          data-type="Grafično oblikovanje / ilustracija"
@@ -379,6 +439,7 @@
     <!-- 14 = Oblikovanje8 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design8.jpg"
+         data-images="../assets/images/design8.jpg"
          data-title="Živalstvo: Lisica – Poštne znamke, poštni žig in ovitka 1. dne"
          data-year="2025"
          data-type="Grafično oblikovanje / ilustracija"
@@ -392,6 +453,7 @@
     <!-- 15 = Oblikovanje9 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design9.jpg"
+         data-images="../assets/images/design9.jpg"
          data-title="Ovitek za marmelado"
          data-year="2022"
          data-type="Grafično oblikovanje / ilustracija"
@@ -405,6 +467,7 @@
     <!-- 16 = Oblikovanje10 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design10.jpg"
+         data-images="../assets/images/design10.jpg"
          data-title="Slikanica Gora v temi"
          data-year="2025"
          data-type="Ilustracija / grafično oblikovanje"
@@ -419,6 +482,7 @@
     <!-- 17 = Oblikovanje11 -->
     <div class="project-card" data-category="design"
          data-img="../assets/images/design11.jpg"
+         data-images="../assets/images/design11.jpg"
          data-title="Veseli kotiček"
          data-year="2024"
          data-type="Grafično oblikovanje"
@@ -462,7 +526,12 @@
 
       <div class="modal-content">
         <div class="modal-media">
-          <img id="modalImg" src="" alt="">
+          <div class="media-grid" id="mediaGrid">
+            <div class="media-tile"><img id="mediaImg1" alt=""></div>
+            <div class="media-tile"><img id="mediaImg2" alt=""></div>
+            <div class="media-tile"><img id="mediaImg3" alt=""></div>
+            <div class="media-tile"><img id="mediaImg4" alt=""></div>
+          </div>
         </div>
 
         <div class="modal-body">
@@ -482,9 +551,10 @@
               <div class="label" id="lblText">Besedilo</div><div class="value" id="mText"></div>
 
               <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
-
-              <div class="label">Opis</div><div class="value" id="mNotes"></div>
             </div>
+
+            <!-- ✅ opis brez labela -->
+            <div class="desc" id="mNotes"></div>
           </div>
         </div>
       </div>
@@ -501,7 +571,6 @@
       const prevBtn = document.getElementById('prevBtn');
       const nextBtn = document.getElementById('nextBtn');
 
-      const modalImg = document.getElementById('modalImg');
       const mGenre = document.getElementById('mGenre');
       const mTitleTop = document.getElementById('mTitleTop');
       const mYear = document.getElementById('mYear');
@@ -518,6 +587,14 @@
       const lblText = document.getElementById('lblText');
       const lblRole = document.getElementById('lblRole');
 
+      // 4 slike v kvadratu
+      const mediaImgs = [
+        document.getElementById('mediaImg1'),
+        document.getElementById('mediaImg2'),
+        document.getElementById('mediaImg3'),
+        document.getElementById('mediaImg4'),
+      ];
+
       const cards = Array.from(document.querySelectorAll('.project-card'));
       let currentIndex = -1;
 
@@ -531,8 +608,49 @@
         el.style.display = yes ? '' : 'none';
       }
 
+      function parseImages(card){
+        // priority: data-images (več slik), fallback: data-img (ena slika)
+        const list = (card.getAttribute('data-images') || '').trim();
+        if (list.length) {
+          return list.split(',').map(s => s.trim()).filter(Boolean).slice(0, 4);
+        }
+        const single = (card.getAttribute('data-img') || '').trim();
+        return single ? [single] : [];
+      }
+
+      function fillMediaGrid(card, title){
+        const imgs = parseImages(card);
+
+        // nastavi vsako ploščico
+        for (let i = 0; i < 4; i++){
+          const imgEl = mediaImgs[i];
+          const tile = imgEl.closest('.media-tile');
+
+          if (imgs[i]) {
+            imgEl.src = imgs[i];
+            imgEl.alt = title;
+            show(tile, true);
+          } else {
+            imgEl.removeAttribute('src');
+            imgEl.alt = '';
+            show(tile, false);
+          }
+        }
+
+        // Če je samo 1 slika: naredi večjo (zasede 2x2)
+        const grid = document.getElementById('mediaGrid');
+        if (imgs.length === 1){
+          grid.style.gridTemplateColumns = '1fr';
+          grid.style.gridTemplateRows = '1fr';
+          // pokaži samo prvo tile
+          show(mediaImgs[0].closest('.media-tile'), true);
+        } else {
+          grid.style.gridTemplateColumns = '1fr 1fr';
+          grid.style.gridTemplateRows = '1fr 1fr';
+        }
+      }
+
       function fillModalFromCard(card){
-        const img = card.getAttribute('data-img') || '';
         const title = card.getAttribute('data-title') || '—';
         const year = card.getAttribute('data-year') || '—';
         const duration = card.getAttribute('data-duration') || '';
@@ -540,16 +658,18 @@
         const client = card.getAttribute('data-client') || '';
         const text = card.getAttribute('data-text') || '';
         const role = card.getAttribute('data-role') || '';
-        const notes = card.getAttribute('data-notes') || '—';
+        const notes = card.getAttribute('data-notes') || '';
         const category = card.getAttribute('data-category') || '';
-
-        modalImg.src = img;
-        modalImg.alt = title;
 
         mGenre.textContent = prettyGenre(category);
         mTitleTop.textContent = title;
         mYear.textContent = year;
-        mNotes.textContent = notes;
+
+        // ✅ opis brez labela
+        mNotes.textContent = notes || '';
+
+        // slike (1–4)
+        fillMediaGrid(card, title);
 
         const isAnimation = category === 'animation';
         const isDesign = category === 'design';
@@ -560,7 +680,7 @@
         show(lblRole, isAnimation);
         show(mRole, isAnimation);
 
-        // Oblikovanje: Področje + Naročnik (+ Besedilo samo če obstaja)
+        // Oblikovanje: Področje + Naročnik + (Besedilo samo če obstaja)
         show(lblType, isDesign);
         show(mType, isDesign);
         show(lblClient, isDesign);
@@ -616,6 +736,7 @@
         fillModalFromCard(cards[currentIndex]);
       }
 
+      // odprtje modala
       cards.forEach((card, idx) => {
         card.addEventListener('click', () => openModal(idx));
         card.setAttribute('tabindex', '0');
@@ -641,6 +762,7 @@
         if (e.key === 'ArrowRight') showNext();
       });
 
+      // filtri
       const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
 
       function applyFilter(filter){
@@ -656,6 +778,7 @@
           card.classList.toggle('is-hidden', !shouldShow);
         });
 
+        // če je modal odprt in trenutna kartica skrita, ga zapri
         if (modal.classList.contains('is-open')) {
           const currentCard = cards[currentIndex];
           if (currentCard && currentCard.classList.contains('is-hidden')) {
@@ -665,9 +788,7 @@
       }
 
       filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          applyFilter(btn.getAttribute('data-filter'));
-        });
+        btn.addEventListener('click', () => applyFilter(btn.getAttribute('data-filter')));
       });
     })();
   </script>
