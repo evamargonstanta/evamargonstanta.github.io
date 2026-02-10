@@ -119,28 +119,31 @@
     }
 
     .media-grid{
-      width:100%;
-      height:100%;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap:10px;
-    }
-    .media-tile{
-      width:100%;
-      height:100%;
-      background:#f6f6f6;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .media-tile img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      display:block;
-    }
+  width:100%;
+  height:100%;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap:10px;
+  align-content:center;   /* center grid v prostoru */
+}
+
+.media-tile{
+  width:100%;
+  aspect-ratio: 1 / 1;    /* ✅ tile vedno kvadraten */
+  background:#f6f6f6;
+  overflow:hidden;
+  display:block;
+}
+
+.media-tile img{
+  width:100%;
+  height:100%;
+  object-fit:cover;       /* ✅ brez sivih robov */
+  object-position:center;
+  display:block;
+}
+
 
     .modal-body{
       flex:0 0 42%;
