@@ -187,16 +187,17 @@
       width: calc(50% - 10px);
     }
 
-    .modal-body{
-      flex:0 0 42%;
-      padding:16px 18px 18px;
-      box-sizing:border-box;
-      background:#fff;
-      overflow:hidden;
-      display:flex;
-      align-items:center;      /* vertikalno na sredino */
-      justify-content:center;  /* vertikalno na sredino */
-    }
+   .modal-body{
+  flex:0 0 42%;
+  padding: 24px;           /* ✅ enako zgoraj / spodaj / levo / desno */
+  box-sizing:border-box;
+  background:#fff;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
 
    .meta-wrap{
   width: min(360px, 100%);   /* ✅ ista širina kot opis */
