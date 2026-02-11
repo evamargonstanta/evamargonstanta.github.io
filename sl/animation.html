@@ -165,11 +165,13 @@
 
     /* več prostora med zvrst / naslov / ostalo */
   .meta-genre{
-  font-size: 1rem;          /* malo več */
-  opacity:.72;
-  margin: 0 0 18px;         /* več prostora do naslova */
-  letter-spacing:.02em;
+  font-size: 1rem;
+  font-style: italic;     /* ✅ kurziva */
+  opacity:.65;
+  margin: 0 0 18px; /* več prostora do naslova */
+  letter-spacing:.01em;
 }
+
 
 .meta-title{
   font-size: 1.32rem;       /* malo več */
@@ -191,17 +193,20 @@
     .meta .value{ opacity:.95; }
 
     /* opis: brez "Opis", samo besedilo */
-   .desc{
-  margin: 0 0 22px;         /* več prostora pred podatki */
+  .desc{
+  max-width: 360px;        /* ✅ opis je ožji */
+  margin: 0 0 22px 0;
   font-size:1rem;
-  line-height:1.45;
+  line-height:1.5;
   opacity:.95;
-  text-align:left;
+  text-align: justify;     /* glej točko 3 */
+  hyphens: auto;
   display:-webkit-box;
-  -webkit-line-clamp: 9;    /* desktop brez scrola */
+  -webkit-line-clamp: 9;
   -webkit-box-orient: vertical;
   overflow:hidden;
 }
+
 
     @media (max-width: 900px){
       .modal-panel{ width: calc(100vw - 18px); height: calc(100vh - 14px); }
