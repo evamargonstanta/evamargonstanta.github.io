@@ -84,15 +84,15 @@
     .modal.is-open{ display:block; }
     .modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
 
-    .modal-panel{
-      position:absolute; left:50%; top:50%;
-      transform:translate(-50%,-50%);
-      width:min(1100px, calc(100vw - 48px));
-      height: min(760px, calc(100vh - 40px));
-      background:#fff;
-      overflow:hidden;
-      border-radius:0;
-    }
+   .modal-panel{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:min(1100px, calc(100vw - 48px));
+  background:#fff;
+  overflow:hidden;
+}
 
     .modal-controls{
       position:absolute; right:16px; bottom:16px;
@@ -110,15 +110,16 @@
 
     .modal-content{ display:flex; height:100%; }
 
-    .modal-media{
+   .modal-media{
   flex:0 0 58%;
-  padding:14px;
+  padding:14px;            /* ← to je tvoj “enak rob” */
   box-sizing:border-box;
   background:#fff;
   display:flex;
-  align-items:center;
-  justify-content:center;
+  align-items:flex-start;  /* ✅ zgoraj poravnano */
+  justify-content:flex-start;
 }
+
 
 .media-grid{
   width:100%;
