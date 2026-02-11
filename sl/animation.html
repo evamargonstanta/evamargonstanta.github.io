@@ -84,15 +84,15 @@
     .modal.is-open{ display:block; }
     .modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
 
-   .modal-panel{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  width:min(1100px, calc(100vw - 48px));
-  background:#fff;
-  overflow:hidden;
-}
+    .modal-panel{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width:min(1100px, calc(100vw - 48px));
+      background:#fff;
+      overflow:hidden;
+    }
 
     .modal-controls{
       position:absolute; right:16px; bottom:16px;
@@ -110,46 +110,80 @@
 
     .modal-content{ display:flex; height:100%; }
 
-  .modal-media {
-  flex: 0 0 58%;
-  padding: 26px;          /* 🔹 več zunanjega prostora okoli galerije */
-  box-sizing: border-box;
-  background: #fff;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
+    .modal-media {
+      flex: 0 0 58%;
+      padding: 26px;          /* 🔹 več zunanjega prostora okoli galerije */
+      box-sizing: border-box;
+      background: #fff;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
 
+    .media-grid{
+      width:100%;
+      height:auto;                 /* ✅ ne raztezaj po višini */
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto; /* ✅ višina vrstic po vsebini */
+      column-gap: 20px;            /* levo-desno */
+      row-gap: 20px;               /* ✅ zgoraj-spodaj */
+      align-content:start;
+    }
 
+    .media-tile{
+      width:100%;
+      aspect-ratio: 1 / 1;
+      background:#f6f6f6;
+      overflow:hidden;
+      display:block;
+    }
 
-.media-grid{
-  width:100%;
-  height:auto;                 /* ✅ ne raztezaj po višini */
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto; /* ✅ višina vrstic po vsebini */
-  column-gap: 20px;            /* levo-desno */
-  row-gap: 20px;               /* ✅ zgoraj-spodaj */
-  align-content:start;
-}
+    .media-tile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
 
-.media-tile{
-  width:100%;
-  aspect-ratio: 1 / 1;
-  background:#f6f6f6;
-  overflow:hidden;
-  display:block;
-}
+    /* ===== MEDIA GRID: postavitev za 1 / 2 / 3 slike ===== */
 
-.media-tile img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  display:block;
-}
+    /* skrita polja naj ne vplivajo na layout */
+    .media-tile.is-hidden{ display:none; }
 
+    /* 4 slike: ostane privzeto 2x2 (nič posebnega) */
 
+    /* 3 slike: zgoraj 2, spodaj 1 poravnana sredinsko */
+    .media-grid.count-3{
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    .media-grid.count-3 .media-tile:nth-child(3){
+      grid-column: 1 / -1;         /* čez obe koloni */
+      justify-self: center;        /* na sredino */
+      width: calc(50% - 10px);     /* približno širina ene zgornje (20px gap / 2 = 10px) */
+    }
+
+    /* 2 sliki: obe poravnani na sredino levega dela */
+    .media-grid.count-2{
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      justify-content: center;
+    }
+    .media-grid.count-2 .media-tile{
+      width: calc(50% - 10px);
+    }
+
+    /* 1 slika: na sredino levega dela */
+    .media-grid.count-1{
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      justify-content: center;
+    }
+    .media-grid.count-1 .media-tile{
+      width: calc(50% - 10px);
+    }
 
     .modal-body{
       flex:0 0 42%;
@@ -165,20 +199,19 @@
     .meta-wrap{ width: min(420px, 100%); text-align:left; }
 
     /* več prostora med zvrst / naslov / ostalo */
-  .meta-genre{
-  font-size: 1rem;
-  font-style: italic;     /* ✅ kurziva */
-  opacity:.65;
-  margin: 0 0 18px; /* več prostora do naslova */
-  letter-spacing:.01em;
-}
+    .meta-genre{
+      font-size: 1rem;
+      font-style: italic;     /* ✅ kurziva */
+      opacity:.65;
+      margin: 0 0 18px; /* več prostora do naslova */
+      letter-spacing:.01em;
+    }
 
-
-.meta-title{
-  font-size: 1.32rem;       /* malo več */
-  font-weight:600;
-  margin: 0 0 18px;         /* več prostora do opisa */
-}
+    .meta-title{
+      font-size: 1.32rem;       /* malo več */
+      font-weight:600;
+      margin: 0 0 18px;         /* več prostora do opisa */
+    }
 
     .meta{
       display:grid;
@@ -194,20 +227,19 @@
     .meta .value{ opacity:.95; }
 
     /* opis: brez "Opis", samo besedilo */
-  .desc{
-  max-width: 360px;        /* ✅ opis je ožji */
-  margin: 0 0 22px 0;
-  font-size:1rem;
-  line-height:1.5;
-  opacity:.95;
-  text-align: justify;     /* glej točko 3 */
-  hyphens: auto;
-  display:-webkit-box;
-  -webkit-line-clamp: 9;
-  -webkit-box-orient: vertical;
-  overflow:hidden;
-}
-
+    .desc{
+      max-width: 360px;        /* ✅ opis je ožji */
+      margin: 0 0 22px 0;
+      font-size:1rem;
+      line-height:1.5;
+      opacity:.95;
+      text-align: justify;
+      hyphens: auto;
+      display:-webkit-box;
+      -webkit-line-clamp: 9;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
 
     @media (max-width: 900px){
       .modal-panel{ width: calc(100vw - 18px); height: calc(100vh - 14px); }
@@ -579,8 +611,8 @@
             <p class="meta-genre" id="mGenre">—</p>
             <p class="meta-title" id="mTitleTop">—</p>
 
-           <div class="desc" id="mNotes"></div>
-            
+            <div class="desc" id="mNotes"></div>
+
             <div class="meta">
               <div class="label">Leto</div><div class="value" id="mYear"></div>
 
@@ -594,7 +626,6 @@
 
               <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
             </div>
-
 
           </div>
         </div>
@@ -666,32 +697,51 @@
       function fillMediaGridFromFolder(folder, title){
         const imgs = buildImagesFromFolder(folder);
 
-        mediaGrid.style.gridTemplateColumns = '1fr 1fr';
-        mediaGrid.style.gridTemplateRows = '1fr 1fr';
+        // počisti stare razrede (za 1/2/3/4 slike)
+        mediaGrid.classList.remove('count-1','count-2','count-3','count-4');
 
+        // najprej nastavimo srcje in skrijemo manjkajoče
         for (let i = 0; i < 4; i++){
           const imgEl = mediaImgs[i];
           const tile = imgEl.closest('.media-tile');
 
           imgEl.onerror = null;
 
+          imgEl.src = imgs[i] || '';
+          imgEl.alt = imgs[i] ? (title || '') : '';
+
+          // privzeto pokažemo tile, potem ga po potrebi skrijemo
+          tile.classList.remove('is-hidden');
+
+          // če path ne obstaja, tile skrijemo takoj
           if (!imgs[i]) {
             imgEl.removeAttribute('src');
             imgEl.alt = '';
-            show(tile, false);
+            tile.classList.add('is-hidden');
             continue;
           }
 
-          imgEl.src = imgs[i];
-          imgEl.alt = title || '';
-          show(tile, true);
-
-          // če slika ne obstaja (404), skrij to polje
+          // če slika ne obstaja (404), skrij tile in posodobi layout
           imgEl.onerror = () => {
             imgEl.removeAttribute('src');
             imgEl.alt = '';
-            show(tile, false);
+            tile.classList.add('is-hidden');
+            updateGridClass();
           };
+        }
+
+        // po poskusu nalaganja nastavimo pravilen razred glede na vidne tile
+        setTimeout(updateGridClass, 0);
+
+        function updateGridClass(){
+          let visibleCount = 0;
+          for (let i = 0; i < 4; i++){
+            const tile = mediaImgs[i].closest('.media-tile');
+            if (!tile.classList.contains('is-hidden')) visibleCount++;
+          }
+          const safeCount = Math.max(1, Math.min(4, visibleCount));
+          mediaGrid.classList.remove('count-1','count-2','count-3','count-4');
+          mediaGrid.classList.add('count-' + safeCount);
         }
       }
 
