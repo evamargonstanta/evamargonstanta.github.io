@@ -196,12 +196,16 @@
 
   .modal-body{
   flex: 0 0 42%;
-  padding: 26px;                        /* ✅ enako levo/desno */
+  padding: 26px;                 /* enak rob povsod */
   box-sizing: border-box;
   background:#fff;
   overflow:hidden;
-  display:block;                        /* ✅ ne centriramo več s flex */
+
+  display:flex;                  /* ✅ */
+  align-items:center;            /* ✅ zgoraj–spodaj na sredino */
+  justify-content:center;        /* ✅ levo–desno na sredino */
 }
+
 
 
 
