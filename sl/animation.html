@@ -111,7 +111,7 @@
     .modal-content{ display:flex; height:100%; }
 
     .modal-media {
-      flex: 0 0 58%;
+      flex: 0 0 62%;
       padding: 26px;          /* 🔹 več zunanjega prostora okoli galerije */
       box-sizing: border-box;
       background: #fff;
@@ -188,21 +188,22 @@
     }
 
    .modal-body{
-  flex:0 0 42%;
-  padding: 24px;           /* ✅ enako zgoraj / spodaj / levo / desno */
-  box-sizing:border-box;
+  flex: 0 0 38%;
+  padding: 26px;              /* enak prostor povsod */
+  box-sizing: border-box;
   background:#fff;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:block;              /* ⬅️ NI VEČ flex centriranja */
 }
 
 
-   .meta-wrap{
-  width: min(360px, 100%);   /* ✅ ista širina kot opis */
+
+  .meta-wrap{
+  width: 360px;               /* tvoja želena širina */
+  max-width: 100%;
   text-align:left;
 }
+
 
     /* več prostora med zvrst / naslov / ostalo */
     .meta-genre{
