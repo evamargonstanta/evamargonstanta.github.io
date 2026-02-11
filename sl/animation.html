@@ -154,16 +154,18 @@
 
     /* 4 slike: ostane privzeto 2x2 (nič posebnega) */
 
-    /* 3 slike: zgoraj 2, spodaj 1 poravnana sredinsko */
-    .media-grid.count-3{
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-    }
-    .media-grid.count-3 .media-tile:nth-child(3){
-      grid-column: 1 / -1;         /* čez obe koloni */
-      justify-self: center;        /* na sredino */
-      width: calc(50% - 10px);     /* približno širina ene zgornje (20px gap / 2 = 10px) */
-    }
+   /* 3 slike: zgoraj 2 kvadratni, spodaj 1 široka čez celo širino */
+.media-grid.count-3{
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+}
+
+.media-grid.count-3 .media-tile:nth-child(3){
+  grid-column: 1 / -1;       /* čez obe koloni */
+  width: 100%;               /* polna širina */
+  justify-self: stretch;
+  aspect-ratio: 2 / 1;       /* ✅ podolgovata (prilagodi po želji) */
+}
 
     /* 2 sliki: obe poravnani na sredino levega dela */
     .media-grid.count-2{
