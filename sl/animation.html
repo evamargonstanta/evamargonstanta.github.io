@@ -164,8 +164,18 @@
     .meta-wrap{ width: min(420px, 100%); text-align:left; }
 
     /* več prostora med zvrst / naslov / ostalo */
-    .meta-genre{ font-size:.92rem; opacity:.72; margin: 0 0 14px; letter-spacing:.01em; }
-    .meta-title{ font-size:1.18rem; font-weight:600; margin:0 0 20px; }
+  .meta-genre{
+  font-size: 1rem;          /* malo več */
+  opacity:.72;
+  margin: 0 0 18px;         /* več prostora do naslova */
+  letter-spacing:.02em;
+}
+
+.meta-title{
+  font-size: 1.32rem;       /* malo več */
+  font-weight:600;
+  margin: 0 0 18px;         /* več prostora do opisa */
+}
 
     .meta{
       display:grid;
@@ -181,17 +191,17 @@
     .meta .value{ opacity:.95; }
 
     /* opis: brez "Opis", samo besedilo */
-    .desc{
-      margin-top: 14px;
-      font-size:.98rem;
-      line-height:1.35;
-      opacity:.95;
-      text-align:left;
-      display:-webkit-box;
-      -webkit-line-clamp: 9;     /* desktop: brez scrolla */
-      -webkit-box-orient: vertical;
-      overflow:hidden;
-    }
+   .desc{
+  margin: 0 0 22px;         /* več prostora pred podatki */
+  font-size:1rem;
+  line-height:1.45;
+  opacity:.95;
+  text-align:left;
+  display:-webkit-box;
+  -webkit-line-clamp: 9;    /* desktop brez scrola */
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+}
 
     @media (max-width: 900px){
       .modal-panel{ width: calc(100vw - 18px); height: calc(100vh - 14px); }
@@ -563,6 +573,8 @@
             <p class="meta-genre" id="mGenre">—</p>
             <p class="meta-title" id="mTitleTop">—</p>
 
+           <div class="desc" id="mNotes"></div>
+            
             <div class="meta">
               <div class="label">Leto</div><div class="value" id="mYear"></div>
 
@@ -577,7 +589,7 @@
               <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
             </div>
 
-            <div class="desc" id="mNotes"></div>
+
           </div>
         </div>
       </div>
