@@ -84,15 +84,18 @@
     .modal.is-open{ display:block; }
     .modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
 
-    .modal-panel{
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      width:min(1100px, calc(100vw - 48px));
-      background:#fff;
-      overflow:hidden;
-    }
+   .modal-panel{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+
+  width: min(1280px, calc(100vw - 48px));   /* ✅ večji kot prej 1100px */
+  max-height: calc(100vh - 36px);           /* ✅ da ne gre čez ekran */
+  background:#fff;
+  overflow:hidden;
+}
+
 
     .modal-controls{
       position:absolute; right:16px; bottom:16px;
@@ -108,17 +111,21 @@
       .modal-controls svg{ width:32px; height:32px; }
     }
 
-    .modal-content{ display:flex; height:100%; }
+    .modal-content{
+  display:flex;
+  align-items: stretch;                 /* ✅ oba stolpca enaka višina */
+}
 
-    .modal-media {
-      flex: 0 0 62%;
-      padding: 26px;          /* 🔹 več zunanjega prostora okoli galerije */
-      box-sizing: border-box;
-      background: #fff;
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
+
+    .modal-media{
+  flex: 0 0 58%;
+  padding: 26px;
+  box-sizing: border-box;
+  background:#fff;
+  display:flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+}
 
     .media-grid{
       width:100%;
@@ -187,19 +194,19 @@
       width: calc(50% - 10px);
     }
 
-   .modal-body{
-  flex: 0 0 38%;
-  padding: 26px;              /* enak prostor povsod */
+  .modal-body{
+  flex: 0 0 42%;
+  padding: 26px;                        /* ✅ enako levo/desno */
   box-sizing: border-box;
   background:#fff;
   overflow:hidden;
-  display:block;              /* ⬅️ NI VEČ flex centriranja */
+  display:block;                        /* ✅ ne centriramo več s flex */
 }
 
 
 
   .meta-wrap{
-  width: 360px;               /* tvoja želena širina */
+  width: 360px;                         /* tvoja uredniška širina */
   max-width: 100%;
   text-align:left;
 }
@@ -251,7 +258,8 @@
     @media (max-width: 900px){
       .modal-panel{ width: calc(100vw - 18px); height: calc(100vh - 14px); }
       .modal-content{ flex-direction:column; }
-      .modal-media{ padding:10px; height: 44vh; }
+     .modal-media{ padding: 22px; }  /* prej 26px */
+
       .modal-body{
         flex:1 1 auto;
         overflow:auto; /* mobil: lahko scroll */
