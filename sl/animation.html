@@ -84,18 +84,16 @@
     .modal.is-open{ display:block; }
     .modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
 
-   .modal-panel{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-
-  width: min(1280px, calc(100vw - 48px));   /* ✅ večji kot prej 1100px */
-  max-height: calc(100vh - 36px);           /* ✅ da ne gre čez ekran */
-  background:#fff;
-  overflow:hidden;
-}
-
+    .modal-panel{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width: min(1280px, calc(100vw - 48px));
+      max-height: calc(100vh - 36px);
+      background:#fff;
+      overflow:hidden;
+    }
 
     .modal-controls{
       position:absolute; right:16px; bottom:16px;
@@ -112,29 +110,28 @@
     }
 
     .modal-content{
-  display:flex;
-  align-items: stretch;                 /* ✅ oba stolpca enaka višina */
-}
-
+      display:flex;
+      align-items: stretch;
+    }
 
     .modal-media{
-  flex: 0 0 58%;
-  padding: 26px;
-  box-sizing: border-box;
-  background:#fff;
-  display:flex;
-  align-items:flex-start;
-  justify-content:flex-start;
-}
+      flex: 0 0 58%;
+      padding: 26px;
+      box-sizing: border-box;
+      background:#fff;
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-start;
+    }
 
     .media-grid{
       width:100%;
-      height:auto;                 /* ✅ ne raztezaj po višini */
+      height:auto;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto; /* ✅ višina vrstic po vsebini */
-      column-gap: 20px;            /* levo-desno */
-      row-gap: 20px;               /* ✅ zgoraj-spodaj */
+      grid-template-rows: auto auto;
+      column-gap: 20px;
+      row-gap: 20px;
       align-content:start;
     }
 
@@ -155,24 +152,19 @@
     }
 
     /* ===== MEDIA GRID: postavitev za 1 / 2 / 3 slike ===== */
-
-    /* skrita polja naj ne vplivajo na layout */
     .media-tile.is-hidden{ display:none; }
 
-    /* 4 slike: ostane privzeto 2x2 (nič posebnega) */
-
-   /* 3 slike: zgoraj 2 kvadratni, spodaj 1 široka čez celo širino */
-.media-grid.count-3{
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-}
-
-.media-grid.count-3 .media-tile:nth-child(3){
-  grid-column: 1 / -1;       /* čez obe koloni */
-  width: 100%;               /* polna širina */
-  justify-self: stretch;
-  aspect-ratio: 2 / 1;       /* ✅ podolgovata (prilagodi po želji) */
-}
+    /* 3 slike: zgoraj 2 kvadratni, spodaj 1 široka čez celo širino */
+    .media-grid.count-3{
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    .media-grid.count-3 .media-tile:nth-child(3){
+      grid-column: 1 / -1;
+      width: 100%;
+      justify-self: stretch;
+      aspect-ratio: 2 / 1;
+    }
 
     /* 2 sliki: obe poravnani na sredino levega dela */
     .media-grid.count-2{
@@ -194,41 +186,28 @@
       width: calc(50% - 10px);
     }
 
-  .modal-body{
-  flex: 0 0 42%;
-  padding: 26px;                 /* enak rob povsod */
-  box-sizing: border-box;
-  background:#fff;
-  overflow:hidden;
+    .modal-body{
+      flex: 0 0 42%;
+      padding: 26px;
+      box-sizing: border-box;
+      background:#fff;
+      overflow:hidden;
 
-  display:flex;                  /* ✅ */
-  align-items:center;            /* ✅ zgoraj–spodaj na sredino */
-  justify-content:center;        /* ✅ levo–desno na sredino */
-}
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-
-
-
-  .meta-wrap{
-  width: 360px;                         /* tvoja uredniška širina */
-  max-width: 100%;
-  text-align:left;
-}
-
-
-    /* več prostora med zvrst / naslov / ostalo */
-    .meta-genre{
-      font-size: 1rem;
-      font-style: italic;     /* ✅ kurziva */
-      opacity:.65;
-      margin: 0 0 18px; /* več prostora do naslova */
-      letter-spacing:.01em;
+    .meta-wrap{
+      width: 360px;
+      max-width: 100%;
+      text-align:left;
     }
 
     .meta-title{
-      font-size: 1.32rem;       /* malo več */
+      font-size: 1.32rem;
       font-weight:600;
-      margin: 0 0 18px;         /* več prostora do opisa */
+      margin: 0 0 18px;
     }
 
     .meta{
@@ -245,28 +224,27 @@
     .meta .value{ opacity:.95; }
 
     /* opis: brez "Opis", samo besedilo */
-   .desc{
-  margin: 0 0 22px 0;
-  font-size:1rem;
-  line-height:1.5;
-  opacity:.95;
-  text-align: justify;
-  hyphens: auto;
-  display:-webkit-box;
-  -webkit-line-clamp: 9;
-  -webkit-box-orient: vertical;
-  overflow:hidden;
-}
-
+    .desc{
+      margin: 0 0 22px 0;
+      font-size:1rem;
+      line-height:1.5;
+      opacity:.95;
+      text-align: justify;
+      hyphens: auto;
+      display:-webkit-box;
+      -webkit-line-clamp: 9;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
 
     @media (max-width: 900px){
       .modal-panel{ width: calc(100vw - 18px); height: calc(100vh - 14px); }
       .modal-content{ flex-direction:column; }
-     .modal-media{ padding: 22px; }  /* prej 26px */
+      .modal-media{ padding: 22px; }
 
       .modal-body{
         flex:1 1 auto;
-        overflow:auto; /* mobil: lahko scroll */
+        overflow:auto;
         padding: 12px 14px 84px;
         align-items:flex-start;
         justify-content:flex-start;
@@ -627,7 +605,7 @@
 
         <div class="modal-body">
           <div class="meta-wrap">
-            <p class="meta-genre" id="mGenre">—</p>
+            <!-- ✅ ZVRST ODSTRANJENA -->
             <p class="meta-title" id="mTitleTop">—</p>
 
             <div class="desc" id="mNotes"></div>
@@ -656,7 +634,6 @@
 
   <script>
     (function () {
-      // ✅ stran je v /sl, zato je pravilno: ../assets/...
       const PROJECTS_BASE = '../assets/images/projects/';
 
       const modal = document.getElementById('projectModal');
@@ -665,7 +642,7 @@
       const prevBtn = document.getElementById('prevBtn');
       const nextBtn = document.getElementById('nextBtn');
 
-      const mGenre = document.getElementById('mGenre');
+      // ✅ mGenre odstranjen
       const mTitleTop = document.getElementById('mTitleTop');
       const mYear = document.getElementById('mYear');
       const mDuration = document.getElementById('mDuration');
@@ -716,10 +693,8 @@
       function fillMediaGridFromFolder(folder, title){
         const imgs = buildImagesFromFolder(folder);
 
-        // počisti stare razrede (za 1/2/3/4 slike)
         mediaGrid.classList.remove('count-1','count-2','count-3','count-4');
 
-        // najprej nastavimo srcje in skrijemo manjkajoče
         for (let i = 0; i < 4; i++){
           const imgEl = mediaImgs[i];
           const tile = imgEl.closest('.media-tile');
@@ -729,10 +704,8 @@
           imgEl.src = imgs[i] || '';
           imgEl.alt = imgs[i] ? (title || '') : '';
 
-          // privzeto pokažemo tile, potem ga po potrebi skrijemo
           tile.classList.remove('is-hidden');
 
-          // če path ne obstaja, tile skrijemo takoj
           if (!imgs[i]) {
             imgEl.removeAttribute('src');
             imgEl.alt = '';
@@ -740,7 +713,6 @@
             continue;
           }
 
-          // če slika ne obstaja (404), skrij tile in posodobi layout
           imgEl.onerror = () => {
             imgEl.removeAttribute('src');
             imgEl.alt = '';
@@ -749,7 +721,6 @@
           };
         }
 
-        // po poskusu nalaganja nastavimo pravilen razred glede na vidne tile
         setTimeout(updateGridClass, 0);
 
         function updateGridClass(){
@@ -776,7 +747,6 @@
         const category = card.getAttribute('data-category') || '';
         const folder = card.getAttribute('data-folder') || '';
 
-        mGenre.textContent = prettyGenre(category);
         mTitleTop.textContent = title;
         mYear.textContent = year;
         mNotes.textContent = notes;
@@ -786,13 +756,11 @@
         const isAnimation = category === 'animation';
         const isDesign = category === 'design';
 
-        // Animacija: Dolžina + Vloga
+        // Dolžina: samo animacije
         show(lblDuration, isAnimation);
         show(mDuration, isAnimation);
-        show(lblRole, isAnimation);
-        show(mRole, isAnimation);
 
-        // Oblikovanje: Področje + Naročnik + (Besedilo, če obstaja)
+        // Področje + Naročnik + (Besedilo, če obstaja): samo oblikovanje
         show(lblType, isDesign);
         show(mType, isDesign);
         show(lblClient, isDesign);
@@ -802,12 +770,17 @@
         show(lblText, showTextRow);
         show(mText, showTextRow);
 
+        // ✅ Vloga: prikazana pri obeh
+        show(lblRole, true);
+        show(mRole, true);
+
         if (isAnimation){
           mDuration.textContent = duration || '—';
           mRole.textContent = role || '—';
         } else {
           mDuration.textContent = '';
-          mRole.textContent = '';
+          // ✅ pri oblikovanju v "Vloga" zapišemo to, kar je prej pisalo v Zvrsti
+          mRole.textContent = prettyGenre(category);
         }
 
         if (isDesign){
