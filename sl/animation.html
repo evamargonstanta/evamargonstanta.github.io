@@ -204,6 +204,15 @@
       text-align:left;
     }
 
+    /* zvrst (kurziva) */
+    .meta-genre{
+      font-size: 1rem;
+      font-style: italic;
+      opacity:.65;
+      margin: 0 0 18px;
+      letter-spacing:.01em;
+    }
+
     .meta-title{
       font-size: 1.32rem;
       font-weight:600;
@@ -223,7 +232,6 @@
     .meta .label{ opacity:.65; }
     .meta .value{ opacity:.95; }
 
-    /* opis: brez "Opis", samo besedilo */
     .desc{
       margin: 0 0 22px 0;
       font-size:1rem;
@@ -315,6 +323,7 @@
          data-year="2017"
          data-duration="2:00"
          data-role="Ilustracija, animacija, režija"
+         data-production="Zavod Dagiba"
          data-type=""
          data-client=""
          data-text=""
@@ -605,7 +614,9 @@
 
         <div class="modal-body">
           <div class="meta-wrap">
-            <!-- ✅ ZVRST ODSTRANJENA -->
+            <!-- ✅ ZVRST NAZAJ (kurziva) -->
+            <p class="meta-genre" id="mGenre">—</p>
+
             <p class="meta-title" id="mTitleTop">—</p>
 
             <div class="desc" id="mNotes"></div>
@@ -615,13 +626,15 @@
 
               <div class="label" id="lblDuration">Dolžina</div><div class="value" id="mDuration"></div>
 
-              <div class="label" id="lblType">Področje</div><div class="value" id="mType"></div>
+              <!-- ✅ Področje odstranjeno -->
 
               <div class="label" id="lblClient">Naročnik</div><div class="value" id="mClient"></div>
 
               <div class="label" id="lblText">Besedilo</div><div class="value" id="mText"></div>
 
               <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
+
+              <div class="label" id="lblProduction">Produkcija</div><div class="value" id="mProduction"></div>
             </div>
 
           </div>
@@ -642,21 +655,21 @@
       const prevBtn = document.getElementById('prevBtn');
       const nextBtn = document.getElementById('nextBtn');
 
-      // ✅ mGenre odstranjen
+      const mGenre = document.getElementById('mGenre');
       const mTitleTop = document.getElementById('mTitleTop');
       const mYear = document.getElementById('mYear');
       const mDuration = document.getElementById('mDuration');
-      const mType = document.getElementById('mType');
       const mClient = document.getElementById('mClient');
       const mText = document.getElementById('mText');
       const mRole = document.getElementById('mRole');
+      const mProduction = document.getElementById('mProduction');
       const mNotes = document.getElementById('mNotes');
 
       const lblDuration = document.getElementById('lblDuration');
-      const lblType = document.getElementById('lblType');
       const lblClient = document.getElementById('lblClient');
       const lblText = document.getElementById('lblText');
       const lblRole = document.getElementById('lblRole');
+      const lblProduction = document.getElementById('lblProduction');
 
       const mediaGrid = document.getElementById('mediaGrid');
       const mediaImgs = [
@@ -739,13 +752,16 @@
         const title = card.getAttribute('data-title') || '—';
         const year = card.getAttribute('data-year') || '—';
         const duration = card.getAttribute('data-duration') || '';
-        const type = card.getAttribute('data-type') || '';
         const client = card.getAttribute('data-client') || '';
         const text = card.getAttribute('data-text') || '';
         const role = card.getAttribute('data-role') || '';
+        const production = card.getAttribute('data-production') || '';
         const notes = card.getAttribute('data-notes') || '';
         const category = card.getAttribute('data-category') || '';
         const folder = card.getAttribute('data-folder') || '';
+
+        // Zvrst (kurziva)
+        mGenre.textContent = prettyGenre(category);
 
         mTitleTop.textContent = title;
         mYear.textContent = year;
@@ -759,39 +775,29 @@
         // Dolžina: samo animacije
         show(lblDuration, isAnimation);
         show(mDuration, isAnimation);
+        mDuration.textContent = isAnimation ? (duration || '—') : '';
 
-        // Področje + Naročnik + (Besedilo, če obstaja): samo oblikovanje
-        show(lblType, isDesign);
-        show(mType, isDesign);
+        // Naročnik: samo oblikovanje (kot prej)
         show(lblClient, isDesign);
         show(mClient, isDesign);
+        mClient.textContent = isDesign ? (client || '—') : '';
 
+        // Besedilo: samo če obstaja (oblikovanje)
         const showTextRow = isDesign && text.trim().length > 0;
         show(lblText, showTextRow);
         show(mText, showTextRow);
+        mText.textContent = showTextRow ? text : '';
 
-        // ✅ Vloga: prikazana pri obeh
+        // Vloga: pri obeh
         show(lblRole, true);
         show(mRole, true);
+        mRole.textContent = role.trim().length > 0 ? role : '—';
 
-        if (isAnimation){
-          mDuration.textContent = duration || '—';
-          mRole.textContent = role || '—';
-        } else {
-          mDuration.textContent = '';
-          // ✅ pri oblikovanju v "Vloga" zapišemo to, kar je prej pisalo v Zvrsti
-          mRole.textContent = prettyGenre(category);
-        }
-
-        if (isDesign){
-          mType.textContent = type || '—';
-          mClient.textContent = client || '—';
-        } else {
-          mType.textContent = '';
-          mClient.textContent = '';
-        }
-
-        mText.textContent = showTextRow ? text : '';
+        // Produkcija: samo če obstaja (Animation 2)
+        const showProductionRow = isAnimation && production.trim().length > 0;
+        show(lblProduction, showProductionRow);
+        show(mProduction, showProductionRow);
+        mProduction.textContent = showProductionRow ? production : '';
       }
 
       function openModal(index){
