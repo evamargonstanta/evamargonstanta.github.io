@@ -447,13 +447,13 @@
          data-client=""
          data-text=""
          data-notes="Animacija govori o legendi Jazona in Argonavtov, kako so nekoč ustanovili mesto Ljubljana, takrat Emona.">
-      <="project-inner">
+      <div class="project-inner">
         <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
       </div>
     </div>
 
     <!-- 11 = Oblikovanje6 -->
-    <="project-card" data-category="design"
+    <div class="project-card" data-category="design"
          data-folder="design6"
          data-img="../assets/images/design6.jpg"
          data-title="Rastlinstvo: lilije – Poštne znamke"
@@ -464,13 +464,13 @@
          data-duration=""
          data-role="Grafično oblikovanje / ilustracija"
          data-notes="Projekt vsebuje štiri poštne znamke – Alojzijeva lilija, brstična lilija, kranjska lilija in turška lilija.">
-      <="project-inner">
+      <div class="project-inner">
         <img src="../assets/images/design6.jpg" alt="Oblikovanje 6" loading="lazy">
       </div>
     </div>
 
     <!-- 12 = Animacija6 -->
-    <="project-card is-animation" data-category="animation"
+    <div class="project-card is-animation" data-category="animation"
          data-folder="animation6"
          data-img="../assets/images/animation6.jpg"
          data-title="Portfolio Reel"
@@ -614,28 +614,20 @@
 
         <div class="modal-body">
           <div class="meta-wrap">
-            <!-- ✅ ZVRST NAZAJ (kurziva) -->
             <p class="meta-genre" id="mGenre">—</p>
-
             <p class="meta-title" id="mTitleTop">—</p>
 
             <div class="desc" id="mNotes"></div>
 
             <div class="meta">
               <div class="label">Leto</div><div class="value" id="mYear"></div>
-
               <div class="label" id="lblDuration">Dolžina</div><div class="value" id="mDuration"></div>
-
-              <!-- ✅ Področje odstranjeno -->
-
               <div class="label" id="lblClient">Naročnik</div><div class="value" id="mClient"></div>
-
               <div class="label" id="lblText">Besedilo</div><div class="value" id="mText"></div>
-
               <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
 
+              <!-- ✅ Glasba (prikaže se samo pri animation1) -->
               <div class="label" id="lblMusic">Glasba</div><div class="value" id="mMusic"></div>
-
 
               <div class="label" id="lblProduction">Produkcija</div><div class="value" id="mProduction"></div>
             </div>
@@ -674,9 +666,8 @@
       const lblRole = document.getElementById('lblRole');
       const lblProduction = document.getElementById('lblProduction');
 
-      const mMusic = document.getElementById('mMusic');
       const lblMusic = document.getElementById('lblMusic');
-
+      const mMusic = document.getElementById('mMusic');
 
       const mediaGrid = document.getElementById('mediaGrid');
       const mediaImgs = [
@@ -767,7 +758,6 @@
         const category = card.getAttribute('data-category') || '';
         const folder = card.getAttribute('data-folder') || '';
 
-        // Zvrst (kurziva)
         mGenre.textContent = prettyGenre(category);
 
         mTitleTop.textContent = title;
@@ -784,7 +774,7 @@
         show(mDuration, isAnimation);
         mDuration.textContent = isAnimation ? (duration || '—') : '';
 
-        // Naročnik: samo oblikovanje (kot prej)
+        // Naročnik: samo oblikovanje
         show(lblClient, isDesign);
         show(mClient, isDesign);
         mClient.textContent = isDesign ? (client || '—') : '';
@@ -800,14 +790,13 @@
         show(mRole, true);
         mRole.textContent = role.trim().length > 0 ? role : '—';
 
-        // Glasba: samo za Animacija1 (Jazon in Argonavti)
-const showMusicRow = isAnimation && folder === 'animation1';
-show(lblMusic, showMusicRow);
-show(mMusic, showMusicRow);
-mMusic.textContent = showMusicRow ? 'Denis Robič' : '';
+        // ✅ Glasba: samo za Animacija1 (folder = animation1)
+        const showMusicRow = isAnimation && folder === 'animation1';
+        show(lblMusic, showMusicRow);
+        show(mMusic, showMusicRow);
+        mMusic.textContent = showMusicRow ? 'Denis Robič' : '';
 
-
-        // Produkcija: samo če obstaja (Animation 2)
+        // Produkcija: samo če obstaja
         const showProductionRow = isAnimation && production.trim().length > 0;
         show(lblProduction, showProductionRow);
         show(mProduction, showProductionRow);
