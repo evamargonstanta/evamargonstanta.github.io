@@ -447,13 +447,13 @@
          data-client=""
          data-text=""
          data-notes="Animacija govori o legendi Jazona in Argonavtov, kako so nekoč ustanovili mesto Ljubljana, takrat Emona.">
-      <div class="project-inner">
+      <="project-inner">
         <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
       </div>
     </div>
 
     <!-- 11 = Oblikovanje6 -->
-    <div class="project-card" data-category="design"
+    <="project-card" data-category="design"
          data-folder="design6"
          data-img="../assets/images/design6.jpg"
          data-title="Rastlinstvo: lilije – Poštne znamke"
@@ -464,13 +464,13 @@
          data-duration=""
          data-role="Grafično oblikovanje / ilustracija"
          data-notes="Projekt vsebuje štiri poštne znamke – Alojzijeva lilija, brstična lilija, kranjska lilija in turška lilija.">
-      <div class="project-inner">
+      <="project-inner">
         <img src="../assets/images/design6.jpg" alt="Oblikovanje 6" loading="lazy">
       </div>
     </div>
 
     <!-- 12 = Animacija6 -->
-    <div class="project-card is-animation" data-category="animation"
+    <="project-card is-animation" data-category="animation"
          data-folder="animation6"
          data-img="../assets/images/animation6.jpg"
          data-title="Portfolio Reel"
@@ -634,6 +634,9 @@
 
               <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
 
+              <div class="label" id="lblMusic">Glasba</div><div class="value" id="mMusic"></div>
+
+
               <div class="label" id="lblProduction">Produkcija</div><div class="value" id="mProduction"></div>
             </div>
 
@@ -670,6 +673,10 @@
       const lblText = document.getElementById('lblText');
       const lblRole = document.getElementById('lblRole');
       const lblProduction = document.getElementById('lblProduction');
+
+      const mMusic = document.getElementById('mMusic');
+      const lblMusic = document.getElementById('lblMusic');
+
 
       const mediaGrid = document.getElementById('mediaGrid');
       const mediaImgs = [
@@ -792,6 +799,13 @@
         show(lblRole, true);
         show(mRole, true);
         mRole.textContent = role.trim().length > 0 ? role : '—';
+
+        // Glasba: samo za Animacija1 (Jazon in Argonavti)
+const showMusicRow = isAnimation && folder === 'animation1';
+show(lblMusic, showMusicRow);
+show(mMusic, showMusicRow);
+mMusic.textContent = showMusicRow ? 'Denis Robič' : '';
+
 
         // Produkcija: samo če obstaja (Animation 2)
         const showProductionRow = isAnimation && production.trim().length > 0;
