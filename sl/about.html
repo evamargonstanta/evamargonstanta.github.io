@@ -23,12 +23,18 @@
       box-sizing: border-box;
     }
 
+    /* ✅ ožji blok samo za fotko + uvodno besedilo */
+    .about-narrow{
+      max-width: 1040px;   /* malo ožje kot 1180 */
+      margin: 0 auto 40px; /* centrirano + prostor spodaj */
+    }
+
     .top-grid{
       display: grid;
       grid-template-columns: 360px 1fr;
       gap: 28px;
       align-items: stretch;
-      margin-bottom: 40px;
+      margin-bottom: 0; /* ker margin zdaj daje about-narrow */
     }
 
     .photo-wrap{
@@ -61,6 +67,17 @@
       font-size: 1rem;
     }
 
+    /* ✅ besedilo ob fotografiji: vertikalno sredinsko + justify */
+    .top-grid .section{
+      display: flex;
+      align-items: center;     /* vertikalno na sredino */
+    }
+    .top-grid .section p{
+      margin: 0;               /* da se res lepo centrira */
+      text-align: justify;     /* obojestransko */
+      hyphens: auto;
+    }
+
     .section ul {
       list-style-type: disc;
       padding-left: 20px;
@@ -76,6 +93,7 @@
 
     @media (max-width: 980px) {
       .container { margin: 24px auto; padding: 0 12px; }
+      .about-narrow{ max-width: 980px; }
       .top-grid { grid-template-columns: 300px 1fr; gap: 18px; }
     }
 
@@ -85,7 +103,6 @@
       .top-grid{
         grid-template-columns: 1fr;
         gap: 14px;
-        margin-bottom: 28px;
       }
 
       .profile-photo{
@@ -93,6 +110,15 @@
         width: 100%;
         max-height: 420px;
         object-fit: cover;
+      }
+
+      /* na mobilu naj bo normalno (ne flex center) */
+      .top-grid .section{
+        display: block;
+      }
+      .top-grid .section p{
+        margin: 0;
+        text-align: left; /* če želiš tudi justify na mobitelu: zamenjaj v justify */
       }
     }
   </style>
@@ -104,14 +130,18 @@
   <div data-include="header"></div>
 
   <div class="container">
-    <div class="top-grid">
-      <div class="photo-wrap" aria-label="Portret">
-        <img src="../assets/images/osebna.jpg" alt="Eva Margon" class="profile-photo" loading="lazy">
-      </div>
 
-      <div class="section" id="zivljenjepis">
-      
-<p>Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Magisterij je opravila iz ilustracije na ALUO leta 2019, svoje znanje je izpopolnjevala na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem. Poleg knjižne ilustracije se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi.</p></div>
+    <!-- ✅ ožji, centriran blok samo za fotko + uvod -->
+    <div class="about-narrow">
+      <div class="top-grid">
+        <div class="photo-wrap" aria-label="Portret">
+          <img src="../assets/images/osebna.jpg" alt="Eva Margon" class="profile-photo" loading="lazy">
+        </div>
+
+        <div class="section" id="zivljenjepis">
+          <p>Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Magisterij je opravila iz ilustracije na ALUO leta 2019, svoje znanje je izpopolnjevala na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem. Poleg knjižne ilustracije se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi.</p>
+        </div>
+      </div>
     </div>
 
     <div class="section" id="nagrade">
