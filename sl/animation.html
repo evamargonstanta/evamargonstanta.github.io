@@ -93,6 +93,10 @@
       max-height: calc(100vh - 36px);
       background:#fff;
       overflow:hidden;
+
+      /* ✅ FIX: omogoči notranji scroll (mobil) */
+      display:flex;
+      flex-direction: column;
     }
 
     .modal-controls{
@@ -112,6 +116,10 @@
     .modal-content{
       display:flex;
       align-items: stretch;
+
+      /* ✅ FIX: flex child mora dovoliti overflow */
+      flex: 1 1 auto;
+      min-height: 0;
     }
 
     .modal-media{
@@ -191,7 +199,11 @@
       padding: 26px;
       box-sizing: border-box;
       background:#fff;
-      overflow:hidden;
+
+      /* ✅ FIX: prej overflow:hidden; na mobilu ni scrolla */
+      overflow:auto;
+      -webkit-overflow-scrolling: touch;
+      min-height: 0;
 
       display:flex;
       align-items:center;
@@ -247,8 +259,11 @@
 
     @media (max-width: 900px){
       .modal-panel{ width: calc(100vw - 18px); height: calc(100vh - 14px); }
-      .modal-content{ flex-direction:column; }
-      .modal-media{ padding: 22px; }
+      .modal-content{
+        flex-direction:column;
+        height: 100%;
+      }
+      .modal-media{ padding: 22px; flex: 0 0 auto; }
 
       .modal-body{
         flex:1 1 auto;
