@@ -92,11 +92,7 @@
       width: min(1280px, calc(100vw - 48px));
       max-height: calc(100vh - 36px);
       background:#fff;
-      overflow:hidden;
-
-      /* ✅ FIX: omogoči notranji scroll (mobil) */
-      display:flex;
-      flex-direction: column;
+      overflow:hidden; /* desktop: panel ne scrolla, scrolla samo body del */
     }
 
     .modal-controls{
@@ -116,10 +112,6 @@
     .modal-content{
       display:flex;
       align-items: stretch;
-
-      /* ✅ FIX: flex child mora dovoliti overflow */
-      flex: 1 1 auto;
-      min-height: 0;
     }
 
     .modal-media{
@@ -199,11 +191,7 @@
       padding: 26px;
       box-sizing: border-box;
       background:#fff;
-
-      /* ✅ FIX: prej overflow:hidden; na mobilu ni scrolla */
-      overflow:auto;
-      -webkit-overflow-scrolling: touch;
-      min-height: 0;
+      overflow:hidden;
 
       display:flex;
       align-items:center;
@@ -257,25 +245,38 @@
       overflow:hidden;
     }
 
+    /* ✅ MOBIL FIX: skrola CELOTEN modal (slike + besedilo skupaj) */
     @media (max-width: 900px){
-      .modal-panel{ width: calc(100vw - 18px); height: calc(100vh - 14px); }
-      .modal-content{
-        flex-direction:column;
-        height: 100%;
+      .modal-panel{
+        width: calc(100vw - 18px);
+        height: calc(100vh - 14px);
+        overflow: auto;                 /* ✅ scroll container je cel panel */
+        -webkit-overflow-scrolling: touch;
       }
-      .modal-media{ padding: 22px; flex: 0 0 auto; }
+
+      .modal-content{
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .modal-media{
+        padding: 22px;
+        flex: 0 0 auto;                 /* ✅ ne fiksiraj višine */
+      }
 
       .modal-body{
-        flex:1 1 auto;
-        overflow:auto;
-        padding: 12px 14px 84px;
+        flex: 0 0 auto;
+        overflow: visible;              /* ✅ ne ločen scroll samo za besedilo */
+        padding: 12px 14px 84px;        /* prostor za gumbe */
         align-items:flex-start;
         justify-content:flex-start;
       }
+
       .desc{
         -webkit-line-clamp: unset;
         overflow: visible;
       }
+
       .meta{ grid-template-columns: 1fr; row-gap: 4px; }
       .meta .label{ margin-top: 10px; }
     }
