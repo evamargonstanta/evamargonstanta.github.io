@@ -66,18 +66,17 @@
       font-size: 1rem;
     }
 
-    /* ✅ besedilo ob fotografiji: vertikalno sredinsko + justify */
-  .top-grid .section{
+ /* samo za uvodni blok ob fotografiji */
+.top-grid .section{
   display: flex;
-  align-items: center;
+  align-items: center; /* vertikalno centrirano */
 }
 
 .top-grid .section p{
-  margin: 0;
-  max-width: 62ch;      /* tekst ne gre preširoko (bolj pro) */
-  text-align: left;
-  line-height: 1.7;     /* malo bolj zračno */
+  margin: 0;           /* da se lepo poravna */
+  text-align: left;    /* isto kot ostalo */
 }
+
 
     .section ul {
       list-style-type: disc;
