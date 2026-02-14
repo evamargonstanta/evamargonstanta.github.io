@@ -30,12 +30,11 @@
     }
 
     .top-grid{
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 28px;
-      align-items: stretch;
-      margin-bottom: 0; /* ker margin zdaj daje about-narrow */
-    }
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 36px;            /* malo več prostora */
+  align-items: stretch;
+}
 
     .photo-wrap{
       border: 1px solid #ddd;
@@ -68,15 +67,17 @@
     }
 
     /* ✅ besedilo ob fotografiji: vertikalno sredinsko + justify */
-    .top-grid .section{
-      display: flex;
-      align-items: center;     /* vertikalno na sredino */
-    }
-    .top-grid .section p{
-      margin: 0;               /* da se res lepo centrira */
-      text-align: justify;     /* obojestransko */
-      hyphens: auto;
-    }
+  .top-grid .section{
+  display: flex;
+  align-items: center;
+}
+
+.top-grid .section p{
+  margin: 0;
+  max-width: 62ch;      /* tekst ne gre preširoko (bolj pro) */
+  text-align: left;
+  line-height: 1.7;     /* malo bolj zračno */
+}
 
     .section ul {
       list-style-type: disc;
