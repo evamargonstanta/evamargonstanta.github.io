@@ -13,113 +13,82 @@
   <meta name="nav-active" content="contact">
 
   <style>
-    /* Kontakt kartice v istem "grid" duhu kot galerija */
-    .contact-grid{
-      width: min(1100px, calc(100% - 26px));
-      margin: 10px auto 90px;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
+    /* preprosto, lahkotno – bolj "kot ostale" */
+    .contact-wrap{
+      width: min(900px, calc(100% - 26px));
+      margin: 18px auto 110px;
+      text-align: center;
     }
 
-    .contact-card{
-      grid-column: span 12;
-      border-radius: 18px;
-      border: 1px solid rgba(0,0,0,0.10);
-      background: #fff;
-      overflow: hidden;
+    .contact-lead{
+      margin: 8px auto 18px;
+      font-size: 14px;
+      line-height: 1.55;
+      opacity: .75;
+      max-width: 56ch;
     }
 
-    .contact-inner{
-      padding: 14px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .contact-left{
+    /* ikone v istem stilu kot mobile menu (samo večje) */
+    .contact-icons{
       display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .contact-link{
+      display:flex;
+      flex-direction:column;
       align-items:center;
-      gap:10px;
-      min-width:0;
+      text-decoration:none;
+      color:#111;
+      padding: 10px 12px;
+      border-radius: 16px;
+      transition: transform .15s ease, background .15s ease, opacity .15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .contact-link:hover{
+      transform: translateY(-1px);
+      background: rgba(0,0,0,0.04);
+    }
+
+    .contact-link:active{
+      transform: translateY(0);
+      background: rgba(0,0,0,0.06);
     }
 
     .contact-ico{
-      width: 30px;
-      height: 30px;
+      width: 44px;
+      height: 44px;
       display:block;
-      flex: 0 0 auto;
       opacity: .95;
     }
 
-    .contact-text{
-      display:flex;
-      flex-direction:column;
-      min-width:0;
-    }
-
     .contact-title{
-      margin:0;
-      font-weight:600;
-      font-size:14px;
-      line-height:1.2;
-      color:#111;
+      margin-top: 8px;
+      font-size: 12.5px;
+      opacity: .9;
+      white-space: nowrap;
     }
 
     .contact-sub{
-      margin:3px 0 0;
-      font-size:12.5px;
-      line-height:1.2;
-      opacity:.7;
-      white-space:nowrap;
+      margin-top: 3px;
+      font-size: 12px;
+      opacity: .65;
+      max-width: 26ch;
       overflow:hidden;
       text-overflow:ellipsis;
-      max-width: 54ch;
-    }
-
-    .contact-actions{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      flex: 0 0 auto;
-    }
-
-    .contact-btn{
-      appearance:none;
-      border: 1px solid rgba(0,0,0,0.12);
-      background: rgba(0,0,0,0.02);
-      color:#111;
-      font-family:'Rubik', sans-serif;
-      font-size:13px;
-      font-weight:600;
-      padding: 8px 12px;
-      border-radius: 999px;
-      text-decoration:none;
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
       white-space:nowrap;
     }
-    .contact-btn:hover{
-      transform: translateY(-1px);
-      background: rgba(0,0,0,0.05);
-      border-color: rgba(0,0,0,0.18);
-    }
 
-    .contact-note{
-      width: min(1100px, calc(100% - 26px));
-      margin: 0 auto 120px;
-      font-size: 12.5px;
-      line-height: 1.5;
-      opacity: .7;
-    }
-
-    @media (min-width: 680px){
-      .contact-card{ grid-column: span 6; }
-    }
-
-    @media (min-width: 980px){
-      .contact-card{ grid-column: span 4; }
+    /* malo bolj kompaktno na čisto majhnih ekranih */
+    @media (max-width: 420px){
+      .contact-ico{ width: 40px; height: 40px; }
+      .contact-icons{ gap: 12px; }
+      .contact-link{ padding: 10px 10px; }
     }
   </style>
 </head>
@@ -128,116 +97,45 @@
 
   <div data-include="header"></div>
 
-  <!-- CONTACT GRID -->
-  <div class="contact-grid" aria-label="Kontakt">
+  <main class="contact-wrap">
+    <p class="contact-lead">
+      Če želiš sodelovanje, vprašanje ali pozdrav, mi lahko pišeš ali me najdeš tukaj.
+    </p>
 
-    <!-- EMAIL -->
-    <div class="contact-card">
-      <div class="contact-inner">
-        <div class="contact-left">
-          <img class="contact-ico" src="../assets/images/icon-mail.png" alt="" aria-hidden="true">
-          <div class="contact-text">
-            <p class="contact-title">E-mail</p>
-            <!-- ZAMENJAJ EMAIL -->
-            <p class="contact-sub" id="emailText">eva.margon@hotmail.com</p>
-          </div>
-        </div>
+    <nav class="contact-icons" aria-label="Kontakt povezave">
 
-        <div class="contact-actions">
-          <!-- ZAMENJAJ EMAIL -->
-          <a class="contact-btn" href="mailto:eva.margon@hotmail.com?subject=Pozdrav%20(Eva%20Margon)">Piši</a>
-          <button class="contact-btn" type="button" id="copyEmailBtn">Kopiraj</button>
-        </div>
-      </div>
-    </div>
+      <!-- EMAIL (zamenjaj email) -->
+      <a class="contact-link"
+         href="mailto:hello@tvojadomena.si?subject=Pozdrav%20(Eva%20Margon)">
+        <img class="contact-ico" src="../assets/images/icon-mail.png" alt="E-mail">
+        <div class="contact-title">E-mail</div>
+        <div class="contact-sub">hello@tvojadomena.si</div>
+      </a>
 
-    <!-- INSTAGRAM -->
-    <div class="contact-card">
-      <div class="contact-inner">
-        <div class="contact-left">
-          <img class="contact-ico" src="../assets/images/icon-ig.png" alt="" aria-hidden="true">
-          <div class="contact-text">
-            <p class="contact-title">Instagram</p>
-            <!-- ZAMENJAJ IG -->
-            <p class="contact-sub">@evamargon_</p>
-          </div>
-        </div>
+      <!-- INSTAGRAM (zamenjaj USERNAME) -->
+      <a class="contact-link"
+         href="https://instagram.com/USERNAME"
+         target="_blank" rel="noopener">
+        <img class="contact-ico" src="../assets/images/icon-ig.png" alt="Instagram">
+        <div class="contact-title">Instagram</div>
+        <div class="contact-sub">@USERNAME</div>
+      </a>
 
-        <div class="contact-actions">
-          <!-- ZAMENJAJ IG_LINK -->
-          <a class="contact-btn" href="https://instagram.com/USERNAME" target="_blank" rel="noopener">Odpri</a>
-        </div>
-      </div>
-    </div>
+      <!-- FACEBOOK (zamenjaj USERNAME ali link) -->
+      <a class="contact-link"
+         href="https://facebook.com/USERNAME"
+         target="_blank" rel="noopener">
+        <img class="contact-ico" src="../assets/images/icon-fb.png" alt="Facebook">
+        <div class="contact-title">Facebook</div>
+        <div class="contact-sub">/USERNAME</div>
+      </a>
 
-    <!-- FACEBOOK -->
-    <div class="contact-card">
-      <div class="contact-inner">
-        <div class="contact-left">
-          <img class="contact-ico" src="../assets/images/icon-fb.png" alt="" aria-hidden="true">
-          <div class="contact-text">
-            <p class="contact-title">Facebook</p>
-            <!-- ZAMENJAJ FB -->
-            <p class="contact-sub">facebook.com/evamargonillustration</p>
-          </div>
-        </div>
-
-        <div class="contact-actions">
-          <!-- ZAMENJAJ FB_LINK -->
-          <a class="contact-btn" href="https://facebook.com/p/Eva-Margon-Illustration-100072807031670/" target="_blank" rel="noopener">Odpri</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- (opcijsko) SHOP / STORE, če želiš še tu -->
-  
-    <div class="contact-card">
-      <div class="contact-inner">
-        <div class="contact-left">
-          <img class="contact-ico" src="../assets/images/icon-bag.png" alt="" aria-hidden="true">
-          <div class="contact-text">
-            <p class="contact-title">Trgovina</p>
-            <p class="contact-sub">evamargon.sumupstore.com</p>
-          </div>
-        </div>
-
-        <div class="contact-actions">
-          <a class="contact-btn" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener">Odpri</a>
-        </div>
-      </div>
-    </div>
-    -->
-
-  </div>
-
-  <p class="contact-note">
-    Če mi pišeš glede sodelovanja, prosim dodaj kratek opis projekta in rok. Hvala!
-  </p>
+    </nav>
+  </main>
 
   <div data-include="footer-nav"></div>
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
 
   <script src="../assets/js/include.js"></script>
-
-  <script>
-    // Kopiranje e-maila (fallback na mailto, če clipboard ni dovoljen)
-    (function(){
-      const btn = document.getElementById('copyEmailBtn');
-      const emailEl = document.getElementById('emailText');
-      if(!btn || !emailEl) return;
-
-      const email = (emailEl.textContent || '').trim();
-      btn.addEventListener('click', async () => {
-        try{
-          await navigator.clipboard.writeText(email);
-          btn.textContent = 'Kopirano ✓';
-          window.setTimeout(() => (btn.textContent = 'Kopiraj'), 1200);
-        }catch(e){
-          window.location.href = 'mailto:' + encodeURIComponent(email);
-        }
-      });
-    })();
-  </script>
-
 </body>
 </html>
