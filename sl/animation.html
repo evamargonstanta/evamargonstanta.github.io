@@ -340,6 +340,7 @@
          data-duration="2:00"
          data-role="Ilustracija / animacija / režija"
          data-production="Zavod Dagiba"
+         data-music="Kristina Kokalj, Andrej Adamek"
          data-type=""
          data-client=""
          data-text=""
@@ -770,6 +771,7 @@
         const text = card.getAttribute('data-text') || '';
         const role = card.getAttribute('data-role') || '';
         const production = card.getAttribute('data-production') || '';
+        const music = card.getAttribute('data-music') || '';
         const notes = card.getAttribute('data-notes') || '';
         const category = card.getAttribute('data-category') || '';
         const folder = card.getAttribute('data-folder') || '';
@@ -807,10 +809,17 @@
         mRole.textContent = role.trim().length > 0 ? role : '—';
 
         // ✅ Glasba: samo za Animacija1 (folder = animation1)
-        const showMusicRow = isAnimation && folder === 'animation1';
+        // const showMusicRow = isAnimation && folder === 'animation1';
+       //  show(lblMusic, showMusicRow);
+       //  show(mMusic, showMusicRow);
+       //  mMusic.textContent = showMusicRow ? 'Denis Robič' : '';
+
+        // Glasba: samo če obstaja
+        const showMusicRow = isAnimation && music.trim().length > 0;
         show(lblMusic, showMusicRow);
         show(mMusic, showMusicRow);
-        mMusic.textContent = showMusicRow ? 'Denis Robič' : '';
+        mMusic.textContent = showMusicRow ? music : '';
+      }
 
         // Produkcija: samo če obstaja
         const showProductionRow = isAnimation && production.trim().length > 0;
