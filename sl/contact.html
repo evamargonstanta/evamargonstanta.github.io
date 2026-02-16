@@ -13,131 +13,163 @@
   <meta name="nav-active" content="contact">
 
   <style>
-    /* osnovni layout — enako zračen kot druge strani */
-    .contact-wrap{
-      width: min(900px, calc(100% - 26px));
-      margin: 18px auto 110px;
-      text-align: center;
+    .container{
+      max-width:1180px;
+      margin:40px auto;
+      padding:0 20px;
+      box-sizing:border-box;
     }
 
-    .contact-lead{
-      margin: 10px auto 22px;
-      font-size: 14px;
-      line-height: 1.55;
-      opacity: .75;
-      max-width: 56ch;
+    .contact-grid{
+      display:grid;
+      grid-template-columns:360px 1fr;
+      gap:40px;
+      align-items:start;
     }
 
-    /* ikone */
-    .contact-icons{
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      gap: 26px;
-      flex-wrap: wrap;
-      margin-top: 8px;
+    /* leva ilustracija */
+    .contact-visual{
+      border:1px solid #ddd;
+      background:#fff;
+      padding:18px;
     }
 
-    .contact-link{
+    .contact-visual img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    /* desna stran */
+    .contact-text p{
+      line-height:1.65;
+      margin:0 0 18px;
+    }
+
+    .contact-list{
       display:flex;
       flex-direction:column;
+      gap:18px;
+      margin-top:14px;
+    }
+
+    .contact-item{
+      display:flex;
       align-items:center;
+      gap:18px;
       text-decoration:none;
       color:#111;
-      padding: 12px 14px;
-      border-radius: 18px;
-      transition: transform .15s ease, opacity .15s ease;
-      -webkit-tap-highlight-color: transparent;
+      padding:6px 0;
+      transition:opacity .15s ease, transform .15s ease;
     }
 
-    .contact-link:hover{
-      transform: translateY(-2px);
-      opacity:.9;
+    .contact-item:hover{
+      opacity:.7;
+      transform:translateX(2px);
     }
 
-    .contact-link:active{
-      transform: translateY(0);
-      opacity:.8;
+    /* velike ikone */
+    .contact-icon{
+      width:82px;
+      height:82px;
+      flex:0 0 auto;
     }
 
-    /* velika ikonca – kot v headerju */
-    .contact-ico{
-      width: 68px;
-      height: 68px;
-      display:block;
-      opacity:.95;
+    .contact-info{
+      display:flex;
+      flex-direction:column;
     }
 
-    .contact-title{
-      margin-top: 10px;
-      font-size: 13px;
-      opacity:.9;
-      white-space: nowrap;
+    .contact-label{
+      font-weight:600;
+      font-size:1rem;
     }
 
-    .contact-sub{
-      margin-top: 4px;
-      font-size: 12px;
-      opacity:.65;
-      max-width: 26ch;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
+    .contact-value{
+      font-size:0.95rem;
+      opacity:.75;
     }
 
     /* mobile */
-    @media (max-width: 420px){
-      .contact-ico{ width: 56px; height: 56px; }
-      .contact-icons{ gap: 18px; }
-      .contact-link{ padding: 10px 10px; }
+    @media (max-width:768px){
+      .contact-grid{
+        grid-template-columns:1fr;
+        gap:26px;
+      }
+
+      .contact-icon{
+        width:70px;
+        height:70px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div data-include="header"></div>
+<div data-include="header"></div>
 
-  <main class="contact-wrap">
-    <p class="contact-lead">
-      Če želiš sodelovanje, vprašanje ali pozdrav, mi lahko pišeš ali me najdeš tukaj.
-    </p>
+<div class="container">
 
-    <nav class="contact-icons" aria-label="Kontakt povezave">
+  <div class="contact-grid">
 
-      <!-- EMAIL -->
-      <a class="contact-link"
-         href="mailto:eva.margon@hotmail.com?subject=Pozdrav%20(Eva%20Margon)">
-        <img class="contact-ico" src="../assets/images/icon-mail.png" alt="E-mail">
-        <div class="contact-title">E-mail</div>
-        <div class="contact-sub">eva.margon@hotmail.com</div>
-      </a>
+    <!-- LEVA ILUSTRACIJA -->
+    <div class="contact-visual">
+      <!-- lahko zamenjaš s kakšno ilustracijo pisma -->
+      <img src="../assets/images/icon-letter.png" alt="Kontakt">
+    </div>
 
-      <!-- INSTAGRAM -->
-      <a class="contact-link"
-         href="https://instagram.com/evamargon_"
-         target="_blank" rel="noopener">
-        <img class="contact-ico" src="../assets/images/icon-ig.png" alt="Instagram">
-        <div class="contact-title">Instagram</div>
-        <div class="contact-sub">@evamargon_</div>
-      </a>
+    <!-- DESNA STRAN -->
+    <div class="contact-text">
+      <p>
+        Če želiš sodelovanje, naročilo ilustracije ali imaš vprašanje,
+        mi lahko pišeš ali me najdeš na spodnjih povezavah.
+      </p>
 
-      <!-- FACEBOOK -->
-      <a class="contact-link"
-         href="https://www.facebook.com/p/Eva-Margon-Illustration-100072807031670/"
-         target="_blank" rel="noopener">
-        <img class="contact-ico" src="../assets/images/icon-fb.png" alt="Facebook">
-        <div class="contact-title">Facebook</div>
-        <div class="contact-sub">Eva Margon Illustration</div>
-      </a>
+      <div class="contact-list">
 
-    </nav>
-  </main>
+        <!-- EMAIL -->
+        <a class="contact-item"
+           href="mailto:eva.margon@hotmail.com?subject=Pozdrav%20(Eva%20Margon)">
+          <img class="contact-icon" src="../assets/images/icon-mail.png" alt="">
+          <div class="contact-info">
+            <div class="contact-label">E-mail</div>
+            <div class="contact-value">eva.margon@hotmail.com</div>
+          </div>
+        </a>
 
-  <div data-include="footer-nav"></div>
-  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+        <!-- INSTAGRAM -->
+        <a class="contact-item"
+           href="https://instagram.com/evamargon_"
+           target="_blank" rel="noopener">
+          <img class="contact-icon" src="../assets/images/icon-ig.png" alt="">
+          <div class="contact-info">
+            <div class="contact-label">Instagram</div>
+            <div class="contact-value">@evamargon_</div>
+          </div>
+        </a>
 
-  <script src="../assets/js/include.js"></script>
+        <!-- FACEBOOK -->
+        <a class="contact-item"
+           href="https://www.facebook.com/p/Eva-Margon-Illustration-100072807031670/"
+           target="_blank" rel="noopener">
+          <img class="contact-icon" src="../assets/images/icon-fb.png" alt="">
+          <div class="contact-info">
+            <div class="contact-label">Facebook</div>
+            <div class="contact-value">Eva Margon Illustration</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div data-include="footer-nav"></div>
+<a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+
+<script src="../assets/js/include.js"></script>
 
 </body>
 </html>
