@@ -92,7 +92,7 @@
       width: min(1280px, calc(100vw - 48px));
       max-height: calc(100vh - 36px);
       background:#fff;
-      overflow:hidden; /* desktop: panel ne scrolla, scrolla samo body del */
+      overflow:hidden;
     }
 
     .modal-controls{
@@ -188,7 +188,6 @@
       box-sizing: border-box;
       background:#fff;
       overflow:hidden;
-
       display:flex;
       align-items:center;
       justify-content:center;
@@ -240,55 +239,53 @@
       overflow:hidden;
     }
 
-   /* ✅ MOBIL: modal je fullscreen (brez transform) + kontrolke so FIXNE na viewport */
-@media (max-width: 900px){
+    /* ✅ MOBIL: modal je fullscreen (brez transform) + kontrolke so FIXNE na viewport */
+    @media (max-width: 900px){
+      .modal-panel{
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: none;
+        width: 100vw;
+        height: 100vh;
+        max-height: none;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
 
-  .modal-panel{
-    position: fixed;              /* pomembno */
-    left: 0;
-    top: 0;
-    transform: none;              /* ✅ ključno: odstrani transform bug */
-    width: 100vw;
-    height: 100vh;
-    max-height: none;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+      .modal-content{
+        flex-direction: column;
+        align-items: stretch;
+      }
 
-  .modal-content{
-    flex-direction: column;
-    align-items: stretch;
-  }
+      .modal-media{
+        padding: 22px;
+        flex: 0 0 auto;
+      }
 
-  .modal-media{
-    padding: 22px;
-    flex: 0 0 auto;
-  }
+      .modal-body{
+        flex: 0 0 auto;
+        overflow: visible;
+        padding: 12px 14px 120px;
+        align-items:flex-start;
+        justify-content:flex-start;
+      }
 
-  .modal-body{
-    flex: 0 0 auto;
-    overflow: visible;
-    padding: 12px 14px 120px;     /* prostor za gumbe */
-    align-items:flex-start;
-    justify-content:flex-start;
-  }
+      .desc{
+        -webkit-line-clamp: unset;
+        overflow: visible;
+      }
 
-  .desc{
-    -webkit-line-clamp: unset;
-    overflow: visible;
-  }
+      .meta{ grid-template-columns: 1fr; row-gap: 4px; }
+      .meta .label{ margin-top: 10px; }
 
-  .meta{ grid-template-columns: 1fr; row-gap: 4px; }
-  .meta .label{ margin-top: 10px; }
-
-  /* ✅ kontrolke so FIXNE na zaslonu (ne na panelu) */
-  .modal-controls{
-    position: fixed;
-    right: calc(12px + env(safe-area-inset-right, 0px));
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    z-index: 2000;
-  }
-}
+      .modal-controls{
+        position: fixed;
+        right: calc(12px + env(safe-area-inset-right, 0px));
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        z-index: 2000;
+      }
+    }
 
     .project-card.is-hidden{ display:none; }
   </style>
@@ -354,7 +351,7 @@
          data-type=""
          data-client=""
          data-text=""
-         data-notes="Animacija govori o anonimnem moškem, ki se odloči, da bo o njegovi usodi odločal kovanec.">
+         data-notes="Moškega na mostu ustavi neznanec in mu ponudi možnost, da o njegovem življenju odloča met kovanca.">
       <div class="project-inner">
         <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
       </div>
@@ -683,9 +680,8 @@
       const mClient = document.getElementById('mClient');
       const mText = document.getElementById('mText');
       const mRole = document.getElementById('mRole');
-      const lblAuthors = document.getElementById('lblAuthors');
       const mAuthors = document.getElementById('mAuthors');
-
+      const mMusic = document.getElementById('mMusic');
       const mProduction = document.getElementById('mProduction');
       const mNotes = document.getElementById('mNotes');
 
@@ -693,10 +689,9 @@
       const lblClient = document.getElementById('lblClient');
       const lblText = document.getElementById('lblText');
       const lblRole = document.getElementById('lblRole');
-      const lblProduction = document.getElementById('lblProduction');
-
+      const lblAuthors = document.getElementById('lblAuthors');
       const lblMusic = document.getElementById('lblMusic');
-      const mMusic = document.getElementById('mMusic');
+      const lblProduction = document.getElementById('lblProduction');
 
       const mediaGrid = document.getElementById('mediaGrid');
       const mediaImgs = [
@@ -821,6 +816,12 @@
         show(mRole, true);
         mRole.textContent = role.trim().length > 0 ? role : '—';
 
+        // ✅ Avtorji: samo če obstaja
+        const showAuthorsRow = authors.trim().length > 0;
+        show(lblAuthors, showAuthorsRow);
+        show(mAuthors, showAuthorsRow);
+        mAuthors.textContent = showAuthorsRow ? authors : '';
+
         // Glasba: samo če obstaja
         const showMusicRow = isAnimation && music.trim().length > 0;
         show(lblMusic, showMusicRow);
@@ -833,13 +834,6 @@
         show(mProduction, showProductionRow);
         mProduction.textContent = showProductionRow ? production : '';
       }
-
-        // Avtorji, samo če obstaja
-        const showAuthorsRow = authors.trim().length > 0;
-        show(lblAuthors, showAuthorsRow);
-        show(mAuthors, showAuthorsRow);
-        mAuthors.textContent = showAuthorsRow ? authors : '';
-
 
       function openModal(index){
         currentIndex = index;
