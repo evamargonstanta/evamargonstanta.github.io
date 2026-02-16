@@ -240,49 +240,55 @@
       overflow:hidden;
     }
 
-    /* ✅ MOBIL: skrola CELOTEN modal + kontrolke fiksne na ekranu */
-    @media (max-width: 900px){
-      .modal-panel{
-        width: calc(100vw - 18px);
-        height: calc(100vh - 14px);
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-      }
+   /* ✅ MOBIL: modal je fullscreen (brez transform) + kontrolke so FIXNE na viewport */
+@media (max-width: 900px){
 
-      .modal-content{
-        flex-direction: column;
-        align-items: stretch;
-      }
+  .modal-panel{
+    position: fixed;              /* pomembno */
+    left: 0;
+    top: 0;
+    transform: none;              /* ✅ ključno: odstrani transform bug */
+    width: 100vw;
+    height: 100vh;
+    max-height: none;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
-      .modal-media{
-        padding: 22px;
-        flex: 0 0 auto;
-      }
+  .modal-content{
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-      .modal-body{
-        flex: 0 0 auto;
-        overflow: visible;
-        padding: 12px 14px 120px; /* več prostora spodaj, ker so kontrolke fiksne */
-        align-items:flex-start;
-        justify-content:flex-start;
-      }
+  .modal-media{
+    padding: 22px;
+    flex: 0 0 auto;
+  }
 
-      .desc{
-        -webkit-line-clamp: unset;
-        overflow: visible;
-      }
+  .modal-body{
+    flex: 0 0 auto;
+    overflow: visible;
+    padding: 12px 14px 120px;     /* prostor za gumbe */
+    align-items:flex-start;
+    justify-content:flex-start;
+  }
 
-      .meta{ grid-template-columns: 1fr; row-gap: 4px; }
-      .meta .label{ margin-top: 10px; }
+  .desc{
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
 
-      /* kontrolke fiksne na zaslonu */
-      .modal-controls{
-        position: fixed;
-        right: calc(12px + env(safe-area-inset-right, 0px));
-        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-        z-index: 1002;
-      }
-    }
+  .meta{ grid-template-columns: 1fr; row-gap: 4px; }
+  .meta .label{ margin-top: 10px; }
+
+  /* ✅ kontrolke so FIXNE na zaslonu (ne na panelu) */
+  .modal-controls{
+    position: fixed;
+    right: calc(12px + env(safe-area-inset-right, 0px));
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    z-index: 2000;
+  }
+}
 
     .project-card.is-hidden{ display:none; }
   </style>
