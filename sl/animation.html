@@ -804,10 +804,12 @@
         show(mDuration, isAnimation);
         mDuration.textContent = isAnimation ? (duration || '—') : '';
 
-        // Naročnik: samo oblikovanje
-        show(lblClient, isDesign);
-        show(mClient, isDesign);
-        mClient.textContent = isDesign ? (client || '—') : '';
+       // Naročnik: pokaži kjerkoli, če obstaja (design + animation)
+      const showClientRow = client.trim().length > 0;
+      show(lblClient, showClientRow);
+      show(mClient, showClientRow);
+      mClient.textContent = showClientRow ? client : '';
+
 
         // Besedilo: samo če obstaja (oblikovanje)
         const showTextRow = isDesign && text.trim().length > 0;
