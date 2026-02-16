@@ -79,7 +79,7 @@
       }
     }
 
-    /* ===== MODAL (2x2 slike + levo poravnano besedilo) ===== */
+    /* ===== MODAL ===== */
     .modal{ position:fixed; inset:0; display:none; z-index:999; }
     .modal.is-open{ display:block; }
     .modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
@@ -151,10 +151,8 @@
       display:block;
     }
 
-    /* ===== MEDIA GRID: postavitev za 1 / 2 / 3 slike ===== */
     .media-tile.is-hidden{ display:none; }
 
-    /* 3 slike: zgoraj 2 kvadratni, spodaj 1 široka čez celo širino */
     .media-grid.count-3{
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto auto;
@@ -166,7 +164,6 @@
       aspect-ratio: 2 / 1;
     }
 
-    /* 2 sliki: obe poravnani na sredino levega dela */
     .media-grid.count-2{
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto;
@@ -176,7 +173,6 @@
       width: calc(50% - 10px);
     }
 
-    /* 1 slika: na sredino levega dela */
     .media-grid.count-1{
       grid-template-columns: 1fr;
       grid-template-rows: auto;
@@ -204,7 +200,6 @@
       text-align:left;
     }
 
-    /* zvrst (kurziva) */
     .meta-genre{
       font-size: 1rem;
       font-style: italic;
@@ -245,12 +240,12 @@
       overflow:hidden;
     }
 
-    /* ✅ MOBIL FIX: skrola CELOTEN modal (slike + besedilo skupaj) */
+    /* ✅ MOBIL: skrola CELOTEN modal + kontrolke fiksne na ekranu */
     @media (max-width: 900px){
       .modal-panel{
         width: calc(100vw - 18px);
         height: calc(100vh - 14px);
-        overflow: auto;                 /* ✅ scroll container je cel panel */
+        overflow: auto;
         -webkit-overflow-scrolling: touch;
       }
 
@@ -261,13 +256,13 @@
 
       .modal-media{
         padding: 22px;
-        flex: 0 0 auto;                 /* ✅ ne fiksiraj višine */
+        flex: 0 0 auto;
       }
 
       .modal-body{
         flex: 0 0 auto;
-        overflow: visible;              /* ✅ ne ločen scroll samo za besedilo */
-        padding: 12px 14px 84px;        /* prostor za gumbe */
+        overflow: visible;
+        padding: 12px 14px 120px; /* več prostora spodaj, ker so kontrolke fiksne */
         align-items:flex-start;
         justify-content:flex-start;
       }
@@ -279,6 +274,14 @@
 
       .meta{ grid-template-columns: 1fr; row-gap: 4px; }
       .meta .label{ margin-top: 10px; }
+
+      /* kontrolke fiksne na zaslonu */
+      .modal-controls{
+        position: fixed;
+        right: calc(12px + env(safe-area-inset-right, 0px));
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        z-index: 1002;
+      }
     }
 
     .project-card.is-hidden{ display:none; }
@@ -643,7 +646,6 @@
               <div class="label" id="lblText">Besedilo</div><div class="value" id="mText"></div>
               <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
 
-              <!-- ✅ Glasba (prikaže se samo pri animation1) -->
               <div class="label" id="lblMusic">Glasba</div><div class="value" id="mMusic"></div>
 
               <div class="label" id="lblProduction">Produkcija</div><div class="value" id="mProduction"></div>
@@ -704,6 +706,7 @@
       }
 
       function show(el, yes){
+        if (!el) return;
         el.style.display = yes ? '' : 'none';
       }
 
@@ -777,7 +780,6 @@
         const folder = card.getAttribute('data-folder') || '';
 
         mGenre.textContent = prettyGenre(category);
-
         mTitleTop.textContent = title;
         mYear.textContent = year;
         mNotes.textContent = notes;
@@ -808,18 +810,11 @@
         show(mRole, true);
         mRole.textContent = role.trim().length > 0 ? role : '—';
 
-        // ✅ Glasba: samo za Animacija1 (folder = animation1)
-        // const showMusicRow = isAnimation && folder === 'animation1';
-       //  show(lblMusic, showMusicRow);
-       //  show(mMusic, showMusicRow);
-       //  mMusic.textContent = showMusicRow ? 'Denis Robič' : '';
-
         // Glasba: samo če obstaja
         const showMusicRow = isAnimation && music.trim().length > 0;
         show(lblMusic, showMusicRow);
         show(mMusic, showMusicRow);
         mMusic.textContent = showMusicRow ? music : '';
-      }
 
         // Produkcija: samo če obstaja
         const showProductionRow = isAnimation && production.trim().length > 0;
