@@ -3,249 +3,241 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eva Margon Štanta– Kontakt</title>
+  <title>Kontakt – Eva Margon</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 
+  <meta name="page-title" content="Kontakt">
+  <meta name="page-icon" content="../assets/images/icon-letter.png">
+  <meta name="nav-active" content="contact">
+
   <style>
-    html, body { margin:0; padding:0; height:100%; }
-    body{ background:#fff; color:#111; font-family:'Rubik', sans-serif; }
-
-    .page{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
+    /* Kontakt kartice v istem "grid" duhu kot galerija */
+    .contact-grid{
+      width: min(1100px, calc(100% - 26px));
+      margin: 10px auto 90px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
     }
 
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 18px 18px 10px;
-    }
-
-    .back{
-      text-decoration:none;
-      color:#111;
-      opacity:.7;
-      font-size:14px;
-      transition: opacity .2s ease;
-    }
-    .back:hover{ opacity:1; }
-
-    .lang{
-      font-size:14px;
-      opacity:.7;
-    }
-    .lang a{ color:#111; text-decoration:none; opacity:.7; }
-    .lang a:hover{ opacity:1; }
-
-    .wrap{
-      width:min(720px, calc(100% - 36px));
-      margin: 0 auto;
-      padding: 12px 0 28px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-
-    h1{
-      margin: 10px 0 0;
-      font-size: 22px;
-      letter-spacing: -0.01em;
-    }
-
-    .lead{
-      margin:0;
-      opacity:.75;
-      line-height:1.5;
-      font-size:14.5px;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-      margin-top: 8px;
-    }
-
-    .card{
+    .contact-card{
+      grid-column: span 12;
+      border-radius: 18px;
       border: 1px solid rgba(0,0,0,0.10);
-      border-radius: 16px;
-      padding: 12px 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      transition: transform .15s ease, border-color .15s ease;
-      background:#fff;
-    }
-    .card:hover{
-      transform: translateY(-1px);
-      border-color: rgba(0,0,0,0.18);
+      background: #fff;
+      overflow: hidden;
     }
 
-    .left{
+    .contact-inner{
+      padding: 14px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .contact-left{
       display:flex;
       align-items:center;
       gap:10px;
       min-width:0;
     }
 
-    .ico{
-      width:28px; height:28px;
-      flex: 0 0 auto;
+    .contact-ico{
+      width: 30px;
+      height: 30px;
       display:block;
+      flex: 0 0 auto;
+      opacity: .95;
     }
 
-    .txt{
+    .contact-text{
       display:flex;
       flex-direction:column;
       min-width:0;
     }
-    .title{
+
+    .contact-title{
+      margin:0;
       font-weight:600;
       font-size:14px;
       line-height:1.2;
-      margin:0;
+      color:#111;
     }
-    .sub{
-      margin:2px 0 0;
+
+    .contact-sub{
+      margin:3px 0 0;
       font-size:12.5px;
+      line-height:1.2;
       opacity:.7;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-      max-width: 52ch;
+      max-width: 54ch;
     }
 
-    .btn{
+    .contact-actions{
+      display:flex;
+      align-items:center;
+      gap:8px;
       flex: 0 0 auto;
-      border:none;
-      background: transparent;
+    }
+
+    .contact-btn{
+      appearance:none;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: rgba(0,0,0,0.02);
+      color:#111;
       font-family:'Rubik', sans-serif;
       font-size:13px;
       font-weight:600;
-      opacity:.85;
-      cursor:pointer;
-      padding: 8px 10px;
+      padding: 8px 12px;
       border-radius: 999px;
-      transition: background .15s ease, opacity .15s ease;
       text-decoration:none;
-      color:#111;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
     }
-    .btn:hover{
-      background: rgba(0,0,0,0.06);
-      opacity:1;
-    }
-
-    .note{
-      margin-top: 10px;
-      font-size:12.5px;
-      opacity:.65;
-      line-height:1.45;
+    .contact-btn:hover{
+      transform: translateY(-1px);
+      background: rgba(0,0,0,0.05);
+      border-color: rgba(0,0,0,0.18);
     }
 
-    @media (min-width: 640px){
-      .cards{ grid-template-columns: 1fr 1fr; }
-      .card{ padding: 14px 14px; }
-      h1{ font-size: 24px; }
+    .contact-note{
+      width: min(1100px, calc(100% - 26px));
+      margin: 0 auto 120px;
+      font-size: 12.5px;
+      line-height: 1.5;
+      opacity: .7;
+    }
+
+    @media (min-width: 680px){
+      .contact-card{ grid-column: span 6; }
+    }
+
+    @media (min-width: 980px){
+      .contact-card{ grid-column: span 4; }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
 
-    <div class="topbar">
-      <a class="back" href="index.html">← Nazaj</a>
+  <div data-include="header"></div>
 
-      <div class="lang">
-        <span>SL</span> / <a href="../en/contact.html">EN</a>
+  <!-- CONTACT GRID -->
+  <div class="contact-grid" aria-label="Kontakt">
+
+    <!-- EMAIL -->
+    <div class="contact-card">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <img class="contact-ico" src="../assets/images/icon-mail.png" alt="" aria-hidden="true">
+          <div class="contact-text">
+            <p class="contact-title">E-mail</p>
+            <!-- ZAMENJAJ EMAIL -->
+            <p class="contact-sub" id="emailText">eva.margon@hotmail.com</p>
+          </div>
+        </div>
+
+        <div class="contact-actions">
+          <!-- ZAMENJAJ EMAIL -->
+          <a class="contact-btn" href="mailto:eva.margon@hotmail.com?subject=Pozdrav%20(Eva%20Margon)">Piši</a>
+          <button class="contact-btn" type="button" id="copyEmailBtn">Kopiraj</button>
+        </div>
       </div>
     </div>
 
-    <main class="wrap">
-      <h1>Kontakt</h1>
-      <p class="lead">
-        Če želiš sodelovanje, ponudbo ali samo pozdrav, mi piši ali me najdeš tukaj:
-      </p>
-
-      <section class="cards" aria-label="Kontakt povezave">
-        <!-- EMAIL -->
-        <div class="card">
-          <div class="left">
-            <img class="ico" src="../assets/images/icon-mail.png" alt="" aria-hidden="true">
-            <div class="txt">
-              <p class="title">E-mail</p>
-              <p class="sub" id="emailText">eva.margon@hotmail.com</p>
-            </div>
+    <!-- INSTAGRAM -->
+    <div class="contact-card">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <img class="contact-ico" src="../assets/images/icon-ig.png" alt="" aria-hidden="true">
+          <div class="contact-text">
+            <p class="contact-title">Instagram</p>
+            <!-- ZAMENJAJ IG -->
+            <p class="contact-sub">@evamargon_</p>
           </div>
-          <a class="btn" href="mailto:eva.margon@hotmail.com?subject=Pozdrav%20(Eva%20Margon)">Piši</a>
         </div>
 
-        <!-- INSTAGRAM -->
-        <div class="card">
-          <div class="left">
-            <img class="ico" src="../assets/images/icon-ig.png" alt="" aria-hidden="true">
-            <div class="txt">
-              <p class="title">Instagram</p>
-              <p class="sub">@evamargon_</p>
-            </div>
+        <div class="contact-actions">
+          <!-- ZAMENJAJ IG_LINK -->
+          <a class="contact-btn" href="https://instagram.com/USERNAME" target="_blank" rel="noopener">Odpri</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FACEBOOK -->
+    <div class="contact-card">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <img class="contact-ico" src="../assets/images/icon-fb.png" alt="" aria-hidden="true">
+          <div class="contact-text">
+            <p class="contact-title">Facebook</p>
+            <!-- ZAMENJAJ FB -->
+            <p class="contact-sub">facebook.com/evamargonillustration</p>
           </div>
-          <a class="btn" href="https://instagram.com/evamargon_" target="_blank" rel="noopener">Odpri</a>
         </div>
 
-        <!-- FACEBOOK -->
-        <div class="card">
-          <div class="left">
-            <img class="ico" src="../assets/images/icon-fb.png" alt="" aria-hidden="true">
-            <div class="txt">
-              <p class="title">Facebook</p>
-              <p class="sub">facebook.com/profile.php?id=100072807031670&locale=sl_SI</p>
-            </div>
+        <div class="contact-actions">
+          <!-- ZAMENJAJ FB_LINK -->
+          <a class="contact-btn" href="https://facebook.com/p/Eva-Margon-Illustration-100072807031670/" target="_blank" rel="noopener">Odpri</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- (opcijsko) SHOP / STORE, če želiš še tu -->
+  
+    <div class="contact-card">
+      <div class="contact-inner">
+        <div class="contact-left">
+          <img class="contact-ico" src="../assets/images/icon-bag.png" alt="" aria-hidden="true">
+          <div class="contact-text">
+            <p class="contact-title">Trgovina</p>
+            <p class="contact-sub">evamargon.sumupstore.com</p>
           </div>
-          <a class="btn" href="https://facebook.com/profile.php?id=100072807031670&locale=sl_SI" target="_blank" rel="noopener">Odpri</a>
         </div>
 
-        <!-- (opcijsko) COPY EMAIL -->
-        <div class="card">
-          <div class="left">
-            <img class="ico" src="../assets/images/icon-copy.png" alt="" aria-hidden="true">
-            <div class="txt">
-              <p class="title">Kopiraj e-mail</p>
-              <p class="sub">klikni za kopiranje</p>
-            </div>
-          </div>
-          <button class="btn" type="button" id="copyEmailBtn">Kopiraj</button>
+        <div class="contact-actions">
+          <a class="contact-btn" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener">Odpri</a>
         </div>
-      </section>
+      </div>
+    </div>
+    -->
 
-      <p class="note">
-        Odgovorim, ko lahko. Če ne dobiš odgovora v nekaj dneh, prosim pošlji še enkrat.
-      </p>
-    </main>
   </div>
 
-  <script>
-    // opcijsko: kopiranje emaila
-    (function () {
-      const btn = document.getElementById('copyEmailBtn');
-      const email = 'hello@tvojadomena.si';
-      if (!btn) return;
+  <p class="contact-note">
+    Če mi pišeš glede sodelovanja, prosim dodaj kratek opis projekta in rok. Hvala!
+  </p>
 
+  <div data-include="footer-nav"></div>
+  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+
+  <script src="../assets/js/include.js"></script>
+
+  <script>
+    // Kopiranje e-maila (fallback na mailto, če clipboard ni dovoljen)
+    (function(){
+      const btn = document.getElementById('copyEmailBtn');
+      const emailEl = document.getElementById('emailText');
+      if(!btn || !emailEl) return;
+
+      const email = (emailEl.textContent || '').trim();
       btn.addEventListener('click', async () => {
         try{
           await navigator.clipboard.writeText(email);
           btn.textContent = 'Kopirano ✓';
           window.setTimeout(() => (btn.textContent = 'Kopiraj'), 1200);
         }catch(e){
-          // fallback
-          window.location.href = 'mailto:' + email;
+          window.location.href = 'mailto:' + encodeURIComponent(email);
         }
       });
     })();
   </script>
+
 </body>
 </html>
