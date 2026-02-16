@@ -348,6 +348,7 @@
          data-year="2017"
          data-duration="2:00"
          data-role="Ilustracija / animacija / režija"
+         data-authors="Eva Margon Štanta, Kristina Kokalj, Tadeja Pungerčar, Andrej Adamek, Nina Baznik, Simona Lustek, Irena Režek"
          data-production="Zavod Dagiba"
          data-music="Kristina Kokalj, Andrej Adamek"
          data-type=""
@@ -452,6 +453,7 @@
          data-year="2017"
          data-duration="00:28"
          data-role="Animacija"
+         data-authors="Eva Margon, Barbara Kern, Anja Držanič"
          data-type=""
          data-client=""
          data-text=""
@@ -651,9 +653,8 @@
               <div class="label" id="lblClient">Naročnik</div><div class="value" id="mClient"></div>
               <div class="label" id="lblText">Besedilo</div><div class="value" id="mText"></div>
               <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
-
+              <div class="label" id="lblAuthors">Avtorji</div><div class="value" id="mAuthors"></div>
               <div class="label" id="lblMusic">Glasba</div><div class="value" id="mMusic"></div>
-
               <div class="label" id="lblProduction">Produkcija</div><div class="value" id="mProduction"></div>
             </div>
 
@@ -682,6 +683,9 @@
       const mClient = document.getElementById('mClient');
       const mText = document.getElementById('mText');
       const mRole = document.getElementById('mRole');
+      const lblAuthors = document.getElementById('lblAuthors');
+      const mAuthors = document.getElementById('mAuthors');
+
       const mProduction = document.getElementById('mProduction');
       const mNotes = document.getElementById('mNotes');
 
@@ -779,6 +783,7 @@
         const client = card.getAttribute('data-client') || '';
         const text = card.getAttribute('data-text') || '';
         const role = card.getAttribute('data-role') || '';
+        const authors = card.getAttribute('data-authors') || '';
         const production = card.getAttribute('data-production') || '';
         const music = card.getAttribute('data-music') || '';
         const notes = card.getAttribute('data-notes') || '';
@@ -828,6 +833,13 @@
         show(mProduction, showProductionRow);
         mProduction.textContent = showProductionRow ? production : '';
       }
+
+        // Avtorji, samo če obstaja
+        const showAuthorsRow = authors.trim().length > 0;
+        show(lblAuthors, showAuthorsRow);
+        show(mAuthors, showAuthorsRow);
+        mAuthors.textContent = showAuthorsRow ? authors : '';
+
 
       function openModal(index){
         currentIndex = index;
