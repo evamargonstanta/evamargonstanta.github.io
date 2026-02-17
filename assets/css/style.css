@@ -258,7 +258,7 @@ body{
   margin:28px auto 18px;
   padding:18px 12px 4px;
   border-top:1px solid #ddd;
-  max-width:520px;          /* lahko širše, ker 5 stolpcev držimo drugače */
+  max-width:360px;          /* lahko širše, ker 5 stolpcev držimo drugače */
 }
 
 
