@@ -191,12 +191,13 @@
       transform: translateY(0);
     }
 
-   .icon-nav-mobile{
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  gap:10px;
-  flex-wrap:nowrap;
+  .icon-nav-mobile{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 zgoraj */
+  gap:14px 10px;
+  justify-items:center;
+  padding: 0 10px;
+}
 
   /* ključ: nikoli ne odreže ikon */
   overflow-x:auto;
