@@ -47,54 +47,47 @@ body{
 
 /* ===== desktop icon menu ===== */
 
-/* ===== DESKTOP HEADER MENU – ENA VRSTICA ===== */
-
-/* ===== HEADER DESKTOP MENU – ORIGINAL SIZE ===== */
-
-.icon-nav{
+.icon-nav-desktop{
   display:flex;
   align-items:center;
   gap:10px;
 }
 
-.icon-nav .icon-link{
-  width:36px;
-  height:36px;
+.icon-nav-desktop .icon-link{
+  width:60px;
+  height:60px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   text-decoration:none;
 }
 
-.icon-nav img.icon{
-  width:30px;
-  height:30px;
+.icon-nav-desktop img{
+  width:54px;
+  height:54px;
   display:block;
   filter:grayscale(100%);
-  opacity:.55;
+  opacity:.5;
   transition:.18s ease;
 }
 
-.icon-nav .icon-title{
-  display:none; /* desktop brez napisov */
-}
-
 @media (hover:hover){
-  .icon-nav a.icon-link:hover img.icon{
+  .icon-nav-desktop a.icon-link:hover img{
     filter:none;
     opacity:1;
-    transform:scale(1.05);
+    transform:scale(1.02);
   }
 }
 
-.icon-nav .is-active img.icon{
+.icon-nav-desktop .is-active img{
   filter:none;
   opacity:1;
 }
 
 @media (max-width:768px){
-  .icon-nav{ display:none; }
+  .icon-nav-desktop{ display:none; }
 }
+
 
 /* ===== MOBILE HEADER ===== */
 
