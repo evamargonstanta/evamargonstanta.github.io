@@ -317,3 +317,10 @@ body{
   }
 }
 
+
+/* MOBILE: na podstraneh pokaži samo spodnji (footer) meni */
+@media (max-width:768px){
+  .section-header .icon-nav-desktop{
+    display:none !important;
+  }
+}
