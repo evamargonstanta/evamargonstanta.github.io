@@ -21,23 +21,27 @@
     }
 
     .contact-grid{
-      display:grid;
-      grid-template-columns:360px 1fr;
-      gap:40px;
-      align-items:start;
-    }
+  display:grid;
+  grid-template-columns: minmax(360px, 420px) 1fr;
+  gap:40px;
+  align-items:stretch;
+}
+
 
     /* leva ilustracija */
   .contact-visual{
   background:#fff;
   padding:18px;
+  height:100%;
+  display:flex;
 }
 
-    .contact-visual img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+.contact-visual img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
 
     /* desna stran */
     .contact-text p{
