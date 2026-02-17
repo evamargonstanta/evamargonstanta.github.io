@@ -1,47 +1,67 @@
-<header class="section-header">
-
+<div class="section-header">
   <div class="header-left">
-    <!-- include.js naj sem vpiše src iz <meta name="page-icon"> -->
-    <img class="icon" id="pageIcon" alt="">
-    <!-- include.js naj sem vpiše tekst iz <meta name="page-title"> -->
+    <img id="pageIcon" src="" alt="" class="icon">
     <h1 id="pageTitle"></h1>
   </div>
 
-  <nav class="icon-nav-desktop" aria-label="Navigacija">
-
-    <a class="icon-link" href="about.html" data-page="about.html" data-title="O meni">
-      <img data-icon="icon-newspaper.png" alt="O meni">
+  <nav class="icon-nav-desktop" aria-label="Meni">
+    <a class="icon-link" data-nav="about" href="about.html" aria-label="O meni / CV">
+      <img src="../assets/images/icon-newspaper.png" alt="">
     </a>
 
-    <a class="icon-link" href="dry-techniques.html" data-page="dry-techniques.html" data-title="Suhe tehnike">
-      <img data-icon="icon-crayon.png" alt="Suhe tehnike">
+    <a class="icon-link" data-nav="painting" href="wet-techniques.html" aria-label="Slikanje">
+      <img src="../assets/images/icon-brush.png" alt="">
     </a>
 
-    <a class="icon-link" href="wet-techniques.html" data-page="wet-techniques.html" data-title="Mokre tehnike">
-      <img data-icon="icon-brush.png" alt="Mokre tehnike">
+    <a class="icon-link" data-nav="drawing" href="dry-techniques.html" aria-label="Risanje">
+      <img src="../assets/images/icon-crayon.png" alt="">
     </a>
 
-    <a class="icon-link" href="books.html" data-page="books.html" data-title="Knjige">
-      <img data-icon="icon-books.png" alt="Knjige">
+    <a class="icon-link" data-nav="books" href="books.html" aria-label="Knjige">
+      <img src="../assets/images/icon-books.png" alt="">
     </a>
 
-    <a class="icon-link" href="animation.html" data-page="animation.html" data-title="Animacija">
-      <img data-icon="icon-screen.png" alt="Animacija">
+    <a class="icon-link" data-nav="printmaking" href="printmaking.html" aria-label="Grafika">
+      <img src="../assets/images/icon-press.png" alt="">
     </a>
 
-    <a class="icon-link" href="printmaking.html" data-page="printmaking.html" data-title="Grafika">
-      <img data-icon="icon-press.png" alt="Grafika">
+    <a class="icon-link" data-nav="animation" href="animation.html" aria-label="Animacija">
+      <img src="../assets/images/icon-screen.png" alt="">
     </a>
 
-    <!-- NOVO: KONTAKT -->
-    <a class="icon-link" href="contact.html" data-page="contact.html" data-title="Kontakt">
-      <img data-icon="icon-letter.png" alt="Kontakt">
+    <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" aria-label="Trgovina">
+      <img src="../assets/images/icon-bag.png" alt="">
     </a>
-
-    <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" data-page="__shop__" data-title="Trgovina">
-      <img data-icon="icon-bag.png" alt="Trgovina">
-    </a>
-
   </nav>
+</div>
 
-</header>
+<!-- MOBILE FOOTER NAV (na dnu vsebine) -->
+<nav class="icon-nav-mobile-footer" aria-label="Meni (mobilno spodaj)">
+  <a class="icon-link" data-nav="about" href="about.html" aria-label="O meni / CV">
+    <img src="../assets/images/icon-newspaper.png" alt="">
+  </a>
+
+  <a class="icon-link" data-nav="painting" href="wet-techniques.html" aria-label="Slikanje">
+    <img src="../assets/images/icon-brush.png" alt="">
+  </a>
+
+  <a class="icon-link" data-nav="drawing" href="dry-techniques.html" aria-label="Risanje">
+    <img src="../assets/images/icon-crayon.png" alt="">
+  </a>
+
+  <a class="icon-link" data-nav="books" href="books.html" aria-label="Knjige">
+    <img src="../assets/images/icon-books.png" alt="">
+  </a>
+
+  <a class="icon-link" data-nav="printmaking" href="printmaking.html" aria-label="Grafika">
+    <img src="../assets/images/icon-press.png" alt="">
+  </a>
+
+  <a class="icon-link" data-nav="animation" href="animation.html" aria-label="Animacija in oblikovanje">
+    <img src="../assets/images/icon-screen.png" alt="">
+  </a>
+
+  <a class="icon-link" data-nav="shop" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" aria-label="Trgovina">
+    <img src="../assets/images/icon-bag.png" alt="">
+  </a>
+</nav>
