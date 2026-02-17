@@ -192,11 +192,10 @@
     }
 
 .icon-nav-mobile{
-  display:flex;
-  justify-content:center;  /* to centrira vsako vrstico */
-  flex-wrap:wrap;          /* omogoči 2 vrstici */
-  gap:8px;                 /* bolj skupaj */
-}
+  display:grid;
+  grid-template-columns: repeat(5, max-content); /* vedno 5 zgoraj */
+  justify-content:center; /* centriraj obe vrstici */
+  gap:10px 14px;          /* navpično / vodoravno */
 
   /* ključ: nikoli ne odreže ikon */
   overflow-x:auto;
@@ -219,27 +218,28 @@
   min-width: 0;
 }
 
-   .icon-nav-mobile .icon{
-  width: 32px;   /* malo večje */
-  height: 32px;
+  .icon-nav-mobile .icon{
+  width:36px;
+  height:36px;
   display:block;
   filter:none;
   opacity:1;
 }
 
 .icon-nav-mobile .icon-title{
-  margin-top:6px;
-  font-size:12px;  /* malo večje */
-  line-height:1.1;
+  margin-top:7px;
+  font-size:13px;
+  line-height:1.15;
   text-align:center;
   color:#111;
   opacity:.9;
 
-  max-width:84px;
+  max-width:90px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
+
 
 
     /* Responsive */
