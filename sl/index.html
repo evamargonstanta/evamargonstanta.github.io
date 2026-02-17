@@ -191,12 +191,11 @@
       transform: translateY(0);
     }
 
-  .icon-nav-mobile{
-  display:grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 zgoraj */
-  gap:14px 10px;
-  justify-items:center;
-  padding: 0 10px;
+.icon-nav-mobile{
+  display:flex;
+  justify-content:center;  /* to centrira vsako vrstico */
+  flex-wrap:wrap;          /* omogoči 2 vrstici */
+  gap:8px;                 /* bolj skupaj */
 }
 
   /* ključ: nikoli ne odreže ikon */
@@ -220,27 +219,28 @@
   min-width: 0;
 }
 
-    .icon-nav-mobile .icon{
-      width: 28px;
-      height: 28px;
-      display:block;
-      filter:none;
-      opacity:1;
-    }
+   .icon-nav-mobile .icon{
+  width: 32px;   /* malo večje */
+  height: 32px;
+  display:block;
+  filter:none;
+  opacity:1;
+}
 
-    .icon-nav-mobile .icon-title{
-      margin-top:5px;
-      font-size:11px;
-      line-height:1.1;
-      text-align:center;
-      color:#111;
-      opacity:.9;
+.icon-nav-mobile .icon-title{
+  margin-top:6px;
+  font-size:12px;  /* malo večje */
+  line-height:1.1;
+  text-align:center;
+  color:#111;
+  opacity:.9;
 
-      max-width:72px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
+  max-width:84px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
 
     /* Responsive */
     @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
@@ -405,7 +405,7 @@
       <nav class="icon-nav-mobile" aria-label="Meni">
         <a class="icon-link" href="about.html">
           <img class="icon" src="../assets/images/icon-newspaper.png" alt="O meni">
-          <div class="icon-title">O meni / CV</div>
+          <div class="icon-title">O meni</div>
         </a>
 
         <a class="icon-link" href="wet-techniques.html">
