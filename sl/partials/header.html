@@ -1,42 +1,45 @@
 <header class="section-header">
 
   <div class="header-left">
-    <img class="icon" src="../assets/images/icon-press.png" alt="">
-    <h1 data-page-title></h1>
+    <!-- include.js naj sem vpiše src iz <meta name="page-icon"> -->
+    <img class="icon" id="pageIcon" alt="">
+    <!-- include.js naj sem vpiše tekst iz <meta name="page-title"> -->
+    <h1 id="pageTitle"></h1>
   </div>
 
   <nav class="icon-nav-desktop" aria-label="Navigacija">
 
-    <a class="icon-link" href="about.html">
-      <img src="../assets/images/icon-newspaper.png" alt="O meni">
+    <a class="icon-link" href="about.html" data-page="about.html" data-title="O meni">
+      <img data-icon="icon-newspaper.png" alt="O meni">
     </a>
 
-    <a class="icon-link" href="dry-techniques.html">
-      <img src="../assets/images/icon-crayon.png" alt="Suhe tehnike">
+    <a class="icon-link" href="dry-techniques.html" data-page="dry-techniques.html" data-title="Suhe tehnike">
+      <img data-icon="icon-crayon.png" alt="Suhe tehnike">
     </a>
 
-    <a class="icon-link" href="wet-techniques.html">
-      <img src="../assets/images/icon-brush.png" alt="Mokre tehnike">
+    <a class="icon-link" href="wet-techniques.html" data-page="wet-techniques.html" data-title="Mokre tehnike">
+      <img data-icon="icon-brush.png" alt="Mokre tehnike">
     </a>
 
-    <a class="icon-link" href="books.html">
-      <img src="../assets/images/icon-books.png" alt="Knjige">
+    <a class="icon-link" href="books.html" data-page="books.html" data-title="Knjige">
+      <img data-icon="icon-books.png" alt="Knjige">
     </a>
 
-    <a class="icon-link" href="animation.html">
-      <img src="../assets/images/icon-screen.png" alt="Animacija">
+    <a class="icon-link" href="animation.html" data-page="animation.html" data-title="Animacija">
+      <img data-icon="icon-screen.png" alt="Animacija">
     </a>
 
-    <a class="icon-link" href="printmaking.html">
-      <img src="../assets/images/icon-press.png" alt="Grafika">
+    <a class="icon-link" href="printmaking.html" data-page="printmaking.html" data-title="Grafika">
+      <img data-icon="icon-press.png" alt="Grafika">
     </a>
 
-    <a class="icon-link" href="contact.html">
-      <img src="../assets/images/icon-letter.png" alt="Kontakt">
+    <!-- NOVO: KONTAKT -->
+    <a class="icon-link" href="contact.html" data-page="contact.html" data-title="Kontakt">
+      <img data-icon="icon-letter.png" alt="Kontakt">
     </a>
 
-    <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener">
-      <img src="../assets/images/icon-bag.png" alt="Trgovina">
+    <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener" data-page="__shop__" data-title="Trgovina">
+      <img data-icon="icon-bag.png" alt="Trgovina">
     </a>
 
   </nav>
