@@ -304,3 +304,16 @@ body{
     height:28px;
   }
 }
+
+
+
+/* MOBILE: skrij samo ZGORNJI ikon meni v headerju (footer meni ostane) */
+@media (max-width:768px){
+  header.site-header nav.icon-nav,
+  header.site-header nav.icon-nav-desktop,
+  header.section-header nav.icon-nav,
+  header.section-header nav.icon-nav-desktop{
+    display:none !important;
+  }
+}
+
