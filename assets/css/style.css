@@ -251,28 +251,26 @@ body{
 @media (max-width:768px){
 
   .icon-nav-mobile-footer{
-    display:grid;
-    grid-template-columns: repeat(5, max-content); /* 5 zgoraj */
-    justify-content:center; /* centriraj */
-    gap:14px 18px; /* vrstica / stolpec */
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;  /* center vsake vrstice */
+    gap:14px 18px;
 
     margin:28px auto 18px;
     padding:18px 12px 4px;
     border-top:1px solid #ddd;
 
-    max-width:520px;
+    max-width:360px; /* KLJUČ: prisili 5 + 3 */
   }
 
-  /* link */
   .icon-nav-mobile-footer .icon-link{
-    width:auto;
-    height:auto;
+    width:56px;     /* kontrolira koliko ikon gre v vrsto */
+    height:56px;
     display:flex;
     align-items:center;
     justify-content:center;
   }
 
-  /* IKONE – večje kot prej */
   .icon-nav-mobile-footer img{
     width:40px;
     height:40px;
@@ -291,12 +289,17 @@ body{
 /* manjši telefoni */
 @media (max-width:420px){
   .icon-nav-mobile-footer{
-    gap:12px 16px;
+    max-width:300px; /* ohrani 5 + 3 tudi na ozkih ekranih */
+    gap:12px 14px;
   }
 
   .icon-nav-mobile-footer img{
     width:34px;
     height:34px;
   }
-}
 
+  .icon-nav-mobile-footer .icon-link{
+    width:50px;
+    height:50px;
+  }
+}
