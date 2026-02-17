@@ -47,10 +47,16 @@ body{
 
 /* ===== desktop icon menu ===== */
 
+/* ===== desktop icon menu (2 vrstici: 5 + 4) ===== */
+
 .icon-nav-desktop{
-  display:flex;
+  display:grid;
+  grid-template-columns: repeat(5, 60px);  /* 5 ikon zgoraj */
+  grid-auto-rows: 60px;
+  gap: 10px 10px;                          /* row/column gap */
   align-items:center;
-  gap:10px;
+  justify-content:end;                      /* porine v desno */
+  width: fit-content;                       /* naj ne raztegne headerja */
 }
 
 .icon-nav-desktop .icon-link{
