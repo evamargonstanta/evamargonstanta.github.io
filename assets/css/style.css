@@ -251,25 +251,23 @@ body{
 @media (max-width:768px){
 
   .icon-nav-mobile-footer{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:14px 0;               /* brez horizontal gapa, da 5 res vedno sede */
-  margin:28px auto 18px;
-  padding:18px 12px 4px;
-  border-top:1px solid #ddd;
-  max-width:360px;          /* lahko širše, ker 5 stolpcev držimo drugače */
-}
+    display:grid;
+    grid-template-columns: repeat(5, max-content); /* 5 zgoraj */
+    justify-content:center; /* cel grid na sredini */
+    justify-items:center;
+    gap:14px 18px;
 
+    margin:28px auto 18px;
+    padding:18px 12px 4px;
+    border-top:1px solid #ddd;
 
-  .icon-nav-mobile-footer .icon-link{
-  flex: 0 0 20%;            /* TO je ključ: vedno 5 v vrsti */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:56px;
-}
+    max-width:360px;   /* pri 520 ni kritično; grid se sam skrči */
+  }
 
+  /* ključ: spodnja vrstica (6–8) naj bo centrirana */
+  .icon-nav-mobile-footer > a:nth-child(6){ grid-column: 2; }
+  .icon-nav-mobile-footer > a:nth-child(7){ grid-column: 3; }
+  .icon-nav-mobile-footer > a:nth-child(8){ grid-column: 4; }
 
   .icon-nav-mobile-footer img{
     width:40px;
@@ -286,20 +284,14 @@ body{
   }
 }
 
-/* manjši telefoni */
 @media (max-width:420px){
+
   .icon-nav-mobile-footer{
-    max-width:300px; /* ohrani 5 + 3 tudi na ozkih ekranih */
-    gap:12px 14px;
+    gap:12px 16px;
   }
 
   .icon-nav-mobile-footer img{
     width:34px;
     height:34px;
-  }
-
-  .icon-nav-mobile-footer .icon-link{
-    width:50px;
-    height:50px;
   }
 }
