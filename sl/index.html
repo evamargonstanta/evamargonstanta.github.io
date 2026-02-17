@@ -193,25 +193,28 @@
 
 .icon-nav-mobile{
   display:grid;
-  grid-template-columns: repeat(5, max-content); /* vedno 5 zgoraj */
-  justify-content:center; /* centriraj obe vrstici */
-  gap:10px 14px;          /* navpično / vodoravno */
-
-  /* ključ: nikoli ne odreže ikon */
-  overflow-x:auto;
-  -webkit-overflow-scrolling: touch;
+  grid-template-columns: repeat(5, max-content);
+  justify-content:center;
+  justify-items:center;
+  gap:10px 14px;
   padding: 0 10px;
+
+  /* odstrani scroll, ker pokvari občutek centriranja */
+  overflow: visible;
 }
 
-.icon-nav-mobile::-webkit-scrollbar{
-  display:none; /* lepše na iOS */
-}
+/* 2. vrstica (ikone 6–8) naj začne v 2. stolpcu => vizualno centrirano */
+.icon-nav-mobile .icon-link:nth-child(6){ grid-column: 2; }
+.icon-nav-mobile .icon-link:nth-child(7){ grid-column: 3; }
+.icon-nav-mobile .icon-link:nth-child(8){ grid-column: 4; }
 
 .icon-nav-mobile .icon-link{
   display:flex;
   flex-direction:column;
   align-items:center;
   text-decoration:none;
+  min-width:0;
+}
 
   /* pomembno: brez min-width, ker to razširi vrstico */
   flex: 0 0 auto;
@@ -299,10 +302,11 @@
         font-size:13px;
       }
 
-      /* mobile menu: še malo bolj kompaktno */
-      .icon-nav-mobile{ gap:8px; }
-      .icon-nav-mobile .icon{ width:26px; height:26px; }
-      .icon-nav-mobile .icon-title{ font-size:10.5px; max-width:64px; }
+     /* mobile menu: malo bolj kompaktno, ampak še vedno večje */
+.icon-nav-mobile{ gap:8px 12px; }
+.icon-nav-mobile .icon{ width:34px; height:34px; }
+.icon-nav-mobile .icon-title{ font-size:12px; max-width:86px; }
+
     }
   </style>
 </head>
