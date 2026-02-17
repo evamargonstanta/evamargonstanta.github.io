@@ -251,25 +251,25 @@ body{
 @media (max-width:768px){
 
   .icon-nav-mobile-footer{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;  /* center vsake vrstice */
-    gap:14px 18px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:14px 0;               /* brez horizontal gapa, da 5 res vedno sede */
+  margin:28px auto 18px;
+  padding:18px 12px 4px;
+  border-top:1px solid #ddd;
+  max-width:520px;          /* lahko širše, ker 5 stolpcev držimo drugače */
+}
 
-    margin:28px auto 18px;
-    padding:18px 12px 4px;
-    border-top:1px solid #ddd;
-
-    max-width:360px; /* KLJUČ: prisili 5 + 3 */
-  }
 
   .icon-nav-mobile-footer .icon-link{
-    width:56px;     /* kontrolira koliko ikon gre v vrsto */
-    height:56px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
+  flex: 0 0 20%;            /* TO je ključ: vedno 5 v vrsti */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:56px;
+}
+
 
   .icon-nav-mobile-footer img{
     width:40px;
