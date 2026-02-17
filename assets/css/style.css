@@ -251,39 +251,34 @@ body{
 @media (max-width:768px){
 
   .icon-nav-mobile-footer{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:8px;          /* ISTO kot naslovna */
+    display:grid;
+    grid-template-columns: repeat(5, max-content); /* 5 zgoraj */
+    justify-content:center; /* centriraj */
+    gap:14px 18px; /* vrstica / stolpec */
 
-    margin:26px auto 16px;
-    padding:12px 10px;
+    margin:28px auto 18px;
+    padding:18px 12px 4px;
     border-top:1px solid #ddd;
 
     max-width:520px;
-    overflow-x:auto;
   }
 
-  .icon-nav-mobile-footer::-webkit-scrollbar{
-    display:none;
-  }
-
+  /* link */
   .icon-nav-mobile-footer .icon-link{
-    width:30px;
-    height:30px;
+    width:auto;
+    height:auto;
     display:flex;
     align-items:center;
     justify-content:center;
-    flex:0 0 auto;
   }
 
-  /* ISTA velikost kot hero meni */
-
+  /* IKONE – večje kot prej */
   .icon-nav-mobile-footer img{
-    width:30px;
-    height:30px;
+    width:40px;
+    height:40px;
+    display:block;
     filter:grayscale(100%);
-    opacity:.5;
+    opacity:.55;
     transition:.18s ease;
   }
 
@@ -293,34 +288,15 @@ body{
   }
 }
 
+/* manjši telefoni */
 @media (max-width:420px){
-
   .icon-nav-mobile-footer{
-    gap:8px;
+    gap:12px 16px;
   }
 
   .icon-nav-mobile-footer img{
-    width:28px;
-    height:28px;
+    width:34px;
+    height:34px;
   }
 }
 
-
-
-/* MOBILE: skrij samo ZGORNJI ikon meni v headerju (footer meni ostane) */
-@media (max-width:768px){
-  header.site-header nav.icon-nav,
-  header.site-header nav.icon-nav-desktop,
-  header.section-header nav.icon-nav,
-  header.section-header nav.icon-nav-desktop{
-    display:none !important;
-  }
-}
-
-
-/* MOBILE: na podstraneh pokaži samo spodnji (footer) meni */
-@media (max-width:768px){
-  .section-header .icon-nav-desktop{
-    display:none !important;
-  }
-}
