@@ -49,26 +49,27 @@ body{
 
 /* ===== desktop icon menu (2 vrstici: 5 + 4) ===== */
 
-.icon-nav-desktop{
+.icon-nav{
   display:grid;
   grid-template-columns: repeat(5, 60px);  /* 5 ikon zgoraj */
-  grid-auto-rows: 60px;
-  gap: 10px 10px;                          /* row/column gap */
-  align-items:center;
-  justify-content:end;                      /* porine v desno */
-  width: fit-content;                       /* naj ne raztegne headerja */
+  grid-auto-rows: 74px;                   /* prostor za ikono + naslov */
+  gap: 8px 10px;                          /* row/column gap */
+  align-items:start;
+  justify-content:end;                     /* porine v desno */
+  width: fit-content;                      /* naj ne raztegne headerja */
 }
 
-.icon-nav-desktop .icon-link{
+.icon-nav .icon-link{
   width:60px;
-  height:60px;
-  display:inline-flex;
+  height:74px;
+  display:flex;
+  flex-direction:column;
   align-items:center;
-  justify-content:center;
+  justify-content:flex-start;
   text-decoration:none;
 }
 
-.icon-nav-desktop img{
+.icon-nav img.icon{
   width:54px;
   height:54px;
   display:block;
@@ -77,22 +78,44 @@ body{
   transition:.18s ease;
 }
 
+.icon-nav .icon-title{
+  margin-top:3px;
+  font-size:11px;
+  line-height:1.1;
+  color:#222;
+  opacity:.75;
+  text-align:center;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:60px;
+}
+
 @media (hover:hover){
-  .icon-nav-desktop a.icon-link:hover img{
+  .icon-nav a.icon-link:hover img.icon{
     filter:none;
     opacity:1;
     transform:scale(1.02);
   }
+
+  .icon-nav a.icon-link:hover .icon-title{
+    opacity:1;
+  }
 }
 
-.icon-nav-desktop .is-active img{
+.icon-nav .is-active img.icon{
   filter:none;
   opacity:1;
 }
 
-@media (max-width:768px){
-  .icon-nav-desktop{ display:none; }
+.icon-nav .is-active .icon-title{
+  opacity:1;
 }
+
+@media (max-width:768px){
+  .icon-nav{ display:none; }
+}
+
 
 
 /* ===== MOBILE HEADER ===== */
