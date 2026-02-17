@@ -49,6 +49,8 @@ body{
 
 /* ===== DESKTOP HEADER MENU – ENA VRSTICA ===== */
 
+/* ===== HEADER DESKTOP MENU – ORIGINAL SIZE ===== */
+
 .icon-nav{
   display:flex;
   align-items:center;
@@ -56,8 +58,8 @@ body{
 }
 
 .icon-nav .icon-link{
-  width:60px;
-  height:60px;
+  width:36px;
+  height:36px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -65,11 +67,11 @@ body{
 }
 
 .icon-nav img.icon{
-  width:54px;
-  height:54px;
+  width:30px;
+  height:30px;
   display:block;
   filter:grayscale(100%);
-  opacity:.5;
+  opacity:.55;
   transition:.18s ease;
 }
 
@@ -81,7 +83,7 @@ body{
   .icon-nav a.icon-link:hover img.icon{
     filter:none;
     opacity:1;
-    transform:scale(1.02);
+    transform:scale(1.05);
   }
 }
 
@@ -93,7 +95,6 @@ body{
 @media (max-width:768px){
   .icon-nav{ display:none; }
 }
-
 
 /* ===== MOBILE HEADER ===== */
 
