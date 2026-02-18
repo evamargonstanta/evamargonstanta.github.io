@@ -292,14 +292,18 @@
 }
 
 /* večji zoom + rahlo navzgor, da se zmanjša "luft" do podpisa in CTA */
+/* dinamičen zoom glede na višino ekrana */
 .stage{
-  transform: translateY(-8px) scale(1.30);
+  --zoom: calc(1.12 + (100vh - 600px) / 1800);
+  transform: translateY(calc(-2vh)) scale(var(--zoom));
 }
+
 
 /* zategni razmak pod ilustracijo do CTA (kot prej) */
 .mobile-cta{
-  margin-top: -10px;
+  margin-top: calc(-1.5vh);
 }
+
 
 
       .mobile-cta{
