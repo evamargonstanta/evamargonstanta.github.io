@@ -283,6 +283,20 @@
         position:relative;
       }
 
+      /* VISOKI TELEFONI: zapolni več, da ni "lufta" */
+@media (min-height: 821px){
+  .media-wrap{
+    height: min(56vh, 620px);
+  }
+  .stage{
+    transform: translateY(-18px) scale(1.33);
+  }
+  .mobile-cta{
+    margin-top:-14px;
+  }
+}
+
+
       .media-wrap img{
         width:100%;
         height:100%;
