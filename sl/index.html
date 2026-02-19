@@ -282,18 +282,20 @@
 
       /* višina “okna” za ilustracijo na mobile – stabilno in brez zooma */
       .media-wrap{
-        height: min(58vh, 470px);
-        width:100%;
-        position:relative;
-        overflow:hidden; /* nič ne štrli => nič horiz scrolla */
-      }
+  height: min(64vh, 620px);  /* višje okno => rezanje gre v levo/desno */
+  width:100%;
+  position:relative;
+  overflow:hidden;
+}
+
 
       .media-wrap img{
   width:100%;
   height:100%;
-  object-fit:cover;            /* to je “zoom” */
-  object-position:50% 55%;     /* malo nižje, da ne odreže zgoraj */
+  object-fit:cover;         /* “zoom” */
+  object-position:50% 50%;  /* sredina; ne rine gor/dol */
 }
+
 
 
       .stage{
