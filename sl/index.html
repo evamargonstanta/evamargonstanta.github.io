@@ -31,23 +31,16 @@
       display:block;
       opacity:.95;
       filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+      position: relative;
+      z-index: 100; /* da ne more izginiti */
     }
-
-    .signature{
-  position: relative;
-  z-index: 100;
-}
-
-.scene{
-  position: relative;
-  z-index: 1;
-}
 
     /* SCENE */
     .scene{
       position:relative;
       width:100%;
       height: calc(100vh - 100px);
+      z-index: 1;
     }
 
     .media-wrap{
@@ -56,11 +49,12 @@
       height:100%;
     }
 
-    /* wrapper so image + SVG scale together (zoom without cropping hotspots) */
+    /* wrapper: image + SVG skupaj (brez zooma) */
     .stage{
       position:absolute;
       inset:0;
       transform-origin:center;
+      transform:none; /* pomembno: brez zoom/translate */
     }
 
     .media-wrap picture{
@@ -255,6 +249,7 @@
 
     /* Responsive */
     @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
+      html, body{ overflow-x:hidden; } /* no left-right scroll */
       body{ overflow-y:auto; }
 
       .hero{
@@ -274,7 +269,7 @@
       .signature{
         max-width:165px;
         width:auto;
-        margin:0 auto 10px; /* več prostora pod podpisom */
+        margin:0 auto 8px; /* malo prostora pod podpisom (kot prej) */
       }
 
       .scene{
@@ -285,28 +280,13 @@
         width:100%;
       }
 
-      /* vrnemo občutek "kot prej": manj lufta, stabilna višina */
+      /* višina “okna” za ilustracijo na mobile – stabilno in brez zooma */
       .media-wrap{
         height: min(47vh, 470px);
-        overflow:visible;     /* nič ne odreže hotspotov */
         width:100%;
         position:relative;
+        overflow:hidden; /* nič ne štrli => nič horiz scrolla */
       }
-
-      /* VISOKI TELEFONI: zapolni več, da ni "lufta" */
-@media (min-height: 821px){
-  .media-wrap{
-    height: min(58vh, 640px);
-  }
-  .stage{
-    transform: translateY(-10px) scale(1.33);
-  }
-  .mobile-cta{
-    margin-top:-12px;
-  }
-}
-
-
 
       .media-wrap img{
         width:100%;
@@ -315,33 +295,13 @@
         object-position:center;
       }
 
-      /* DEFAULT (večji telefoni): več zooma + malo gor */
       .stage{
-        transform: translateY(-14px) scale(1.30);
+        transform:none; /* brez zooma */
       }
 
-      /* NIŽJI EKRANI (iPhone SE 2022 ipd.): manj zooma, da podpis ostane viden */
-      @media (max-height: 700px){
-        .stage{
-          transform: translateY(-2px) scale(1.22);
-        }
-      }
-
-      /* SREDNJI EKRANI: kompromis */
-      @media (min-height: 701px) and (max-height: 820px){
-        .stage{
-          transform: translateY(-10px) scale(1.27);
-        }
-      }
-
-      /* CTA naj se drži bližje ilustraciji */
       .mobile-cta{
         display:block;
-        margin-top:-10px;
-      }
-
-      @media (max-height: 700px){
-        .mobile-cta{ margin-top:-6px; }
+        margin-top:8px; /* malo prostora pod ilustracijo (kot prej) */
       }
 
       .mobile-cta button{
@@ -379,6 +339,9 @@
 
         <div class="stage">
           <picture>
+            <!-- MOBILE: višja verzija -->
+            <source srcset="../assets/images/galerija-mobile.jpg" media="(max-width: 768px)">
+            <!-- DESKTOP -->
             <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
           </picture>
 
@@ -542,7 +505,7 @@
         window.matchMedia('(max-width: 420px)').matches ||
         window.matchMedia('(orientation: portrait) and (max-width: 768px)').matches;
 
-      // vedno "meet", da nič ne odreže hotspotov (niti na mobile)
+      // vedno "meet", da nič ne odreže hotspotov
       hotspotsSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
 
       const clearTapped = () => {
