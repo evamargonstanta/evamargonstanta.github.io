@@ -33,6 +33,16 @@
       filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
     }
 
+    .signature{
+  position: relative;
+  z-index: 100;
+}
+
+.scene{
+  position: relative;
+  z-index: 1;
+}
+
     /* SCENE */
     .scene{
       position:relative;
@@ -286,15 +296,16 @@
       /* VISOKI TELEFONI: zapolni več, da ni "lufta" */
 @media (min-height: 821px){
   .media-wrap{
-    height: min(56vh, 620px);
+    height: min(58vh, 640px);
   }
   .stage{
-    transform: translateY(-18px) scale(1.33);
+    transform: translateY(-10px) scale(1.33);
   }
   .mobile-cta{
-    margin-top:-14px;
+    margin-top:-12px;
   }
 }
+
 
 
       .media-wrap img{
