@@ -289,11 +289,12 @@
       }
 
       .media-wrap img{
-        width:100%;
-        height:100%;
-        object-fit:contain;   /* vedno cela slika */
-        object-position:center;
-      }
+  width:100%;
+  height:100%;
+  object-fit:cover;            /* to je “zoom” */
+  object-position:50% 55%;     /* malo nižje, da ne odreže zgoraj */
+}
+
 
       .stage{
         transform:none; /* brez zooma */
@@ -506,7 +507,8 @@
         window.matchMedia('(orientation: portrait) and (max-width: 768px)').matches;
 
       // vedno "meet", da nič ne odreže hotspotov
-      hotspotsSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      hotspotsSvg.setAttribute('preserveAspectRatio', isMobileOrPortrait() ? 'xMidYMid slice' : 'xMidYMid meet');
+
 
       const clearTapped = () => {
         hotspotsSvg.querySelectorAll('.hotspot.is-tapped')
