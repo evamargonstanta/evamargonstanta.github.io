@@ -306,21 +306,45 @@
         width:100%;
       }
 
-      @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
+     @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
 
   .media-wrap{
-    height: min(42vh, 340px); /* nižje = bolj reže levo/desno */
-    width: 100%;
-    position: relative;
-    overflow: hidden;        /* obrezovanje */
+    height: min(58vh, 470px);  /* lahko tudi malo več, če želiš večjo sliko */
+    width:100%;
+    position:relative;
+    overflow:hidden;           /* REŽE samo kar gre ven */
+  }
+
+  /* sliko centriramo in skaluje po višini */
+  .media-wrap picture{
+    position:absolute;
+    top:0;
+    left:50%;
+    transform: translateX(-50%);
+    height:100%;
+    width:auto;
+    inset:auto;                /* pomembno: povozi inset:0 iz desktopa */
   }
 
   .media-wrap img{
-    object-fit: cover;       /* zoom */
-    object-position: 50% 50%;/* center */
+    height:100%;
+    width:auto;
+    max-width:none;            /* pomembno */
+    object-fit: unset;         /* da ne dela cover/contain */
+    display:block;
+  }
+
+  /* enako za mobile SVG overlay, da hotspoti ostanejo na istem mestu */
+  #hotspots-mobile{
+    position:absolute;
+    top:0;
+    left:50%;
+    transform: translateX(-50%);
+    height:100%;
+    width:auto;
+    inset:auto;                /* pomembno */
   }
 }
-
       /* MOBILE ZOOM-IN (slika + hotspot overlay ostaneta poravnana) */
       .media-wrap picture,
       .media-wrap #hotspots-mobile{
