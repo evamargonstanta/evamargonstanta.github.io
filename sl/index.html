@@ -224,6 +224,14 @@ body{
         justify-content:flex-start;
       }
 
+      /* Ko je meni odprt, skrij CTA gumb */
+body.menu-open .mobile-cta{
+  opacity:0;
+  pointer-events:none;
+  display:none !important;
+  
+}
+
       .signature{
         max-width:165px;
         width:auto;
@@ -286,6 +294,7 @@ body{
       margin-top:2px;               /* prej 10px */
       padding:0;                    /* prej 6px 0 2px */
       line-height:1;
+        transition: opacity .18s ease;
       }
       .mobile-cta button{
         padding:6px 10px;             /* prej 10px 12px (manj “lufta”) */
