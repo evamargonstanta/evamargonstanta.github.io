@@ -231,11 +231,10 @@
   }
 
   .signature{
-    max-width:165px;
-    width:auto;
-    margin:0 auto -2px;
-  }
-
+  max-width:165px;
+  width:auto;
+  margin:0 auto -8px;  /* prej -2px → bolj “potegne” podpis proti ilustraciji */
+}
   .scene{
     height:auto;
     margin:0;
@@ -290,11 +289,11 @@
 
   /* CTA */
   .mobile-cta{
-    display:block !important;
-    margin-top:2px;
-    padding:0;
-    line-height:1;
-    transition: opacity .18s ease;
+  display:block !important;
+  margin-top:-6px;     /* prej 2px → dvigne CTA bližje ilustraciji */
+  padding:0;
+  line-height:1;
+  transition: opacity .18s ease;
   }
   .mobile-cta button{
     padding:6px 10px;
