@@ -60,7 +60,7 @@
       z-index:1;
     }
 
-    /* ✅ DESKTOP: nazaj na "kot prej" – fill scene */
+    /* DESKTOP: fill scene */
     .media-wrap{
       position:relative;
       width:100%;
@@ -79,15 +79,17 @@
       width:100%;
       height:100%;
       z-index:0;
+      overflow:hidden; /* pomembno za mobile crop */
     }
 
     .media-wrap img{
       width:100%;
       height:100%;
-      object-fit:contain;
+      object-fit:contain;          /* desktop */
       object-position:50% 50%;
       display:block;
       margin:0 auto;
+      transform: none;
     }
 
     /* SVG layers */
@@ -99,21 +101,19 @@
       height:100%;
       z-index:2;
     }
-    
-    /* SVG overlay naj ne blokira klikov na UI (gumb, jezik, ipd.) */
-#hotspots-desktop,
-#hotspots-mobile{
-  pointer-events: none; /* <-- pomembno */
-}
 
-/* klikabilni so samo path-i */
-#hotspots-desktop .click,
-#hotspots-mobile .click{
-  pointer-events: all;  /* <-- pomembno */
-}
+    /* SVG overlay naj ne blokira klikov na UI */
+    #hotspots-desktop,
+    #hotspots-mobile{
+      pointer-events:none;
+    }
 
+    /* klikabilni so samo path-i */
+    #hotspots-desktop .click,
+    #hotspots-mobile .click{
+      pointer-events:all;
+    }
 
-    
     /* privzeto: pokaži desktop svg */
     #hotspots-desktop{ display:block; }
     #hotspots-mobile{ display:none; }
@@ -124,32 +124,31 @@
       #hotspots-mobile{ display:block; }
     }
 
-    /* CLICK SHAPE (transparent overlay) – velja za oba SVG-ja */
+    /* CLICK SHAPE (transparent overlay) */
     #hotspots-desktop .click,
     #hotspots-mobile .click{
-      pointer-events: all;
-      cursor: pointer;
-      fill: #fff;
-      fill-opacity: 0;
-      stroke: none;
+      cursor:pointer;
+      fill:#fff;
+      fill-opacity:0;
+      stroke:none;
       transition: fill-opacity 160ms ease;
     }
 
     @media (hover:hover){
       #hotspots-desktop .hotspot:hover .click,
       #hotspots-mobile .hotspot:hover .click{
-        fill-opacity: 0.28;
+        fill-opacity:0.28;
       }
     }
 
     #hotspots-desktop .hotspot.is-tapped .click,
     #hotspots-mobile .hotspot.is-tapped .click{
-      fill-opacity: 0.32;
+      fill-opacity:0.32;
     }
 
     #hotspots-desktop .hotspot,
     #hotspots-mobile .hotspot{
-      -webkit-tap-highlight-color: transparent;
+      -webkit-tap-highlight-color:transparent;
     }
 
     /* Mobile CTA */
@@ -162,7 +161,11 @@
       text-align:center;
       line-height:0;
       position:relative;
-      z-index:55;
+      z-index:999; /* nad SVG in nad stage */
+    }
+
+    .mobile-cta, .mobile-cta *{
+      pointer-events:auto;
     }
 
     .mobile-cta button{
@@ -206,10 +209,10 @@
     /* Mobile menu */
     .mobile-menu{
       display:none;
-      padding: 14px 12px 18px;
+      padding:14px 12px 18px;
       background:#fff;
       position:relative;
-      z-index:54;
+      z-index:998;
       opacity:0;
       transform: translateY(10px);
       transition: opacity .2s ease, transform .2s ease;
@@ -229,9 +232,9 @@
       justify-content:center;
     }
 
-    .icon-nav-mobile .icon-link:nth-child(6){ grid-column: 2; }
-    .icon-nav-mobile .icon-link:nth-child(7){ grid-column: 3; }
-    .icon-nav-mobile .icon-link:nth-child(8){ grid-column: 4; }
+    .icon-nav-mobile .icon-link:nth-child(6){ grid-column:2; }
+    .icon-nav-mobile .icon-link:nth-child(7){ grid-column:3; }
+    .icon-nav-mobile .icon-link:nth-child(8){ grid-column:4; }
 
     .icon-nav-mobile .icon-link{
       width:100%;
@@ -239,7 +242,7 @@
       flex-direction:column;
       align-items:center;
       text-decoration:none;
-      min-width: 0;
+      min-width:0;
     }
 
     .icon-nav-mobile .icon{
@@ -269,7 +272,7 @@
       text-wrap:balance;
     }
 
-    /* Responsive */
+    /* Responsive (mobile layout + zoom/crop illustration) */
     @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
       html, body{ overflow-x:hidden; }
       body{ overflow-y:auto; }
@@ -292,7 +295,7 @@
       .signature{
         max-width:165px;
         width:auto;
-        margin: 0 auto -6px;
+        margin:0 auto -6px;
       }
 
       .scene{
@@ -307,7 +310,19 @@
         height: min(58vh, 470px);
         width:100%;
         position:relative;
-        overflow:visible;
+        overflow:hidden; /* <-- zato se bo lepo "odrezalo" levo/desno */
+      }
+
+      /* MOBILE ZOOM-IN (slika + hotspot overlay ostaneta poravnana) */
+      .media-wrap picture,
+      .media-wrap #hotspots-mobile{
+        transform: scale(1.12);         /* malo povečaj */
+        transform-origin: 50% 50%;
+      }
+
+      /* slika na mobile naj pokrije (da pride crop), ne contain */
+      .media-wrap img{
+        object-fit:cover;
       }
 
       .mobile-cta{
@@ -329,15 +344,6 @@
       .icon-nav-mobile .icon{ width:34px; height:34px; }
       .icon-nav-mobile .icon-title{ font-size:12px; max-width:86px; }
     }
-
-    /* gumb mora biti nad SVG in nad stage */
-.mobile-cta{
-  position: relative;
-  z-index: 999;
-}
-.mobile-cta, .mobile-cta *{
-  pointer-events: auto;
-}
   </style>
 </head>
 
@@ -363,7 +369,8 @@
             <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
           </picture>
 
-          <!-- DESKTOP HOTSPOTS (stare koordinate) -->
+          <!-- DESKTOP HOTSPOTS -->
+          <!-- DESKTOP HOTSPOTS -->
           <svg id="hotspots-desktop" viewBox="0 0 461 260" preserveAspectRatio="xMidYMid meet" aria-label="Hotspots desktop">
             <!-- NEWSPAPER -->
             <g class="hotspot" id="hotspot-newspaper-d" data-href="about.html">
@@ -511,9 +518,39 @@
   </div><!-- /hero -->
 
   <script>
-  /* 2) HOTSPOT NAV + TAP FADE (desktop + mobile) — robustno za iOS/SVG */
   (function () {
+    // ---------------- MENU ----------------
+    const btn = document.getElementById('openMenuBtn');
+    const menu = document.getElementById('mobileMenu');
+
+    function setMenu(open){
+      if (!btn || !menu) return;
+      menu.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.classList.toggle('menu-open', open);
+    }
+
+    if (btn && menu) {
+      const toggle = (e) => {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        setMenu(!menu.classList.contains('is-open'));
+      };
+
+      btn.addEventListener('click', toggle, { passive:false });
+      btn.addEventListener('pointerup', toggle, { passive:false });
+      btn.addEventListener('touchend', toggle, { passive:false });
+
+      // zapri na klik linka
+      menu.addEventListener('click', (e) => {
+        const a = e.target.closest && e.target.closest('a');
+        if (!a) return;
+        setMenu(false);
+      });
+    }
+
+    // -------------- HOTSPOTS --------------
     const links = {
+      // mobile ids
       'hotspot-newspaper': 'about.html',
       'hotspot-brushes': 'wet-techniques.html',
       'hotspot-crayons': 'dry-techniques.html',
@@ -521,14 +558,23 @@
       'hotspot-press': 'printmaking.html',
       'hotspot-screen': 'animation.html',
       'hotspot-contact': 'contact.html',
-      'hotspot-bag': 'https://evamargon.sumupstore.com'
+      'hotspot-bag': 'https://evamargon.sumupstore.com',
+
+      // desktop ids (tvoji imajo -d)
+      'hotspot-newspaper-d': 'about.html',
+      'hotspot-brushes-d': 'wet-techniques.html',
+      'hotspot-crayons-d': 'dry-techniques.html',
+      'hotspot-books-d': 'books.html',
+      'hotspot-press-d': 'printmaking.html',
+      'hotspot-screen-d': 'animation.html',
+      'hotspot-contact-d': 'contact.html',
+      'hotspot-bag-d': 'https://evamargon.sumupstore.com'
     };
 
     const isMobileOrPortrait = () =>
       window.matchMedia('(max-width: 420px)').matches ||
       window.matchMedia('(orientation: portrait) and (max-width: 768px)').matches;
 
-    // iOS/SVG-safe closest()
     function closestHotspot(node) {
       let el = node;
       while (el && el !== document && el !== window) {
@@ -546,7 +592,6 @@
           .forEach(el => el.classList.remove('is-tapped'));
       };
 
-
       svgEl.addEventListener('click', function (e) {
         const hotspot = closestHotspot(e.target);
         if (!hotspot) return;
@@ -556,6 +601,7 @@
 
         const isExternal = /^https?:\/\//i.test(href);
 
+        // mobile: isti tab + tap fade
         if (isMobileOrPortrait()) {
           e.preventDefault();
           clearTapped();
@@ -563,59 +609,24 @@
 
           window.setTimeout(() => {
             hotspot.classList.remove('is-tapped');
-            // na mobile odpremo V ISTEM TABU (popup blocker ne bo blokiral)
             window.location.href = href;
-          }, 300);
-
+          }, 280);
           return;
         }
 
         // desktop
         if (isExternal) window.open(href, '_blank', 'noopener');
         else window.location.href = href;
-      }, { passive: false });
+      }, { passive:false });
 
-      window.addEventListener('scroll', clearTapped, { passive: true });
-      window.addEventListener('resize', clearTapped, { passive: true });
+      window.addEventListener('scroll', clearTapped, { passive:true });
+      window.addEventListener('resize', clearTapped, { passive:true });
     }
 
     bindHotspots(document.getElementById('hotspots-desktop'));
     bindHotspots(document.getElementById('hotspots-mobile'));
   })();
-</script>
-
-  <script>
-/* MENU TOGGLE — mobile menu */
-(function () {
-  const btn = document.getElementById('openMenuBtn');
-  const menu = document.getElementById('mobileMenu');
-  if (!btn || !menu) return;
-
-  function toggleMenu(e){
-    if (e){
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    const open = menu.classList.toggle('is-open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    document.body.classList.toggle('menu-open', open);
-  }
-
-  // dela na vseh telefonih
-  btn.addEventListener('click', toggleMenu, { passive:false });
-  btn.addEventListener('pointerup', toggleMenu, { passive:false });
-  btn.addEventListener('touchend', toggleMenu, { passive:false });
-
-  // zapri ko klikneš link
-  menu.addEventListener('click', (e)=>{
-    const a = e.target.closest('a');
-    if(!a) return;
-    menu.classList.remove('is-open');
-    btn.setAttribute('aria-expanded','false');
-    document.body.classList.remove('menu-open');
-  });
-})();
-</script>
+  </script>
 
 </body>
 </html>
