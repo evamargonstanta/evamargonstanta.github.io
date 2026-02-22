@@ -306,12 +306,20 @@
         width:100%;
       }
 
-      .media-wrap{
-        height: min(58vh, 470px);
-        width:100%;
-        position:relative;
-        overflow:hidden; /* <-- zato se bo lepo "odrezalo" levo/desno */
-      }
+      @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
+
+  .media-wrap{
+    height: min(42vh, 340px); /* nižje = bolj reže levo/desno */
+    width: 100%;
+    position: relative;
+    overflow: hidden;        /* obrezovanje */
+  }
+
+  .media-wrap img{
+    object-fit: cover;       /* zoom */
+    object-position: 50% 50%;/* center */
+  }
+}
 
       /* MOBILE ZOOM-IN (slika + hotspot overlay ostaneta poravnana) */
       .media-wrap picture,
@@ -414,7 +422,7 @@
           </svg>
 
           <!-- MOBILE HOTSPOTS (za 1920×1500) -->
-          <svg id="hotspots-mobile" viewBox="0 0 1920 1500" preserveAspectRatio="xMidYMid meet" aria-label="Hotspots mobile">
+          <svg id="hotspots-mobile" viewBox="0 0 1920 1500" preserveAspectRatio="xMidYMid slice" ...>
   <!-- NEWSPAPER -->
   <g class="hotspot" id="hotspot-newspaper">
     <path class="click" d="M645.572,1004.03C638.441,1005.29 631.221,1018.19 608.86,1040.55C605.694,1043.71 576.992,1072.41 568.587,1079.42C561.168,1085.6 566.596,1087.16 566.135,1089.92C565.099,1096.14 558.707,1094.68 561.583,1100.43C562.997,1103.26 556.096,1103.84 554.406,1108.41C554.296,1109.96 556.69,1110.07 561.314,1110.76C558.244,1117.66 547.533,1130.19 565.785,1134.75C570.505,1135.93 571.016,1132.15 626.02,1143.16C668.044,1151.56 695.829,1165.56 701.756,1168.52C703.726,1169.51 705.73,1171.96 708.555,1171.28C712.644,1167.92 712.811,1164.43 715.321,1163.47C717.369,1162.68 724.547,1167.64 727.01,1164.19C735.16,1152.78 742.142,1140.8 754.944,1120.27C756.76,1117.35 762.717,1108.51 782.559,1072.07C791.239,1056.12 755.449,1030.95 746.839,1022.34C743.94,1019.44 723.675,1009.41 669.435,1009.31C660.65,1009.3 653.931,1004.48 645.572,1004.03Z"/>
