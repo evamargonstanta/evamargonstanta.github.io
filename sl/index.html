@@ -139,6 +139,44 @@
       -webkit-tap-highlight-color:transparent;
     }
 
+    @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
+
+  /* wrapper reže samo levo/desno, višina ostane cela */
+  .media-wrap{
+    height: min(62vh, 520px); /* malo višje kot prej */
+    width:100%;
+    position:relative;
+    overflow:hidden;          /* odreže kar gre izven širine */
+  }
+
+  /* slika + SVG sta poravnana identično */
+  .media-wrap picture,
+  #hotspots-mobile{
+    position:absolute;
+    top:0;
+    left:50%;
+    height:100%;
+    width:auto;
+    inset:auto;
+
+    /* ključno: centriranje + “zoom samo po X” v ENEM transformu */
+    transform: translateX(-50%) scaleX(1.22);
+    transform-origin: 50% 50%;
+  }
+
+  .media-wrap img{
+    height:100%;
+    width:auto;
+    max-width:none;
+    object-fit:unset; /* NUJNO: ne cover */
+    display:block;
+  }
+
+  /* SVG mora sledit višini wrapperja */
+  #hotspots-mobile{
+    width:auto;
+  }
+}
     /* Mobile CTA */
     .mobile-cta{
       display:none;
@@ -305,7 +343,6 @@
         left:50%;
         height:100%;
         width:auto;
-        transform: translateX(-50%) scaleX(1.22); /* malo več crop L/R */
         transform-origin: 50% 50%;
         inset:auto;
       }
@@ -325,7 +362,6 @@
         left:50%;
         height:100%;
         width:auto;
-        transform: translateX(-50%) scaleX(1.22);
         transform-origin: 50% 50%;
         inset:auto;
       }
