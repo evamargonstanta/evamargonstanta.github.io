@@ -233,15 +233,17 @@
   .signature{
   max-width:165px;
   width:auto;
-  margin:0 auto -8px;  /* prej -2px → bolj “potegne” podpis proti ilustraciji */
+  margin:0 auto -14px;
+}
 }
   .scene{
-    height:auto;
-    margin:0;
-    padding:0;
-    line-height:0;
-    width:100%;
-  }
+  height:auto;
+  margin-top:-6px;   /* KLJUČNO – odstrani še dodatni prazen prostor */
+  margin-bottom:0;
+  padding:0;
+  line-height:0;
+  width:100%;
+}
 
   .media-wrap{
     height: clamp(340px, 56svh, 520px);
@@ -290,11 +292,12 @@
   /* CTA */
   .mobile-cta{
   display:block !important;
-  margin-top:-6px;     /* prej 2px → dvigne CTA bližje ilustraciji */
+  margin-top:-14px;
   padding:0;
   line-height:1;
   transition: opacity .18s ease;
-  }
+}
+    
   .mobile-cta button{
     padding:6px 10px;
   }
@@ -325,7 +328,7 @@
   opacity:0;
   transform: translateY(10px);
   transition: opacity .2s ease, transform .2s ease;
-   margin-top:-8px;     /* meni gre višje, bližje ilustraciji */
+  margin-top:-12px;     /* meni gre višje, bližje ilustraciji */
   margin-bottom:18px;
 }
 
