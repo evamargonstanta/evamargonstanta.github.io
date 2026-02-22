@@ -7,6 +7,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/hotspots.css">
 
   <style>
     html, body { margin: 0; padding: 0; height: 100%; }
@@ -23,6 +24,16 @@
       position:relative;
       z-index:1;
     }
+
+    /* prikaz: desktop vs mobile hero */
+.heroMobile { display: none; }
+.heroDesktop { display: block; }
+
+/* na mobile pokaži novi SVG, skrij staro desktop sceno */
+@media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
+  .heroMobile { display: block; width: 100%; }
+  .heroDesktop { display: none; }
+}
 
     .signature{
       max-width:320px;
@@ -354,7 +365,18 @@
 
     <img src="../assets/images/logo.png" alt="Eva Margon" class="signature">
 
-    <div class="scene">
+      <!-- MOBILE HERO (novi SVG z hotspot-i za 1920×1500) -->
+  <div class="heroMobile">
+    <object
+      data="../assets/svg/galerija-mobile.hotspots.svg"
+      type="image/svg+xml"
+      class="heroMap"
+      aria-label="Galerija – interaktivna naslovna ilustracija">
+    </object>
+  </div>
+    
+    <div class="heroDesktop">
+  <div class="scene">
       <div class="media-wrap">
         <div class="stage">
           <picture>
@@ -429,6 +451,7 @@
         </div>
       </div>
     </div>
+      </div> <!-- /heroDesktop -->
 
     <!-- GUMB pod ilustracijo -->
     <div class="mobile-cta">
