@@ -329,6 +329,15 @@
       .icon-nav-mobile .icon{ width:34px; height:34px; }
       .icon-nav-mobile .icon-title{ font-size:12px; max-width:86px; }
     }
+
+    /* gumb mora biti nad SVG in nad stage */
+.mobile-cta{
+  position: relative;
+  z-index: 999;
+}
+.mobile-cta, .mobile-cta *{
+  pointer-events: auto;
+}
   </style>
 </head>
 
@@ -573,6 +582,39 @@
     bindHotspots(document.getElementById('hotspots-desktop'));
     bindHotspots(document.getElementById('hotspots-mobile'));
   })();
+</script>
+
+  <script>
+/* MENU TOGGLE — mobile menu */
+(function () {
+  const btn = document.getElementById('openMenuBtn');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return;
+
+  function toggleMenu(e){
+    if (e){
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const open = menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('menu-open', open);
+  }
+
+  // dela na vseh telefonih
+  btn.addEventListener('click', toggleMenu, { passive:false });
+  btn.addEventListener('pointerup', toggleMenu, { passive:false });
+  btn.addEventListener('touchend', toggleMenu, { passive:false });
+
+  // zapri ko klikneš link
+  menu.addEventListener('click', (e)=>{
+    const a = e.target.closest('a');
+    if(!a) return;
+    menu.classList.remove('is-open');
+    btn.setAttribute('aria-expanded','false');
+    document.body.classList.remove('menu-open');
+  });
+})();
 </script>
 
 </body>
