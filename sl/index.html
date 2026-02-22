@@ -144,19 +144,15 @@
       html, body{ overflow-x:hidden; }
       body{ overflow-y:auto; }
 
+      /* PREJ: flex centriranje + min-height:100vh je pogosto “skrilo” CTA (gumb) iz vidnega dela */
       .hero{
         transform: translateY(-16px);
         padding-top:10px;
-        min-height:100vh;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
+        /* odstranjeno: min-height:100vh; display:flex; justify-content:center; align-items:center; */
       }
 
       body.menu-open .hero{
-        justify-content:center;
-        min-height:100vh;
+        /* odstranjeno: justify-content:center; min-height:100vh; */
       }
 
       .signature{
@@ -181,30 +177,39 @@
         overflow:hidden;          /* odreže samo iz širine */
       }
 
-      /* HARD CENTER: slika + SVG sta poravnana identično */
-      .media-wrap picture,
-      #hotspots-mobile{
+      /* poravnava: slika + SVG sta 100% v istem okvirju, zoom/crop dobita z istim scaleX */
+      .media-wrap picture{
         position:absolute;
-        top:0;
-        left:50%;
-        right:auto;
-        bottom:auto;
+        inset:0;
+        width:100%;
         height:100%;
-        width:auto;
-        inset:auto;
-
-        /* centriraj + zoom samo po X (crop levo/desno) */
-        transform: translate3d(-50%, 0, 0) scaleX(1.24);
-        transform-origin: 50% 50%;
+        z-index:0;
+        display:flex;
+        align-items:stretch;
+        justify-content:center; /* center horizontally */
       }
 
       .media-wrap img{
         height:100%;
-        width:auto;
+        width:auto;        /* polna višina, brez crop zgoraj/spodaj */
         max-width:none;
-        object-fit:unset;   /* NUJNO: ne cover */
+        object-fit:unset;  /* NUJNO: ne cover */
         object-position:50% 50%;
         display:block;
+
+        /* zoom samo po X (crop levo/desno), sredinsko */
+        transform: scaleX(1.24);
+        transform-origin: 50% 50%;
+      }
+
+      /* SVG layer dobi isti scaleX, da hotspots ostanejo poravnani */
+      #hotspots-mobile{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        transform: scaleX(1.24);
+        transform-origin: 50% 50%;
       }
 
       /* CTA */
@@ -444,7 +449,6 @@
               <path class="click" d="M555.22,745.981C556.446,744.755 588.16,734.146 593.967,736.082C597.31,737.197 619.523,753.322 617.63,755.691C616.322,757.329 615.161,757.797 602.656,763.755C601.67,764.225 599.234,765.863 587.651,770.776C572.969,777.002 568.955,778.102 567.354,777.746C566.021,777.45 564.699,776.606 563.545,775.62C563.371,775.471 560.54,772.324 561.631,770.87C561.932,770.468 562.034,770.684 566.435,766.83C566.81,761.734 564.719,762.436 554.56,749.375C554.437,749.217 553.281,747.731 554.089,746.924C555.07,745.943 555.269,745.874 555.22,745.981Z"/>
             </g>
           </svg>
-
 
         </div>
       </div>
