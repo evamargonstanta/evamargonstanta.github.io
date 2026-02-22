@@ -99,7 +99,21 @@
       height:100%;
       z-index:2;
     }
+    
+    /* SVG overlay naj ne blokira klikov na UI (gumb, jezik, ipd.) */
+#hotspots-desktop,
+#hotspots-mobile{
+  pointer-events: none; /* <-- pomembno */
+}
 
+/* klikabilni so samo path-i */
+#hotspots-desktop .click,
+#hotspots-mobile .click{
+  pointer-events: all;  /* <-- pomembno */
+}
+
+
+    
     /* privzeto: pokaži desktop svg */
     #hotspots-desktop{ display:block; }
     #hotspots-mobile{ display:none; }
@@ -523,13 +537,6 @@
           .forEach(el => el.classList.remove('is-tapped'));
       };
 
-      // touchstart: prepreči, da “touch” postane scroll in požre klik
-      svgEl.addEventListener('touchstart', function (e) {
-        const hs = closestHotspot(e.target);
-        if (!hs) return;
-        // samo preprečimo default na hotspotu (ne na celem SVG), da scroll še vedno dela drugje
-        e.preventDefault();
-      }, { passive: false });
 
       svgEl.addEventListener('click', function (e) {
         const hotspot = closestHotspot(e.target);
