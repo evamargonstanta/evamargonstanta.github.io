@@ -258,20 +258,21 @@ body.menu-open .mobile-cta{
   inset:0;
   z-index:0;
 
-  transform: scaleX(1.18);   /* manj povečano kot prej 1.24 */
+  transform: scaleX(1.16);   /* manj povečano kot prej 1.24 */
   transform-origin: 50% 50%;
 }
 
       .media-wrap picture{
-        position:absolute;
-        inset:0;
-        width:100%;
-        height:100%;
-        z-index:0;
-        display:flex;
-        justify-content:center;
-        align-items:stretch;
-      }
+  position:absolute;
+  top:0;
+  left:50%;
+  height:100%;
+  width:auto;
+  z-index:0;
+  display:block;
+  transform: translateX(-50%);
+  transform-origin: 50% 50%;
+}
 
       .media-wrap img{
         height:100%;
@@ -283,13 +284,17 @@ body.menu-open .mobile-cta{
 
       }
 
-      #hotspots-mobile{
-        position:absolute;
-        inset:0;
-        width:100%;
-        height:100%;
-        z-index:2;
-      }
+     #hotspots-mobile{
+  position:absolute;
+  top:0;
+  left:50%;
+  height:100%;
+  width:auto;              /* KLJUČ: ne 100% */
+  z-index:2;
+  transform: translateX(-50%);
+  transform-origin: 50% 50%;
+  pointer-events:auto;
+}
 
       /* CTA mora biti VEDNO vidna na mobile */
       .mobile-cta{
