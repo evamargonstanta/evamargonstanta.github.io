@@ -550,35 +550,30 @@
   </div><!-- /hero -->
 
   <script>
-  (function () {
-    // ---------------- MENU ----------------
-    const btn = document.getElementById('openMenuBtn');
-    const menu = document.getElementById('mobileMenu');
+  /* MENU TOGGLE — mobile menu (brez double-trigger) */
+(function () {
+  const btn = document.getElementById('openMenuBtn');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return;
 
-    function setMenu(open){
-      if (!btn || !menu) return;
-      menu.classList.toggle('is-open', open);
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      document.body.classList.toggle('menu-open', open);
-    }
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-    if (btn && menu) {
-      const toggle = (e) => {
-        if (e) { e.preventDefault(); e.stopPropagation(); }
-        setMenu(!menu.classList.contains('is-open'));
-      };
+    const open = menu.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('menu-open', open);
+  }, { passive: false });
 
-      btn.addEventListener('click', toggle, { passive:false });
-      btn.addEventListener('pointerup', toggle, { passive:false });
-      btn.addEventListener('touchend', toggle, { passive:false });
-
-      // zapri na klik linka
-      menu.addEventListener('click', (e) => {
-        const a = e.target.closest && e.target.closest('a');
-        if (!a) return;
-        setMenu(false);
-      });
-    }
+  // zapri ko klikneš link
+  menu.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if(!a) return;
+    menu.classList.remove('is-open');
+    btn.setAttribute('aria-expanded','false');
+    document.body.classList.remove('menu-open');
+  });
+})();
 
     // -------------- HOTSPOTS --------------
     const links = {
