@@ -199,18 +199,26 @@
       body{ overflow-y:auto; }
 
       .hero{
-        transform: translateY(-16px);
-        padding-top:10px;
-        padding-bottom:18px;
+        transform: none !important;  /* odstrani clipping */
+        margin-top: -10px;           /* isti efekt kot prej translate */
+        padding-bottom:8px;           /* prej 18px */
+        gap:4px;                      /* prej 8px */
 
         min-height:100svh;
         display:flex;
         flex-direction:column;
         justify-content:center;   /* center all vertically */
         align-items:center;
-        gap:8px;
       }
 
+      html, body{
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+body{
+  overflow: visible; /* povozimo desktop overflow:hidden, da nič ne reže */
+}
+      
       /* Ko je meni odprt, potisni vse na vrh */
       body.menu-open .hero{
         justify-content:flex-start;
@@ -219,7 +227,7 @@
       .signature{
         max-width:165px;
         width:auto;
-        margin:0 auto -6px;
+        margin:0 auto -2px;           /* prej -6px (manj praznega prostora) */
       }
 
       .scene{
@@ -275,12 +283,12 @@
       /* CTA mora biti VEDNO vidna na mobile */
       .mobile-cta{
         display:block !important;
-        margin-top:10px;
-        padding:6px 0 2px;
-        line-height:1;
+      margin-top:2px;               /* prej 10px */
+      padding:0;                    /* prej 6px 0 2px */
+      line-height:1;
       }
       .mobile-cta button{
-        padding:10px 12px;
+        padding:6px 10px;             /* prej 10px 12px (manj “lufta”) */
       }
 
       .language-switch{
@@ -301,14 +309,14 @@
     /* Mobile menu */
     .mobile-menu{
       display:none;
-      padding:14px 12px 18px;
       background:#fff;
       position:relative;
       z-index:999;
       opacity:0;
       transform: translateY(10px);
       transition: opacity .2s ease, transform .2s ease;
-      margin-bottom:18px;
+      margin-bottom:8px;            /* prej 18px */
+      padding:12px 12px 14px;       /* prej 14px 12px 18px */
     }
 
     .mobile-menu.is-open{
