@@ -1,17 +1,3 @@
-Problem je 100% v CSS **vrstnem redu**: tvoj “base” stil za `.mobile-cta` je *kasneje v CSS* kot mobile media query, zato na telefonu še vedno velja `display:none` → **gumb je skrit**.
-Ko je CTA skrit, ti tudi “meni” logika izgleda, kot da ne dela. Hotspoti pa so pri tebi na mobile še dodatno lahko “mrtvi”, če SVG ne dobi klikov (zato dodam še 1 varnostni popravek: `touch-action: manipulation;` in poskrbim, da SVG res sedi nad sliko).
-
-Spodaj je **celoten `sl/index.html`** za copy/paste, z minimalnimi spremembami:
-
-* `.mobile-cta` base stil je **premaknjen NAD media query**, da ga mobile override pravilno povozi
-* v mobile media query dam `display:block !important;` (da je 100% viden)
-* `.hero` je spet **vertikalno centriran**, ob odprtem meniju pa gre **na vrh**
-* crop ostane **samo levo/desno** (scaleX) in vse je centrirano
-* hotspoti dobijo še “safety” za touch
-
-✅ Kopiraj 1:1:
-
-```html
 <!DOCTYPE html>
 <html lang="sl">
 <head>
