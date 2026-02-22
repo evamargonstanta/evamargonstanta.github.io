@@ -142,10 +142,12 @@
 
     /* ---------------- MOBILE CTA (BASE) — mora biti PRED media query, da ga mobile override povozi! ---------------- */
     .mobile-cta{
-      display:none;
+       display:block !important;
+      margin-top:4px;     /* prej 10px */
+      padding:2px 0 0;    /* prej 6px 0 2px */
+      line-height:1;
       width:100%;
       margin:0;
-      padding:0;
       text-align:center;
       position:relative;
       z-index:5000;
@@ -160,7 +162,7 @@
       font-family:'Rubik', sans-serif;
       font-size:15px;
       font-weight:500;
-      padding:0;
+      padding:8px 12px;   /* malenkost manj, da je kompaktno */
       margin:0;
       border-radius:999px;
       display:inline-flex;
