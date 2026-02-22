@@ -253,7 +253,14 @@ body.menu-open .mobile-cta{
         overflow:hidden;
       }
 
-      .stage{ position:absolute; inset:0; z-index:0; }
+     .stage{
+  position:absolute;
+  inset:0;
+  z-index:0;
+
+  transform: scaleX(1.18);   /* manj povečano kot prej 1.24 */
+  transform-origin: 50% 50%;
+}
 
       .media-wrap picture{
         position:absolute;
@@ -274,8 +281,6 @@ body.menu-open .mobile-cta{
         object-position:50% 50%;
         display:block;
 
-        transform: scaleX(1.24);
-        transform-origin: 50% 50%;
       }
 
       #hotspots-mobile{
@@ -284,8 +289,6 @@ body.menu-open .mobile-cta{
         width:100%;
         height:100%;
         z-index:2;
-        transform: scaleX(1.24);
-        transform-origin: 50% 50%;
       }
 
       /* CTA mora biti VEDNO vidna na mobile */
