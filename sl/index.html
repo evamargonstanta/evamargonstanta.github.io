@@ -186,8 +186,13 @@
       text-align:center;
       line-height:0;
       position:relative;
-      z-index:1000; /* ✅ nad sceno */
+      z-index:5000; /* ✅ nad sceno */
     }
+
+    .scene{ position: relative; z-index: 1; }
+.stage{ position: absolute; inset: 0; z-index: 0; }
+#hotspots-desktop, #hotspots-mobile{ z-index: 2; }
+    
     .mobile-cta, .mobile-cta *{ pointer-events:auto; }
 
     .mobile-cta button{
@@ -328,32 +333,36 @@
         width:100%;
       }
 
-      /* ✅ višje (taller) */
-      .media-wrap{
-        height: min(66vh, 560px); /* prej 58vh/470px */
-        width:100%;
-        position:relative;
-        overflow:hidden; /* crop */
-      }
+      @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
 
-      /* ✅ scaleX -> odreže samo levo/desno, ne zgoraj/spodaj */
-      .media-wrap picture{
-        position:absolute;
-        top:0;
-        left:50%;
-        height:100%;
-        width:auto;
-        transform-origin: 50% 50%;
-        inset:auto;
-      }
+  .media-wrap{
+    height: min(62vh, 520px); /* višje */
+    width:100%;
+    position:relative;
+    overflow:hidden;          /* odreže levo/desno */
+  }
 
-      .media-wrap img{
-        height:100%;
-        width:auto;
-        max-width:none;
-        object-fit:unset; /* brez cover */
-        display:block;
-      }
+  .media-wrap picture,
+  #hotspots-mobile{
+    position:absolute;
+    top:0;
+    left:50%;
+    height:100%;
+    width:auto;
+    inset:auto;
+    transform: translateX(-50%) scaleX(1.24); /* center + crop samo X */
+    transform-origin: 50% 50%;
+  }
+
+  .media-wrap img{
+    height:100%;
+    width:auto;
+    max-width:none;
+    object-fit:unset;   /* NUJNO: ne cover */
+    display:block;
+  }
+}
+    
 
       /* ✅ isto kot slika, da hotspoti ostanejo poravnani */
       #hotspots-mobile{
