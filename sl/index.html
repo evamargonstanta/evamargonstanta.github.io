@@ -193,201 +193,126 @@
       font-size:13px;
     }
 
-    /* ---------------- MOBILE: center + crop samo levo/desno + CTA vidna ---------------- */
-    @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
-      html, body{ overflow-x:hidden; }
-      body{ overflow-y:auto; }
+  /* ---------------- MOBILE: center + crop samo levo/desno + CTA vidna ---------------- */
+@media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
 
-      .hero{
-        transform: none !important;  /* odstrani clipping */
-        margin-top: -10px;           /* isti efekt kot prej translate */
-        padding-bottom:8px;           /* prej 18px */
-        gap:4px;                      /* prej 8px */
+  /* global mobile overflow (povozi desktop overflow:hidden) */
+  html, body{
+    overflow-x:hidden;
+    overflow-y:auto;
+  }
+  body{
+    overflow:visible;
+  }
 
-        min-height:100svh;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;   /* center all vertically */
-        align-items:center;
-      }
+  /* kontrola zooma (spremeni samo to številko za manj/več) */
+  :root{
+    --zoomX: 1.14; /* bilo 1.16; manj = manj zooma */
+  }
 
-      html, body{
-  overflow-x:hidden;
-  overflow-y:auto;
+  .hero{
+    transform:none !important;  /* odstrani clipping */
+    margin-top:-10px;           /* isti efekt kot prej translate */
+    padding-bottom:8px;
+    gap:4px;
+
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;     /* center all vertically */
+    align-items:center;
+  }
+
+  /* Ko je meni odprt, potisni vse na vrh */
+  body.menu-open .hero{
+    justify-content:flex-start;
+  }
+
+  /* Ko je meni odprt, skrij CTA gumb */
+  body.menu-open .mobile-cta{
+    display:none !important;
+  }
+
+  .signature{
+    max-width:165px;
+    width:auto;
+    margin:0 auto -2px;
+  }
+
+  .scene{
+    height:auto;
+    margin:0;
+    padding:0;
+    line-height:0;
+    width:100%;
+  }
+
+  .media-wrap{
+    height: clamp(340px, 56svh, 520px);
+    width:100%;
+    position:relative;
+    overflow:hidden; /* crop samo levo/desno */
+  }
+
+  /* ENOTEN zoom za sliko + SVG (hotspoti), vedno iz centra */
+  .stage{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    transform: scaleX(var(--zoomX));
+    transform-origin: 50% 50%;
+  }
+
+  /* slika fill-a stage (nič ne odreže zgoraj/spodaj) */
+  .media-wrap picture{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    display:block;
+  }
+
+  .media-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:contain;         /* nič ne odreže zgoraj/spodaj */
+    object-position:50% 50%;
+    display:block;
+    margin:0 auto;
+  }
+
+  /* SVG se mora obnašati enako kot slika -> 100% stage */
+  #hotspots-mobile{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:2;
+    pointer-events:auto;
+  }
+
+  /* CTA */
+  .mobile-cta{
+    display:block !important;
+    margin-top:2px;
+    padding:0;
+    line-height:1;
+  }
+  .mobile-cta button{
+    padding:6px 10px;
+  }
+
+  .language-switch{
+    bottom:16px;
+    right:16px;
+    font-size:13px;
+  }
+
+  .icon-nav-mobile{ gap:8px 12px; }
+  .icon-nav-mobile .icon{ width:34px; height:34px; }
+  .icon-nav-mobile .icon-title{ font-size:12px; max-width:86px; }
 }
-body{
-  overflow: visible; /* povozimo desktop overflow:hidden, da nič ne reže */
-}
-      
-      /* Ko je meni odprt, potisni vse na vrh */
-      body.menu-open .hero{
-        justify-content:flex-start;
-      }
-
-      /* Ko je meni odprt, skrij CTA gumb */
-body.menu-open .mobile-cta{
-  opacity:0;
-  pointer-events:none;
-  display:none !important;
-  
-}
-
-      .signature{
-        max-width:165px;
-        width:auto;
-        margin:0 auto -2px;           /* prej -6px (manj praznega prostora) */
-      }
-
-      .scene{
-        height:auto;
-        margin:0;
-        padding:0;
-        line-height:0;
-        width:100%;
-      }
-
-      .media-wrap{
-        height: clamp(340px, 56svh, 520px);
-        width:100%;
-        position:relative;
-        overflow:hidden;
-      }
-
-     .stage{
-  position:absolute;
-  inset:0;
-  z-index:0;
-
-  transform: scaleX(1.16);   /* manj povečano kot prej 1.24 */
-  transform-origin: 50% 50%;
-}
-
-      .media-wrap picture{
-  position:absolute;
-  top:0;
-  left:50%;
-  height:100%;
-  width:auto;
-  z-index:0;
-  display:block;
-  transform: translateX(-50%);
-  transform-origin: 50% 50%;
-}
-
-      .media-wrap img{
-        height:100%;
-        width:auto;
-        max-width:none;
-        object-fit:unset;
-        object-position:50% 50%;
-        display:block;
-
-      }
-
-     #hotspots-mobile{
-  position:absolute;
-  top:0;
-  left:50%;
-  height:100%;
-  width:auto;              /* KLJUČ: ne 100% */
-  z-index:2;
-  transform: translateX(-50%);
-  transform-origin: 50% 50%;
-  pointer-events:auto;
-}
-
-      /* CTA mora biti VEDNO vidna na mobile */
-      .mobile-cta{
-        display:block !important;
-      margin-top:2px;               /* prej 10px */
-      padding:0;                    /* prej 6px 0 2px */
-      line-height:1;
-        transition: opacity .18s ease;
-      }
-      .mobile-cta button{
-        padding:6px 10px;             /* prej 10px 12px (manj “lufta”) */
-      }
-
-      .language-switch{
-        bottom:16px;
-        right:16px;
-        font-size:13px;
-      }
-
-      .icon-nav-mobile{ gap:8px 12px; }
-      .icon-nav-mobile .icon{ width:34px; height:34px; }
-      .icon-nav-mobile .icon-title{ font-size:12px; max-width:86px; }
-    }
-
-    /* layering */
-    .scene{ position: relative; z-index: 1; }
-    #hotspots-desktop, #hotspots-mobile{ z-index: 2; }
-
-    /* Mobile menu */
-    .mobile-menu{
-      display:none;
-      background:#fff;
-      position:relative;
-      z-index:999;
-      opacity:0;
-      transform: translateY(10px);
-      transition: opacity .2s ease, transform .2s ease;
-      margin-bottom:8px;            /* prej 18px */
-      padding:12px 12px 14px;       /* prej 14px 12px 18px */
-    }
-
-    .mobile-menu.is-open{
-      display:block;
-      opacity:1;
-      transform: translateY(0);
-    }
-
-    .icon-nav-mobile{
-      display:grid;
-      grid-template-columns: repeat(4, 64px);
-      gap:14px 10px;
-      justify-content:center;
-    }
-
-    .icon-nav-mobile .icon-link:nth-child(6){ grid-column:2; }
-    .icon-nav-mobile .icon-link:nth-child(7){ grid-column:3; }
-    .icon-nav-mobile .icon-link:nth-child(8){ grid-column:4; }
-
-    .icon-nav-mobile .icon-link{
-      width:100%;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-decoration:none;
-      min-width:0;
-    }
-
-    .icon-nav-mobile .icon{
-      width:36px;
-      height:36px;
-      display:block;
-      opacity:1;
-    }
-
-    .icon-nav-mobile .icon-title{
-      margin-top:7px;
-      font-size:13px;
-      line-height:1.15;
-      text-align:center;
-      color:#111;
-      opacity:.9;
-      max-width:90px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .icon-nav-mobile .wide-label .icon-title{
-      white-space:normal;
-      max-width:110px;
-      line-height:1.15;
-      text-wrap:balance;
-    }
   </style>
 </head>
 
