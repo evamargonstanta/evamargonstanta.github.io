@@ -488,76 +488,85 @@
   </div><!-- /hero -->
 
   <script>
-    /* 1) MENU TOGGLE */
-    (function () {
-      const btn = document.getElementById('openMenuBtn');
-      const menu = document.getElementById('mobileMenu');
-      if (!btn || !menu) return;
+  /* 2) HOTSPOT NAV + TAP FADE (desktop + mobile) — robustno za iOS/SVG */
+  (function () {
+    const links = {
+      'hotspot-newspaper': 'about.html',
+      'hotspot-brushes': 'wet-techniques.html',
+      'hotspot-crayons': 'dry-techniques.html',
+      'hotspot-books': 'books.html',
+      'hotspot-press': 'printmaking.html',
+      'hotspot-screen': 'animation.html',
+      'hotspot-contact': 'contact.html',
+      'hotspot-bag': 'https://evamargon.sumupstore.com'
+    };
 
-      btn.addEventListener('click', () => {
-        const isOpen = menu.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        document.body.classList.toggle('menu-open', isOpen);
-      });
+    const isMobileOrPortrait = () =>
+      window.matchMedia('(max-width: 420px)').matches ||
+      window.matchMedia('(orientation: portrait) and (max-width: 768px)').matches;
 
-      menu.addEventListener('click', (e) => {
-        const link = e.target.closest('a');
-        if (!link) return;
-        menu.classList.remove('is-open');
-        btn.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('menu-open');
-      });
-    })();
-
-    /* 2) HOTSPOT NAV + TAP FADE (dela za desktop + mobile) */
-    (function () {
-      const isMobileOrPortrait = () =>
-        window.matchMedia('(max-width: 420px)').matches ||
-        window.matchMedia('(orientation: portrait) and (max-width: 768px)').matches;
-
-      function bindHotspots(svgEl){
-        if (!svgEl) return;
-
-        const clearTapped = () => {
-          svgEl.querySelectorAll('.hotspot.is-tapped')
-            .forEach(el => el.classList.remove('is-tapped'));
-        };
-
-        svgEl.addEventListener('click', function (e) {
-          const hotspot = e.target.closest('.hotspot');
-          if (!hotspot) return;
-
-          const href = hotspot.dataset.href;
-          if (!href) return;
-
-          const isExternal = /^https?:\/\//i.test(href);
-
-          if (isMobileOrPortrait()) {
-            e.preventDefault();
-            clearTapped();
-            hotspot.classList.add('is-tapped');
-
-            window.setTimeout(() => {
-              hotspot.classList.remove('is-tapped');
-              if (isExternal) window.open(href, '_blank', 'noopener');
-              else window.location.href = href;
-            }, 650);
-
-            return;
-          }
-
-          if (isExternal) window.open(href, '_blank', 'noopener');
-          else window.location.href = href;
-        }, { passive: false });
-
-        window.addEventListener('scroll', clearTapped, { passive: true });
-        window.addEventListener('resize', clearTapped, { passive: true });
+    // iOS/SVG-safe closest()
+    function closestHotspot(node) {
+      let el = node;
+      while (el && el !== document && el !== window) {
+        if (el.classList && el.classList.contains('hotspot')) return el;
+        el = el.parentNode;
       }
+      return null;
+    }
 
-      bindHotspots(document.getElementById('hotspots-desktop'));
-      bindHotspots(document.getElementById('hotspots-mobile'));
-    })();
-  </script>
+    function bindHotspots(svgEl) {
+      if (!svgEl) return;
+
+      const clearTapped = () => {
+        svgEl.querySelectorAll('.hotspot.is-tapped')
+          .forEach(el => el.classList.remove('is-tapped'));
+      };
+
+      // touchstart: prepreči, da “touch” postane scroll in požre klik
+      svgEl.addEventListener('touchstart', function (e) {
+        const hs = closestHotspot(e.target);
+        if (!hs) return;
+        // samo preprečimo default na hotspotu (ne na celem SVG), da scroll še vedno dela drugje
+        e.preventDefault();
+      }, { passive: false });
+
+      svgEl.addEventListener('click', function (e) {
+        const hotspot = closestHotspot(e.target);
+        if (!hotspot) return;
+
+        const href = links[hotspot.id];
+        if (!href) return;
+
+        const isExternal = /^https?:\/\//i.test(href);
+
+        if (isMobileOrPortrait()) {
+          e.preventDefault();
+          clearTapped();
+          hotspot.classList.add('is-tapped');
+
+          window.setTimeout(() => {
+            hotspot.classList.remove('is-tapped');
+            // na mobile odpremo V ISTEM TABU (popup blocker ne bo blokiral)
+            window.location.href = href;
+          }, 300);
+
+          return;
+        }
+
+        // desktop
+        if (isExternal) window.open(href, '_blank', 'noopener');
+        else window.location.href = href;
+      }, { passive: false });
+
+      window.addEventListener('scroll', clearTapped, { passive: true });
+      window.addEventListener('resize', clearTapped, { passive: true });
+    }
+
+    bindHotspots(document.getElementById('hotspots-desktop'));
+    bindHotspots(document.getElementById('hotspots-mobile'));
+  })();
+</script>
 
 </body>
 </html>
