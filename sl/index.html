@@ -205,14 +205,12 @@
 
     .icon-nav-mobile{
   display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-items:center;
-  align-items:start;
-  gap:10px 14px;
-  width:100%;
-  max-width:420px;
+  grid-template-columns: repeat(4, 72px); /* fiksna širina ikone */
+  justify-content:center;                  /* vse skupaj na sredino */
+  gap:14px 10px;                           /* vertikalni | horizontalni razmik */
   margin:0 auto;
 }
+
 
 
     .icon-nav-mobile .icon-link:nth-child(6){ grid-column: 2; }
