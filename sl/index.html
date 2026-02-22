@@ -139,20 +139,29 @@
       -webkit-tap-highlight-color:transparent;
     }
 
-    /* ---------------- MOBILE: višja ilustracija + crop SAMO levo/desno (CENTER) ---------------- */
+    /* ---------------- MOBILE: vse centrirano po višini + crop samo levo/desno ---------------- */
     @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
       html, body{ overflow-x:hidden; }
       body{ overflow-y:auto; }
 
-      /* PREJ: flex centriranje + min-height:100vh je pogosto “skrilo” CTA (gumb) iz vidnega dela */
+      /* Vertikalno centriraj: podpis + ilustracija + CTA */
       .hero{
         transform: translateY(-16px);
         padding-top:10px;
-        /* odstranjeno: min-height:100vh; display:flex; justify-content:center; align-items:center; */
+        padding-bottom:18px;
+
+        min-height:100svh; /* bolj stabilno na mobile kot 100vh */
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        gap:8px;
       }
 
+      /* Ko je meni odprt, premakni vse na vrh, da se vidi še menu */
       body.menu-open .hero{
-        /* odstranjeno: justify-content:center; min-height:100vh; */
+        justify-content:flex-start;
+        min-height:100svh;
       }
 
       .signature{
@@ -171,13 +180,15 @@
 
       /* wrapper reže samo levo/desno, višina ostane cela */
       .media-wrap{
-        height: min(62vh, 520px); /* višje */
         width:100%;
         position:relative;
-        overflow:hidden;          /* odreže samo iz širine */
+        overflow:hidden; /* crop levo/desno */
+
+        /* malo bolj “varno”, da CTA ostane viden */
+        height: clamp(340px, 56svh, 520px);
       }
 
-      /* poravnava: slika + SVG sta 100% v istem okvirju, zoom/crop dobita z istim scaleX */
+      /* picture zapolni wrapper; img centriran po X */
       .media-wrap picture{
         position:absolute;
         inset:0;
@@ -185,19 +196,19 @@
         height:100%;
         z-index:0;
         display:flex;
+        justify-content:center;
         align-items:stretch;
-        justify-content:center; /* center horizontally */
       }
 
       .media-wrap img{
         height:100%;
-        width:auto;        /* polna višina, brez crop zgoraj/spodaj */
+        width:auto;        /* brez crop zgoraj/spodaj */
         max-width:none;
-        object-fit:unset;  /* NUJNO: ne cover */
+        object-fit:unset;
         object-position:50% 50%;
         display:block;
 
-        /* zoom samo po X (crop levo/desno), sredinsko */
+        /* zoom samo po X (crop levo/desno) */
         transform: scaleX(1.24);
         transform-origin: 50% 50%;
       }
@@ -212,10 +223,12 @@
         transform-origin: 50% 50%;
       }
 
-      /* CTA */
+      /* CTA: zagotovi, da je viden in ima “realen” line-height */
       .mobile-cta{
         display:block;
         margin-top:10px;
+        padding:6px 0 2px;
+        line-height:1; /* <-- pomembno */
       }
       .mobile-cta button{
         padding:10px 12px;
