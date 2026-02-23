@@ -1,12 +1,60 @@
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Eva Margon – Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=sl/">
-  <title>Eva Margon – Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+
+<script>
+(function () {
+
+  // če je uporabnik že izbral jezik → ne preusmerjaj več
+  const savedLang = localStorage.getItem("lang");
+  if (savedLang) {
+    window.location.replace("/" + savedLang + "/");
+    return;
+  }
+
+  // zaznaj jezik browserja
+  const lang = navigator.language || navigator.userLanguage;
+
+  // slovenski uporabniki → /sl/
+  if (lang.startsWith("sl")) {
+    localStorage.setItem("lang", "sl");
+    window.location.replace("/sl/");
+  }
+  // vsi ostali → /en/
+  else {
+    localStorage.setItem("lang", "en");
+    window.location.replace("/en/");
+  }
+
+})();
+</script>
+
+<style>
+/* fallback če je JS blokiran */
+body{
+  font-family:Rubik, sans-serif;
+  display:flex;
+  height:100vh;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+a{ display:block; margin:10px; }
+</style>
+
 </head>
 <body>
+
+<noscript>
+<h2>Select language</h2>
+<a href="/sl/">Slovenščina</a>
+<a href="/en/">English</a>
+</noscript>
+
 </body>
 </html>
