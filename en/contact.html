@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt – Eva Margon</title>
+  <title>Contact – Eva Margon</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 
-  <meta name="page-title" content="Kontakt">
+  <meta name="page-title" content="Contact">
   <meta name="page-icon" content="../assets/images/icon-letter.png">
   <meta name="nav-active" content="contact">
 
@@ -20,30 +20,27 @@
       box-sizing:border-box;
     }
 
-   .contact-grid{
-  display:grid;
-  grid-template-columns: minmax(360px, 420px) 1fr;
-  gap:40px;
-  align-items:end; /* poravna spodaj */
-}
+    .contact-grid{
+      display:grid;
+      grid-template-columns: minmax(360px, 420px) 1fr;
+      gap:40px;
+      align-items:end;
+    }
 
+    /* left visual */
+    .contact-visual{
+      background:#fff;
+      padding:18px;
+    }
 
-    /* leva ilustracija */
- .contact-visual{
-  background:#fff;
-  padding:18px;
-}
+    .contact-visual img{
+      width:100%;
+      height:auto;
+      display:block;
+      transform:translateY(10px);
+    }
 
-.contact-visual img{
-  width:100%;
-  height:auto;
-  display:block;
-  transform:translateY(10px);
-}
-
-
-
-    /* desna stran */
+    /* right side */
     .contact-text p{
       line-height:1.65;
       margin:0 0 18px;
@@ -71,7 +68,7 @@
       transform:translateX(2px);
     }
 
-    /* velike ikone */
+    /* large icons */
     .contact-icon{
       width:82px;
       height:82px;
@@ -116,26 +113,25 @@
 
   <div class="contact-grid">
 
-    <!-- LEVA ILUSTRACIJA -->
+    <!-- LEFT VISUAL -->
     <div class="contact-visual">
-      <!-- lahko zamenjaš s kakšno ilustracijo pisma -->
-      <img src="../assets/images/pismonamizi.jpg" alt="Pismo">
+      <img src="../assets/images/pismonamizi.jpg" alt="Letter">
     </div>
 
-    <!-- DESNA STRAN -->
+    <!-- RIGHT SIDE -->
     <div class="contact-text">
       <p>
-        Če bi rad izvedel še kaj več o tekočih projektih, mi pisal za sodelovanje, naročilo ali povpraševanje, me najdeš na spodnjih povezavah.
+        If you’d like to learn more about current projects or get in touch about collaboration, commissions, or inquiries, you can reach me via the links below.
       </p>
 
       <div class="contact-list">
 
         <!-- EMAIL -->
         <a class="contact-item"
-           href="mailto:eva.margon@hotmail.com?subject=Pozdrav%20(Eva%20Margon)">
+           href="mailto:eva.margon@hotmail.com?subject=Hello%20(Eva%20Margon)">
           <img class="contact-icon" src="../assets/images/icon-mail.png" alt="">
           <div class="contact-info">
-            <div class="contact-label">E-mail</div>
+            <div class="contact-label">Email</div>
             <div class="contact-value">eva.margon@hotmail.com</div>
           </div>
         </a>
@@ -173,7 +169,6 @@
           </div>
         </a>
 
-
       </div>
     </div>
 
@@ -181,7 +176,7 @@
 </div>
 
 <div data-include="footer-nav"></div>
-<a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+<a href="index.html" class="door-hotspot" aria-label="Back to home"></a>
 
 <script src="../assets/js/include.js"></script>
 
