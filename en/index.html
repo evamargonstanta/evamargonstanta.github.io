@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -140,7 +140,7 @@
       -webkit-tap-highlight-color:transparent;
     }
 
-    /* CTA default: skrito na desktop */
+    /* CTA default: hidden on desktop */
     .mobile-cta{
       display:none;
       width:100%;
@@ -196,7 +196,7 @@
     .scene{ position: relative; z-index: 1; }
     #hotspots-desktop, #hotspots-mobile{ z-index: 2; }
 
-    /* Mobile menu (mreža + spacing) */
+    /* Mobile menu */
     .mobile-menu{
       display:none;
       padding:14px 12px 18px;
@@ -206,7 +206,7 @@
       opacity:0;
       transform: translateY(10px);
       transition: opacity .2s ease, transform .2s ease;
-      margin-top:-12px;     /* meni višje */
+      margin-top:-12px;
       margin-bottom:18px;
     }
 
@@ -263,12 +263,12 @@
       text-wrap:balance;
     }
 
-    /* ---------------- MOBILE: center + crop samo levo/desno + CTA vidna ---------------- */
+    /* ---------------- MOBILE ---------------- */
     @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
       html, body{ overflow-x:hidden; overflow-y:auto; }
       body{ overflow: visible; }
 
-      :root{ --zoomX: 1.14; } /* zoom */
+      :root{ --zoomX: 1.14; }
 
       .hero{
         transform:none !important;
@@ -279,7 +279,7 @@
         min-height:100svh;
         display:flex;
         flex-direction:column;
-        justify-content:center;   /* center all vertically */
+        justify-content:center;
         align-items:center;
       }
 
@@ -296,7 +296,7 @@
       .signature{
         max-width:165px;
         width:auto;
-        margin:0 auto -14px;  /* podpis bližje ilustraciji */
+        margin:0 auto -14px;
       }
 
       .scene{
@@ -312,7 +312,7 @@
         height: clamp(340px, 56svh, 520px);
         width:100%;
         position:relative;
-        overflow:hidden; /* crop samo levo/desno */
+        overflow:hidden;
       }
 
       .stage{
@@ -335,7 +335,7 @@
       .media-wrap img{
         width:100%;
         height:100%;
-        object-fit:contain;          /* nič ne odreže zgoraj/spodaj */
+        object-fit:contain;
         object-position:50% 50%;
         display:block;
         margin:0 auto;
@@ -352,7 +352,7 @@
 
       .mobile-cta{
         display:block !important;
-        margin-top:-14px;  /* CTA bližje ilustraciji */
+        margin-top:-14px;
         padding:0;
         line-height:1;
       }
@@ -375,9 +375,9 @@
 
 <body>
 
-  <!-- LANGUAGE SWITCH -->
+  <!-- LANGUAGE SWITCH (stores preference) -->
   <div class="language-switch">
-    <span>SL</span> / <a href="../en/">EN</a>
+    <a href="../sl/" onclick="localStorage.setItem('lang','sl')">SL</a> / <span>EN</span>
   </div>
 
   <!-- HERO -->
@@ -389,7 +389,7 @@
       <div class="media-wrap">
         <div class="stage">
 
-          <!-- Slika: desktop + mobile -->
+          <!-- Image: desktop + mobile -->
           <picture>
             <source srcset="../assets/images/galerija-mobile.jpg" media="(max-width: 768px)">
             <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
@@ -425,7 +425,7 @@
 
           <!-- MOBILE HOTSPOTS -->
           <svg id="hotspots-mobile" viewBox="0 0 1920 1500" preserveAspectRatio="xMidYMid meet" aria-label="Hotspots mobile">
-            <!-- (tvoji mobile hotspot pathi ostanejo isti) -->
+            <!-- (your mobile hotspot paths stay the same) -->
             <g class="hotspot" id="hotspot-newspaper">
               <path class="click" d="M645.572,1004.03C638.441,1005.29 631.221,1018.19 608.86,1040.55C605.694,1043.71 576.992,1072.41 568.587,1079.42C561.168,1085.6 566.596,1087.16 566.135,1089.92C565.099,1096.14 558.707,1094.68 561.583,1100.43C562.997,1103.26 556.096,1103.84 554.406,1108.41C554.296,1109.96 556.69,1110.07 561.314,1110.76C558.244,1117.66 547.533,1130.19 565.785,1134.75C570.505,1135.93 571.016,1132.15 626.02,1143.16C668.044,1151.56 695.829,1165.56 701.756,1168.52C703.726,1169.51 705.73,1171.96 708.555,1171.28C712.644,1167.92 712.811,1164.43 715.321,1163.47C717.369,1162.68 724.547,1167.64 727.01,1164.19C735.16,1152.78 742.142,1140.8 754.944,1120.27C756.76,1117.35 762.717,1108.51 782.559,1072.07C791.239,1056.12 755.449,1030.95 746.839,1022.34C743.94,1019.44 723.675,1009.41 669.435,1009.31C660.65,1009.3 653.931,1004.48 645.572,1004.03Z"/>
             </g>
@@ -456,50 +456,50 @@
       </div>
     </div>
 
-    <!-- GUMB pod ilustracijo -->
+    <!-- BUTTON under illustration -->
     <div class="mobile-cta">
       <button id="openMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">
         <img src="../assets/images/icon-arrow.png" class="hint-arrow" alt="" aria-hidden="true">
         <div class="hint-row">
-          <span class="hint-text">Poišči in klikni.</span>
+          <span class="hint-text">Find and click.</span>
         </div>
       </button>
     </div>
 
     <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
-      <nav class="icon-nav-mobile" aria-label="Meni">
+      <nav class="icon-nav-mobile" aria-label="Menu">
         <a class="icon-link" href="about.html">
-          <img class="icon" src="../assets/images/icon-newspaper.png" alt="O meni">
-          <div class="icon-title">O meni</div>
+          <img class="icon" src="../assets/images/icon-newspaper.png" alt="About">
+          <div class="icon-title">About</div>
         </a>
         <a class="icon-link" href="wet-techniques.html">
-          <img class="icon" src="../assets/images/icon-brush.png" alt="Slikanje">
-          <div class="icon-title">Slikanje</div>
+          <img class="icon" src="../assets/images/icon-brush.png" alt="Painting">
+          <div class="icon-title">Painting</div>
         </a>
         <a class="icon-link" href="dry-techniques.html">
-          <img class="icon" src="../assets/images/icon-crayon.png" alt="Risanje">
-          <div class="icon-title">Risanje</div>
+          <img class="icon" src="../assets/images/icon-crayon.png" alt="Drawing">
+          <div class="icon-title">Drawing</div>
         </a>
         <a class="icon-link" href="books.html">
-          <img class="icon" src="../assets/images/icon-books.png" alt="Knjige">
-          <div class="icon-title">Knjige</div>
+          <img class="icon" src="../assets/images/icon-books.png" alt="Books">
+          <div class="icon-title">Books</div>
         </a>
         <a class="icon-link" href="printmaking.html">
-          <img class="icon" src="../assets/images/icon-press.png" alt="Grafika">
-          <div class="icon-title">Grafika</div>
+          <img class="icon" src="../assets/images/icon-press.png" alt="Printmaking">
+          <div class="icon-title">Printmaking</div>
         </a>
         <a class="icon-link wide-label" href="animation.html">
-          <img class="icon" src="../assets/images/icon-screen.png" alt="Animacija in oblikovanje">
-          <div class="icon-title">Animacija in oblikovanje</div>
+          <img class="icon" src="../assets/images/icon-screen.png" alt="Animation and design">
+          <div class="icon-title">Animation &amp; design</div>
         </a>
         <a class="icon-link" href="contact.html">
-          <img class="icon" src="../assets/images/icon-letter.png" alt="Kontakt">
-          <div class="icon-title">Kontakt</div>
+          <img class="icon" src="../assets/images/icon-letter.png" alt="Contact">
+          <div class="icon-title">Contact</div>
         </a>
         <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank" rel="noopener">
-          <img class="icon" src="../assets/images/icon-bag.png" alt="Trgovina">
-          <div class="icon-title">Trgovina</div>
+          <img class="icon" src="../assets/images/icon-bag.png" alt="Shop">
+          <div class="icon-title">Shop</div>
         </a>
       </nav>
     </div>
