@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knjige – Eva Margon</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <meta name="page-title" content="Knjige in revije">
+  <meta name="page-icon" content="../assets/images/icon-books.png">
+  <meta name="nav-active" content="books">
+
+  <style>
+    /* Books galerija (prepiše globalni grid styling) */
+    .grid-gallery{
+      --cols: 3;
+      --gap: 0px;
+      padding: 40px 40px 20px;
+      max-width: 1100px;
+    }
+
+    @media (max-width: 900px){
+      .grid-gallery{
+        --cols: 2;
+        --gap: 1px;
+        padding: 20px 24px 16px;
+        max-width: 520px;
+      }
+    }
+
+    @media (max-width: 420px){
+      .grid-gallery{
+        --gap: 0px;
+        padding: 16px 20px 14px;
+        max-width: 480px;
+      }
+    }
+
+    /* brez globalnega paddinga na karticah */
+    .project-card{ padding: 0 !important; }
+  </style>
+</head>
+
+<body>
+
+  <div data-include="header"></div>
+
+  <div class="grid-gallery">
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/books1.jpg" alt="Knjiga 1" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/books2.jpg" alt="Knjiga 2" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/books3.jpg" alt="Knjiga 3" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/books4.jpg" alt="Knjiga 4" loading="lazy"></div></div>
+    <div class="project-card"><div class="project-inner"><img src="../assets/images/books5.jpg" alt="Knjiga 5" loading="lazy"></div></div>
+  </div>
+
+  <div data-include="footer-nav"></div>
+  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+
+  <script src="../assets/js/include.js"></script>
+</body>
+</html>

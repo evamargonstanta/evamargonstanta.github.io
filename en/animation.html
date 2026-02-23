@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animacija in oblikovanje – Eva Margon</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <meta name="page-title" content="Animacija in oblikovanje">
+  <meta name="page-icon" content="../assets/images/icon-screen.png">
+  <meta name="nav-active" content="animation">
+
+  <style>
+    /* ===== FILTER BAR ===== */
+    .filter-bar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 14px 24px 0;
+      max-width: 1600px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+    }
+    .filter-btn{
+      border:1px solid #ddd;
+      background:#fff;
+      color:#222;
+      font-family: inherit;
+      font-size: .98rem;
+      font-weight: 600;
+      padding: 9px 14px;
+      cursor:pointer;
+      border-radius: 999px;
+      line-height:1;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+      transition: transform .06s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    @media (hover:hover){
+      .filter-btn:hover{
+        border-color:#bbb;
+        box-shadow: 0 2px 0 rgba(0,0,0,0.06);
+        transform: translateY(-1px);
+      }
+    }
+    .filter-btn:active{ transform: translateY(0); }
+    .filter-btn.is-active{
+      border-color:#222;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.10);
+    }
+    @media (max-width: 900px){
+      .filter-bar{ padding: 12px 20px 0; gap:8px; }
+      .filter-btn{ font-size: .95rem; padding: 8px 12px; }
+    }
+
+    /* klikabilne kartice */
+    .project-card{ cursor: pointer; }
+
+    /* play overlay – SAMO animacije */
+    .project-card.is-animation::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: url("../assets/images/icon-play.png") center center no-repeat;
+      background-size: 72px 72px;
+      opacity: 0.85;
+      pointer-events:none;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    @media (max-width: 900px){
+      .project-card.is-animation::after{ background-size: 56px 56px; }
+    }
+    @media (hover:hover){
+      .project-card.is-animation:hover::after{
+        opacity:1;
+        transform: scale(1.05);
+      }
+    }
+
+    /* ===== MODAL ===== */
+    .modal{ position:fixed; inset:0; display:none; z-index:999; }
+    .modal.is-open{ display:block; }
+    .modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,.45); }
+
+    .modal-panel{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      width: min(1280px, calc(100vw - 48px));
+      max-height: calc(100vh - 36px);
+      background:#fff;
+      overflow:hidden;
+    }
+
+    .modal-controls{
+      position:absolute; right:16px; bottom:16px;
+      z-index:5; display:flex; align-items:center; gap:14px;
+    }
+    .modal-controls button{
+      border:0; background:transparent; padding:6px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .modal-controls svg{ width:36px; height:36px; display:block; }
+    @media (max-width:520px){
+      .modal-controls{ right:10px; bottom:10px; gap:12px; }
+      .modal-controls svg{ width:32px; height:32px; }
+    }
+
+    .modal-content{
+      display:flex;
+      align-items: stretch;
+    }
+
+    .modal-media{
+      flex: 0 0 58%;
+      padding: 26px;
+      box-sizing: border-box;
+      background:#fff;
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-start;
+    }
+
+    .media-grid{
+      width:100%;
+      height:auto;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 20px;
+      row-gap: 20px;
+      align-content:start;
+    }
+
+    .media-tile{
+      width:100%;
+      aspect-ratio: 1 / 1;
+      background:#f6f6f6;
+      overflow:hidden;
+      display:block;
+    }
+
+    .media-tile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
+
+    .media-tile.is-hidden{ display:none; }
+
+    .media-grid.count-3{
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    .media-grid.count-3 .media-tile:nth-child(3){
+      grid-column: 1 / -1;
+      width: 100%;
+      justify-self: stretch;
+      aspect-ratio: 2 / 1;
+    }
+
+    .media-grid.count-2{
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      justify-content: center;
+    }
+    .media-grid.count-2 .media-tile{
+      width: calc(50% - 10px);
+    }
+
+    .media-grid.count-1{
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      justify-content: center;
+    }
+    .media-grid.count-1 .media-tile{
+      width: calc(50% - 10px);
+    }
+
+    .modal-body{
+      flex: 0 0 42%;
+      padding: 26px;
+      box-sizing: border-box;
+      background:#fff;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .meta-wrap{
+      width: 360px;
+      max-width: 100%;
+      text-align:left;
+    }
+
+    .meta-genre{
+      font-size: 1rem;
+      font-style: italic;
+      opacity:.65;
+      margin: 0 0 18px;
+      letter-spacing:.01em;
+    }
+
+    .meta-title{
+      font-size: 1.32rem;
+      font-weight:600;
+      margin: 0 0 18px;
+    }
+
+    .meta{
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      column-gap:12px;
+      row-gap:10px;
+      font-size:.98rem;
+      line-height:1.25;
+      align-items:start;
+      text-align:left;
+    }
+    .meta .label{ opacity:.65; }
+    .meta .value{ opacity:.95; }
+
+    .desc{
+      margin: 0 0 22px 0;
+      font-size:1rem;
+      line-height:1.5;
+      opacity:.95;
+      text-align: justify;
+      hyphens: auto;
+      display:-webkit-box;
+      -webkit-line-clamp: 9;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
+
+    /* ✅ MOBIL: modal je fullscreen (brez transform) + kontrolke so FIXNE na viewport */
+    @media (max-width: 900px){
+      .modal-panel{
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: none;
+        width: 100vw;
+        height: 100vh;
+        max-height: none;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .modal-content{
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .modal-media{
+        padding: 22px;
+        flex: 0 0 auto;
+      }
+
+      .modal-body{
+        flex: 0 0 auto;
+        overflow: visible;
+        padding: 12px 14px 120px;
+        align-items:flex-start;
+        justify-content:flex-start;
+      }
+
+      .desc{
+        -webkit-line-clamp: unset;
+        overflow: visible;
+      }
+
+      .meta{ grid-template-columns: 1fr; row-gap: 4px; }
+      .meta .label{ margin-top: 10px; }
+
+      .modal-controls{
+        position: fixed;
+        right: calc(12px + env(safe-area-inset-right, 0px));
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        z-index: 2000;
+      }
+    }
+
+    .project-card.is-hidden{ display:none; }
+  </style>
+</head>
+
+<body>
+
+  <div data-include="header"></div>
+
+  <div class="filter-bar" aria-label="Filtri">
+    <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Vse</button>
+    <button class="filter-btn" type="button" data-filter="animation" aria-pressed="false">Animacija</button>
+    <button class="filter-btn" type="button" data-filter="design" aria-pressed="false">Oblikovanje</button>
+  </div>
+
+  <div class="grid-gallery" id="galleryMixed">
+
+    <!-- 1 = Oblikovanje5 -->
+    <div class="project-card" data-category="design"
+         data-folder="design5"
+         data-img="../assets/images/design5.jpg"
+         data-title="Rastlinstvo: Rastline regijskega parka Pohorje - Poštne znamke, poštni žig in ovitka 1. dne"
+         data-year="2023"
+         data-type="Grafično oblikovanje / ilustracija"
+         data-client="Pošta Slovenije - natečaj"
+         data-text=""
+         data-duration=""
+         data-role="Grafično oblikovanje / ilustracija"
+         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk – štiri rastline, ki rastejo znotraj Regijskega parka Pohorje: rjasti sleč, brkata zvončica, nepravi sršaj in oranžna škržolica, oblikovanje poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+      <div class="project-inner">
+        <img src="../assets/images/design5.jpg" alt="Oblikovanje 5" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 2 = Oblikovanje1 -->
+    <div class="project-card" data-category="design"
+         data-folder="design1"
+         data-img="../assets/images/design1.jpg"
+         data-title="Zemljevid Goriške knjižnice"
+         data-year="2026"
+         data-type="grafično oblikovanje / ilustracija"
+         data-client="GKFB"
+         data-text=""
+         data-duration=""
+         data-role="Ilustracija / grafično oblikovanje"
+         data-notes="Zemljevid je nastal kot del predstavitvenega / promocijskega filma o Goriški knjižnici Franceta Bevka Nova Gorica.">
+      <div class="project-inner">
+        <img src="../assets/images/design1.jpg" alt="Oblikovanje 1" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 3 =  Oblikovanje10 -->
+    <div class="project-card" data-category="design"
+         data-folder="design10"
+         data-img="../assets/images/design10.jpg"
+         data-title="Slikanica Gora v temi"
+         data-year="2025"
+         data-type=""
+         data-client="ISPO d.o.o."
+         data-text="Jakob J. Kenda"
+         data-duration=""
+         data-role="Ilustracija / oblikovanje knjige"
+         data-notes="Slikanica, ki nagovarja vse Slovence, še posebej najstnike in njihove starše in jih vzpodbuja, da skupaj prehodijo vsaj del poti slovenske krožne Transverzale. Govori o zgodovini slovencev ter ob pripovedi prikazuje z njo povezane ilustracije.">
+      <div class="project-inner">
+        <img src="../assets/images/design10.jpg" alt="Oblikovanje 10" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 4 = Oblikovanje2 -->
+    <div class="project-card" data-category="design"
+         data-folder="design2"
+         data-img="../assets/images/design2.jpg"
+         data-title="Slikovni zemljevid planinskih poti v Logarski dolini"
+         data-year="2019"
+         data-type="grafično oblikovanje / ilustracija"
+         data-client="študijski projekt"
+         data-text=""
+         data-duration=""
+         data-role="Ilustracija / Grafično oblikovanje"
+         data-notes="Projekt združuje uporabnost zemljevida kot pripomočka v gorah in hkrati vsebuje lastno potopisno izkušnjo avtorice z ilustracijami iz poti.">
+      <div class="project-inner">
+        <img src="../assets/images/design2.jpg" alt="Oblikovanje 2" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 5 = Animacija3 -->
+    <div class="project-card is-animation" data-category="animation"
+         data-folder="animation3"
+         data-img="../assets/images/animation3.jpg"
+         data-title="Zaraščanje"
+         data-year="2025"
+         data-duration="01:20"
+         data-role="Ilustracija / animacija / režija / produkcija"
+         data-type=""
+         data-client=""
+         data-text=""
+         data-notes="Animacija vključuje sliko Lilit (avtorica Ana Rogel), ki jo počasi prerašča bršljan. Nastala je v okviru razstave Neopazne korenine v galeriji Alkatraz v Ljubljani.">
+      <div class="project-inner">
+        <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 6 = Oblikovanje3 -->
+    <div class="project-card" data-category="design"
+         data-folder="design3"
+         data-img="../assets/images/design3.jpg"
+         data-title="Rastlinstvo: Mušnice – poštne znamke, poštni žig in ovittka 1. dne"
+         data-year="2017"
+         data-type="grafično oblikovanje / ilustracija"
+         data-client="študijski projekt"
+         data-text=""
+         data-duration=""
+         data-role="Grafično oblikovanje / ilustracija"
+         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk - Rdeča mušnica, Spomladanska mušnica, Rjava mušnica in zelena mušnica, oblikovanje poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+      <div class="project-inner">
+        <img src="../assets/images/design3.jpg" alt="Oblikovanje 3" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 7 = Animacija4 -->
+    <div class="project-card is-animation" data-category="animation"
+         data-folder="animation4"
+         data-img="../assets/images/animation4.jpg"
+         data-title="Hitra dostava"
+         data-year="2019"
+         data-duration="00:16"
+         data-role="Ilustracija / animacija / režija / produkcija"
+         data-type=""
+         data-client="Adrial d.o.o."
+         data-text=""
+         data-notes="Animacija na humoren način prikaže dolovanje hitre dostave produktov spletne trgovine.">
+      <div class="project-inner">
+        <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 8 = Oblikovanje4 -->
+    <div class="project-card" data-category="design"
+         data-folder="design4"
+         data-img="../assets/images/design4.jpg"
+         data-title="Rastlinstvo: Tulipani – poštne znamke, poštni žig in ovitka 1. dne"
+         data-year="2022"
+         data-type="grafično oblikovanje / ilustracija"
+         data-client="Pošta Slovenije"
+         data-text=""
+         data-duration=""
+         data-role="Grafično oblikovanje / ilustracija"
+         data-notes="Projekt vsebuje obkikovanje štirih poštnih znamk – rdeči tulipan, potonikasti tulipan, gozdni tulipan in črni tulipan, oblikovanje poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+      <div class="project-inner">
+        <img src="../assets/images/design4.jpg" alt="Oblikovanje 4" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 9 = Animacija5 -->
+    <div class="project-card is-animation" data-category="animation"
+         data-folder="animation5"
+         data-img="../assets/images/animation5.jpg"
+         data-title="Včasih je ena kaplja dovolj"
+         data-year="2017"
+         data-duration="00:28"
+         data-role="Animacija / Ilustracija"
+         data-authors="Eva Margon Štanta, Barbara Kern"
+         data-production="ALUO, UL"
+         data-type=""
+         data-client="Europlakat d.o.o."
+         data-text=""
+         data-notes="Animacija nagovarja lastnike rastlin in govori o tem, da je včasih potrebno zalivati manj, kot si mislimo, da rastlina preživi.">
+      <div class="project-inner">
+        <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 10 = Animacija1 -->
+    <div class="project-card is-animation" data-category="animation"
+         data-folder="animation1"
+         data-img="../assets/images/animation1.jpg"
+         data-title="Jazon in Argonavti"
+         data-year="2015"
+         data-duration="3:44"
+         data-role="Ilustracija / animacija / režija / produkcija"
+         data-music="Denis Robnik"
+         data-type=""
+         data-client="KUD SCT"
+         data-text=""
+         data-notes="Animacija govori o legendi Jazona in Argonavtov, kako so nekoč ustanovili mesto Ljubljana, takrat Emona.">
+      <div class="project-inner">
+        <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 11 = Oblikovanje6 -->
+    <div class="project-card" data-category="design"
+         data-folder="design6"
+         data-img="../assets/images/design6.jpg"
+         data-title="Rastlinstvo: lilije – Poštne znamke"
+         data-year="2023"
+         data-type="Grafično oblikovanje / ilustracija"
+         data-client="Pošta Slovenije - natečaj"
+         data-text=""
+         data-duration=""
+         data-role="Grafično oblikovanje / ilustracija"
+         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk – Alojzijeva lilija, brstična lilija, kranjska lilija in turška lilija.">
+      <div class="project-inner">
+        <img src="../assets/images/design6.jpg" alt="Oblikovanje 6" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 12 = Animacija6 -->
+    <div class="project-card is-animation" data-category="animation"
+         data-folder="animation6"
+         data-img="../assets/images/animation6.jpg"
+         data-title="Portfolio Reel"
+         data-year="2024"
+         data-duration="03:00"
+         data-role="Ilustracija / animacija / režija / produkcija"
+         data-type=""
+         data-client=""
+         data-text=""
+         data-notes="Animacija združuje vse avtorske projekte v smiselno video celoto.">
+      <div class="project-inner">
+        <img src="../assets/images/animation6.jpg" alt="Animacija 6" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 13 = Oblikovanje7 -->
+    <div class="project-card" data-category="design"
+         data-folder="design7"
+         data-img="../assets/images/design7.jpg"
+         data-title="Živalstvo: gams – Poštne znamke, poštni žig in ovitka 1. dne"
+         data-year="2024"
+         data-type="Grafično oblikovanje / ilustracija"
+         data-client="Pošta Slovenije - natečaj"
+         data-text=""
+         data-duration=""
+         data-role="Grafično oblikovanje / ilustracija"
+         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk – prizori iz življenja gamsa, poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+      <div class="project-inner">
+        <img src="../assets/images/design7.jpg" alt="Oblikovanje 7" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 14 = Oblikovanje8 -->
+    <div class="project-card" data-category="design"
+         data-folder="design8"
+         data-img="../assets/images/design8.jpg"
+         data-title="Živalstvo: Lisica – Poštne znamke, poštni žig in ovitka 1. dne"
+         data-year="2025"
+         data-type="Grafično oblikovanje / ilustracija"
+         data-client="Pošta Slovenije - natečaj"
+         data-text=""
+         data-duration=""
+         data-role="Grafično oblikovanje / ilustracija"
+         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk – prizori iz življenja lisice, poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+      <div class="project-inner">
+        <img src="../assets/images/design8.jpg" alt="Oblikovanje 8" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 15 = Oblikovanje9 -->
+    <div class="project-card" data-category="design"
+         data-folder="design9"
+         data-img="../assets/images/design9.jpg"
+         data-title="Ovitek za marmelado"
+         data-year="2022"
+         data-type="Grafično oblikovanje / ilustracija"
+         data-client="Tamarine domače dobrote"
+         data-text=""
+         data-duration=""
+         data-role="Grafično oblikovanje / ilustracija"
+         data-notes="Projekt vsebuje oblikovanje ovitkov za domače marmelade z okusi: borovnica, črni bezeg, dren, gozdna jagoda, malina in robida.">
+      <div class="project-inner">
+        <img src="../assets/images/design9.jpg" alt="Oblikovanje 9" loading="lazy">
+      </div>
+    </div>
+
+    <!-- 16 = Animacija2 -->
+    <div class="project-card is-animation" data-category="animation"
+         data-folder="animation2"
+         data-img="../assets/images/animation2.jpg"
+         data-title="Vrzi kovanec"
+         data-year="2017"
+         data-duration="2:00"
+         data-role="Ilustracija / animacija / režija"
+         data-authors="Eva Margon Štanta, Kristina Kokalj, Tadeja Pungerčar, Andrej Adamek, Nina Baznik, Simona Lustek, Irena Režek"
+         data-production="Zavod Dagiba"
+         data-music="Kristina Kokalj, Andrej Adamek"
+         data-type=""
+         data-client=""
+         data-text=""
+         data-notes="Moškega na mostu ustavi neznanec in mu ponudi možnost, da o njegovem življenju odloča met kovanca.">
+      <div class="project-inner">
+        <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
+      </div>
+    </div>
+    
+    
+
+    <!-- 17 = Oblikovanje11 -->
+    <div class="project-card" data-category="design"
+         data-folder="design11"
+         data-img="../assets/images/design11.jpg"
+         data-title="Veseli kotiček"
+         data-year="2024"
+         data-type="Grafično oblikovanje / ilustracija"
+         data-client="Alja Vintar"
+         data-text=""
+         data-duration=""
+         data-role="Oblikovanje logotipa / ilustracija"
+         data-notes="Projekt vsebuje oblikovanje logotipa in glavnega lika za uporabo pri spletnih vsebinah. Zasnovana sta za področje, ki se ukvarja z igrivimi nasveti pri vzgoji otroka oz. malčka, s čuječnostjo in z njo povezano vzgojo.">
+      <div class="project-inner">
+        <img src="../assets/images/design11.jpg" alt="Oblikovanje 11" loading="lazy">
+      </div>
+    </div>
+
+  </div>
+
+  <div data-include="footer-nav"></div>
+  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+
+  <!-- MODAL -->
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Podrobnosti projekta">
+      <div class="modal-controls">
+        <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14.5 5l-7 7 7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9.5 5l7 7-7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M18 6L6 18" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-content">
+        <div class="modal-media">
+          <div class="media-grid" id="mediaGrid">
+            <div class="media-tile"><img id="mediaImg1" alt=""></div>
+            <div class="media-tile"><img id="mediaImg2" alt=""></div>
+            <div class="media-tile"><img id="mediaImg3" alt=""></div>
+            <div class="media-tile"><img id="mediaImg4" alt=""></div>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="meta-wrap">
+            <p class="meta-genre" id="mGenre">—</p>
+            <p class="meta-title" id="mTitleTop">—</p>
+
+            <div class="desc" id="mNotes"></div>
+
+            <div class="meta">
+              <div class="label">Leto</div><div class="value" id="mYear"></div>
+              <div class="label" id="lblDuration">Dolžina</div><div class="value" id="mDuration"></div>
+              <div class="label" id="lblClient">Naročnik</div><div class="value" id="mClient"></div>
+              <div class="label" id="lblText">Besedilo</div><div class="value" id="mText"></div>
+              <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
+              <div class="label" id="lblAuthors">Avtorji</div><div class="value" id="mAuthors"></div>
+              <div class="label" id="lblMusic">Glasba</div><div class="value" id="mMusic"></div>
+              <div class="label" id="lblProduction">Produkcija</div><div class="value" id="mProduction"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/include.js"></script>
+
+  <script>
+    (function () {
+      const PROJECTS_BASE = '../assets/images/projects/';
+
+      const modal = document.getElementById('projectModal');
+      const backdrop = document.getElementById('modalBackdrop');
+      const closeBtn = document.getElementById('closeBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      const mGenre = document.getElementById('mGenre');
+      const mTitleTop = document.getElementById('mTitleTop');
+      const mYear = document.getElementById('mYear');
+      const mDuration = document.getElementById('mDuration');
+      const mClient = document.getElementById('mClient');
+      const mText = document.getElementById('mText');
+      const mRole = document.getElementById('mRole');
+      const mAuthors = document.getElementById('mAuthors');
+      const mMusic = document.getElementById('mMusic');
+      const mProduction = document.getElementById('mProduction');
+      const mNotes = document.getElementById('mNotes');
+
+      const lblDuration = document.getElementById('lblDuration');
+      const lblClient = document.getElementById('lblClient');
+      const lblText = document.getElementById('lblText');
+      const lblRole = document.getElementById('lblRole');
+      const lblAuthors = document.getElementById('lblAuthors');
+      const lblMusic = document.getElementById('lblMusic');
+      const lblProduction = document.getElementById('lblProduction');
+
+      const mediaGrid = document.getElementById('mediaGrid');
+      const mediaImgs = [
+        document.getElementById('mediaImg1'),
+        document.getElementById('mediaImg2'),
+        document.getElementById('mediaImg3'),
+        document.getElementById('mediaImg4'),
+      ];
+
+      const cards = Array.from(document.querySelectorAll('.project-card'));
+      let currentIndex = -1;
+
+      function prettyGenre(cat){
+        if (cat === 'animation') return 'Animacija';
+        if (cat === 'design') return 'Oblikovanje';
+        return '—';
+      }
+
+      function show(el, yes){
+        if (!el) return;
+        el.style.display = yes ? '' : 'none';
+      }
+
+      function buildImagesFromFolder(folder){
+        if (!folder) return [];
+        const base = PROJECTS_BASE + folder + '/';
+        return [
+          base + folder + '-01.jpg',
+          base + folder + '-02.jpg',
+          base + folder + '-03.jpg',
+          base + folder + '-04.jpg',
+        ];
+      }
+
+      function fillMediaGridFromFolder(folder, title){
+        const imgs = buildImagesFromFolder(folder);
+
+        mediaGrid.classList.remove('count-1','count-2','count-3','count-4');
+
+        for (let i = 0; i < 4; i++){
+          const imgEl = mediaImgs[i];
+          const tile = imgEl.closest('.media-tile');
+
+          imgEl.onerror = null;
+
+          imgEl.src = imgs[i] || '';
+          imgEl.alt = imgs[i] ? (title || '') : '';
+
+          tile.classList.remove('is-hidden');
+
+          if (!imgs[i]) {
+            imgEl.removeAttribute('src');
+            imgEl.alt = '';
+            tile.classList.add('is-hidden');
+            continue;
+          }
+
+          imgEl.onerror = () => {
+            imgEl.removeAttribute('src');
+            imgEl.alt = '';
+            tile.classList.add('is-hidden');
+            updateGridClass();
+          };
+        }
+
+        setTimeout(updateGridClass, 0);
+
+        function updateGridClass(){
+          let visibleCount = 0;
+          for (let i = 0; i < 4; i++){
+            const tile = mediaImgs[i].closest('.media-tile');
+            if (!tile.classList.contains('is-hidden')) visibleCount++;
+          }
+          const safeCount = Math.max(1, Math.min(4, visibleCount));
+          mediaGrid.classList.remove('count-1','count-2','count-3','count-4');
+          mediaGrid.classList.add('count-' + safeCount);
+        }
+      }
+
+      function fillModalFromCard(card){
+        const title = card.getAttribute('data-title') || '—';
+        const year = card.getAttribute('data-year') || '—';
+        const duration = card.getAttribute('data-duration') || '';
+        const client = card.getAttribute('data-client') || '';
+        const text = card.getAttribute('data-text') || '';
+        const role = card.getAttribute('data-role') || '';
+        const authors = card.getAttribute('data-authors') || '';
+        const production = card.getAttribute('data-production') || '';
+        const music = card.getAttribute('data-music') || '';
+        const notes = card.getAttribute('data-notes') || '';
+        const category = card.getAttribute('data-category') || '';
+        const folder = card.getAttribute('data-folder') || '';
+
+        mGenre.textContent = prettyGenre(category);
+        mTitleTop.textContent = title;
+        mYear.textContent = year;
+        mNotes.textContent = notes;
+
+        fillMediaGridFromFolder(folder, title);
+
+        const isAnimation = category === 'animation';
+        const isDesign = category === 'design';
+
+        // Dolžina: samo animacije
+        show(lblDuration, isAnimation);
+        show(mDuration, isAnimation);
+        mDuration.textContent = isAnimation ? (duration || '—') : '';
+
+       // Naročnik: pokaži kjerkoli, če obstaja (design + animation)
+      const showClientRow = client.trim().length > 0;
+      show(lblClient, showClientRow);
+      show(mClient, showClientRow);
+      mClient.textContent = showClientRow ? client : '';
+
+
+        // Besedilo: samo če obstaja (oblikovanje)
+        const showTextRow = isDesign && text.trim().length > 0;
+        show(lblText, showTextRow);
+        show(mText, showTextRow);
+        mText.textContent = showTextRow ? text : '';
+
+        // Vloga: pri obeh
+        show(lblRole, true);
+        show(mRole, true);
+        mRole.textContent = role.trim().length > 0 ? role : '—';
+
+        // ✅ Avtorji: samo če obstaja
+        const showAuthorsRow = authors.trim().length > 0;
+        show(lblAuthors, showAuthorsRow);
+        show(mAuthors, showAuthorsRow);
+        mAuthors.textContent = showAuthorsRow ? authors : '';
+
+        // Glasba: samo če obstaja
+        const showMusicRow = isAnimation && music.trim().length > 0;
+        show(lblMusic, showMusicRow);
+        show(mMusic, showMusicRow);
+        mMusic.textContent = showMusicRow ? music : '';
+
+        // Produkcija: samo če obstaja
+        const showProductionRow = isAnimation && production.trim().length > 0;
+        show(lblProduction, showProductionRow);
+        show(mProduction, showProductionRow);
+        mProduction.textContent = showProductionRow ? production : '';
+      }
+
+      function openModal(index){
+        currentIndex = index;
+        fillModalFromCard(cards[currentIndex]);
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(){
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        currentIndex = -1;
+      }
+
+      function showPrev(){
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        fillModalFromCard(cards[currentIndex]);
+      }
+
+      function showNext(){
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex + 1) % cards.length;
+        fillModalFromCard(cards[currentIndex]);
+      }
+
+      cards.forEach((card, idx) => {
+        card.addEventListener('click', () => openModal(idx));
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(idx);
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
+
+      prevBtn.addEventListener('click', showPrev);
+      nextBtn.addEventListener('click', showNext);
+
+      window.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+      });
+
+      // FILTRI
+      const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+
+      function applyFilter(filter){
+        filterBtns.forEach(btn => {
+          const isActive = btn.getAttribute('data-filter') === filter;
+          btn.classList.toggle('is-active', isActive);
+          btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+
+        cards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          const shouldShow = (filter === 'all') || (cat === filter);
+          card.classList.toggle('is-hidden', !shouldShow);
+        });
+
+        if (modal.classList.contains('is-open')) {
+          const currentCard = cards[currentIndex];
+          if (currentCard && currentCard.classList.contains('is-hidden')) {
+            closeModal();
+          }
+        }
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          applyFilter(btn.getAttribute('data-filter'));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

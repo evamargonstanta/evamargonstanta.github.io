@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt – Eva Margon</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <meta name="page-title" content="Kontakt">
+  <meta name="page-icon" content="../assets/images/icon-letter.png">
+  <meta name="nav-active" content="contact">
+
+  <style>
+    .container{
+      max-width:1180px;
+      margin:40px auto;
+      padding:0 20px;
+      box-sizing:border-box;
+    }
+
+   .contact-grid{
+  display:grid;
+  grid-template-columns: minmax(360px, 420px) 1fr;
+  gap:40px;
+  align-items:end; /* poravna spodaj */
+}
+
+
+    /* leva ilustracija */
+ .contact-visual{
+  background:#fff;
+  padding:18px;
+}
+
+.contact-visual img{
+  width:100%;
+  height:auto;
+  display:block;
+  transform:translateY(10px);
+}
+
+
+
+    /* desna stran */
+    .contact-text p{
+      line-height:1.65;
+      margin:0 0 18px;
+    }
+
+    .contact-list{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      margin-top:14px;
+    }
+
+    .contact-item{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      text-decoration:none;
+      color:#111;
+      padding:6px 0;
+      transition:opacity .15s ease, transform .15s ease;
+    }
+
+    .contact-item:hover{
+      opacity:.7;
+      transform:translateX(2px);
+    }
+
+    /* velike ikone */
+    .contact-icon{
+      width:82px;
+      height:82px;
+      flex:0 0 auto;
+    }
+
+    .contact-info{
+      display:flex;
+      flex-direction:column;
+    }
+
+    .contact-label{
+      font-weight:600;
+      font-size:1rem;
+    }
+
+    .contact-value{
+      font-size:0.95rem;
+      opacity:.75;
+    }
+
+    /* mobile */
+    @media (max-width:768px){
+      .contact-grid{
+        grid-template-columns:1fr;
+        gap:26px;
+      }
+
+      .contact-icon{
+        width:70px;
+        height:70px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div data-include="header"></div>
+
+<div class="container">
+
+  <div class="contact-grid">
+
+    <!-- LEVA ILUSTRACIJA -->
+    <div class="contact-visual">
+      <!-- lahko zamenjaš s kakšno ilustracijo pisma -->
+      <img src="../assets/images/pismonamizi.jpg" alt="Pismo">
+    </div>
+
+    <!-- DESNA STRAN -->
+    <div class="contact-text">
+      <p>
+        Če bi rad izvedel še kaj več o tekočih projektih, mi pisal za sodelovanje, naročilo ali povpraševanje, me najdeš na spodnjih povezavah.
+      </p>
+
+      <div class="contact-list">
+
+        <!-- EMAIL -->
+        <a class="contact-item"
+           href="mailto:eva.margon@hotmail.com?subject=Pozdrav%20(Eva%20Margon)">
+          <img class="contact-icon" src="../assets/images/icon-mail.png" alt="">
+          <div class="contact-info">
+            <div class="contact-label">E-mail</div>
+            <div class="contact-value">eva.margon@hotmail.com</div>
+          </div>
+        </a>
+
+        <!-- INSTAGRAM -->
+        <a class="contact-item"
+           href="https://instagram.com/evamargon_"
+           target="_blank" rel="noopener">
+          <img class="contact-icon" src="../assets/images/icon-ig.png" alt="">
+          <div class="contact-info">
+            <div class="contact-label">Instagram</div>
+            <div class="contact-value">@evamargon_</div>
+          </div>
+        </a>
+
+        <!-- FACEBOOK -->
+        <a class="contact-item"
+           href="https://www.facebook.com/p/Eva-Margon-Illustration-100072807031670/"
+           target="_blank" rel="noopener">
+          <img class="contact-icon" src="../assets/images/icon-fb.png" alt="">
+          <div class="contact-info">
+            <div class="contact-label">Facebook</div>
+            <div class="contact-value">Eva Margon Illustration</div>
+          </div>
+        </a>
+
+        <!-- VIMEO -->
+        <a class="contact-item"
+           href="https://vimeo.com/user24898809"
+           target="_blank" rel="noopener">
+          <img class="contact-icon" src="../assets/images/icon-vimeo.png" alt="">
+          <div class="contact-info">
+            <div class="contact-label">Vimeo</div>
+            <div class="contact-value">@evamargon</div>
+          </div>
+        </a>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div data-include="footer-nav"></div>
+<a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+
+<script src="../assets/js/include.js"></script>
+
+</body>
+</html>
