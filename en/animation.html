@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animacija in oblikovanje – Eva Margon</title>
+  <title>Animation and Design – Eva Margon</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 
-  <meta name="page-title" content="Animacija in oblikovanje">
+  <meta name="page-title" content="Animation and Design">
   <meta name="page-icon" content="../assets/images/icon-screen.png">
   <meta name="nav-active" content="animation">
 
@@ -55,10 +55,10 @@
       .filter-btn{ font-size: .95rem; padding: 8px 12px; }
     }
 
-    /* klikabilne kartice */
+    /* clickable cards */
     .project-card{ cursor: pointer; }
 
-    /* play overlay – SAMO animacije */
+    /* play overlay – ANIMATION only */
     .project-card.is-animation::after{
       content:"";
       position:absolute;
@@ -239,7 +239,7 @@
       overflow:hidden;
     }
 
-    /* ✅ MOBIL: modal je fullscreen (brez transform) + kontrolke so FIXNE na viewport */
+    /* ✅ MOBILE: fullscreen modal + fixed controls */
     @media (max-width: 900px){
       .modal-panel{
         position: fixed;
@@ -295,49 +295,49 @@
 
   <div data-include="header"></div>
 
-  <div class="filter-bar" aria-label="Filtri">
-    <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">Vse</button>
-    <button class="filter-btn" type="button" data-filter="animation" aria-pressed="false">Animacija</button>
-    <button class="filter-btn" type="button" data-filter="design" aria-pressed="false">Oblikovanje</button>
+  <div class="filter-bar" aria-label="Filters">
+    <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter-btn" type="button" data-filter="animation" aria-pressed="false">Animation</button>
+    <button class="filter-btn" type="button" data-filter="design" aria-pressed="false">Design</button>
   </div>
 
   <div class="grid-gallery" id="galleryMixed">
 
-    <!-- 1 = Oblikovanje5 -->
+    <!-- 1 = Design5 -->
     <div class="project-card" data-category="design"
          data-folder="design5"
          data-img="../assets/images/design5.jpg"
          data-title="Rastlinstvo: Rastline regijskega parka Pohorje - Poštne znamke, poštni žig in ovitka 1. dne"
          data-year="2023"
-         data-type="Grafično oblikovanje / ilustracija"
-         data-client="Pošta Slovenije - natečaj"
+         data-type="Graphic design / illustration"
+         data-client="Pošta Slovenije – competition"
          data-text=""
          data-duration=""
-         data-role="Grafično oblikovanje / ilustracija"
-         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk – štiri rastline, ki rastejo znotraj Regijskega parka Pohorje: rjasti sleč, brkata zvončica, nepravi sršaj in oranžna škržolica, oblikovanje poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+         data-role="Graphic design / illustration"
+         data-notes="The project includes the design of four postage stamps—four plants found within the Pohorje Regional Park: rjasti sleč, brkata zvončica, nepravi sršaj and oranžna škržolica—plus a special postmark and two illustrated first-day covers.">
       <div class="project-inner">
-        <img src="../assets/images/design5.jpg" alt="Oblikovanje 5" loading="lazy">
+        <img src="../assets/images/design5.jpg" alt="Design 5" loading="lazy">
       </div>
     </div>
 
-    <!-- 2 = Oblikovanje1 -->
+    <!-- 2 = Design1 -->
     <div class="project-card" data-category="design"
          data-folder="design1"
          data-img="../assets/images/design1.jpg"
          data-title="Zemljevid Goriške knjižnice"
          data-year="2026"
-         data-type="grafično oblikovanje / ilustracija"
+         data-type="Graphic design / illustration"
          data-client="GKFB"
          data-text=""
          data-duration=""
-         data-role="Ilustracija / grafično oblikovanje"
-         data-notes="Zemljevid je nastal kot del predstavitvenega / promocijskega filma o Goriški knjižnici Franceta Bevka Nova Gorica.">
+         data-role="Illustration / graphic design"
+         data-notes="The map was created as part of a presentation/promotional film about Goriška knjižnica Franceta Bevka Nova Gorica.">
       <div class="project-inner">
-        <img src="../assets/images/design1.jpg" alt="Oblikovanje 1" loading="lazy">
+        <img src="../assets/images/design1.jpg" alt="Design 1" loading="lazy">
       </div>
     </div>
 
-    <!-- 3 =  Oblikovanje10 -->
+    <!-- 3 = Design10 -->
     <div class="project-card" data-category="design"
          data-folder="design10"
          data-img="../assets/images/design10.jpg"
@@ -347,283 +347,281 @@
          data-client="ISPO d.o.o."
          data-text="Jakob J. Kenda"
          data-duration=""
-         data-role="Ilustracija / oblikovanje knjige"
-         data-notes="Slikanica, ki nagovarja vse Slovence, še posebej najstnike in njihove starše in jih vzpodbuja, da skupaj prehodijo vsaj del poti slovenske krožne Transverzale. Govori o zgodovini slovencev ter ob pripovedi prikazuje z njo povezane ilustracije.">
+         data-role="Illustration / book design"
+         data-notes="A picture book addressing readers across Slovenia—especially teenagers and their parents—encouraging them to walk at least part of the Slovenian circular trail (Transverzala). It speaks about Slovenian history and, alongside the story, presents related illustrations.">
       <div class="project-inner">
-        <img src="../assets/images/design10.jpg" alt="Oblikovanje 10" loading="lazy">
+        <img src="../assets/images/design10.jpg" alt="Design 10" loading="lazy">
       </div>
     </div>
 
-    <!-- 4 = Oblikovanje2 -->
+    <!-- 4 = Design2 -->
     <div class="project-card" data-category="design"
          data-folder="design2"
          data-img="../assets/images/design2.jpg"
          data-title="Slikovni zemljevid planinskih poti v Logarski dolini"
          data-year="2019"
-         data-type="grafično oblikovanje / ilustracija"
-         data-client="študijski projekt"
+         data-type="Graphic design / illustration"
+         data-client="student project"
          data-text=""
          data-duration=""
-         data-role="Ilustracija / Grafično oblikovanje"
-         data-notes="Projekt združuje uporabnost zemljevida kot pripomočka v gorah in hkrati vsebuje lastno potopisno izkušnjo avtorice z ilustracijami iz poti.">
+         data-role="Illustration / graphic design"
+         data-notes="The project combines the practical use of a hiking map with the author’s own travel experience, woven together with illustrations from the route.">
       <div class="project-inner">
-        <img src="../assets/images/design2.jpg" alt="Oblikovanje 2" loading="lazy">
+        <img src="../assets/images/design2.jpg" alt="Design 2" loading="lazy">
       </div>
     </div>
 
-    <!-- 5 = Animacija3 -->
+    <!-- 5 = Animation3 -->
     <div class="project-card is-animation" data-category="animation"
          data-folder="animation3"
          data-img="../assets/images/animation3.jpg"
          data-title="Zaraščanje"
          data-year="2025"
          data-duration="01:20"
-         data-role="Ilustracija / animacija / režija / produkcija"
+         data-role="Illustration / animation / direction / production"
          data-type=""
          data-client=""
          data-text=""
-         data-notes="Animacija vključuje sliko Lilit (avtorica Ana Rogel), ki jo počasi prerašča bršljan. Nastala je v okviru razstave Neopazne korenine v galeriji Alkatraz v Ljubljani.">
+         data-notes="The animation features the painting Lilit (by Ana Rogel), slowly overgrown by ivy. It was created as part of the exhibition Inconspicuous Roots at Galerija Alkatraz in Ljubljana.">
       <div class="project-inner">
-        <img src="../assets/images/animation3.jpg" alt="Animacija 3" loading="lazy">
+        <img src="../assets/images/animation3.jpg" alt="Animation 3" loading="lazy">
       </div>
     </div>
 
-    <!-- 6 = Oblikovanje3 -->
+    <!-- 6 = Design3 -->
     <div class="project-card" data-category="design"
          data-folder="design3"
          data-img="../assets/images/design3.jpg"
          data-title="Rastlinstvo: Mušnice – poštne znamke, poštni žig in ovittka 1. dne"
          data-year="2017"
-         data-type="grafično oblikovanje / ilustracija"
-         data-client="študijski projekt"
+         data-type="Graphic design / illustration"
+         data-client="student project"
          data-text=""
          data-duration=""
-         data-role="Grafično oblikovanje / ilustracija"
-         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk - Rdeča mušnica, Spomladanska mušnica, Rjava mušnica in zelena mušnica, oblikovanje poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+         data-role="Graphic design / illustration"
+         data-notes="The project includes the design of four postage stamps—Rdeča mušnica, Spomladanska mušnica, Rjava mušnica and zelena mušnica—plus a special postmark and two illustrated first-day covers.">
       <div class="project-inner">
-        <img src="../assets/images/design3.jpg" alt="Oblikovanje 3" loading="lazy">
+        <img src="../assets/images/design3.jpg" alt="Design 3" loading="lazy">
       </div>
     </div>
 
-    <!-- 7 = Animacija4 -->
+    <!-- 7 = Animation4 -->
     <div class="project-card is-animation" data-category="animation"
          data-folder="animation4"
          data-img="../assets/images/animation4.jpg"
          data-title="Hitra dostava"
          data-year="2019"
          data-duration="00:16"
-         data-role="Ilustracija / animacija / režija / produkcija"
+         data-role="Illustration / animation / direction / production"
          data-type=""
          data-client="Adrial d.o.o."
          data-text=""
-         data-notes="Animacija na humoren način prikaže dolovanje hitre dostave produktov spletne trgovine.">
+         data-notes="A humorous animation depicting the ‘fast delivery’ process for products from an online store.">
       <div class="project-inner">
-        <img src="../assets/images/animation4.jpg" alt="Animacija 4" loading="lazy">
+        <img src="../assets/images/animation4.jpg" alt="Animation 4" loading="lazy">
       </div>
     </div>
 
-    <!-- 8 = Oblikovanje4 -->
+    <!-- 8 = Design4 -->
     <div class="project-card" data-category="design"
          data-folder="design4"
          data-img="../assets/images/design4.jpg"
          data-title="Rastlinstvo: Tulipani – poštne znamke, poštni žig in ovitka 1. dne"
          data-year="2022"
-         data-type="grafično oblikovanje / ilustracija"
+         data-type="Graphic design / illustration"
          data-client="Pošta Slovenije"
          data-text=""
          data-duration=""
-         data-role="Grafično oblikovanje / ilustracija"
-         data-notes="Projekt vsebuje obkikovanje štirih poštnih znamk – rdeči tulipan, potonikasti tulipan, gozdni tulipan in črni tulipan, oblikovanje poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+         data-role="Graphic design / illustration"
+         data-notes="The project includes the design of four postage stamps—rdeči tulipan, potonikasti tulipan, gozdni tulipan and črni tulipan—plus a special postmark and two illustrated first-day covers.">
       <div class="project-inner">
-        <img src="../assets/images/design4.jpg" alt="Oblikovanje 4" loading="lazy">
+        <img src="../assets/images/design4.jpg" alt="Design 4" loading="lazy">
       </div>
     </div>
 
-    <!-- 9 = Animacija5 -->
+    <!-- 9 = Animation5 -->
     <div class="project-card is-animation" data-category="animation"
          data-folder="animation5"
          data-img="../assets/images/animation5.jpg"
          data-title="Včasih je ena kaplja dovolj"
          data-year="2017"
          data-duration="00:28"
-         data-role="Animacija / Ilustracija"
+         data-role="Animation / illustration"
          data-authors="Eva Margon Štanta, Barbara Kern"
          data-production="ALUO, UL"
          data-type=""
          data-client="Europlakat d.o.o."
          data-text=""
-         data-notes="Animacija nagovarja lastnike rastlin in govori o tem, da je včasih potrebno zalivati manj, kot si mislimo, da rastlina preživi.">
+         data-notes="An animation aimed at plant owners, highlighting that sometimes we need to water less than we think for a plant to thrive.">
       <div class="project-inner">
-        <img src="../assets/images/animation5.jpg" alt="Animacija 5" loading="lazy">
+        <img src="../assets/images/animation5.jpg" alt="Animation 5" loading="lazy">
       </div>
     </div>
 
-    <!-- 10 = Animacija1 -->
+    <!-- 10 = Animation1 -->
     <div class="project-card is-animation" data-category="animation"
          data-folder="animation1"
          data-img="../assets/images/animation1.jpg"
          data-title="Jazon in Argonavti"
          data-year="2015"
          data-duration="3:44"
-         data-role="Ilustracija / animacija / režija / produkcija"
+         data-role="Illustration / animation / direction / production"
          data-music="Denis Robnik"
          data-type=""
          data-client="KUD SCT"
          data-text=""
-         data-notes="Animacija govori o legendi Jazona in Argonavtov, kako so nekoč ustanovili mesto Ljubljana, takrat Emona.">
+         data-notes="An animation based on the legend of Jason and the Argonauts, and how they once founded the city of Ljubljana—then Emona.">
       <div class="project-inner">
-        <img src="../assets/images/animation1.jpg" alt="Animacija 1" loading="lazy">
+        <img src="../assets/images/animation1.jpg" alt="Animation 1" loading="lazy">
       </div>
     </div>
 
-    <!-- 11 = Oblikovanje6 -->
+    <!-- 11 = Design6 -->
     <div class="project-card" data-category="design"
          data-folder="design6"
          data-img="../assets/images/design6.jpg"
          data-title="Rastlinstvo: lilije – Poštne znamke"
          data-year="2023"
-         data-type="Grafično oblikovanje / ilustracija"
-         data-client="Pošta Slovenije - natečaj"
+         data-type="Graphic design / illustration"
+         data-client="Pošta Slovenije – competition"
          data-text=""
          data-duration=""
-         data-role="Grafično oblikovanje / ilustracija"
-         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk – Alojzijeva lilija, brstična lilija, kranjska lilija in turška lilija.">
+         data-role="Graphic design / illustration"
+         data-notes="The project includes the design of four postage stamps—Alojzijeva lilija, brstična lilija, kranjska lilija and turška lilija.">
       <div class="project-inner">
-        <img src="../assets/images/design6.jpg" alt="Oblikovanje 6" loading="lazy">
+        <img src="../assets/images/design6.jpg" alt="Design 6" loading="lazy">
       </div>
     </div>
 
-    <!-- 12 = Animacija6 -->
+    <!-- 12 = Animation6 -->
     <div class="project-card is-animation" data-category="animation"
          data-folder="animation6"
          data-img="../assets/images/animation6.jpg"
          data-title="Portfolio Reel"
          data-year="2024"
          data-duration="03:00"
-         data-role="Ilustracija / animacija / režija / produkcija"
+         data-role="Illustration / animation / direction / production"
          data-type=""
          data-client=""
          data-text=""
-         data-notes="Animacija združuje vse avtorske projekte v smiselno video celoto.">
+         data-notes="A compilation that brings together all author projects into a coherent video piece.">
       <div class="project-inner">
-        <img src="../assets/images/animation6.jpg" alt="Animacija 6" loading="lazy">
+        <img src="../assets/images/animation6.jpg" alt="Animation 6" loading="lazy">
       </div>
     </div>
 
-    <!-- 13 = Oblikovanje7 -->
+    <!-- 13 = Design7 -->
     <div class="project-card" data-category="design"
          data-folder="design7"
          data-img="../assets/images/design7.jpg"
          data-title="Živalstvo: gams – Poštne znamke, poštni žig in ovitka 1. dne"
          data-year="2024"
-         data-type="Grafično oblikovanje / ilustracija"
-         data-client="Pošta Slovenije - natečaj"
+         data-type="Graphic design / illustration"
+         data-client="Pošta Slovenije – competition"
          data-text=""
          data-duration=""
-         data-role="Grafično oblikovanje / ilustracija"
-         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk – prizori iz življenja gamsa, poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+         data-role="Graphic design / illustration"
+         data-notes="The project includes the design of four postage stamps depicting scenes from the chamois’ life, plus a special postmark and two illustrated first-day covers.">
       <div class="project-inner">
-        <img src="../assets/images/design7.jpg" alt="Oblikovanje 7" loading="lazy">
+        <img src="../assets/images/design7.jpg" alt="Design 7" loading="lazy">
       </div>
     </div>
 
-    <!-- 14 = Oblikovanje8 -->
+    <!-- 14 = Design8 -->
     <div class="project-card" data-category="design"
          data-folder="design8"
          data-img="../assets/images/design8.jpg"
          data-title="Živalstvo: Lisica – Poštne znamke, poštni žig in ovitka 1. dne"
          data-year="2025"
-         data-type="Grafično oblikovanje / ilustracija"
-         data-client="Pošta Slovenije - natečaj"
+         data-type="Graphic design / illustration"
+         data-client="Pošta Slovenije – competition"
          data-text=""
          data-duration=""
-         data-role="Grafično oblikovanje / ilustracija"
-         data-notes="Projekt vsebuje oblikovanje štirih poštnih znamk – prizori iz življenja lisice, poštnega žiga in dveh ilustriranih ovitkov prvega dne.">
+         data-role="Graphic design / illustration"
+         data-notes="The project includes the design of four postage stamps depicting scenes from the fox’s life, plus a special postmark and two illustrated first-day covers.">
       <div class="project-inner">
-        <img src="../assets/images/design8.jpg" alt="Oblikovanje 8" loading="lazy">
+        <img src="../assets/images/design8.jpg" alt="Design 8" loading="lazy">
       </div>
     </div>
 
-    <!-- 15 = Oblikovanje9 -->
+    <!-- 15 = Design9 -->
     <div class="project-card" data-category="design"
          data-folder="design9"
          data-img="../assets/images/design9.jpg"
          data-title="Ovitek za marmelado"
          data-year="2022"
-         data-type="Grafično oblikovanje / ilustracija"
+         data-type="Graphic design / illustration"
          data-client="Tamarine domače dobrote"
          data-text=""
          data-duration=""
-         data-role="Grafično oblikovanje / ilustracija"
-         data-notes="Projekt vsebuje oblikovanje ovitkov za domače marmelade z okusi: borovnica, črni bezeg, dren, gozdna jagoda, malina in robida.">
+         data-role="Graphic design / illustration"
+         data-notes="The project includes packaging design for homemade jam flavours: blueberry, black elderberry, cornelian cherry, wild strawberry, raspberry and blackberry.">
       <div class="project-inner">
-        <img src="../assets/images/design9.jpg" alt="Oblikovanje 9" loading="lazy">
+        <img src="../assets/images/design9.jpg" alt="Design 9" loading="lazy">
       </div>
     </div>
 
-    <!-- 16 = Animacija2 -->
+    <!-- 16 = Animation2 -->
     <div class="project-card is-animation" data-category="animation"
          data-folder="animation2"
          data-img="../assets/images/animation2.jpg"
          data-title="Vrzi kovanec"
          data-year="2017"
          data-duration="2:00"
-         data-role="Ilustracija / animacija / režija"
+         data-role="Illustration / animation / direction"
          data-authors="Eva Margon Štanta, Kristina Kokalj, Tadeja Pungerčar, Andrej Adamek, Nina Baznik, Simona Lustek, Irena Režek"
          data-production="Zavod Dagiba"
          data-music="Kristina Kokalj, Andrej Adamek"
          data-type=""
          data-client=""
          data-text=""
-         data-notes="Moškega na mostu ustavi neznanec in mu ponudi možnost, da o njegovem življenju odloča met kovanca.">
+         data-notes="A stranger stops a man on a bridge and offers him a chance to let a coin toss decide his life.">
       <div class="project-inner">
-        <img src="../assets/images/animation2.jpg" alt="Animacija 2" loading="lazy">
+        <img src="../assets/images/animation2.jpg" alt="Animation 2" loading="lazy">
       </div>
     </div>
-    
-    
 
-    <!-- 17 = Oblikovanje11 -->
+    <!-- 17 = Design11 -->
     <div class="project-card" data-category="design"
          data-folder="design11"
          data-img="../assets/images/design11.jpg"
          data-title="Veseli kotiček"
          data-year="2024"
-         data-type="Grafično oblikovanje / ilustracija"
+         data-type="Graphic design / illustration"
          data-client="Alja Vintar"
          data-text=""
          data-duration=""
-         data-role="Oblikovanje logotipa / ilustracija"
-         data-notes="Projekt vsebuje oblikovanje logotipa in glavnega lika za uporabo pri spletnih vsebinah. Zasnovana sta za področje, ki se ukvarja z igrivimi nasveti pri vzgoji otroka oz. malčka, s čuječnostjo in z njo povezano vzgojo.">
+         data-role="Logo design / illustration"
+         data-notes="The project includes the design of a logo and a main character for use in online content. They were created for a field focused on playful parenting guidance, mindfulness, and related approaches.">
       <div class="project-inner">
-        <img src="../assets/images/design11.jpg" alt="Oblikovanje 11" loading="lazy">
+        <img src="../assets/images/design11.jpg" alt="Design 11" loading="lazy">
       </div>
     </div>
 
   </div>
 
   <div data-include="footer-nav"></div>
-  <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
+  <a href="index.html" class="door-hotspot" aria-label="Back to home"></a>
 
   <!-- MODAL -->
   <div class="modal" id="projectModal" aria-hidden="true">
     <div class="modal-backdrop" id="modalBackdrop"></div>
 
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Podrobnosti projekta">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-label="Project details">
       <div class="modal-controls">
-        <button class="modal-prev" type="button" id="prevBtn" aria-label="Prejšnji">
+        <button class="modal-prev" type="button" id="prevBtn" aria-label="Previous">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M14.5 5l-7 7 7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
 
-        <button class="modal-next" type="button" id="nextBtn" aria-label="Naslednji">
+        <button class="modal-next" type="button" id="nextBtn" aria-label="Next">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9.5 5l7 7-7 7" stroke="#222" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
 
-        <button class="modal-close" type="button" id="closeBtn" aria-label="Zapri">
+        <button class="modal-close" type="button" id="closeBtn" aria-label="Close">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M6 6l12 12" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
             <path d="M18 6L6 18" stroke="#222" stroke-width="2.6" stroke-linecap="round"/>
@@ -649,14 +647,14 @@
             <div class="desc" id="mNotes"></div>
 
             <div class="meta">
-              <div class="label">Leto</div><div class="value" id="mYear"></div>
-              <div class="label" id="lblDuration">Dolžina</div><div class="value" id="mDuration"></div>
-              <div class="label" id="lblClient">Naročnik</div><div class="value" id="mClient"></div>
-              <div class="label" id="lblText">Besedilo</div><div class="value" id="mText"></div>
-              <div class="label" id="lblRole">Vloga</div><div class="value" id="mRole"></div>
-              <div class="label" id="lblAuthors">Avtorji</div><div class="value" id="mAuthors"></div>
-              <div class="label" id="lblMusic">Glasba</div><div class="value" id="mMusic"></div>
-              <div class="label" id="lblProduction">Produkcija</div><div class="value" id="mProduction"></div>
+              <div class="label">Year</div><div class="value" id="mYear"></div>
+              <div class="label" id="lblDuration">Duration</div><div class="value" id="mDuration"></div>
+              <div class="label" id="lblClient">Client</div><div class="value" id="mClient"></div>
+              <div class="label" id="lblText">Text</div><div class="value" id="mText"></div>
+              <div class="label" id="lblRole">Role</div><div class="value" id="mRole"></div>
+              <div class="label" id="lblAuthors">Authors</div><div class="value" id="mAuthors"></div>
+              <div class="label" id="lblMusic">Music</div><div class="value" id="mMusic"></div>
+              <div class="label" id="lblProduction">Production</div><div class="value" id="mProduction"></div>
             </div>
 
           </div>
@@ -709,8 +707,8 @@
       let currentIndex = -1;
 
       function prettyGenre(cat){
-        if (cat === 'animation') return 'Animacija';
-        if (cat === 'design') return 'Oblikovanje';
+        if (cat === 'animation') return 'Animation';
+        if (cat === 'design') return 'Design';
         return '—';
       }
 
@@ -799,42 +797,41 @@
         const isAnimation = category === 'animation';
         const isDesign = category === 'design';
 
-        // Dolžina: samo animacije
+        /* Duration: animation only */
         show(lblDuration, isAnimation);
         show(mDuration, isAnimation);
         mDuration.textContent = isAnimation ? (duration || '—') : '';
 
-       // Naročnik: pokaži kjerkoli, če obstaja (design + animation)
-      const showClientRow = client.trim().length > 0;
-      show(lblClient, showClientRow);
-      show(mClient, showClientRow);
-      mClient.textContent = showClientRow ? client : '';
+        /* Client: show wherever present (design + animation) */
+        const showClientRow = client.trim().length > 0;
+        show(lblClient, showClientRow);
+        show(mClient, showClientRow);
+        mClient.textContent = showClientRow ? client : '';
 
-
-        // Besedilo: samo če obstaja (oblikovanje)
+        /* Text: only if present (design) */
         const showTextRow = isDesign && text.trim().length > 0;
         show(lblText, showTextRow);
         show(mText, showTextRow);
         mText.textContent = showTextRow ? text : '';
 
-        // Vloga: pri obeh
+        /* Role: both */
         show(lblRole, true);
         show(mRole, true);
         mRole.textContent = role.trim().length > 0 ? role : '—';
 
-        // ✅ Avtorji: samo če obstaja
+        /* Authors: only if present */
         const showAuthorsRow = authors.trim().length > 0;
         show(lblAuthors, showAuthorsRow);
         show(mAuthors, showAuthorsRow);
         mAuthors.textContent = showAuthorsRow ? authors : '';
 
-        // Glasba: samo če obstaja
+        /* Music: only if present (animation) */
         const showMusicRow = isAnimation && music.trim().length > 0;
         show(lblMusic, showMusicRow);
         show(mMusic, showMusicRow);
         mMusic.textContent = showMusicRow ? music : '';
 
-        // Produkcija: samo če obstaja
+        /* Production: only if present (animation) */
         const showProductionRow = isAnimation && production.trim().length > 0;
         show(lblProduction, showProductionRow);
         show(mProduction, showProductionRow);
@@ -893,7 +890,7 @@
         if (e.key === 'ArrowRight') showNext();
       });
 
-      // FILTRI
+      /* FILTERS */
       const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
 
       function applyFilter(filter){
