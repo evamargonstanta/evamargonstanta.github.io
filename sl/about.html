@@ -36,23 +36,25 @@
     }
 
     .hero-photo{
-      border:1px solid #ddd;
-      background:#fff;
-      overflow:hidden;
-      border-radius:0;           /* ✅ 90° */
-      width:100%;
-      margin:0 0 18px;
-      aspect-ratio: 3 / 2;       /* ✅ ohrani horizontalen feeling */
-    }
+  border:1px solid #ddd;
+  background:#fff;
+  overflow:hidden;
+  border-radius:0;
+  width:100%;
+  margin:0 0 18px;
 
-    /* fotka: manj agresivno obrezovanje */
-    .profile-photo{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center 20%; /* ✅ namesto top: malo nižje, da ni "grdo odrezana" */
-      display:block;
-    }
+  /* ↓ bolj podolgovata (nižja) */
+  aspect-ratio: 3 / 1.55;
+}
+
+    /* obreže SAMO spodaj */
+.profile-photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top; /* glava vedno ostane */
+  display:block;
+}
 
     .hero-text{
       max-width: 1000px;
