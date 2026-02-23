@@ -14,13 +14,18 @@
   <meta name="nav-active" content="about">
 
   <style>
+    /* =========================
+       ABOUT (clean)
+    ========================== */
+
     .container{
-      max-width:1180px;
+      max-width:1180px;     /* same as Contact */
       margin:40px auto;
       padding:0 20px;
       box-sizing:border-box;
     }
 
+    /* HERO: photo + intro (no extra blocks) */
     .about-hero{
       max-width:1000px;
       margin:0 auto 56px;
@@ -30,17 +35,17 @@
       border:1px solid #ddd;
       background:#fff;
       overflow:hidden;
-      border-radius:0;
+      border-radius:0;      /* 90° */
       width:100%;
       margin:0 0 18px;
-      aspect-ratio: 3 / 1.75;
+      aspect-ratio: 3 / 1.75;  /* lower: crops only bottom */
     }
 
     .profile-photo{
       width:100%;
       height:100%;
       object-fit:cover;
-      object-position:center top;
+      object-position:center top; /* crop bottom, not top */
       display:block;
     }
 
@@ -51,16 +56,20 @@
       line-height:1.7;
     }
 
-    .hero-text p{ margin:0; }
+    .hero-text p{
+      margin:0; /* no extra whitespace under intro */
+    }
 
+    /* SECTIONS */
     .section{ margin-bottom:42px; }
 
+    /* SINGLE LINE under headings (no doubles) */
     .section h2{
       font-size:1.4rem;
       font-weight:600;
       margin:0 0 18px;
       padding:0 !important;
-      border:0 !important;
+      border:0 !important;       /* remove any border from style.css */
       position:relative;
     }
 
@@ -92,7 +101,14 @@
       font-size:1rem;
     }
 
-    .year{ margin:22px 0 10px; }
+    /* =========================
+       EXHIBITIONS: years WITHOUT lines
+       (prevents double lines with heading underline)
+    ========================== */
+
+    .year{
+      margin:22px 0 10px;
+    }
 
     #exhibitions .year strong{
       font-size:1rem;
@@ -106,9 +122,15 @@
       white-space:nowrap;
     }
 
-    #exhibitions .year::after{ content:none !important; }
-    #exhibitions .year:first-of-type{ margin-top:16px; }
+    #exhibitions .year::after{
+      content:none !important;
+    }
 
+    #exhibitions .year:first-of-type{
+      margin-top:16px;
+    }
+
+    /* RESPONSIVE */
     @media (max-width:980px){
       .container{ margin:24px auto; padding:0 12px; }
       .about-hero{ max-width:100%; }
@@ -118,7 +140,13 @@
 
     @media (max-width:768px){
       .section h2{ font-size:1.2rem; }
-      .hero-photo{ border-radius:10px; margin-bottom:14px; }
+      .hero-photo{
+        border-radius:10px; /* softer on mobile */
+        margin-bottom:14px;
+      }
+      .profile-photo{
+        object-position:center top;
+      }
     }
   </style>
 </head>
@@ -129,14 +157,18 @@
 
   <div class="container">
 
-    <div class="about-hero">
+    <div class="about-hero" id="biography">
       <div class="hero-photo" aria-label="Portrait">
         <img src="../assets/images/osebna.jpg" alt="Eva Margon" class="profile-photo" loading="lazy">
       </div>
 
       <div class="hero-text">
         <p>
-          Eva Margon Štanta works in the fields of illustration, design and animation. She obtained her Master's degree in Illustration at the Academy of Fine Arts and Design in Ljubljana in 2019, and further developed her skills during a study exchange at Minerva Art Academy in Groningen, the Netherlands. In addition to book illustration, she focuses strongly on scientific, popular science and natural history illustration, while also exploring reduction linocut in her graphic studio. Whenever possible, she transforms illustrations into short animated sequences. Her projects most often intertwine with animal and botanical motifs.
+          Eva Margon Štanta works in the fields of illustration, design and animation. She completed a Master’s degree in Illustration
+          at ALUO in 2019 and continued developing her practice during a study exchange at Minerva Academy in Groningen, the Netherlands.
+          Alongside book illustration, she focuses on scientific, popular science and natural history illustration, and in her print studio
+          she explores reduction linocut. When the opportunity arises, she turns illustrations into sequences of animated frames. Her projects
+          are most often interwoven with animal and botanical motifs.
         </p>
       </div>
     </div>
@@ -144,71 +176,79 @@
     <div class="section" id="awards">
       <h2>Awards</h2>
       <ul>
-        <li>2020 – Excellence Award at <em>Ijungle Illustration Awards</em></li>
+        <li>2020 – Award of Excellence at <em>Ijungle Illustration Awards</em></li>
       </ul>
     </div>
 
     <div class="section" id="exhibitions">
-      <h2>Exhibitions and Public Projects</h2>
+      <h2>Exhibitions and Publicly Presented Projects</h2>
 
       <div class="year"><strong>2025</strong></div>
       <ul>
-        <li>Group print exhibition, Lokar Gallery, Ajdovščina</li>
-        <li>Solo exhibition <em>Natural Sciences in Scientific and Popular Science Illustration</em>, TIR Gallery, Nova Gorica</li>
-        <li>Picture book <em>The Adventures of the Red Apple</em>, Mozaik znanja publishing house, author Karmen Kukovič</li>
-        <li>Picture book <em>Mountain in the Dark</em>, ISPO d.o.o., author Jakob J. Kenda</li>
-        <li>Exhibition <em>Invisible Roots</em>, Alkatraz Gallery, Ljubljana</li>
+        <li>Group print exhibition, Lokarjeva galerija, Ajdovščina</li>
+        <li>Solo exhibition <em>Naravoslovje v znanstveni in poljudnoznanstveni ilustraciji</em>, Galerija TIR, Nova Gorica</li>
+        <li>Picture book publication <em>Dogodivščine Rdečega Jabolka</em>, Mozaik znanja, author Karmen Kukovič, Celje</li>
+        <li>Picture book publication <em>Gora v temi</em>, ISPO d.o.o., author Jakob J. Kenda, Ljubljana</li>
+        <li>Exhibition <em>Inconspicuous Roots</em> – Eva M. Štanta, Zvonka T. Simčič and Ana Rogel, Galerija Alkatraz, Ljubljana</li>
       </ul>
 
       <div class="year"><strong>2024</strong></div>
       <ul>
-        <li>Book <em>Fairytale Land</em>, Mohorjeva publishing house, author Matija Nared</li>
-        <li>Book <em>The Three Wise Men and the Star</em>, Mohorjeva publishing house, author Stanka Devjak</li>
-        <li>Group exhibition <em>House on the Hill</em>, Medvode</li>
-        <li>10th December Illustration Fair, Vodnik Homestead Šiška, Ljubljana</li>
+        <li>Book publication <em>Pravljična dežela</em> (Mohorjeva založba), author Matija Nared, Ljubljana</li>
+        <li>Book publication <em>Trije Modreci in zvezda</em> (Mohorjeva založba), author Stanka Devjak, Ljubljana</li>
+        <li>Group exhibition within the project <em>Hiša na hribu</em>, Žlebe, Medvode</li>
+        <li>Group sales exhibition <em>X. decembrski sejem ilustracije</em>, Vodnikova domačija Šiška, Ljubljana</li>
       </ul>
 
       <div class="year"><strong>2023</strong></div>
       <ul>
-        <li>Christmas–New Year group exhibition, Lokar Gallery, Ajdovščina</li>
-        <li>Art Promenade exhibition, Velenje Gallery</li>
+        <li>Group exhibition <em>Božično-novoletna prodajna razstava</em>, Lokarjeva galerija, Ajdovščina</li>
+        <li>Group exhibition <em>Umetniška promenada</em>, Galerija Velenje, Velenje</li>
       </ul>
 
       <div class="year"><strong>2022</strong></div>
       <ul>
-        <li>Postage stamps and first-day covers, Pošta Slovenije</li>
+        <li>Release of postage stamps, first-day covers and a special postmark, Pošta Slovenije, Radomlje</li>
       </ul>
 
       <div class="year"><strong>2020</strong></div>
       <ul>
-        <li>LIFEGENMON illustration exhibition, Slovenian Forestry Institute</li>
-        <li>UL ALUO Illustration graduates exhibition, Vodnik Homestead Šiška</li>
+        <li>Group exhibition of illustrations from the LIFEGENMON project: <em>Ilustracije drevesnih vrst</em>, Gozdarski inštitut Slovenije, Ljubljana</li>
+        <li>Group exhibition: selected graduation works from the Illustration department at UL ALUO, Vodnikova domačija Šiška, Ljubljana</li>
       </ul>
 
       <div class="year"><strong>2019</strong></div>
       <ul>
-        <li>Art Promenade exhibition, Velenje Gallery</li>
-        <li><em>Flora Meets Fauna</em>, Arboretum Volčji Potok</li>
+        <li>Group exhibition of illustrations, <em>Umetniška promenada</em>, Galerija Velenje, Velenje</li>
+        <li>Group exhibition <em>Flora sreča favno</em>, Arboretum Volčji potok, Radomlje</li>
       </ul>
 
       <div class="year"><strong>2018</strong></div>
       <ul>
-        <li>Natural history illustration exhibition, Slovenian Museum of Natural History</li>
-        <li>Scientific illustration exhibition, UL ALUO</li>
-        <li>Film <em>Flip a Coin</em> screenings</li>
+        <li>Group exhibition of illustrations from the project <em>Likovna in vsebinska dopolnitev predstavitve gozdnih živali</em>, Prirodoslovni muzej Slovenije</li>
+        <li>Scientific illustration exhibition as part of a group exhibition of ALUO students, Ljubljana</li>
+        <li>Group <em>Razstava poštnih znamk, poštnih žigov in ovojnic prvega dne</em>, Prirodoslovni muzej Slovenije</li>
+        <li>Screening of the film <em>Vrzi kovanec</em>, 3rd International Film Festival, Kranjska Gora</li>
+        <li>Screening of the film <em>Vrzi kovanec</em> in the children’s programme, Festival slovenskega filma, Portorož</li>
+        <li>Screening of the film <em>Vrzi kovanec</em>, Slovenska kinoteka, Ljubljana</li>
+        <li>Group sales exhibition of illustrations, Vodnikova domačija Šiška, Ljubljana</li>
+        <li>Group exhibition of illustrations, <em>Umetniška promenada</em>, Galerija Velenje, Velenje</li>
       </ul>
 
       <div class="year"><strong>2017</strong></div>
       <ul>
-        <li>CELSE conference presentation, Budapest</li>
-        <li><em>Sometimes One Drop Is Enough</em>, EUROPLAKAT billboard</li>
+        <li>Presentation of the project <em>Likovna in vsebinska dopolnitev predstavitve gozdnih živali v Prirodoslovnem muzeju Slovenije</em> at the CELSE roundtable, Budapest</li>
+        <li><em>Včasih je ena kaplja dovolj</em>, EUROPLAKAT billboard, Ljubljana</li>
+        <li>Group <em>Razstava del študentov grafičnega oblikovanja</em>, Rektorat UL, Ljubljana</li>
       </ul>
 
       <div class="year"><strong>2014</strong></div>
       <ul>
-        <li>Minerva Academy exhibitions, Groningen</li>
-        <li>Solo illustration exhibition, ALUO Ljubljana</li>
-        <li>Animated short <em>Jason and the Argonauts</em></li>
+        <li>Group exhibition <em>We don't speak dutch but we speak art</em>, Minerva Academy, Groningen</li>
+        <li>Group exhibition of student works, Minerva Academy, Groningen</li>
+        <li>Solo illustration exhibition, ALUO, Ljubljana</li>
+        <li>Screening of the film <em>Jazon in Argonavti</em>, Socialna akademija, Ljubljana</li>
+        <li>Animated short film <em>Jazon in Argonavti</em>, Cankarjev dom, Ljubljana</li>
       </ul>
     </div>
 
