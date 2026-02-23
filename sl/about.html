@@ -68,17 +68,40 @@
     }
 
     .subtle-clients{
-      margin-top:10px;
-      padding-top:12px;
-      border-top:1px solid #ededed;
-    }
+  margin-top:10px;
+  padding-top:12px;
+  border-top:1px solid #ededed;
+}
 
-    .clients-line{
-      margin:0;
-      font-size:0.95rem;
-      line-height:1.6;
-      opacity:0.75;
-    }
+.clients-title{
+  font-weight:600;
+  font-size:0.95rem;
+  margin:0 0 10px;
+  opacity:0.9;
+}
+
+.clients-inline{
+  margin:0;
+  font-size:0.95rem;
+  line-height:1.55;
+  opacity:0.78;
+}
+
+/* naredi “·” ločila avtomatsko, brez ročnega tipkanja */
+.clients-inline span{
+  display:inline;
+}
+
+.clients-inline span + span::before{
+  content:" · ";
+  opacity:0.6;
+}
+
+.clients-note{
+  margin-top:10px;
+  font-size:0.95rem;
+  opacity:0.65;
+}
 
     /* =========================
        SEKCIJE
@@ -204,13 +227,21 @@
           v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi.
         </p>
 
-        <div class="subtle-clients">
-          <p class="clients-line">
-            Med naročnike njenih ilustracij in projektov sodijo Gozdarski inštitut Slovenije, Prirodoslovni muzej Slovenije,
-            Zavod CCC, Goriška knjižnica Franceta Bevka, Pošta Slovenije ter založbi Celjska Mohorjeva družba in Mozaik znanja,
-            pa tudi drugi sodelavci in naročniki.
-          </p>
-        </div>
+        <div class="subtle-clients" aria-label="Naročniki">
+  <div class="clients-title">Naročniki</div>
+
+  <p class="clients-inline">
+    <span>Gozdarski inštitut Slovenije</span>
+    <span>Prirodoslovni muzej Slovenije</span>
+    <span>Zavod CCC</span>
+    <span>Goriška knjižnica Franceta Bevka</span>
+    <span>Pošta Slovenije</span>
+    <span>Celjska Mohorjeva družba</span>
+    <span>Mozaik znanja</span>
+  </p>
+
+  <div class="clients-note">… ter drugi sodelavci in naročniki.</div>
+</div>
       </div>
 
     </div>
