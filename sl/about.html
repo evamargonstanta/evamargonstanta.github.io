@@ -14,108 +14,62 @@
   <meta name="nav-active" content="about">
 
   <style>
-    /* ABOUT specifično */
+    /* =========================
+       ABOUT (clean)
+    ========================== */
 
     .container{
-      max-width:1180px;          /* ✅ tako kot Contact */
+      max-width:1180px;     /* enako kot Contact */
       margin:40px auto;
       padding:0 20px;
       box-sizing:border-box;
     }
 
-    /* =========================
-       HERO: horizontalna fotka + tekst
-       - fotka ostane panoramska (3/2)
-       - na velikih ekranih ni ogromno "belega"
-       - tekst je poravnan s fotko (ista širina)
-    ========================== */
-
+    /* HERO: fotka + uvod (brez ekstra blokov) */
     .about-hero{
-      max-width: 1000px;         /* ✅ malenkost ožje od containerja, da je smiselno */
-      margin: 0 auto 34px;
+      max-width:1000px;     /* malo ožje od containerja, da je vse skupaj bolj “smiselno” */
+      margin:0 auto 24px;
     }
 
     .hero-photo{
-  border:1px solid #ddd;
-  background:#fff;
-  overflow:hidden;
-  border-radius:0;
-  width:100%;
-  margin:0 0 18px;
+      border:1px solid #ddd;
+      background:#fff;
+      overflow:hidden;
+      border-radius:0;      /* 90° */
+      width:100%;
+      margin:0 0 18px;
+      aspect-ratio: 3 / 1.75;  /* tvoja izbira: nižja, reže samo spodaj */
+    }
 
-  /* ↓ bolj podolgovata (nižja) */
-  aspect-ratio: 3 / 1.75;
-}
-
-    /* obreže SAMO spodaj */
-.profile-photo{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center top; /* glava vedno ostane */
-  display:block;
-}
+    .profile-photo{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center top; /* reže spodaj, ne zgoraj */
+      display:block;
+    }
 
     .hero-text{
-      max-width: 1000px;
+      max-width:1000px;
       margin:0;
       font-size:1rem;
       line-height:1.7;
     }
 
     .hero-text p{
-      margin:0 0 14px;
+      margin:0; /* brez dodatnega praznega prostora pod uvodom */
     }
 
-    .subtle-clients{
-  margin-top:10px;
-  padding-top:12px;
-  border-top:1px solid #ededed;
-}
-
-.clients-title{
-  font-weight:600;
-  font-size:0.95rem;
-  margin:0 0 10px;
-  opacity:0.9;
-}
-
-.clients-inline{
-  margin:0;
-  font-size:0.95rem;
-  line-height:1.55;
-  opacity:0.78;
-}
-
-/* naredi “·” ločila avtomatsko, brez ročnega tipkanja */
-.clients-inline span{
-  display:inline;
-}
-
-.clients-inline span + span::before{
-  content:" · ";
-  opacity:0.6;
-}
-
-.clients-note{
-  margin-top:10px;
-  font-size:0.95rem;
-  opacity:0.65;
-}
-
-    /* =========================
-       SEKCIJE
-    ========================== */
-
+    /* SEKCIJE */
     .section{ margin-bottom:42px; }
 
-    /* ✅ ENA SAMA ČRTA POD NASLOVI (brez dvojnih) */
+    /* ENA SAMA ČRTA POD NASLOVI (brez dvojnih) */
     .section h2{
       font-size:1.4rem;
       font-weight:600;
       margin:0 0 18px;
       padding:0 !important;
-      border-bottom:0 !important;   /* pobriše morebitno črto iz style.css */
+      border:0 !important;       /* pobriše border iz style.css */
       position:relative;
     }
 
@@ -128,17 +82,17 @@
     }
 
     .section p{
-      margin-bottom:14px;
+      margin:0 0 14px;
       line-height:1.65;
       font-size:1rem;
-      max-width: 1000px;         /* ✅ malo širše (ker želiš širši blok) */
+      max-width:1000px;
     }
 
     .section ul{
       list-style-type:disc;
       padding-left:20px;
       margin:0 0 16px;
-      max-width: 1000px;         /* ✅ širše kot prej */
+      max-width:1000px;
     }
 
     .section li{
@@ -148,17 +102,14 @@
     }
 
     /* =========================
-       RAZSTAVE: letnice brez "gumbkov"
+       RAZSTAVE: letnice BREZ črt
+       (da se ne podvaja s črto pod naslovom)
     ========================== */
 
     .year{
-      display:flex;
-      align-items:center;
-      gap:12px;
       margin:22px 0 10px;
     }
 
-    /* ✅ LETNICE NAVADNE */
     #razstave .year strong{
       font-size:1rem;
       font-weight:600;
@@ -171,35 +122,32 @@
       white-space:nowrap;
     }
 
-    .year::after{
-      content:"";
-      height:1px;
-      flex:1;
-      background:#ededed;
-      transform: translateY(1px);
+    /* naredimo letnico “kot label”, brez črte zraven */
+    #razstave .year::after{
+      content:none !important;
     }
 
-    #razstave ul{ margin-top:10px; }
+    /* da je prva letnica malo “zračnejša” pod naslovom, ker ni več črte */
+    #razstave .year:first-of-type{
+      margin-top:16px;
+    }
 
-    /* =========================
-       RESPONSIVE
-    ========================== */
-
+    /* RESPONSIVE */
     @media (max-width:980px){
       .container{ margin:24px auto; padding:0 12px; }
-      .about-hero{ max-width: 100%; }
-      .hero-text{ max-width: 100%; }
-      .section p, .section ul{ max-width: 100%; }
+      .about-hero{ max-width:100%; }
+      .hero-text{ max-width:100%; }
+      .section p, .section ul{ max-width:100%; }
     }
 
     @media (max-width:768px){
       .section h2{ font-size:1.2rem; }
       .hero-photo{
-        border-radius:10px;     /* če želiš mehkejše na mobilcu */
+        border-radius:10px; /* če želiš mehkejše na mobilcu */
         margin-bottom:14px;
       }
       .profile-photo{
-        object-position:center 25%; /* malo bolj forgiving na mobilcu */
+        object-position:center top; /* naj ostane top tudi na mobilcu */
       }
     }
   </style>
@@ -207,13 +155,11 @@
 
 <body>
 
-  <!-- shared header mount -->
   <div data-include="header"></div>
 
   <div class="container">
 
     <div class="about-hero" id="zivljenjepis">
-
       <div class="hero-photo" aria-label="Portret">
         <img src="../assets/images/osebna.jpg" alt="Eva Margon" class="profile-photo" loading="lazy">
       </div>
@@ -226,24 +172,7 @@
           pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije
           v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi.
         </p>
-
-        <div class="subtle-clients" aria-label="Naročniki">
-  <div class="clients-title">Naročniki</div>
-
-  <p class="clients-inline">
-    <span>Gozdarski inštitut Slovenije</span>
-    <span>Celjska Mohorjeva družba</span>
-    <span>Prirodoslovni muzej Slovenije</span>
-    <span>Zavod CCC</span>
-    <span>GKFB</span>
-    <span>Pošta Slovenije</span>
-    <span>Mozaik znanja</span>
-  </p>
-
-  <div class="clients-note">… ter drugi sodelavci in naročniki.</div>
-</div>
       </div>
-
     </div>
 
     <div class="section" id="nagrade">
@@ -323,8 +252,8 @@
         <li>Predvajanje filma <em>Jazon in Argonavti</em>, Socialna akademija, Ljubljana</li>
         <li>Samostojni kratek animirani film <em>Jazon in Argonavti</em>, Cankarjev dom, Ljubljana</li>
       </ul>
-
     </div>
+
   </div>
 
   <div data-include="footer-nav"></div>
