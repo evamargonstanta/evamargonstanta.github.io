@@ -28,29 +28,36 @@
       margin-bottom:34px;
     }
 
-    /* “card” za fotko (manjša, ne full width) */
-    .hero-photo{
-      max-width:520px;          /* spremeni tu, če želiš še manj (npr. 480px) */
-      margin:0 auto 18px;
-      border:1px solid #ddd;
-      background:#fff;
-      overflow:hidden;
-      border-radius:12px;       /* nežno, minimalistično */
-    }
+   /* fotka ima isto širino kot tekst */
+.hero-photo{
+  width:100%;
+  max-width:760px;
+  margin:0 auto 18px;
+  border:1px solid #ddd;
+  background:#fff;
+  overflow:hidden;
+  border-radius:12px;
 
-    .profile-photo{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+   /* razmerje — rahlo panoramsko */
+  aspect-ratio: 3 / 2;
+}
 
-    /* uvod naj bo berljiv (ne preozek, ne preširok) */
-    .hero-text{
-      max-width:860px;
-      margin:0 auto;
-      font-size:1rem;
-      line-height:1.7;
-    }
+   /* obreže SAMO spodaj */
+.profile-photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+
+    /* okvir ki določa skupno širino */
+.hero-text{
+  max-width:760px;
+  margin:0 auto;
+  font-size:1rem;
+  line-height:1.7;
+}
 
     .hero-text p{
       margin:0 0 14px;
@@ -153,9 +160,9 @@
         <p>Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Magisterij je opravila iz ilustracije na ALUO leta 2019, svoje znanje je izpopolnjevala na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem. Poleg knjižne ilustracije se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi.</p>
 
         <div class="subtle-clients">
-          <p class="clients-line">
-            Pri projektih sodeluje z Gozdarskim inštitutom Slovenije, Prirodoslovnim muzejem Slovenije, Zavodom CCC, Goriško knjižnico Franceta Bevka, Pošto Slovenije ter založbama Celjska Mohorjeva družba in Mozaik znanja, pa tudi z drugimi naročniki.
-          </p>
+         <p class="clients-line">
+Med naročnike njenih ilustracij in projektov sodijo Gozdarski inštitut Slovenije, Prirodoslovni muzej Slovenije, Zavod CCC, Goriška knjižnica Franceta Bevka, Pošta Slovenije ter založbi Celjska Mohorjeva družba in Mozaik znanja, pa tudi drugi sodelavci in naročniki.
+</p>
         </div>
       </div>
 
