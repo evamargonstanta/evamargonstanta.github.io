@@ -16,110 +16,179 @@
   <style>
     /* ABOUT specifično (header/body/door so v style.css) */
 
-    .container {
-      max-width: 1180px;
-      margin: 40px auto;
-      padding: 0 20px;
-      box-sizing: border-box;
+    .container{
+      max-width:1180px;
+      margin:40px auto;
+      padding:0 20px;
+      box-sizing:border-box;
     }
 
-    /* ✅ uvodni blok naj bo poravnan kot ostalo (levo v containerju) */
-.about-narrow{
-  max-width: 1180px;     /* enako kot .container */
-  margin: 0 0 40px;      /* NI več auto -> ne centrira */
-}
-    
+    /* --- NOV LAYOUT: sidebar + main --- */
+    .about-layout{
+      display:grid;
+      grid-template-columns: 380px 1fr;
+      gap: 36px;
+      align-items:start;
+    }
 
-    .top-grid{
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: 36px;            /* malo več prostora */
-  align-items: stretch;
-}
-
-    .photo-wrap{
-      border: 1px solid #ddd;
+    /* Kartica/panel – subtilno, ne “pretirano” */
+    .panel{
+      border:1px solid #e2e2e2;
       background:#fff;
-      overflow: hidden;
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    }
+
+    /* --- SIDEBAR --- */
+    .about-sidebar{
+      position:relative;
+    }
+
+    /* Levo naj ostane poravnano kot ostalo */
+    .photo-wrap{
+      border-bottom:1px solid #e2e2e2;
+      background:#fff;
+      overflow:hidden;
     }
 
     .profile-photo{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      display:block;
     }
 
-    .top-grid .section { margin-bottom: 0; }
-    .section { margin-bottom: 40px; }
-
-    .section h2 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 16px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 4px;
+    .sidebar-inner{
+      padding:18px 18px 16px;
     }
 
-    .section p {
-      margin-bottom: 14px;
-      line-height: 1.65;
-      font-size: 1rem;
+    /* Uvod – bolj “editorial” */
+    .intro{
+      margin:0;
+      line-height:1.7;
+      font-size:1rem;
     }
 
- /* samo za uvodni blok ob fotografiji */
-.top-grid .section{
-  display: flex;
-  align-items: center; /* vertikalno centrirano */
-}
+    /* Subtilen “naročniki” blok – kot footnote */
+    .subtle-clients{
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid #e8e8e8;
+    }
 
-.top-grid .section p{
-  margin: 0;           /* da se lepo poravna */
-  text-align: left;    /* isto kot ostalo */
-}
+    .clients-line{
+      margin:0;
+      font-size:0.95rem;
+      line-height:1.6;
+      color:#222;
+      opacity:0.9;
+    }
 
+    .clients-line strong{
+      font-weight:600;
+    }
 
-    .section ul {
+    /* --- MAIN CONTENT --- */
+    .about-main{ min-width:0; }
+
+    .section{ margin-bottom:40px; }
+    .section h2{
+      font-size:1.4rem;
+      font-weight:600;
+      margin-bottom:16px;
+      border-bottom:1px solid #ddd;
+      padding-bottom:6px;
+    }
+
+    .section p{
+      margin-bottom:14px;
+      line-height:1.65;
+      font-size:1rem;
+    }
+
+    .section ul{
       list-style-type: disc;
       padding-left: 20px;
       margin-top: 0;
       margin-bottom: 16px;
     }
 
-    .section li {
+    .section li{
       margin-bottom: 6px;
       line-height: 1.55;
       font-size: 1rem;
     }
 
-    @media (max-width: 980px) {
-      .container { margin: 24px auto; padding: 0 12px; }
-      .about-narrow{ max-width: 980px; }
-      .top-grid { grid-template-columns: 300px 1fr; gap: 18px; }
+    /* Timeline občutek za leta (brez spremembe strukture vsebine) */
+    .year-block{
+      margin-top: 14px;
+      padding: 14px 16px 2px;
+      border:1px solid #ededed;
+      border-radius:14px;
+      background:#fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
     }
 
-    @media (max-width: 768px) {
-      .section h2 { font-size: 1.2rem; }
+    .year-label{
+      display:inline-block;
+      font-weight:600;
+      font-size:0.95rem;
+      padding:6px 10px;
+      border:1px solid #e7e7e7;
+      border-radius:999px;
+      background:#fafafa;
+      margin-bottom:10px;
+    }
 
-      .top-grid{
+    .year-block ul{
+      margin-bottom: 10px;
+    }
+
+    /* Nagrade lahko ostanejo “klasično”, ampak jim damo en panel občutek */
+    .awards-panel{
+      padding: 14px 16px 6px;
+      border:1px solid #ededed;
+      border-radius:14px;
+      background:#fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 980px){
+      .container{ margin:24px auto; padding:0 12px; }
+      .about-layout{
+        grid-template-columns: 340px 1fr;
+        gap: 18px;
+      }
+      .profile-photo{ height:380px; }
+    }
+
+    @media (max-width: 768px){
+      .section h2{ font-size:1.2rem; }
+
+      .about-layout{
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 16px;
       }
 
       .profile-photo{
-        height: auto;
-        width: 100%;
-        max-height: 420px;
-        object-fit: cover;
+        height:auto;
+        width:100%;
+        max-height:420px;
+        object-fit:cover;
       }
 
-      /* na mobilu naj bo normalno (ne flex center) */
-      .top-grid .section{
-        display: block;
+      .sidebar-inner{
+        padding:16px 14px 14px;
       }
-      .top-grid .section p{
-        margin: 0;
-        text-align: left; /* če želiš tudi justify na mobitelu: zamenjaj v justify */
+
+      .year-block{
+        padding: 12px 12px 2px;
+      }
+
+      .awards-panel{
+        padding: 12px 12px 6px;
       }
     }
   </style>
@@ -132,104 +201,136 @@
 
   <div class="container">
 
-    <!-- ✅ ožji, centriran blok samo za fotko + uvod -->
-    <div class="about-narrow">
-      <div class="top-grid">
-        <div class="photo-wrap" aria-label="Portret">
-          <img src="../assets/images/osebna.jpg" alt="Eva Margon" class="profile-photo" loading="lazy">
+    <div class="about-layout">
+
+      <!-- SIDEBAR -->
+      <aside class="about-sidebar">
+        <div class="panel">
+          <div class="photo-wrap" aria-label="Portret">
+            <img src="../assets/images/osebna.jpg" alt="Eva Margon" class="profile-photo" loading="lazy">
+          </div>
+
+          <div class="sidebar-inner">
+            <p class="intro" id="zivljenjepis">
+              Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Magisterij je opravila iz ilustracije na ALUO leta 2019, svoje znanje je izpopolnjevala na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem. Poleg knjižne ilustracije se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi.
+            </p>
+
+            <div class="subtle-clients section">
+              <p class="clients-line">
+                Pri projektih sodeluje z Gozdarskim inštitutom Slovenije, Prirodoslovnim muzejem Slovenije, Zavodom CCC, Goriško knjižnico Franceta Bevka, Pošto Slovenije ter založbama Celjska Mohorjeva družba in Mozaik znanja, pa tudi z drugimi naročniki.
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="about-main">
+
+        <div class="section" id="nagrade">
+          <h2>Nagrade</h2>
+          <div class="awards-panel">
+            <ul>
+              <li>2020 – Priznanje z odliko na <em>Ijungle Illustration Awards</em></li>
+            </ul>
+          </div>
         </div>
 
-        <div class="section" id="zivljenjepis">
-          <p>Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Magisterij je opravila iz ilustracije na ALUO leta 2019, svoje znanje je izpopolnjevala na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem. Poleg knjižne ilustracije se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi.</p>
+        <div class="section" id="razstave">
+          <h2>Razstave in javno prikazani projekti</h2>
+
+          <div class="year-block">
+            <div class="year-label">2025</div>
+            <ul>
+              <li>Skupinska razstava grafik, Lokarjeva galerija, Ajdovščina</li>
+              <li>Samostojna razstava <em>Naravoslovje v znanstveni in poljudnoznanstveni ilustraciji</em>, Galerija TIR, Nova Gorica</li>
+              <li>Izid slikanice <em>Dogodivščine Rdečega Jabolka</em>, založba Mozaik znanja, avtorica Karmen Kukovič, Celje</li>
+              <li>Izid slikanice <em>Gora v temi</em>, založba ISPO d.o.o., avtor Jakob J. Kenda, Ljubljana</li>
+              <li>Razstava <em>Neopazne korenine</em> - Eva M. Štata, Zvonka T. Simčič in Ana Rogel, Galerija Alkatraz, Ljubljana</li>
+            </ul>
+          </div>
+
+          <div class="year-block">
+            <div class="year-label">2024</div>
+            <ul>
+              <li>Izid knjige <em>Pravljična dežela</em> (Mohorjeva založba), avtor Matija Nared, Ljubljana</li>
+              <li>Izid knjige <em>Trije Modreci in zvezda</em> (Mohorjeva založba), avtorica Stanka Devjak, Ljubljana</li>
+              <li>Skupinska razstava v projektu <em>Hiša na hribu</em>, Žlebe, Medvode</li>
+              <li>Skupinska prodajna razstava <em>X. decembrski sejem ilustracije</em>, Vodnikova domačija Šiška, Ljubljana</li>
+            </ul>
+          </div>
+
+          <div class="year-block">
+            <div class="year-label">2023</div>
+            <ul>
+              <li>Skupna razstava, <em>Božično-novoletna prodajna razstava</em>, Lokarjeva galerija, Ajdovščina</li>
+              <li>Skupna razstava, <em>Umetniška promenada</em>, Galerija Velenje, Velenje</li>
+            </ul>
+          </div>
+
+          <div class="year-block">
+            <div class="year-label">2022</div>
+            <ul>
+              <li>Izid poštnih znamk, ovitkov prvega dne ter poštnega žiga, Pošta Slovenije, Radomlje</li>
+            </ul>
+          </div>
+
+          <div class="year-block">
+            <div class="year-label">2020</div>
+            <ul>
+              <li>Skupinska razstava ilustracij iz projekta LIFEGENMON: <em>Ilustracije drevesnih vrst</em>, Gozdarski inštitut Slovenije, Ljubljana</li>
+              <li>Skupinska razstava Izbor zaključnih del študentov smeri Ilustracija na UL ALUO, galerija Vodnikove domačije Šiška, Ljubljana</li>
+            </ul>
+          </div>
+
+          <div class="year-block">
+            <div class="year-label">2019</div>
+            <ul>
+              <li>Skupinska razstava ilustracij, <em>Umetniška promenada</em>, Galerija Velenje, Velenje</li>
+              <li>Skupinska razstava <em>Flora sreča favno</em>, Arboretum Volčji potok, Radomlje</li>
+            </ul>
+          </div>
+
+          <div class="year-block">
+            <div class="year-label">2018</div>
+            <ul>
+              <li>Skupinska razstava ilustracij iz projekta <em>Likovna in vsebinska dopolnitev predstavitve gozdnih živali</em>, Prirodoslovni muzej Slovenije</li>
+              <li>Razstava znanstvenih ilustracij v okviru skupne razstave študentov ALUO, Ljubljana</li>
+              <li>Skupinska <em>Razstava poštnih znamk, poštnih žigov in ovojnic prvega dne</em>, Prirodoslovni muzej Slovenije</li>
+              <li>Predvajanje filma <em>Vrzi kovanec</em>, 3. Mednarodni filmski festival, Kranjska Gora</li>
+              <li>Predvajanje filma <em>Vrzi kovanec</em> na Otroškem programu, Festival slovenskega filma, Portorož</li>
+              <li>Predvajanje filma <em>Vrzi kovanec</em> v Slovenski kinoteki, Ljubljana</li>
+              <li>Skupna prodajna razstava ilustracij, Vodnikova domačija Šiška, Ljubljana</li>
+              <li>Skupna razstava ilustracij, <em>Umetniška promenada</em>, Galerija Velenje, Velenje</li>
+            </ul>
+          </div>
+
+          <div class="year-block">
+            <div class="year-label">2017</div>
+            <ul>
+              <li>Predstavitev projekta <em>Likovna in vsebinska dopolnitev predstavitve gozdnih živali v Prirodoslovnem muzeju Slovenije</em> na okrogli mizi CELSE, Budimpešta</li>
+              <li><em>Včasih je ena kaplja dovolj</em>, EUROPLAKAT Billboard, Ljubljana</li>
+              <li>Skupinska <em>Razstava del študentov grafičnega oblikovanja</em>, Rektorat UL, Ljubljana</li>
+            </ul>
+          </div>
+
+          <div class="year-block">
+            <div class="year-label">2014</div>
+            <ul>
+              <li>Skupinska razstava <em>We don't speak dutch but we speak art</em>, Minerva Academy, Groningen</li>
+              <li>Skupinska razstava del študentov, Minerva Academy, Groningen</li>
+              <li>Samostojna razstava ilustracij, ALUO, Ljubljana</li>
+              <li>Predvajanje filma <em>Jazon in Argonavti</em>, Socialna akademija, Ljubljana</li>
+              <li>Samostojni kratek animirani film <em>Jazon in Argonavti</em>, Cankarjev dom, Ljubljana</li>
+            </ul>
+          </div>
+
         </div>
-      </div>
-    </div>
+      </main>
 
-    <div class="section subtle-clients">
-  <p class="clients-line">
-    Pri projektih sodeluje z Gozdarskim inštitutom Slovenije, Prirodoslovnim muzejem Slovenije, Zavodom CCC, Goriško knjižnico Franceta Bevka, Pošto Slovenije ter založbama Celjska Mohorjeva družba in Mozaik znanja, pa tudi z drugimi naročniki.
-  </p>
-</div>
-    
-    <div class="section" id="nagrade">
-      <h2>Nagrade</h2>
-      <ul>
-        <li>2020 – Priznanje z odliko na <em>Ijungle Illustration Awards</em></li>
-      </ul>
-    </div>
+    </div><!-- /about-layout -->
 
-    <div class="section" id="razstave">
-      <h2>Razstave in javno prikazani projekti</h2>
-
-      <p><strong>2025</strong></p>
-      <ul>
-        <li>Skupinska razstava grafik, Lokarjeva galerija, Ajdovščina</li>
-        <li>Samostojna razstava <em>Naravoslovje v znanstveni in poljudnoznanstveni ilustraciji</em>, Galerija TIR, Nova Gorica</li>
-        <li>Izid slikanice <em>Dogodivščine Rdečega Jabolka</em>, založba Mozaik znanja, avtorica Karmen Kukovič, Celje</li>
-        <li>Izid slikanice <em>Gora v temi</em>, založba ISPO d.o.o., avtor Jakob J. Kenda, Ljubljana</li>
-        <li>Razstava <em>Neopazne korenine</em> - Eva M. Štata, Zvonka T. Simčič in Ana Rogel, Galerija Alkatraz, Ljubljana</li>
-      </ul>
-
-      <p><strong>2024</strong></p>
-      <ul>
-        <li>Izid knjige <em>Pravljična dežela</em> (Mohorjeva založba), avtor Matija Nared, Ljubljana</li>
-        <li>Izid knjige <em>Trije Modreci in zvezda</em> (Mohorjeva založba), avtorica Stanka Devjak, Ljubljana</li>
-        <li>Skupinska razstava v projektu <em>Hiša na hribu</em>, Žlebe, Medvode</li>
-        <li>Skupinska prodajna razstava <em>X. decembrski sejem ilustracije</em>, Vodnikova domačija Šiška, Ljubljana</li>
-      </ul>
-
-      <p><strong>2023</strong></p>
-      <ul>
-        <li>Skupna razstava, <em>Božično-novoletna prodajna razstava</em>, Lokarjeva galerija, Ajdovščina</li>
-        <li>Skupna razstava, <em>Umetniška promenada</em>, Galerija Velenje, Velenje</li>
-      </ul>
-
-      <p><strong>2022</strong></p>
-      <ul>
-        <li>Izid poštnih znamk, ovitkov prvega dne ter poštnega žiga, Pošta Slovenije, Radomlje</li>
-      </ul>
-
-      <p><strong>2020</strong></p>
-      <ul>
-        <li>Skupinska razstava ilustracij iz projekta LIFEGENMON: <em>Ilustracije drevesnih vrst</em>, Gozdarski inštitut Slovenije, Ljubljana</li>
-        <li>Skupinska razstava Izbor zaključnih del študentov smeri Ilustracija na UL ALUO, galerija Vodnikove domačije Šiška, Ljubljana</li>
-      </ul>
-
-      <p><strong>2019</strong></p>
-      <ul>
-        <li>Skupinska razstava ilustracij, <em>Umetniška promenada</em>, Galerija Velenje, Velenje</li>
-        <li>Skupinska razstava <em>Flora sreča favno</em>, Arboretum Volčji potok, Radomlje</li>
-      </ul>
-
-      <p><strong>2018</strong></p>
-      <ul>
-        <li>Skupinska razstava ilustracij iz projekta <em>Likovna in vsebinska dopolnitev predstavitve gozdnih živali</em>, Prirodoslovni muzej Slovenije</li>
-        <li>Razstava znanstvenih ilustracij v okviru skupne razstave študentov ALUO, Ljubljana</li>
-        <li>Skupinska <em>Razstava poštnih znamk, poštnih žigov in ovojnic prvega dne</em>, Prirodoslovni muzej Slovenije</li>
-        <li>Predvajanje filma <em>Vrzi kovanec</em>, 3. Mednarodni filmski festival, Kranjska Gora</li>
-        <li>Predvajanje filma <em>Vrzi kovanec</em> na Otroškem programu, Festival slovenskega filma, Portorož</li>
-        <li>Predvajanje filma <em>Vrzi kovanec</em> v Slovenski kinoteki, Ljubljana</li>
-        <li>Skupna prodajna razstava ilustracij, Vodnikova domačija Šiška, Ljubljana</li>
-        <li>Skupna razstava ilustracij, <em>Umetniška promenada</em>, Galerija Velenje, Velenje</li>
-      </ul>
-
-      <p><strong>2017</strong></p>
-      <ul>
-        <li>Predstavitev projekta <em>Likovna in vsebinska dopolnitev predstavitve gozdnih živali v Prirodoslovnem muzeju Slovenije</em> na okrogli mizi CELSE, Budimpešta</li>
-        <li><em>Včasih je ena kaplja dovolj</em>, EUROPLAKAT Billboard, Ljubljana</li>
-        <li>Skupinska <em>Razstava del študentov grafičnega oblikovanja</em>, Rektorat UL, Ljubljana</li>
-      </ul>
-
-      <p><strong>2014</strong></p>
-      <ul>
-        <li>Skupinska razstava <em>We don't speak dutch but we speak art</em>, Minerva Academy, Groningen</li>
-        <li>Skupinska razstava del študentov, Minerva Academy, Groningen</li>
-        <li>Samostojna razstava ilustracij, ALUO, Ljubljana</li>
-        <li>Predvajanje filma <em>Jazon in Argonavti</em>, Socialna akademija, Ljubljana</li>
-        <li>Samostojni kratek animirani film <em>Jazon in Argonavti</em>, Cankarjev dom, Ljubljana</li>
-      </ul>
-    </div>
-  </div>
+  </div><!-- /container -->
 
   <div data-include="footer-nav"></div>
   <a href="index.html" class="door-hotspot" aria-label="Nazaj na domačo stran"></a>
