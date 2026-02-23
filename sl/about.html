@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>O meni – Eva Margon</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
@@ -14,187 +14,170 @@
   <meta name="nav-active" content="about">
 
   <style>
-  /* ABOUT specifično */
+    /* ABOUT specifično */
 
-  :root{
-    --about-max: 980px;   /* skupna širina strani */
-    --about-text: 660px;  /* širina daljših tekstovnih blokov */
-    --line: #ddd;
-  }
-
-  .container{
-    max-width: var(--about-max);
-    margin: 28px auto;
-    padding: 0 20px;
-    box-sizing: border-box;
-  }
-
-  /* =========================
-     MINI HERO (bolj smiseln layout)
-     - desktop: 2 stolpca (foto + tekst)
-     - mobile: en stolpec
-  ========================== */
-
-  .about-hero{
-    display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: 26px;
-    align-items: start;
-    margin-bottom: 34px;
-  }
-
-  .hero-photo{
-    border: 1px solid #ddd;
-    background: #fff;
-    overflow: hidden;
-    border-radius: 0;     /* 90° */
-    width: 100%;
-    aspect-ratio: 3 / 4;  /* bolj portretno, manj “panoramsko” */
-    margin: 0;
-  }
-
-  .profile-photo{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-  }
-
-  .hero-text{
-    max-width: 100%;
-    font-size: 1rem;
-    line-height: 1.7;
-    margin: 0;
-  }
-
-  .hero-text p{
-    margin: 0 0 14px;
-  }
-
-  .subtle-clients{
-    margin-top: 10px;
-    padding-top: 12px;
-    border-top: 1px solid #ededed;
-  }
-
-  .clients-line{
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    opacity: 0.75;
-  }
-
-  /* =========================
-     SEKCIJE
-  ========================== */
-
-  .section{ margin-bottom: 42px; }
-
-  /* ✅ ENA SAMA ČRTA POD NASLOVI (brez dvojnih) */
-  .section h2{
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin: 0 0 18px;
-    padding: 0;
-    border: 0 !important;      /* pobriše border iz style.css */
-    position: relative;
-  }
-
-  .section h2::after{
-    content:"";
-    display:block;
-    height:1px;
-    background: var(--line);
-    margin-top: 10px;
-  }
-
-  .section p{
-    margin-bottom: 14px;
-    line-height: 1.65;
-    font-size: 1rem;
-    max-width: var(--about-text);
-  }
-
-  .section ul{
-    list-style-type: disc;
-    padding-left: 20px;
-    margin: 0 0 16px;
-    max-width: var(--about-text);
-  }
-
-  .section li{
-    margin-bottom: 6px;
-    line-height: 1.55;
-    font-size: 1rem;
-  }
-
-  /* =========================
-     RAZSTAVE – LETNICE (brez pill/gumbkov)
-  ========================== */
-
-  #razstave .year{
-    display:flex;
-    align-items:center;
-    gap: 12px;
-    margin: 22px 0 10px;
-  }
-
-  /* prej si imela pill; tukaj je “navadna” letnica */
-  #razstave .year strong{
-    font-size: 1rem;
-    font-weight: 600;
-    background: none !important;
-    border: 0 !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    display: inline !important;
-    white-space: nowrap;
-  }
-
-  #razstave .year::after{
-    content:"";
-    height: 1px;
-    flex: 1;
-    background: #ededed;
-    transform: translateY(1px);
-  }
-
-  #razstave ul{ margin-top: 10px; }
-
-  /* =========================
-     RESPONSIVE
-  ========================== */
-
-  @media (max-width: 980px){
-    .container{ margin: 22px auto; padding: 0 12px; }
-    .about-hero{
-      grid-template-columns: 300px 1fr;
-      gap: 18px;
+    .container{
+      max-width:1180px;          /* ✅ tako kot Contact */
+      margin:40px auto;
+      padding:0 20px;
+      box-sizing:border-box;
     }
-  }
 
-  @media (max-width: 768px){
+    /* =========================
+       HERO: horizontalna fotka + tekst
+       - fotka ostane panoramska (3/2)
+       - na velikih ekranih ni ogromno "belega"
+       - tekst je poravnan s fotko (ista širina)
+    ========================== */
+
     .about-hero{
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-bottom: 28px;
+      max-width: 1000px;         /* ✅ malenkost ožje od containerja, da je smiselno */
+      margin: 0 auto 34px;
     }
+
     .hero-photo{
-      border-radius: 10px; /* če želiš na mobilcu mehkejše */
-      aspect-ratio: 3 / 2; /* na mobilcu malo širše, da ni preveč dolga */
+      border:1px solid #ddd;
+      background:#fff;
+      overflow:hidden;
+      border-radius:0;           /* ✅ 90° */
+      width:100%;
+      margin:0 0 18px;
+      aspect-ratio: 3 / 2;       /* ✅ ohrani horizontalen feeling */
     }
-    .section h2{ font-size: 1.2rem; }
-  }
 
-  /* =========================
-     (opcijsko) če style.css dela težave z margino nad containerjem
-     lahko še zategneš prvi element
-  ========================== */
-  .container > .about-hero{ margin-top: 0; }
+    /* fotka: manj agresivno obrezovanje */
+    .profile-photo{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 20%; /* ✅ namesto top: malo nižje, da ni "grdo odrezana" */
+      display:block;
+    }
 
-</style>
+    .hero-text{
+      max-width: 1000px;
+      margin:0;
+      font-size:1rem;
+      line-height:1.7;
+    }
+
+    .hero-text p{
+      margin:0 0 14px;
+    }
+
+    .subtle-clients{
+      margin-top:10px;
+      padding-top:12px;
+      border-top:1px solid #ededed;
+    }
+
+    .clients-line{
+      margin:0;
+      font-size:0.95rem;
+      line-height:1.6;
+      opacity:0.75;
+    }
+
+    /* =========================
+       SEKCIJE
+    ========================== */
+
+    .section{ margin-bottom:42px; }
+
+    /* ✅ ENA SAMA ČRTA POD NASLOVI (brez dvojnih) */
+    .section h2{
+      font-size:1.4rem;
+      font-weight:600;
+      margin:0 0 18px;
+      padding:0 !important;
+      border-bottom:0 !important;   /* pobriše morebitno črto iz style.css */
+      position:relative;
+    }
+
+    .section h2::after{
+      content:"";
+      display:block;
+      height:1px;
+      background:#ddd;
+      margin-top:10px;
+    }
+
+    .section p{
+      margin-bottom:14px;
+      line-height:1.65;
+      font-size:1rem;
+      max-width: 1000px;         /* ✅ malo širše (ker želiš širši blok) */
+    }
+
+    .section ul{
+      list-style-type:disc;
+      padding-left:20px;
+      margin:0 0 16px;
+      max-width: 1000px;         /* ✅ širše kot prej */
+    }
+
+    .section li{
+      margin-bottom:6px;
+      line-height:1.55;
+      font-size:1rem;
+    }
+
+    /* =========================
+       RAZSTAVE: letnice brez "gumbkov"
+    ========================== */
+
+    .year{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:22px 0 10px;
+    }
+
+    /* ✅ LETNICE NAVADNE */
+    #razstave .year strong{
+      font-size:1rem;
+      font-weight:600;
+      background:none !important;
+      border:0 !important;
+      padding:0 !important;
+      border-radius:0 !important;
+      box-shadow:none !important;
+      display:inline !important;
+      white-space:nowrap;
+    }
+
+    .year::after{
+      content:"";
+      height:1px;
+      flex:1;
+      background:#ededed;
+      transform: translateY(1px);
+    }
+
+    #razstave ul{ margin-top:10px; }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width:980px){
+      .container{ margin:24px auto; padding:0 12px; }
+      .about-hero{ max-width: 100%; }
+      .hero-text{ max-width: 100%; }
+      .section p, .section ul{ max-width: 100%; }
+    }
+
+    @media (max-width:768px){
+      .section h2{ font-size:1.2rem; }
+      .hero-photo{
+        border-radius:10px;     /* če želiš mehkejše na mobilcu */
+        margin-bottom:14px;
+      }
+      .profile-photo{
+        object-position:center 25%; /* malo bolj forgiving na mobilcu */
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -211,12 +194,20 @@
       </div>
 
       <div class="hero-text">
-        <p>Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Magisterij je opravila iz ilustracije na ALUO leta 2019, svoje znanje je izpopolnjevala na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem. Poleg knjižne ilustracije se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi.</p>
+        <p>
+          Eva Margon Štanta ustvarja na področju ilustracije, oblikovanja in animacije. Magisterij je opravila iz ilustracije
+          na ALUO leta 2019, svoje znanje je izpopolnjevala na študijski izmenjavi na Akademiji Minerva v Groningenu na Nizozemskem.
+          Poleg knjižne ilustracije se veliko ukvarja z znanstveno, poljudnoznanstvno ter naravoslovno ilustracijo, komplementarno
+          pa v svojem grafičnem ateljeju raziskuje in se poigrava z redukcijskim linorezom. Ko pride priložnost, ilustracije zavije
+          v serijo animiranih sličic. Svoje projekte najraje preplete z živalskimi in rastlinskimi motivi.
+        </p>
 
         <div class="subtle-clients">
-         <p class="clients-line">
-Med naročnike njenih ilustracij in projektov sodijo Gozdarski inštitut Slovenije, Prirodoslovni muzej Slovenije, Zavod CCC, Goriška knjižnica Franceta Bevka, Pošta Slovenije ter založbi Celjska Mohorjeva družba in Mozaik znanja, pa tudi drugi sodelavci in naročniki.
-</p>
+          <p class="clients-line">
+            Med naročnike njenih ilustracij in projektov sodijo Gozdarski inštitut Slovenije, Prirodoslovni muzej Slovenije,
+            Zavod CCC, Goriška knjižnica Franceta Bevka, Pošta Slovenije ter založbi Celjska Mohorjeva družba in Mozaik znanja,
+            pa tudi drugi sodelavci in naročniki.
+          </p>
         </div>
       </div>
 
@@ -238,7 +229,7 @@ Med naročnike njenih ilustracij in projektov sodijo Gozdarski inštitut Sloveni
         <li>Samostojna razstava <em>Naravoslovje v znanstveni in poljudnoznanstveni ilustraciji</em>, Galerija TIR, Nova Gorica</li>
         <li>Izid slikanice <em>Dogodivščine Rdečega Jabolka</em>, založba Mozaik znanja, avtorica Karmen Kukovič, Celje</li>
         <li>Izid slikanice <em>Gora v temi</em>, založba ISPO d.o.o., avtor Jakob J. Kenda, Ljubljana</li>
-        <li>Razstava <em>Neopazne korenine</em> - Eva M. Štata, Zvonka T. Simčič in Ana Rogel, Galerija Alkatraz, Ljubljana</li>
+        <li>Razstava <em>Neopazne korenine</em> – Eva M. Štata, Zvonka T. Simčič in Ana Rogel, Galerija Alkatraz, Ljubljana</li>
       </ul>
 
       <div class="year"><strong>2024</strong></div>
