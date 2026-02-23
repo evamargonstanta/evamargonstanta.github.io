@@ -30,13 +30,13 @@
 
    /* fotka ima isto širino kot tekst */
 .hero-photo{
+border:1px solid #ddd;
+  background:#fff;
+  overflow:hidden;
+  border-radius:0; /* ✅ 90° */
   width:100%;
   max-width:760px;
   margin:0 auto 18px;
-  border:1px solid #ddd;
-  background:#fff;
-  overflow:hidden;
-  border-radius:12px;
 
    /* razmerje — rahlo panoramsko */
   aspect-ratio: 3 / 2;
@@ -80,12 +80,12 @@
     .section{ margin-bottom:42px; }
 
     .section h2{
-      font-size:1.35rem;
-      font-weight:600;
-      margin-bottom:14px;
-      border-bottom:1px solid #ddd;
-      padding-bottom:6px;
-    }
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 18px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid #ddd;
+}
 
     .section p{
       margin-bottom:14px;
@@ -140,6 +140,47 @@
       .section h2{ font-size:1.2rem; }
       .hero-photo{ max-width:100%; border-radius:10px; }
     }
+
+    /* ✅ ENA SAMA ČRTA POD NASLOVI (brez dvojnih) */
+.section h2{
+  border-bottom: 0 !important;   /* pobriše morebitno črto iz style.css + iz te strani */
+  padding-bottom: 0 !important;
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.section h2::after{
+  content:"";
+  display:block;
+  height:1px;
+  background:#ddd;
+  margin-top:10px;  /* razmak med naslovom in črto */
+}
+
+    /* malo bolj “katalog / editorial” */
+.section p{
+  max-width: 760px;
+}
+
+.section ul{
+  max-width: 760px;
+}
+
+#razstave ul{
+  margin-top: 10px;
+}
+    
+
+    /* ✅ LETNICE NAJ BODO NAVADNE (brez pill/gumbkov) */
+#razstave p > strong{
+  background: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: inline !important;
+  font-weight: 600;
+}
   </style>
 </head>
 
