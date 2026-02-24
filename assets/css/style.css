@@ -173,38 +173,50 @@ body{
 }
 
 
-/* ===== WIDE PROJECT – PORAVNAN Z GALERIJO, BREZ BELINE ===== */
+/* ===== WIDE PROJECT – PORAVNAN Z GALERIJO, ČIM MANJ REZANJA ===== */
 
-/* Nastavi “oblika pasice” (večja številka = nižja pasica)
-   21/9 je super za panoramske slike.
-   Če želiš malo višje: 16/9 */
+/* “oblika pasice” (večja številka = nižja pasica)
+   21/7 ali 21/8 sta pogosto lepša kot 21/9 (21/9 je že kar nizko) */
 .grid-gallery{
   --wide-ar-w: 21;
-  --wide-ar-h: 9;
+  --wide-ar-h: 8;
 }
 
+/* wide čez celo vrstico, brez paddinga in brez “štrlenja” */
 .project-card.is-wide{
   grid-column: 1 / -1;
-  padding: 0;              /* pomembno: brez dodatnega roba */
+  padding: 0;
   aspect-ratio: calc(var(--wide-ar-w) / var(--wide-ar-h));
   overflow: hidden;
 }
 
-/* notranjost naj zapolni 100% */
+/* notranjost 100% */
 .project-card.is-wide .project-inner{
   width: 100%;
   height: 100%;
+  display: block; /* prepiše flex centriranje samo za wide, da je predvidljivo */
 }
 
-/* brez beline -> cover (zapolni pasico; lahko minimalno odreže) */
+/* PRIVZETO: čim manj rezanja -> contain
+   Opomba: to lahko pokaže minimalno “rob” (letterbox), zato damo ozadje enako strani */
 .project-card.is-wide img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
   display: block;
+  object-fit: contain;
+  object-position: 50% 50%;
+  background: #fff;
 }
 
+/* Če RES želiš “brez beline” in ti malo rezanja ne moti,
+   odkomentiraj spodaj (cover):
+*/
+/*
+.project-card.is-wide img{
+  object-fit: cover;
+  background: transparent;
+}
+*/
 
 
 /* ================= DOOR ================= */
