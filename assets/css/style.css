@@ -308,7 +308,7 @@ body{
   }
 }
 
-
-.project-gora .project-role {
+/* večji razmik za Gora v temi kartico */
+.project-gora .meta .value {
   line-height: 1.6;
 }
