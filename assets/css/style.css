@@ -307,9 +307,3 @@ body{
     height:34px;
   }
 }
-
-/* večji razmik za Gora v temi kartico */
-.project-gora .role-collab {
-  margin-top: 6px;
-  font-size: 0.95em; /* po želji */
-}
