@@ -44,6 +44,6 @@ document.querySelectorAll('.project-card').forEach(card => {
   const roleDiv = card.querySelector('.project-role');
 
   if (role && roleDiv) {
-    roleDiv.textContent = role;
+    roleDiv.innerHTML = role;
   }
 });
