@@ -347,7 +347,7 @@
          data-client="ISPO d.o.o."
          data-text="Jakob J. Kenda"
          data-duration=""
-         data-role="Illustration / Book design (design collaboration: Tina Margon)"
+         data-role="Illustration / Book design<br><br>*Design in collaboration with Tina Margon"
          data-notes="A picture book addressing readers across Slovenia—especially teenagers and their parents—encouraging them to walk at least part of the Slovenian circular trail (Transverzala). It speaks about Slovenian history and, alongside the story, presents related illustrations.">
       <div class="project-inner">
         <img src="../assets/images/design10.jpg" alt="Picture book: Gora v temi" loading="lazy">
@@ -817,7 +817,8 @@
         /* Role: both */
         show(lblRole, true);
         show(mRole, true);
-        mRole.textContent = role.trim().length > 0 ? role : '—';
+        mRole.innerHTML = role.trim().length > 0 ? role : '—';
+        // Prej je bilo: mRole.textContent = role.trim().length > 0 ? role : '—';
 
         /* Authors: only if present */
         const showAuthorsRow = authors.trim().length > 0;
