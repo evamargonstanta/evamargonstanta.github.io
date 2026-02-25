@@ -307,3 +307,8 @@ body{
     height:34px;
   }
 }
+
+.project-role {
+  white-space: pre-line;
+  margin-top: 10px;
+}
