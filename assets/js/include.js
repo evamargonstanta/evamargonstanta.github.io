@@ -37,3 +37,13 @@ async function initPartials() {
 }
 
 document.addEventListener('DOMContentLoaded', initPartials);
+
+// Da prebere enter kot prelom v kartici Gora v temi
+document.querySelectorAll('.project-card').forEach(card => {
+  const role = card.dataset.role;
+  const roleDiv = card.querySelector('.project-role');
+
+  if (role && roleDiv) {
+    roleDiv.textContent = role;
+  }
+});
