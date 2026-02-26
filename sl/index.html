@@ -45,10 +45,9 @@
   height:52px;
   width:auto;
   display:block;
-  margin:0 auto;
-  transform: translateY(6px);  /* ↓ premakne nižje */
+  margin:10px auto 0;   /* ↑ poveča prostor zgoraj */
   opacity:.95;
-  filter:none;        /* odstrani drop shadow */
+  filter:none;
   position:relative;
   z-index:100;
 }
@@ -295,13 +294,10 @@
         display:none !important;
       }
 
-
       .signature{
-        height:34px;     /* določi višino */
-        width:auto;      /* ohrani proporce */
-        max-width:none;  /* prepreči raztezanje */
-        margin:0 auto -18px; /* podpis bližje ilustraciji */
-        transform: translateY(4px);
+        height:32px;
+        width:auto !important;
+         margin:0 auto -18px; /* podpis bližje ilustraciji */
 }
 
       .scene{
