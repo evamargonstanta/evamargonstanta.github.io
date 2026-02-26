@@ -41,16 +41,18 @@
       z-index:1;
     }
 
-    .signature{
-  height:52px;        /* ← nastavi isto višino kot prej */
-  width:auto;         /* širina se prilagodi proporcionalno */
-  margin:0 auto 2px;
+.signature{
+  height:52px;
+  width:auto;
   display:block;
+  margin:0 auto;
+  transform: translateY(6px);  /* ↓ premakne nižje */
   opacity:.95;
   filter:none;        /* odstrani drop shadow */
   position:relative;
   z-index:100;
 }
+    
 
     /* SCENE */
     .scene{
@@ -293,11 +295,14 @@
         display:none !important;
       }
 
+
       .signature{
-        height:34px;   /* malo manj kot prej */
-        width:auto;
+        height:34px;     /* določi višino */
+        width:auto;      /* ohrani proporce */
+        max-width:none;  /* prepreči raztezanje */
         margin:0 auto -18px; /* podpis bližje ilustraciji */
-      }
+        transform: translateY(4px);
+}
 
       .scene{
         height:auto;
