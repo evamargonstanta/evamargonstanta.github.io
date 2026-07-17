@@ -417,14 +417,21 @@
   }
 
   /* DODAJ TO */
-  #mobileMenu{
-    display:none;
-    margin-top:25px;
-  }
+ #mobileMenu{
+  display:none;
+  position:fixed;
+  top:110px;
+  left:50%;
+  transform:translateX(-50%);
+  background:transparent;
+  padding:0;
+  margin:0;
+  z-index:4500;
+}
 
-  #mobileMenu.is-open{
-    display:block;
-  }
+#mobileMenu.is-open{
+  display:block;
+}
 
 }
     
