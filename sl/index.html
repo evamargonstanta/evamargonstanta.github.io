@@ -46,54 +46,14 @@
     }
 
 .signature{
-  display:none;
   height:45px;
   width:auto;
-  margin:10px auto 0;
+  display:block;
+  margin:10px auto 0;   /* ↑ poveča prostor zgoraj */
   opacity:.95;
   filter:none;
   position:relative;
   z-index:100;
-}
-    /* ---------- DESKTOP HEADER ---------- */
-
-.desktop-header{
-  width:100%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 28px 22px;
-  box-sizing:border-box;
-  z-index:5000;
-}
-
-.desktop-logo{
-  height:42px;
-  width:auto;
-}
-
-.menu-toggle{
-  border:none;
-  background:none;
-  cursor:pointer;
-  padding:0;
-}
-
-.menu-toggle img{
-  width:34px;
-  height:auto;
-}
-
-@media (max-width:768px){
-
-  .desktop-header{
-    display:none;
-  }
-
-  .signature{
-    display:block;
-  }
-
 }
     
 
@@ -420,27 +380,6 @@
 
 <body>
 
-  <div class="desktop-header">
-
-    <img
-        src="../assets/images/logo.png"
-        alt="Eva Margon"
-        class="desktop-logo">
-
-    <button
-        id="desktopMenuBtn"
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false">
-
-        <img
-            src="../assets/images/icon-menu.png"
-            alt="Menu">
-
-    </button>
-
-</div>
-  
   <!-- LANGUAGE SWITCH -->
   <div class="language-switch">
     <span>SL</span> / <a href="../en/">EN</a>
