@@ -55,6 +55,52 @@
   position:relative;
   z-index:100;
 }
+
+
+    /* ---------- DESKTOP TOP HEADER ---------- */
+
+.top-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+}
+
+.desktop-signature{
+    display:block;
+}
+
+.desktop-menu-button{
+    display:none;
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+}
+
+.desktop-menu-button img{
+    width:32px;
+    height:auto;
+    display:block;
+}
+
+@media (min-width:769px){
+
+    .top-header{
+
+        width:100%;
+        padding:0 42px;
+        box-sizing:border-box;
+
+    }
+
+    .desktop-menu-button{
+
+        display:block;
+
+    }
+
+}
     
 
     /* SCENE */
@@ -388,20 +434,25 @@
   <!-- HERO -->
   <div class="hero">
 
-    <picture>
-  <source srcset="../assets/images/logo.png" media="(max-width: 768px)">
-  <img src="../assets/images/logo.png" alt="Eva Margon" class="signature">
-</picture>
+    <div class="top-header">
 
-    <div class="scene">
-      <div class="media-wrap">
-        <div class="stage">
+    <picture class="desktop-signature">
+        <img src="../assets/images/logo.png"
+             alt="Eva Margon"
+             class="signature">
+    </picture>
 
-          <!-- Slika: desktop + mobile -->
-          <picture>
-            <source srcset="../assets/images/galerija-mobile.jpg" media="(max-width: 768px)">
-            <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
-          </picture>
+    <button id="desktopMenuBtn"
+            class="desktop-menu-button"
+            type="button"
+            aria-label="Menu">
+
+        <img src="../assets/images/icon-menu.png"
+             alt="Menu">
+
+    </button>
+
+</div>
 
           <!-- DESKTOP HOTSPOTS -->
           <svg id="hotspots-desktop" viewBox="0 0 461 260" preserveAspectRatio="xMidYMid meet" aria-label="Hotspots desktop">
