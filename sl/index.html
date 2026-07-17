@@ -46,14 +46,61 @@
     }
 
 .signature{
+  display:none;
   height:45px;
   width:auto;
-  display:block;
-  margin:10px auto 0;   /* ↑ poveča prostor zgoraj */
+  margin:10px auto 0;
   opacity:.95;
   filter:none;
   position:relative;
   z-index:100;
+}
+    /* ---------- DESKTOP HEADER ---------- */
+
+.desktop-header{
+  position:fixed;
+  top:18px;
+  left:24px;
+  right:24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:5000;
+  pointer-events:none;
+}
+
+.desktop-header img{
+  pointer-events:auto;
+}
+
+.desktop-logo{
+  height:42px;
+  width:auto;
+}
+
+.menu-toggle{
+  background:none;
+  border:none;
+  padding:0;
+  cursor:pointer;
+}
+
+.menu-toggle img{
+  width:34px;
+  height:auto;
+  display:block;
+}
+
+@media (max-width:768px){
+
+  .desktop-header{
+    display:none;
+  }
+
+  .signature{
+    display:block;
+  }
+
 }
     
 
@@ -380,6 +427,27 @@
 
 <body>
 
+  <div class="desktop-header">
+
+    <img
+        src="../assets/images/logo.png"
+        alt="Eva Margon"
+        class="desktop-logo">
+
+    <button
+        id="desktopMenuBtn"
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false">
+
+        <img
+            src="../assets/images/icon-menu.png"
+            alt="Menu">
+
+    </button>
+
+</div>
+  
   <!-- LANGUAGE SWITCH -->
   <div class="language-switch">
     <span>SL</span> / <a href="../en/">EN</a>
