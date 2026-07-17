@@ -412,6 +412,22 @@
     display:block;
   }
 
+  .signature{
+    visibility:hidden;
+  }
+
+  /* DODAJ TO */
+  #mobileMenu{
+    display:none;
+    margin-top:25px;
+  }
+
+  #mobileMenu.is-open{
+    display:block;
+  }
+
+}
+
   /* na desktopu skrij obstoječ podpis */
   .signature{
     visibility:hidden;
@@ -680,5 +696,32 @@
   })();
   </script>
 
+  <script>
+(function () {
+
+  const desktopBtn = document.getElementById("desktopMenuBtn");
+  const mobileBtn  = document.getElementById("openMenuBtn");
+  const menu       = document.getElementById("mobileMenu");
+
+  if (!desktopBtn || !menu) return;
+
+  desktopBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const open = menu.classList.toggle("is-open");
+
+    document.body.classList.toggle("menu-open", open);
+
+    if (mobileBtn) {
+      mobileBtn.setAttribute(
+        "aria-expanded",
+        open ? "true" : "false"
+      );
+    }
+  });
+
+})();
+</script>
+  
 </body>
 </html>
