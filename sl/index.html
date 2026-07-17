@@ -375,10 +375,72 @@
       .icon-nav-mobile .icon{ width:34px; height:34px; }
       .icon-nav-mobile .icon-title{ font-size:12px; max-width:86px; }
     }
+
+    /* ===== DESKTOP HEADER ===== */
+.desktop-header{
+  display:none;
+}
+
+@media (min-width:769px){
+
+  .desktop-header{
+    display:flex;
+    position:fixed;
+    top:20px;
+    left:24px;
+    right:24px;
+    justify-content:space-between;
+    align-items:flex-start;
+    z-index:5000;
+  }
+
+  .desktop-logo{
+    height:42px;
+    width:auto;
+  }
+
+  .desktop-menu-btn{
+    background:none;
+    border:0;
+    padding:0;
+    cursor:pointer;
+  }
+
+  .desktop-menu-btn img{
+    width:34px;
+    height:34px;
+    display:block;
+  }
+
+  /* na desktopu skrij obstoječ podpis */
+  .signature{
+    visibility:hidden;
+  }
+}
+    
   </style>
 </head>
 
 <body>
+
+  <div class="desktop-header">
+
+  <img
+    src="../assets/images/logo.png"
+    alt="Eva Margon"
+    class="desktop-logo">
+
+  <button
+    class="desktop-menu-btn"
+    id="desktopMenuBtn"
+    aria-label="Menu">
+
+    <img
+      src="../assets/images/icon-menu.png"
+      alt="">
+  </button>
+
+</div>
 
   <!-- LANGUAGE SWITCH -->
   <div class="language-switch">
