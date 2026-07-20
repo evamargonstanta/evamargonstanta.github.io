@@ -110,7 +110,7 @@
 
     setTimeout(() => {
       document.body.classList.remove("hotspot-shine");
-    }, 1200);
+    }, 1600);
   }
 
   desktopBtn.addEventListener("click", function (e) {
