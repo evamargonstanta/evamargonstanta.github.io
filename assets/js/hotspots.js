@@ -128,7 +128,7 @@
         el.classList.remove("flash");
       }, 550);
 
-    }, index * 220);
+    }, index * 250);
 
   });
 
