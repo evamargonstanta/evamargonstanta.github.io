@@ -129,60 +129,39 @@
     }
 
     
-    /* ===== Hotspot hint ===== */
+ /* ===== Hotspot hint ===== */
 
 /* ===== Hotspot animation ===== */
 
-@keyframes hotspotGlow{
-
-  0%{
-    fill-opacity:0;
-    filter:
-      drop-shadow(0 0 0 rgba(255,255,255,0));
-  }
-
-  15%{
-    fill-opacity:.12;
-    filter:
-      drop-shadow(0 0 4px rgba(255,255,255,.18));
-  }
-
-  35%{
-    fill-opacity:.28;
-    filter:
-      drop-shadow(0 0 8px rgba(255,255,255,.40));
-  }
-
-  55%{
-    fill-opacity:.18;
-    filter:
-      drop-shadow(0 0 6px rgba(255,255,255,.28));
-  }
-
-  100%{
-    fill-opacity:0;
-    filter:
-      drop-shadow(0 0 0 rgba(255,255,255,0));
-  }
-}
-    
 body.show-hotspots #hotspots-desktop .click,
 body.show-hotspots #hotspots-mobile .click{
-
   fill:#fff;
   fill-opacity:0;
   filter:drop-shadow(0 0 4px rgba(255,255,255,.18));
 }
 
-body.hotspot-shine #hotspots-desktop .click,
-body.hotspot-shine #hotspots-mobile .click{
-
-  animation: hotspotGlow .9s cubic-bezier(.22,.8,.28,1);
+body.show-hotspots .hotspot.flash .click{
+  animation:hotspotPulse .55s ease;
 }
 
-  
-    /*do tuki*/
+@keyframes hotspotPulse{
+  0%{
+    fill-opacity:0;
+    filter:drop-shadow(0 0 0 rgba(255,255,255,0));
+  }
 
+  30%{
+    fill-opacity:.34;
+    filter:drop-shadow(0 0 10px rgba(255,255,255,.45));
+  }
+
+  100%{
+    fill-opacity:0;
+    filter:drop-shadow(0 0 0 rgba(255,255,255,0));
+  }
+}
+
+/* do tuki */
     
 
     @media (hover:hover){
