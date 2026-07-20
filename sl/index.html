@@ -420,19 +420,22 @@ body.show-hotspots .hotspot.flash .click{
 @media (min-width:769px){
 
   .desktop-header{
-    display:flex;
-    position:fixed;
-    top:20px;
-    left:24px;
-    right:24px;
-    justify-content:space-between;
-    align-items:flex-start;
-    z-index:5000;
-  }
+  display:flex;
+  position:fixed;
+  top:20px;
+  left:24px;
+  right:24px;
+  align-items:flex-start;
+  justify-content:flex-end;
+  z-index:5000;
+}
 
   .desktop-logo{
     height:42px;
     width:auto;
+    position:absolute;
+  left:50%;
+  transform:translateX(-50%);
   }
 
   .desktop-menu-btn{
