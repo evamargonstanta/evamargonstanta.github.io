@@ -128,6 +128,77 @@
       transition: fill-opacity 160ms ease;
     }
 
+    /* zaporedno prižiganje */
+
+body.show-hotspots #hotspot-newspaper-d .click,
+body.show-hotspots #hotspot-newspaper .click{
+  animation-delay:0s;
+}
+
+body.show-hotspots #hotspot-brushes-d .click,
+body.show-hotspots #hotspot-brushes .click{
+  animation-delay:.15s;
+}
+
+body.show-hotspots #hotspot-crayons-d .click,
+body.show-hotspots #hotspot-crayons .click{
+  animation-delay:.30s;
+}
+
+body.show-hotspots #hotspot-books-d .click,
+body.show-hotspots #hotspot-books .click{
+  animation-delay:.45s;
+}
+
+body.show-hotspots #hotspot-screen-d .click,
+body.show-hotspots #hotspot-screen .click{
+  animation-delay:.60s;
+}
+
+body.show-hotspots #hotspot-press-d .click,
+body.show-hotspots #hotspot-press .click{
+  animation-delay:.75s;
+}
+
+body.show-hotspots #hotspot-contact-d .click,
+body.show-hotspots #hotspot-contact .click{
+  animation-delay:.90s;
+}
+
+body.show-hotspots #hotspot-bag-d .click,
+body.show-hotspots #hotspot-bag .click{
+  animation-delay:1.05s;
+}
+
+    /* ===== Hotspot hint ===== */
+
+@keyframes hotspotPulse{
+  0%,100%{
+    stroke:#fff;
+    stroke-width:2.2;
+    stroke-opacity:.35;
+  }
+  50%{
+    stroke:#fff;
+    stroke-width:3;
+    stroke-opacity:.95;
+  }
+}
+
+body.show-hotspots #hotspots-desktop .click,
+body.show-hotspots #hotspots-mobile .click{
+  fill-opacity:0;
+  stroke:#fff;
+  stroke-width:2.2;
+  stroke-linejoin:round;
+  stroke-linecap:round;
+  vector-effect:non-scaling-stroke;
+  animation:hotspotPulse 2s ease-in-out infinite;
+}
+    /*do tuki*/
+
+    
+
     @media (hover:hover){
       #hotspots-desktop .hotspot:hover .click,
       #hotspots-mobile .hotspot:hover .click{
