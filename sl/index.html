@@ -180,28 +180,33 @@ body.show-hotspots #hotspot-bag .click{
     stroke-dashoffset:1000;
     stroke-opacity:0;
     stroke-width:2;
+    fill-opacity:0;
   }
 
-  35%{
+  25%{
     stroke-dashoffset:0;
     stroke-opacity:1;
     stroke-width:2.5;
+    fill-opacity:0;
+  }
+
+  45%{
+    stroke-opacity:.9;
+    fill-opacity:0;
   }
 
   70%{
-    stroke-dashoffset:0;
-    stroke-opacity:.9;
-    stroke-width:2.5;
+    stroke-opacity:.45;
+    fill-opacity:0;
   }
 
   100%{
-    stroke-dashoffset:0;
-    stroke-opacity:.45;
-    stroke-width:2;
+    stroke-opacity:0;
+    fill-opacity:0;
   }
 
 }
-
+    
 body.show-hotspots #hotspots-desktop .click,
 body.show-hotspots #hotspots-mobile .click{
 
@@ -218,7 +223,7 @@ body.show-hotspots #hotspots-mobile .click{
   stroke-dasharray:1000;
   stroke-dashoffset:1000;
 
-  animation:hotspotHint 1.8s ease forwards;
+  animation:hotspotHint 3s ease forwards;
 }
 
     /* zaporedno prižiganje */
