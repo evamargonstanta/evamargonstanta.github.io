@@ -1,4 +1,4 @@
- <script>
+
   /* HOTSPOT NAV + TAP FADE (desktop + mobile) */
   (function () {
     const links = {
@@ -75,9 +75,17 @@
     bindHotspots(document.getElementById('hotspots-desktop'));
     bindHotspots(document.getElementById('hotspots-mobile'));
   })();
-  </script>
 
-  <script>
+
+
+
+
+
+
+
+
+
+
 (function () {
 
   const desktopBtn = document.getElementById("desktopMenuBtn");
@@ -100,4 +108,4 @@
   });
 
 })();
-</script>
+
