@@ -100,10 +100,27 @@
 
   if (!desktopBtn || !menu) return;
 
+  function playHotspotShine() {
+    document.body.classList.remove("hotspot-shine");
+
+    // restart animation
+    void document.body.offsetWidth;
+
+    document.body.classList.add("hotspot-shine");
+
+    setTimeout(() => {
+      document.body.classList.remove("hotspot-shine");
+    }, 1200);
+  }
+
   desktopBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
     const open = document.body.classList.toggle("show-hotspots");
+
+    if (open) {
+      playHotspotShine();
+    }
 
     if (mobileBtn) {
       mobileBtn.setAttribute(
@@ -114,4 +131,3 @@
   });
 
 })();
-
