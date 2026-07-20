@@ -100,27 +100,49 @@
 
   if (!desktopBtn || !menu) return;
 
-  function playHotspotShine() {
-    document.body.classList.remove("hotspot-shine");
+  function playHotspotSequence() {
 
-    // restart animation
-    void document.body.offsetWidth;
+  const hotspots = [
+    "hotspot-newspaper-d",
+    "hotspot-brushes-d",
+    "hotspot-books-d",
+    "hotspot-screen-d",
+    "hotspot-crayons-d",
+    "hotspot-press-d",
+    "hotspot-contact-d",
+    "hotspot-bag-d"
+  ];
 
-    document.body.classList.add("hotspot-shine");
+  hotspots.forEach((id, index) => {
+
+    const el = document.getElementById(id);
+    if (!el) return;
 
     setTimeout(() => {
-      document.body.classList.remove("hotspot-shine");
-    }, 1600);
-  }
 
+      el.classList.remove("flash");
+      void el.offsetWidth;
+      el.classList.add("flash");
+
+      setTimeout(() => {
+        el.classList.remove("flash");
+      }, 550);
+
+    }, index * 120);
+
+  });
+
+}
+
+   
   desktopBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
     const open = document.body.classList.toggle("show-hotspots");
 
-    if (open) {
-      playHotspotShine();
-    }
+   if (open) {
+  playHotspotSequence();
+}
 
     if (mobileBtn) {
       mobileBtn.setAttribute(
