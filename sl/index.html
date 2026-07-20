@@ -825,9 +825,7 @@
   desktopBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-    const open = menu.classList.toggle("is-open");
-
-    document.body.classList.toggle("menu-open", open);
+    const open = document.body.classList.toggle("show-hotspots");
 
     if (mobileBtn) {
       mobileBtn.setAttribute(
