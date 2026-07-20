@@ -416,16 +416,17 @@
     visibility:hidden;
   }
 
-  /* DODAJ TO */
- #mobileMenu{
+  /* DESKTOP MENU */
+#mobileMenu{
   display:none;
-  position:fixed;
-  top:110px;
+  position:absolute;
   left:50%;
+  top:calc(100vh - 180px);
   transform:translateX(-50%);
-  background:transparent;
-  padding:0;
+  width:auto;
   margin:0;
+  padding:0;
+  background:transparent;
   z-index:4500;
 }
 
@@ -433,6 +434,36 @@
   display:block;
 }
 
+/* ena vrstica ikon */
+#mobileMenu .icon-nav-mobile{
+  display:flex;
+  flex-wrap:nowrap;
+  justify-content:center;
+  align-items:flex-start;
+  gap:28px;
+}
+
+/* izklopi mobilno mrežo */
+#mobileMenu .icon-link:nth-child(6),
+#mobileMenu .icon-link:nth-child(7),
+#mobileMenu .icon-link:nth-child(8){
+  grid-column:auto;
+}
+
+/* večje ikone */
+#mobileMenu .icon{
+  width:52px;
+  height:52px;
+}
+
+/* večji napisi */
+#mobileMenu .icon-title{
+  font-size:15px;
+  max-width:110px;
+  white-space:normal;
+  text-align:center;
+  line-height:1.2;
+}
 }
     
   </style>
