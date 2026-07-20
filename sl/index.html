@@ -465,6 +465,41 @@
   line-height:1.2;
 }
 }
+
+    .desktop-menu{
+  display:none;
+  width:100%;
+  margin:30px auto 0;
+}
+
+.desktop-menu.is-open{
+  display:block;
+}
+
+.icon-nav-desktop{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:34px;
+}
+
+.icon-nav-desktop .icon-link{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+}
+
+.icon-nav-desktop .icon{
+  width:54px;
+  height:54px;
+}
+
+.icon-nav-desktop .icon-title{
+  margin-top:10px;
+  font-size:14px;
+  color:#111;
+}
     
   </style>
 </head>
@@ -574,6 +609,54 @@
       </div>
     </div>
 
+    <div id="desktopMenu" class="desktop-menu">
+
+  <nav class="icon-nav-desktop">
+
+    <a class="icon-link" href="about.html">
+      <img class="icon" src="../assets/images/icon-newspaper.png" alt="">
+      <div class="icon-title">O meni</div>
+    </a>
+
+    <a class="icon-link" href="wet-techniques.html">
+      <img class="icon" src="../assets/images/icon-brush.png" alt="">
+      <div class="icon-title">Slikanje</div>
+    </a>
+
+    <a class="icon-link" href="dry-techniques.html">
+      <img class="icon" src="../assets/images/icon-crayon.png" alt="">
+      <div class="icon-title">Risanje</div>
+    </a>
+
+    <a class="icon-link" href="books.html">
+      <img class="icon" src="../assets/images/icon-books.png" alt="">
+      <div class="icon-title">Knjige</div>
+    </a>
+
+    <a class="icon-link" href="printmaking.html">
+      <img class="icon" src="../assets/images/icon-press.png" alt="">
+      <div class="icon-title">Grafika</div>
+    </a>
+
+    <a class="icon-link" href="animation.html">
+      <img class="icon" src="../assets/images/icon-screen.png" alt="">
+      <div class="icon-title">Animacija</div>
+    </a>
+
+    <a class="icon-link" href="contact.html">
+      <img class="icon" src="../assets/images/icon-letter.png" alt="">
+      <div class="icon-title">Kontakt</div>
+    </a>
+
+    <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank">
+      <img class="icon" src="../assets/images/icon-bag.png" alt="">
+      <div class="icon-title">Trgovina</div>
+    </a>
+
+  </nav>
+
+</div>
+    
     <!-- GUMB pod ilustracijo -->
     <div class="mobile-cta">
       <button id="openMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">
@@ -623,8 +706,6 @@
     </div>
 
   </div><!-- /hero -->
-
-  <div id="desktopMenu"></div>
 
   <script>
   /* MENU TOGGLE — mobile menu */
@@ -730,22 +811,12 @@
   })();
   </script>
 
-  //dodano kasneje za desktop menu//
-  <script>
-fetch("partials/desktop-nav.html")
-  .then(response => response.text())
-  .then(html => {
-    document.getElementById("desktopMenu").innerHTML = html;
-  });
-</script>
-
-  
   <script>
 (function () {
 
   const desktopBtn = document.getElementById("desktopMenuBtn");
-  const mobileBtn = null;
-  const menu       = document.getElementById("desktopMenu");
+  const mobileBtn  = document.getElementById("openMenuBtn");
+  const menu       = document.getElementById("mobileMenu");
 
   if (!desktopBtn || !menu) return;
 
