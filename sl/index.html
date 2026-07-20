@@ -172,29 +172,96 @@ body.show-hotspots #hotspot-bag .click{
 
     /* ===== Hotspot hint ===== */
 
-@keyframes hotspotPulse{
-  0%,100%{
-    stroke:#fff;
-    stroke-width:2.2;
-    stroke-opacity:.35;
+/* ===== Hotspot animation ===== */
+
+@keyframes hotspotHint{
+
+  0%{
+    stroke-dashoffset:1000;
+    stroke-opacity:0;
+    stroke-width:2;
   }
-  50%{
-    stroke:#fff;
-    stroke-width:3;
-    stroke-opacity:.95;
+
+  35%{
+    stroke-dashoffset:0;
+    stroke-opacity:1;
+    stroke-width:2.5;
   }
+
+  70%{
+    stroke-dashoffset:0;
+    stroke-opacity:.9;
+    stroke-width:2.5;
+  }
+
+  100%{
+    stroke-dashoffset:0;
+    stroke-opacity:.45;
+    stroke-width:2;
+  }
+
 }
 
 body.show-hotspots #hotspots-desktop .click,
 body.show-hotspots #hotspots-mobile .click{
-  fill-opacity:0;
+
+  fill:none;
+
   stroke:#fff;
   stroke-width:2.2;
-  stroke-linejoin:round;
   stroke-linecap:round;
+  stroke-linejoin:round;
+
   vector-effect:non-scaling-stroke;
-  animation:hotspotPulse 2s ease-in-out infinite;
+
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+
+  animation:hotspotHint 1.8s ease forwards;
 }
+
+    /* zaporedno prižiganje */
+
+body.show-hotspots #hotspot-newspaper-d .click,
+body.show-hotspots #hotspot-newspaper .click{
+  animation-delay:0s;
+}
+
+body.show-hotspots #hotspot-brushes-d .click,
+body.show-hotspots #hotspot-brushes .click{
+  animation-delay:.15s;
+}
+
+body.show-hotspots #hotspot-crayons-d .click,
+body.show-hotspots #hotspot-crayons .click{
+  animation-delay:.30s;
+}
+
+body.show-hotspots #hotspot-books-d .click,
+body.show-hotspots #hotspot-books .click{
+  animation-delay:.45s;
+}
+
+body.show-hotspots #hotspot-screen-d .click,
+body.show-hotspots #hotspot-screen .click{
+  animation-delay:.60s;
+}
+
+body.show-hotspots #hotspot-press-d .click,
+body.show-hotspots #hotspot-press .click{
+  animation-delay:.75s;
+}
+
+body.show-hotspots #hotspot-contact-d .click,
+body.show-hotspots #hotspot-contact .click{
+  animation-delay:.90s;
+}
+
+body.show-hotspots #hotspot-bag-d .click,
+body.show-hotspots #hotspot-bag .click{
+  animation-delay:1.05s;
+}
+    
     /*do tuki*/
 
     
