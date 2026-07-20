@@ -174,46 +174,27 @@ body.show-hotspots #hotspot-bag .click{
 
 /* ===== Hotspot animation ===== */
 
-@keyframes hotspotHint{
+@keyframes hotspotGlow{
 
   0%{
-    stroke-dashoffset:1000;
-    stroke-opacity:0;
-    stroke-width:2;
     fill-opacity:0;
   }
 
-  25%{
-    stroke-dashoffset:0;
-    stroke-opacity:1;
-    stroke-width:2.5;
-    fill-opacity:0;
+  35%{
+    fill-opacity:.03;
   }
 
-  45%{
-    stroke-opacity:.9;
-    fill-opacity:0;
+  55%{
+    fill-opacity:.08;
   }
 
-  40%{
-  stroke-opacity:1;
-}
+  75%{
+    fill-opacity:.03;
+  }
 
-60%{
-  stroke-opacity:.8;
-}
-
-75%{
-  stroke-opacity:.5;
-}
-
-90%{
-  stroke-opacity:.2;
-}
-
-100%{
-  stroke-opacity:0;
-}
+  100%{
+    fill-opacity:0;
+  }
 
 }
     
@@ -222,18 +203,7 @@ body.show-hotspots #hotspots-mobile .click{
 
   fill:#fff;
   fill-opacity:0;
-
-  stroke:#fff;
-  stroke-width:2.2;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-
-  vector-effect:non-scaling-stroke;
-
-  stroke-dasharray:1000;
-  stroke-dashoffset:1000;
-
-  animation:hotspotHint 3s ease forwards;
+  animation:hotspotGlow 2s ease forwards;
 }
 
     /* zaporedno prižiganje */
