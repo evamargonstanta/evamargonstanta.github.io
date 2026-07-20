@@ -730,6 +730,16 @@
   })();
   </script>
 
+  //dodano kasneje za desktop menu//
+  <script>
+fetch("partials/desktop-nav.html")
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById("desktopMenu").innerHTML = html;
+  });
+</script>
+
+  
   <script>
 (function () {
 
