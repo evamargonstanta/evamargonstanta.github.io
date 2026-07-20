@@ -1,3 +1,9 @@
+/* ======================================================
+   HOTSPOTS
+   - desktop hotspot hint
+   - hotspot navigation
+   - mobile tap animation
+====================================================== */
 
   /* HOTSPOT NAV + TAP FADE (desktop + mobile) */
   (function () {
