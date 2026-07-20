@@ -850,13 +850,6 @@ body.show-hotspots #hotspot-bag .click{
   <script>
   /* MENU TOGGLE — mobile menu */
   (function () {
-
-    document.querySelectorAll('.click').forEach(path => {
-  const len = path.getTotalLength();
-  path.style.strokeDasharray = len;
-  path.style.strokeDashoffset = len;
-});
-    
     const btn = document.getElementById('openMenuBtn');
     const menu = document.getElementById('mobileMenu');
     if (!btn || !menu) return;
@@ -970,11 +963,7 @@ body.show-hotspots #hotspot-bag .click{
   desktopBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
-         document.body.classList.remove("show-hotspots");
-
-        void document.body.offsetWidth;
-
-        document.body.classList.add("show-hotspots");
+    const open = document.body.classList.toggle("show-hotspots");
 
     if (mobileBtn) {
       mobileBtn.setAttribute(
