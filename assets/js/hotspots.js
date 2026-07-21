@@ -128,7 +128,7 @@
 
       setTimeout(() => {
         el.classList.remove("flash");
-      }, 550);
+      }, 850);
 
     }, index * 250);
 
