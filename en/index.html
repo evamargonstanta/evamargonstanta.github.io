@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eva Margon – Galerija</title>
+  <title>Eva Margon – Gallery</title>
 
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
@@ -45,7 +45,7 @@
       z-index:1;
     }
 
-    .signature{
+.signature{
   height:45px;
   width:auto;
   display:block;
@@ -55,6 +55,7 @@
   position:relative;
   z-index:100;
 }
+    
 
     /* SCENE */
     .scene{
@@ -127,6 +128,42 @@
       transition: fill-opacity 160ms ease;
     }
 
+    
+ /* ===== Hotspot hint ===== */
+
+/* ===== Hotspot animation ===== */
+
+body.show-hotspots #hotspots-desktop .click,
+body.show-hotspots #hotspots-mobile .click{
+  fill:#fff;
+  fill-opacity:0;
+  filter:drop-shadow(0 0 4px rgba(255,255,255,.18));
+}
+
+body.show-hotspots .hotspot.flash .click{
+  animation:hotspotPulse .8s ease;
+}
+
+@keyframes hotspotPulse{
+  0%{
+    fill-opacity:0;
+    filter:drop-shadow(0 0 0 rgba(255,255,255,0));
+  }
+
+  30%{
+    fill-opacity:.34;
+    filter:drop-shadow(0 0 10px rgba(255,255,255,.45));
+  }
+
+  100%{
+    fill-opacity:0;
+    filter:drop-shadow(0 0 0 rgba(255,255,255,0));
+  }
+}
+
+/* do tuki */
+    
+
     @media (hover:hover){
       #hotspots-desktop .hotspot:hover .click,
       #hotspots-mobile .hotspot:hover .click{
@@ -144,7 +181,7 @@
       -webkit-tap-highlight-color:transparent;
     }
 
-    /* CTA default: hidden on desktop */
+    /* CTA default: skrito na desktop */
     .mobile-cta{
       display:none;
       width:100%;
@@ -200,7 +237,7 @@
     .scene{ position: relative; z-index: 1; }
     #hotspots-desktop, #hotspots-mobile{ z-index: 2; }
 
-    /* Mobile menu */
+    /* Mobile menu (mreža + spacing) */
     .mobile-menu{
       display:none;
       padding:14px 12px 18px;
@@ -210,7 +247,7 @@
       opacity:0;
       transform: translateY(10px);
       transition: opacity .2s ease, transform .2s ease;
-      margin-top:-12px;
+      margin-top:-12px;     /* meni višje */
       margin-bottom:18px;
     }
 
@@ -267,12 +304,12 @@
       text-wrap:balance;
     }
 
-    /* ---------------- MOBILE ---------------- */
+    /* ---------------- MOBILE: center + crop samo levo/desno + CTA vidna ---------------- */
     @media (max-width: 420px), (orientation: portrait) and (max-width: 768px){
       html, body{ overflow-x:hidden; overflow-y:auto; }
       body{ overflow: visible; }
 
-      :root{ --zoomX: 1.16; }
+      :root{ --zoomX: 1.16; } /* zoom */
 
       .hero{
         transform:none !important;
@@ -283,7 +320,7 @@
         min-height:100svh;
         display:flex;
         flex-direction:column;
-        justify-content:center;
+        justify-content:center;   /* center all vertically */
         align-items:center;
       }
 
@@ -297,7 +334,7 @@
         display:none !important;
       }
 
-          .signature{
+      .signature{
         height:22px;
         width:auto !important;
          margin:0 auto -18px; /* podpis bližje ilustraciji */
@@ -316,7 +353,7 @@
         height: clamp(340px, 56svh, 520px);
         width:100%;
         position:relative;
-        overflow:hidden;
+        overflow:hidden; /* crop samo levo/desno */
       }
 
       .stage{
@@ -339,7 +376,7 @@
       .media-wrap img{
         width:100%;
         height:100%;
-        object-fit:contain;
+        object-fit:contain;          /* nič ne odreže zgoraj/spodaj */
         object-position:50% 50%;
         display:block;
         margin:0 auto;
@@ -356,7 +393,7 @@
 
       .mobile-cta{
         display:block !important;
-        margin-top:-14px;
+        margin-top:-14px;  /* CTA bližje ilustraciji */
         padding:0;
         line-height:1;
       }
@@ -374,26 +411,177 @@
       .icon-nav-mobile .icon{ width:34px; height:34px; }
       .icon-nav-mobile .icon-title{ font-size:12px; max-width:86px; }
     }
+
+    /* ===== DESKTOP HEADER ===== */
+.desktop-header{
+  display:none;
+}
+
+@media (min-width:769px){
+
+  .desktop-header{
+  display:flex;
+  position:fixed;
+  top:28px;
+  left:24px;
+  right:24px;
+  align-items:flex-start;
+  justify-content:flex-end;
+  z-index:5000;
+}
+
+  .desktop-logo{
+    height:48px;
+    width:auto;
+    position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  }
+
+  .desktop-menu-btn{
+    background:none;
+    border:0;
+    padding:0;
+    cursor:pointer;
+  }
+
+  .desktop-menu-btn img{
+    width:34px;
+    height:34px;
+    display:block;
+  }
+
+  .signature{
+    visibility:hidden;
+  }
+
+  /* DESKTOP MENU */
+#mobileMenu{
+  display:none;
+  position:absolute;
+  left:50%;
+  top:calc(100vh - 180px);
+  transform:translateX(-50%);
+  width:auto;
+  margin:0;
+  padding:0;
+  background:transparent;
+  z-index:4500;
+}
+
+#mobileMenu.is-open{
+  display:block;
+}
+
+/* ena vrstica ikon */
+#mobileMenu .icon-nav-mobile{
+  display:flex;
+  flex-wrap:nowrap;
+  justify-content:center;
+  align-items:flex-start;
+  gap:28px;
+}
+
+/* izklopi mobilno mrežo */
+#mobileMenu .icon-link:nth-child(6),
+#mobileMenu .icon-link:nth-child(7),
+#mobileMenu .icon-link:nth-child(8){
+  grid-column:auto;
+}
+
+/* večje ikone */
+#mobileMenu .icon{
+  width:52px;
+  height:52px;
+}
+
+/* večji napisi */
+#mobileMenu .icon-title{
+  font-size:15px;
+  max-width:110px;
+  white-space:normal;
+  text-align:center;
+  line-height:1.2;
+}
+}
+
+    .desktop-menu{
+  display:none;
+  width:100%;
+  margin:30px auto 0;
+}
+
+.desktop-menu.is-open{
+  display:block;
+}
+
+.icon-nav-desktop{
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:34px;
+}
+
+.icon-nav-desktop .icon-link{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+}
+
+.icon-nav-desktop .icon{
+  width:54px;
+  height:54px;
+}
+
+.icon-nav-desktop .icon-title{
+  margin-top:10px;
+  font-size:14px;
+  color:#111;
+}
+    
   </style>
 </head>
 
 <body>
 
-  <!-- LANGUAGE SWITCH (stores preference) -->
+  <div class="desktop-header">
+
+  <img
+    src="../assets/images/logo.png"
+    alt="Eva Margon"
+    class="desktop-logo">
+
+  <button
+    class="desktop-menu-btn"
+    id="desktopMenuBtn"
+    aria-label="Menu">
+
+    <img
+      src="../assets/images/icon-menu.png"
+      alt="">
+  </button>
+
+</div>
+
+  <!-- LANGUAGE SWITCH -->
   <div class="language-switch">
-    <a href="../sl/" onclick="localStorage.setItem('lang','sl')">SL</a> / <span>EN</span>
+    <span>EN</span> / <a href="../sl/">SL</a>
   </div>
 
   <!-- HERO -->
   <div class="hero">
 
-    <img src="../assets/images/logo.png" alt="Eva Margon" class="signature">
+    <picture>
+  <source srcset="../assets/images/logo.png" media="(max-width: 768px)">
+  <img src="../assets/images/logo.png" alt="Eva Margon" class="signature">
+</picture>
 
     <div class="scene">
       <div class="media-wrap">
         <div class="stage">
 
-          <!-- Image: desktop + mobile -->
+          <!-- Slika: desktop + mobile -->
           <picture>
             <source srcset="../assets/images/galerija-mobile.jpg" media="(max-width: 768px)">
             <img src="../assets/images/galerija.jpg" alt="Illustrated studio workspace">
@@ -401,6 +589,7 @@
 
           <!-- DESKTOP HOTSPOTS -->
           <svg id="hotspots-desktop" viewBox="0 0 461 260" preserveAspectRatio="xMidYMid meet" aria-label="Hotspots desktop">
+          
             <g class="hotspot" id="hotspot-newspaper-d" data-href="about.html">
               <path class="click" d="M135.3,213.3c-1.4,-1.7 2.1,-1.9 0.7,-3.1c-0.5,-0.4 0.7,0.1 5.4,-5.6c0.6,-0.7 0.7,-0.5 7.6,-8.3c0,-0 1.8,-1.3 5.2,-4.7c1.1,-1.1 1.2,-0.8 2.3,-0.3c0.6,0.3 7.7,1.5 8.1,1.5c5.5,0.2 8.7,-0.8 15.1,3.4c0.7,0.5 5.6,3.8 6.9,7.7c1.2,3.7 0.1,3.8 -5.5,13.9c-1.6,3 -5.6,8.3 -6.4,10.5c-0.4,1.1 -1.6,-0.9 -1.8,0.3c-0.1,0.7 0.9,2.4 -1.3,1.5c-14.6,-5.8 -21.3,-5.7 -30.6,-8.8c-5.4,-1.8 -8.3,-0.3 -6.9,-2.6c0,-0 0.1 0 0.5,-0.6c0.4,-0.6 0.3,-0.5 0.7,-1c-0.4,-0 -3.9,-0 -1.5,-2c0.1,-0.1 0.1,-0.2 1.7,-1.8z"/>
             </g>
@@ -429,7 +618,7 @@
 
           <!-- MOBILE HOTSPOTS -->
           <svg id="hotspots-mobile" viewBox="0 0 1920 1500" preserveAspectRatio="xMidYMid meet" aria-label="Hotspots mobile">
-            <!-- (your mobile hotspot paths stay the same) -->
+            <!-- (tvoji mobile hotspot pathi ostanejo isti) -->
             <g class="hotspot" id="hotspot-newspaper">
               <path class="click" d="M645.572,1004.03C638.441,1005.29 631.221,1018.19 608.86,1040.55C605.694,1043.71 576.992,1072.41 568.587,1079.42C561.168,1085.6 566.596,1087.16 566.135,1089.92C565.099,1096.14 558.707,1094.68 561.583,1100.43C562.997,1103.26 556.096,1103.84 554.406,1108.41C554.296,1109.96 556.69,1110.07 561.314,1110.76C558.244,1117.66 547.533,1130.19 565.785,1134.75C570.505,1135.93 571.016,1132.15 626.02,1143.16C668.044,1151.56 695.829,1165.56 701.756,1168.52C703.726,1169.51 705.73,1171.96 708.555,1171.28C712.644,1167.92 712.811,1164.43 715.321,1163.47C717.369,1162.68 724.547,1167.64 727.01,1164.19C735.16,1152.78 742.142,1140.8 754.944,1120.27C756.76,1117.35 762.717,1108.51 782.559,1072.07C791.239,1056.12 755.449,1030.95 746.839,1022.34C743.94,1019.44 723.675,1009.41 669.435,1009.31C660.65,1009.3 653.931,1004.48 645.572,1004.03Z"/>
             </g>
@@ -460,7 +649,9 @@
       </div>
     </div>
 
-    <!-- BUTTON under illustration -->
+   
+    
+    <!-- GUMB pod ilustracijo -->
     <div class="mobile-cta">
       <button id="openMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">
         <img src="../assets/images/icon-arrow.png" class="hint-arrow" alt="" aria-hidden="true">
@@ -494,8 +685,8 @@
           <div class="icon-title">Printmaking</div>
         </a>
         <a class="icon-link wide-label" href="animation.html">
-          <img class="icon" src="../assets/images/icon-screen.png" alt="Animation and design">
-          <div class="icon-title">Animation &amp; design</div>
+          <img class="icon" src="../assets/images/icon-screen.png" alt="Animation & Design">
+          <div class="icon-title" style="max-width:130px">Animation &amp;<br>Design</div>
         </a>
         <a class="icon-link" href="contact.html">
           <img class="icon" src="../assets/images/icon-letter.png" alt="Contact">
@@ -510,6 +701,54 @@
 
   </div><!-- /hero -->
 
+   <div id="desktopMenu" class="desktop-menu">
+
+  <nav class="icon-nav-desktop">
+
+    <a class="icon-link" href="about.html">
+      <img class="icon" src="../assets/images/icon-newspaper.png" alt="">
+      <div class="icon-title">About</div>
+    </a>
+
+    <a class="icon-link" href="wet-techniques.html">
+      <img class="icon" src="../assets/images/icon-brush.png" alt="">
+      <div class="icon-title">Painting</div>
+    </a>
+
+    <a class="icon-link" href="dry-techniques.html">
+      <img class="icon" src="../assets/images/icon-crayon.png" alt="">
+      <div class="icon-title">Drawing</div>
+    </a>
+
+    <a class="icon-link" href="books.html">
+      <img class="icon" src="../assets/images/icon-books.png" alt="">
+      <div class="icon-title">Books</div>
+    </a>
+
+    <a class="icon-link" href="printmaking.html">
+      <img class="icon" src="../assets/images/icon-press.png" alt="">
+      <div class="icon-title">Printmaking</div>
+    </a>
+
+    <a class="icon-link" href="animation.html">
+      <img class="icon" src="../assets/images/icon-screen.png" alt="">
+      <div class="icon-title">Animation</div>
+    </a>
+
+    <a class="icon-link" href="contact.html">
+      <img class="icon" src="../assets/images/icon-letter.png" alt="">
+      <div class="icon-title">Contact</div>
+    </a>
+
+    <a class="icon-link" href="https://evamargon.sumupstore.com" target="_blank">
+      <img class="icon" src="../assets/images/icon-bag.png" alt="">
+      <div class="icon-title">Shop</div>
+    </a>
+
+  </nav>
+
+</div>
+  
   <script>
   /* MENU TOGGLE — mobile menu */
   (function () {
@@ -535,84 +774,8 @@
   })();
   </script>
 
-  <script>
-  /* HOTSPOT NAV + TAP FADE (desktop + mobile) */
-  (function () {
-    const links = {
-      // mobile ids
-      'hotspot-newspaper': 'about.html',
-      'hotspot-brushes': 'wet-techniques.html',
-      'hotspot-crayons': 'dry-techniques.html',
-      'hotspot-books': 'books.html',
-      'hotspot-press': 'printmaking.html',
-      'hotspot-screen': 'animation.html',
-      'hotspot-contact': 'contact.html',
-      'hotspot-bag': 'https://evamargon.sumupstore.com',
-
-      // desktop ids (-d)
-      'hotspot-newspaper-d': 'about.html',
-      'hotspot-brushes-d': 'wet-techniques.html',
-      'hotspot-crayons-d': 'dry-techniques.html',
-      'hotspot-books-d': 'books.html',
-      'hotspot-press-d': 'printmaking.html',
-      'hotspot-screen-d': 'animation.html',
-      'hotspot-contact-d': 'contact.html',
-      'hotspot-bag-d': 'https://evamargon.sumupstore.com'
-    };
-
-    const isMobileOrPortrait = () =>
-      window.matchMedia('(max-width: 420px)').matches ||
-      window.matchMedia('(orientation: portrait) and (max-width: 768px)').matches;
-
-    function closestHotspot(node) {
-      let el = node;
-      while (el && el !== document && el !== window) {
-        if (el.classList && el.classList.contains('hotspot')) return el;
-        el = el.parentNode;
-      }
-      return null;
-    }
-
-    function bindHotspots(svgEl) {
-      if (!svgEl) return;
-
-      const clearTapped = () => {
-        svgEl.querySelectorAll('.hotspot.is-tapped')
-          .forEach(el => el.classList.remove('is-tapped'));
-      };
-
-      svgEl.addEventListener('click', function (e) {
-        const hotspot = closestHotspot(e.target);
-        if (!hotspot) return;
-
-        const href = links[hotspot.id];
-        if (!href) return;
-
-        const isExternal = /^https?:\/\//i.test(href);
-
-        if (isMobileOrPortrait()) {
-          e.preventDefault();
-          clearTapped();
-          hotspot.classList.add('is-tapped');
-          window.setTimeout(() => {
-            hotspot.classList.remove('is-tapped');
-            window.location.href = href;
-          }, 260);
-          return;
-        }
-
-        if (isExternal) window.open(href, '_blank', 'noopener');
-        else window.location.href = href;
-      }, { passive:false });
-
-      window.addEventListener('scroll', clearTapped, { passive:true });
-      window.addEventListener('resize', clearTapped, { passive:true });
-    }
-
-    bindHotspots(document.getElementById('hotspots-desktop'));
-    bindHotspots(document.getElementById('hotspots-mobile'));
-  })();
-  </script>
-
+<!-- Hotspot interactions -->
+  <script src="../assets/js/hotspots.js"></script>
+  
 </body>
 </html>
