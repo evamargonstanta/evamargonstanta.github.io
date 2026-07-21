@@ -100,6 +100,8 @@
 
   if (!desktopBtn || !menu) return;
 
+   let replayTimer = null;
+
   function playHotspotSequence() {
 
   const hotspots = [
@@ -136,20 +138,30 @@
 
    
   desktopBtn.addEventListener("click", function (e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const open = document.body.classList.toggle("show-hotspots");
+  const open = document.body.classList.toggle("show-hotspots");
 
-   if (open) {
-  playHotspotSequence();
-}
+  clearTimeout(replayTimer);
 
-    if (mobileBtn) {
-      mobileBtn.setAttribute(
-        "aria-expanded",
-        open ? "true" : "false"
-      );
-    }
-  });
+  if (open) {
 
-})();
+    playHotspotSequence();
+
+    replayTimer = setTimeout(() => {
+
+      if (document.body.classList.contains("show-hotspots")) {
+        playHotspotSequence();
+      }
+
+    }, 4000);
+
+  }
+
+  if (mobileBtn) {
+    mobileBtn.setAttribute(
+      "aria-expanded",
+      open ? "true" : "false"
+    );
+  }
+});
