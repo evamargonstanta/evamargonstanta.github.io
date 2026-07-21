@@ -145,14 +145,20 @@ body.show-hotspots .hotspot.flash .click{
 }
 
 @keyframes hotspotPulse{
+
   0%{
     fill-opacity:0;
     filter:drop-shadow(0 0 0 rgba(255,255,255,0));
   }
 
   30%{
-    fill-opacity:.34;
-    filter:drop-shadow(0 0 10px rgba(255,255,255,.45));
+    fill-opacity:.40;
+    filter:drop-shadow(0 0 12px rgba(255,255,255,.50));
+  }
+
+  65%{
+    fill-opacity:.40;
+    filter:drop-shadow(0 0 12px rgba(255,255,255,.50));
   }
 
   100%{
